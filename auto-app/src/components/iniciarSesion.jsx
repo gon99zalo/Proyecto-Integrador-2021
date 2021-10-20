@@ -28,7 +28,7 @@ export default function IniciarSesion() {
           <label className="labels-inicio" htmlFor="contrasenia">Contraseña</label>
           <div className="campos-inicio">
             <input className="campos-inicio" type={passwordShown ? "text" : "password"} placeholder={passwordShown ? "contraseña" : "•••••••••"} name="contrasenia" id="contrasenia" required/>
-            <i onClick={togglePasswordVisiblity} class="password" id="password">{passwordShown ? visible : notVisible}</i>
+            <i onClick={togglePasswordVisiblity} className="password" id="password">{passwordShown ? visible : notVisible}</i>
           </div>
           <button type="submit" className="boton-iniciarSesion" id="boton-iniciarSesion">Ingresar</button>
           <p className="texto-cuenta txt-1">¿Aún no tenes cuenta? <a href="crearCuenta">Registrate</a></p>

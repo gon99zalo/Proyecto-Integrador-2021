@@ -1,9 +1,13 @@
 header {
-    height: 10vh;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 
 .logo {
@@ -36,18 +40,19 @@ height: 52px;
   }
 
 .inputs-header {
-    display: flex;
-    flex-direction: row;
-    /* justify-content: right; */
-    gap: 10px;
-    margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: right; */
+  gap: 10px;
+  margin-right: 10px;
 }
 
-.crearCuenta, .iniciarSesion {
-    height: 35px;
-    background-color: white;
-    border-color: rgba(240, 87, 45, 1);
-    color: rgba(240, 87, 45, 1);
-    border-radius: 5px;
-    padding: 5px 35px;
+.crearCuenta,
+.iniciarSesion {
+  height: 35px;
+  background-color: white;
+  border-color: rgba(240, 87, 45, 1);
+  color: rgba(240, 87, 45, 1);
+  border-radius: 5px;
+  padding: 5px 35px;
 }
