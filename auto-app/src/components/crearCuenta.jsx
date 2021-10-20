@@ -7,7 +7,7 @@ export default function CrearCuenta() {
     <>
       <Header />
       <div className="signUp">
-      <h1>Crear cuenta</h1>
+      <h1 className="titulo-crear">Crear cuenta</h1>
       {/* <div className="form-crearCuenta"> */}
       <form className="form-crearCuenta" action="">
           <div className="inputs">

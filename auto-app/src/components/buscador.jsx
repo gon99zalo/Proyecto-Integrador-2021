@@ -8,7 +8,7 @@ export default function Buscador() {
 
     return (
         <div className="buscador">
-        <h1>Busca el auto que necesitas</h1>
+        <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
         <div className="buscadores">
         {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
         <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}

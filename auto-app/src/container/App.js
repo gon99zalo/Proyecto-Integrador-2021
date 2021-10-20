@@ -13,7 +13,6 @@ import iniciarSesion from "../components/iniciarSesion";
 function App() {
   return (
     <div className="App">
-      <Categories />
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />

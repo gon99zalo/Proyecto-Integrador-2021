@@ -19,7 +19,7 @@ export default function IniciarSesion() {
     <>
       <Header />
       <div className="logIn">
-      <h1>Iniciar sesión</h1>
+      <h1 className="titulo-inicio">Iniciar sesión</h1>
       <form className="form-iniciarSesion" action="">
           <div className="inputs-inicio">
           <label className="labels-inicio" htmlFor="correo electronico">Correo electrónico</label>
