@@ -1,4 +1,3 @@
-
 //@ts-nocheck
 import '../styles/Global.css';
 import Categories from '../components/Categories';
