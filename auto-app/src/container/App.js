@@ -1,9 +1,21 @@
-import '../styles/App.css';
+import Buscador from "../components/buscador";
+import Header from "../components/header";
+import "../styles/App.css";
+import { Route, Link, Router, Switch, BrowserRouter } from "react-router-dom";
+import Home from "../components/home";
+import CrearCuenta from "../components/crearCuenta";
+import iniciarSesion from "../components/iniciarSesion";
 
 function App() {
   return (
     <div className="App">
-      <h1>Grupo - 3</h1>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/crearCuenta" component={CrearCuenta} />
+          <Route exact path="/iniciarSesion" component={iniciarSesion} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

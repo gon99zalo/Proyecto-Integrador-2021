@@ -27,7 +27,7 @@ function Registration() {
             <input type={passwordShown ? "text" : "password"} required></input>
             <i onClick={togglePasswordVisiblity}>{passwordShown ? visible : notVisible}</i>
             <button onClick={console.log("s")}>registro</button>
-            <p>¿Ya tienes una cuenta? <a href="">Iniciar sesión</a></p>
+            <p>¿Ya tienes una cuenta? <a href="Login">Iniciar sesión</a></p>
         </form>
       </div>
     );

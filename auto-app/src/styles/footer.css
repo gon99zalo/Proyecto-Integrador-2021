@@ -1,0 +1,14 @@
+footer {
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(240, 87, 45, 1);
+    position: absolute; /*cambiar */
+    bottom: 0; /*cambiar */
+}
+
+.redes {
+    margin-right: 30px;
+}
