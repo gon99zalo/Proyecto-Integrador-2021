@@ -20,16 +20,18 @@ export default function IniciarSesion() {
     <>
       <Header />
       <div className="logIn">
-      <h1>Iniciar sesión</h1>
+      <h1 className="titulo-inicio">Iniciar sesión</h1>
       <form className="form-iniciarSesion" action="">
           <div className="inputs-inicio">
           <label className="labels-inicio" htmlFor="correo electronico">Correo electrónico</label>
-          <input className="campos-inicio" type="email" name="correo electronico" id="correo electronico"/>
+          <input className="campos-inicio" type="email" name="correo electronico" id="correo electronico" required/>
           <label className="labels-inicio" htmlFor="contrasenia">Contraseña</label>
-          <input className="campos-inicio" type={passwordShown ? "text" : "password"} placeholder="•••••••••" name="contrasenia" id="contrasenia"/>
-          <i onClick={togglePasswordVisiblity} class="password" id="password">{passwordShown ? visible : notVisible}</i>
+          <div className="campos-inicio">
+            <input className="campos-inicio" type={passwordShown ? "text" : "password"} placeholder={passwordShown ? "contraseña" : "•••••••••"} name="contrasenia" id="contrasenia" required/>
+            <i onClick={togglePasswordVisiblity} class="password" id="password">{passwordShown ? visible : notVisible}</i>
+          </div>
           <button type="submit" className="boton-iniciarSesion" id="boton-iniciarSesion">Ingresar</button>
-          <p className="texto-cuenta">¿Aún no tenes cuenta? <a href="crearCuenta">Registrate</a></p>
+          <p className="texto-cuenta txt-1">¿Aún no tenes cuenta? <a href="crearCuenta">Registrate</a></p>
           </div>
       </form>
       </div>
