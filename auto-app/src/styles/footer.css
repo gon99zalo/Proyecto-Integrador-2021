@@ -11,5 +11,10 @@ footer {
 }
 
 .redes {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
     margin-right: 30px;
+    height: 30px;
+    width: 100px;
 }

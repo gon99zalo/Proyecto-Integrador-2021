@@ -23,7 +23,7 @@
       flex-direction: column;
       width: 100%;
 }
-i{
+.password {
   position: absolute;
   line-height: 35px;
   right: 5px;;
