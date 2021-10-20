@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Header from "./header";
 import "../styles/iniciarSesion.css"
 import Footer from "./footer";
