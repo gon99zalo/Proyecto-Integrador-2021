@@ -1,0 +1,57 @@
+/* Fonts: medium y bold */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+/* Estilos globales */
+.App {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+    margin: 0;
+    color: #31363F;
+    font-weight: 700;
+}
+h1 {
+    font-size: 24pt;
+}
+h2 {
+    font-size: 20pt;
+}
+h3 {
+    font-size: 16pt;
+}
+h4 {
+    opacity: 60%;
+    font-size: 14pt;
+}
+
+/* Buttons */
+.btn-1, .btn-2 {
+    background-color: #F0572D;
+    color: #DFE4EA;
+    font-weight: 700;
+}
+.btn-1 {
+    font-size: 14pt;
+}
+.btn-2 {
+    font-size: 16pt;
+}
+
+/* Text */
+p, .txt-1, .txt-2 {
+    color: #191B1D;
+    font-weight: 500;
+}
+.txt-1 {
+    font-size: 14pt;
+}
+.txt-2 {
+    font-size: 16pt;
+}

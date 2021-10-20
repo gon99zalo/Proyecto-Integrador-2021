@@ -1,9 +1,11 @@
-import '../styles/App.css';
+//@ts-nocheck
+import '../styles/Global.css';
+import Categories from '../components/Categories';
 
 function App() {
   return (
     <div className="App">
-      <h1>Grupo - 3</h1>
+      <Categories />
     </div>
   );
 }
