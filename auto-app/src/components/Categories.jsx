@@ -3,33 +3,48 @@
 import '../styles/Categories.css';
 
 //Assets
-import prueba from '../assets/Prueba.jpeg';
+import autos from '../assets/Autos.jpeg';
+import buses from '../assets/Buses.jpeg';
+import bicicletas from '../assets/Bicicletas.jpeg';
+import motos from '../assets/Motos.jpeg';
+
+const categorias = [
+    {
+        img: autos,
+        titulo: "Autos",
+        cantidad: "30 autos",
+    },
+    {
+        img: buses,
+        titulo: "Buses",
+        cantidad: "10 buses",
+    },
+    {
+        img: motos,
+        titulo: "Motos",
+        cantidad: "20 motos",
+    },
+    {
+        img: bicicletas,
+        titulo: "Bicicletas",
+        cantidad: "25 bicicletas",
+    },
+];
 
 export default function BloqueCategoria() {
     return(
         <div className="category">
             <h2>Buscar por tipo de transporte</h2>
             <div className="type-container">
-                <div className="type-card">
-                    <img src={prueba} alt="pochita" />
-                    <h3>Carros</h3>
-                    <h4>100.000 carros</h4>
-                </div>
-                <div className="type-card">
-                    <img src={prueba} alt="pochita" />
-                    <h3>Buses</h3>
-                    <h4>20.000 buses</h4>
-                </div>
-                <div className="type-card">
-                    <img src={prueba} alt="pochita" />
-                    <h3>Motos</h3>
-                    <h4>30.000 motos</h4>
-                </div>
-                <div className="type-card">
-                    <img src={prueba} alt="pochita" />
-                    <h3>Bicicletas</h3>
-                    <h4>8.000 bicicletas</h4>
-                </div>
+                {categorias.map( item => 
+                    <div className="type-card">
+                        <a href="./">
+                            <img src={item.img} alt={item.titulo} />
+                        </a>
+                        <h3>{item.titulo}</h3>
+                        <h4>{item.cantidad}</h4>
+                    </div>
+                )}
             </div>
         </div>
     );
