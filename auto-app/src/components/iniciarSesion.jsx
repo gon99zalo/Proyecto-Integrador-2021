@@ -18,7 +18,7 @@ export default function IniciarSesion() {
 
   return (
     <>
-      <Header />
+      <Header login={true}/>
       <div className="logIn">
       <h1 className="titulo-inicio">Iniciar sesión</h1>
       <form className="form-iniciarSesion" action="">

@@ -6,7 +6,7 @@ import Footer from "./footer";
 export default function CrearCuenta() {
   return (
     <>
-      <Header />
+      <Header crearCuenta={true}/>
       <div className="signUp">
       <h1 className="titulo-crear">Crear cuenta</h1>
       {/* <div className="form-crearCuenta"> */}

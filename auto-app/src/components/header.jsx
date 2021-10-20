@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import "../styles/header.css";
 import logo  from "../assets/img/logos/logo1DB.png"
 
-export default function Header() {
+export default function Header(props) {
     return (
         <header>
             <div className="logo">
@@ -10,8 +10,8 @@ export default function Header() {
             <span className="slogan">El auto que necesitas</span>
             </div> 
             <div className="inputs-header">
-            <Link to="/crearCuenta"><input className="crearCuenta" name="Crear cuenta" id="Crear cuenta" value="Crear cuenta" type="button"/></Link>
-            <Link to="/iniciarSesion"><input className="iniciarSesion" name="Iniciar sesión" id="Iniciar sesión" value="Iniciar sesión" type="button"/></Link>
+            {props.crearCuenta ? "" : <Link to="/crearCuenta"><input className="crearCuenta" name="Crear cuenta" id="Crear cuenta" value="Crear cuenta" type="button"/></Link>} 
+            {props.login ? "" :<Link to="/iniciarSesion"><input className="iniciarSesion" name="Iniciar sesión" id="Iniciar sesión" value="Iniciar sesión" type="button"/></Link>}
             </div>
         </header>
     )
