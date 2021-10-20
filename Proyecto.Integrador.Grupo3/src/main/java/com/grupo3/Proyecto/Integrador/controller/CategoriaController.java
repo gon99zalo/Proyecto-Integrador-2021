@@ -50,7 +50,7 @@ public class CategoriaController {
         return respuesta;
     }
 
-    @PutMapping()
+    @PutMapping("/categorias/modificar")
     public ResponseEntity<Categoria> modificarCategoria(@RequestBody Categoria categoria) {
         ResponseEntity<Categoria> respuesta = null;
 
@@ -63,10 +63,9 @@ public class CategoriaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarPorID(@PathVariable Long id) {
-
         ResponseEntity<String> respuesta = null;
 
-        if (categoriaService.buscarCategoriaPorID(id) != null) {
+        if (categoriaService.buscarCategoriaPorID(id).isPresent()) {
             categoriaService.eliminarCategoriaPorID(id);
             respuesta = ResponseEntity.status(HttpStatus.OK).body("¡Categoría Eliminada!");
         } else {
