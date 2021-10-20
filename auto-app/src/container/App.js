@@ -1,4 +1,3 @@
-
 //@ts-nocheck
 import '../styles/Global.css';
 import Categories from '../components/Categories';
@@ -13,7 +12,6 @@ import iniciarSesion from "../components/iniciarSesion";
 function App() {
   return (
     <div className="App">
-      <Categories />
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
