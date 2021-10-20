@@ -7,10 +7,15 @@ header {
 }
 
 .logo {
-    /* display: flex;
+     display: flex;
     flex-direction: row;
-    justify-content: left; */
+    justify-content: left; 
+    text-align:
 }
+.logo-db{
+    width: 68px; 
+    height: 50px;
+  }
 
 .inputs-header {
     display: flex;
