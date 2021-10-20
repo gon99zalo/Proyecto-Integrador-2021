@@ -11,10 +11,33 @@ header {
 }
 
 .logo {
-  /* display: flex;
+    display: flex;
     flex-direction: row;
-    justify-content: left; */
+    justify-content: left;
+    justify-items: center;
+    align-items: flex-end;
+    
 }
+
+.logo-img{
+    position: relative;
+ margin-left: 1rem;
+width: 71px;
+height: 52px;
+}
+
+.slogan{
+    font-weight: 300;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 23px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+.logo-db{
+    width: 68px; 
+    height: 50px;
+  }
 
 .inputs-header {
   display: flex;
