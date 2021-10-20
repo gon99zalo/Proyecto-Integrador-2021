@@ -6,7 +6,7 @@ export default function Header(props) {
     return (
         <header>
             <div className="logo">
-            <img src={logo} alt="logo" className="logo-img" />
+            <a href="/"><img src={logo} alt="logo" className="logo-img" /></a>
             <span className="slogan">El auto que necesitas</span>
             </div> 
             <div className="inputs-header">
