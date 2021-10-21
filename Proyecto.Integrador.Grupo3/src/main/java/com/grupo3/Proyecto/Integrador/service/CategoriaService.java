@@ -20,7 +20,7 @@ public class CategoriaService {
 
    public Categoria crearCategoria(Categoria categoria) { return categoriaRepository.save(categoria); }
 
-    public Optional<Categoria> buscarCategoriaPorID(Long id) { return categoriaRepository.findById(Long.valueOf(id)); }
+    public Optional<Categoria> buscarCategoriaPorID(Long id) { return categoriaRepository.findById((id)); }
 
     public Optional<Categoria> buscarCategoria(String titulo) { return categoriaRepository.buscarPorTitulo(titulo); }
 

@@ -1,0 +1,25 @@
+♦ Ejemplos test para Postman:
+
+               [POST]
+(http://localhost:8080/categorias)
+{
+    "titulo": "autos",
+    "descripcion": "gama alta",
+    "url": "autogamaalta.com"
+}
+
+               [GET]
+ Petición para traer categoría mediante titulo:
+(http://localhost:8080/categorias/buscar?titulo=autos)
+
+               [GET]
+Petición para traer todas las categorías:
+(http://localhost:8080/categorias/todos)
+
+              [DELETE]
+ Petición para eliminar categoría mediante titulo:
+(http://localhost:8080/categorias/eliminar?titulo=autos)
+
+              [DELETE]
+ Petición para eliminar categoría mediante ID:
+(http://localhost:8080/categorias/1)

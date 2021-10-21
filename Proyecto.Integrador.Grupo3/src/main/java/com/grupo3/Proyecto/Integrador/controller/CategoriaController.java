@@ -23,7 +23,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.crearCategoria(categoria));
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("buscar/{/id}")
     public Optional<Categoria> buscarCategoriaPorID(@PathVariable Long id) {
         return categoriaService.buscarCategoriaPorID(id);
     }
@@ -39,7 +39,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.traerTodas());
     }
 
-    @PutMapping()
+    @PutMapping("/modificar/{/id}")
     public ResponseEntity<Categoria> modificarCategoriaPorID(@RequestBody Categoria categoria) {
         ResponseEntity<Categoria> respuesta = null;
 
@@ -50,7 +50,7 @@ public class CategoriaController {
         return respuesta;
     }
 
-    @PutMapping("/categorias/modificar")
+    @PutMapping("/modificar")
     public ResponseEntity<Categoria> modificarCategoria(@RequestBody Categoria categoria) {
         ResponseEntity<Categoria> respuesta = null;
 
@@ -61,7 +61,7 @@ public class CategoriaController {
         return respuesta;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminarPorID(@PathVariable Long id) {
         ResponseEntity<String> respuesta = null;
 
