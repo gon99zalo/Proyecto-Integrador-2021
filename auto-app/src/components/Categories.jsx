@@ -42,7 +42,7 @@ export default function BloqueCategoria() {
                             <img src={item.img} alt={item.titulo} />
                         </a>
                         <h3>{item.titulo}</h3>
-                        <h4>{item.cantidad}</h4>
+                        <p>{item.cantidad}</p>
                     </div>
                 )}
             </div>

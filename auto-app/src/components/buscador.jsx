@@ -1,6 +1,6 @@
 import "../styles/buscador.css"
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
+//import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 
 export default function Buscador() {
@@ -13,7 +13,7 @@ export default function Buscador() {
         {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
         <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
         <select>
-            <option hidden selected>Elija donde quiera retirar el auto</option>
+            <option hidden selected>Elije donde quieres retirar el auto</option>
             <option>San Carlos de Bariloche</option>
             <option>Buenos Aires</option>
             <option>Mendoza</option>
