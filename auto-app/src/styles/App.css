@@ -12,11 +12,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -40,4 +35,69 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@media screen and (max-width:  480px){
+
+.logo{
+  z-index: 10;
+  
+}
+.slogan{
+  display: none;
+}
+.crearCuenta, .iniciarSesion{
+  display: none;
+}
+.inputs-header::before{
+  content: '\f0c9';
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
+.buscador{
+  height: 37vh;
+  width: 95vw;
+  padding: 4px 4px;
+}
+.buscadores{
+  flex-direction: column;
+  margin: 16px 10px; 
+}
+.category{
+  height: 1120px;
+  width: 393px;
+}
+.category h2{
+  font-size:20px;
+  margin: 0 0 3px 3.5%;
+}
+.type-container{
+  flex-direction: column;
+}
+.type-card{
+  width: 100%;
+  margin-bottom: 15px;
+}
+.type-card p{
+  margin: 12px;
+  color:gray;
+  font-weight: 700;
+  /* opacity: 60%; */
+  /* 
+  
+  
+  z-index: 0;
+   
+  font-size: 14pt; */
+  
+}
+.redes{
+  display: none;
+}
+.marca{
+  margin-left: 10px;
+}
+
 }
