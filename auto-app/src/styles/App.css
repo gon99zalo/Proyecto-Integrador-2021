@@ -43,6 +43,10 @@
   z-index: 10;
   
 }
+.logo-img{
+  height: 40px;
+  width: 55px;
+}
 .slogan{
   display: none;
 }
@@ -73,6 +77,7 @@
   font-size:20px;
   margin: 0 0 3px 3.5%;
 }
+
 .type-container{
   flex-direction: column;
 }
@@ -81,23 +86,19 @@
   margin-bottom: 15px;
 }
 .type-card p{
-  margin: 12px;
+  margin: 0px 12px;
   color:gray;
   font-weight: 700;
-  /* opacity: 60%; */
-  /* 
-  
-  
-  z-index: 0;
-   
-  font-size: 14pt; */
-  
 }
 .redes{
   display: none;
 }
 .marca{
   margin-left: 10px;
+  font-size: 14px;
+}
+footer{
+  height: 8vh;
 }
 
 }

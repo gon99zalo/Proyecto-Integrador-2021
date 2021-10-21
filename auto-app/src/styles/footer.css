@@ -1,5 +1,5 @@
 footer {
-    height: 10vh;
+    height: 8vh;
     width: 100vw;
     display: flex;
     justify-content: space-between; 
@@ -16,6 +16,6 @@ footer {
     flex-direction: row;
     justify-content: space-between; */
     margin-right: 30px;
-    height: 30px;
+    height: 20px;
     width: 100px;
 }
