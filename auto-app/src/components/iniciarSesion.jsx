@@ -29,6 +29,8 @@ export default function IniciarSesion() {
     let contraseniaUsuario = document.querySelector("#contrasenia").value
     if(usuario.email==emailUsuario && usuario.contrasenia === contraseniaUsuario){
       history.push("/logueado")
+    }else{
+      alert("Por favor, vuelva a intentarlo sus credenciales son inválidas")
     }
   }
 
