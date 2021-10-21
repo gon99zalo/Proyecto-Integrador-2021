@@ -20,11 +20,14 @@ export default function CrearCuenta() {
     alert("contraseñas ingresadas no coinciden")
   }
   let inputs = document.querySelectorAll(".campos-crear")
-  let mensajeError = document.querySelectorAll(".error-mensaje-escondido")
   for(inputs of inputs){
       if(inputs.value == ""){
-        inputs.classList.toggle("error")
-        mensajeError.classList.toggle("error-mensaje")
+        if(!inputs.classList.contains("error")){
+          inputs.classList.toggle("error")
+        }
+        if(!inputs.nextElementSibling.classList.contains("error-mensaje")){
+          inputs.nextElementSibling.classList.toggle("error-mensaje")
+        }
     }
   }
   }
