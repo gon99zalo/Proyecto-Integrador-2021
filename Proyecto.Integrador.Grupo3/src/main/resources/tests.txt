@@ -16,6 +16,10 @@
 Petición para traer todas las categorías:
 (http://localhost:8080/categorias/todos)
 
+               [GET]
+Petición para traer categoría por ID:
+(http://localhost:8080/categorias/buscar/1)
+
               [DELETE]
  Petición para eliminar categoría mediante titulo:
 (http://localhost:8080/categorias/eliminar?titulo=autos)
@@ -23,3 +27,18 @@ Petición para traer todas las categorías:
               [DELETE]
  Petición para eliminar categoría mediante ID:
 (http://localhost:8080/categorias/1)
+
+
+             [Test] OK:
+(http://localhost:8080/categorias/buscar/1)
+
+pm.test("El id es: 1", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.id).to.equal(1);
+});
+
+pm.test("La categoría es: autos", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.titulo).to.equal("autos");
+});
+

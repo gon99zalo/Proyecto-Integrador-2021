@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
+
 
     @Autowired
     private CategoriaService categoriaService;
@@ -23,7 +25,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.crearCategoria(categoria));
     }
 
-    @GetMapping("buscar/{/id}")
+    @GetMapping("buscar/{id}")
     public Optional<Categoria> buscarCategoriaPorID(@PathVariable Long id) {
         return categoriaService.buscarCategoriaPorID(id);
     }
@@ -39,26 +41,30 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.traerTodas());
     }
 
-    @PutMapping("/modificar/{/id}")
+    @PutMapping("/modificar/{id}")
     public ResponseEntity<Categoria> modificarCategoriaPorID(@RequestBody Categoria categoria) {
-        ResponseEntity<Categoria> respuesta = null;
 
-        if (categoria.getId() != null && categoriaService.buscarCategoriaPorID(categoria.getId()).isPresent())
-            respuesta = ResponseEntity.ok(categoriaService.actualizarCategoria(categoria));
-        else
-            respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        return respuesta;
+        if (categoria.getId() != null && categoriaService.buscarCategoriaPorID(categoria.getId()).isPresent()) {
+            Categoria categoriaAct = categoriaService.buscarCategoriaPorID(categoria.getId()).get();
+            categoriaAct.actualizar(categoria);
+            return ResponseEntity.ok(categoriaService.actualizarCategoria(categoriaAct));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @PutMapping("/modificar")
     public ResponseEntity<Categoria> modificarCategoria(@RequestBody Categoria categoria) {
-        ResponseEntity<Categoria> respuesta = null;
+        if (categoria.getTitulo() != null && categoriaService.buscarCategoria(categoria.getTitulo()).isPresent()) {
 
-        if (categoria.getTitulo() != null && categoriaService.buscarCategoria(categoria.getTitulo()).isPresent())
-            respuesta = ResponseEntity.ok(categoriaService.actualizarCategoria(categoria));
-        else
-            respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        return respuesta;
+            Categoria categoriaAct = categoriaService.buscarCategoria(categoria.getTitulo()).get();
+            categoriaAct.actualizar(categoria);
+
+            return ResponseEntity.ok(categoriaService.actualizarCategoria(categoriaAct));
+        }else{
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @DeleteMapping("/eliminar/{id}")

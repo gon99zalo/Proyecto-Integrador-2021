@@ -1,6 +1,8 @@
 package com.grupo3.Proyecto.Integrador.model;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -24,6 +26,13 @@ private String url;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.url = url;
+    }
+
+
+    public void actualizar(Categoria categoria) {
+        this.titulo = categoria.getTitulo();
+        this.descripcion = categoria.getDescripcion();
+        this.url = categoria.getUrl();
     }
 
 }
