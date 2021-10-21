@@ -2,8 +2,18 @@ import Header from "./header";
 import "../styles/Global.css"
 import "../styles/crearCuenta.css"
 import Footer from "./footer";
+import { Link } from "react-router-dom"
 
 export default function CrearCuenta() {
+
+  const handlerSubmit=(e)=>{
+    e.preventDefault()
+  let contrasenia = document.getElementById("contrasenia").value
+  if(contrasenia.length<=6){
+    alert("tiene que ser mas de 6")
+  }
+  }
+
   return (
     <>
       <Header crearCuenta={true}/>
@@ -24,8 +34,8 @@ export default function CrearCuenta() {
           <input className="campos-crear" type="password" name="contrasenia" id="contrasenia" required/>
           <label className="labels-crear" htmlFor="confirmarContrasenia" >Confirmar contraseña</label>
           <input className="campos-crear" type="password" name="confirmarContrasenia" id="confirmarContrasenia" required/>
-          <button type="submit" className="boton-crearCuenta" id="boton-crearCuenta">Crear cuenta</button>
-          <p className="texto-inicio txt-1">¿Ya tenes una cuenta? <a href="iniciarSesion">Iniciar sesión</a></p>
+          <button onClick={handlerSubmit} type="submit" className="boton-crearCuenta" id="boton-crearCuenta">Crear cuenta</button>
+          <p className="texto-inicio txt-1">¿Ya tenes una cuenta? <Link to="iniciarSesion">Iniciar sesión</Link></p>
           </div>
       </form>
       </div>
