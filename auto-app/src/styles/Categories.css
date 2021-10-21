@@ -34,10 +34,16 @@
     height: 100%;
     width: inherit;
     object-fit: cover;
+    border-radius: 10px 10px 0 0;
 }
-.type-card h3, .type-card h4 {
+.type-card h3, .type-card p {
     margin-left: 3.5%;
 }
 .type-card h3 {
     margin-top: 5px;
 }
+.type-card p{
+    color:gray;
+    font-weight: 700;
+}
+
