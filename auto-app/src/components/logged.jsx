@@ -1,11 +1,16 @@
 import Buscador from "./buscador";
 import Footer from "./footer";
 import Categories from '../components/Categories';
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "../styles/header.css";
 import logo  from "../assets/img/logos/logo1DB.png"
 
-export default function logged() {
+export default function Logged() {
+  const history = useHistory();
+  const handlerClose=() => {
+    history.push("/")
+  }
+
   return (
     <>
     <header>
@@ -14,7 +19,9 @@ export default function logged() {
             <span className="slogan">El auto que necesitas</span>
             </div> 
             <div className="user">
-            <p>Hola santino</p>{/*arreglar esto*/}
+            <i class="fas fa-times" onClick={handlerClose}></i>
+            <p className="saludo">Hola,
+              <br/><span className="colorUser"> alumno DH </span></p>{/*revisar*/}
             </div>
         </header>
       <Buscador />
