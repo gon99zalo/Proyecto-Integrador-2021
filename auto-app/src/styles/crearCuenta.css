@@ -55,6 +55,10 @@ margin-top: 30px;
     align-self: center;
   }
 
+  #boton-crearCuenta:hover {
+    cursor:pointer;
+  }
+
   .signUp {
       background-color: rgba(223, 228, 234, 1);
       height: 100%;

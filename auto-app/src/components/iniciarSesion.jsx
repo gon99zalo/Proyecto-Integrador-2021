@@ -19,7 +19,7 @@ export default function IniciarSesion() {
   };
 
   let usuario = {
-    email: "santilamberti4@gmail.com",
+    email: "alumnoDH@gmail.com",
     contrasenia: "123456"
   }
 
