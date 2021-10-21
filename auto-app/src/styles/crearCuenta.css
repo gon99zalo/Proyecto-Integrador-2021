@@ -38,6 +38,7 @@ margin-top: 30px;
   .span-1, .span-2 {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   #boton-crearCuenta {
@@ -79,5 +80,5 @@ margin-top: 30px;
 }
 
 .error-mensaje{
-  display:block
+  display:block;
 }

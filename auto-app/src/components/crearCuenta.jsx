@@ -42,11 +42,9 @@ export default function CrearCuenta() {
           <div className="inputs">
               <div className="campos-pegados">
           <span className="span-1"><label className="labels-crear" htmlFor="nombre">Nombre</label>
-          <input className="campos-crear" type="text" name="nombre" id="nombre" required/></span>
-          <div className="error-mensaje-escondido">Este campo es obligatorio</div>
+          <input className="campos-crear" type="text" name="nombre" id="nombre" required/><div className="error-mensaje-escondido">Este campo es obligatorio</div></span>
           <span className="span-2"><label className="labels-crear" htmlFor="apellido">Apellido</label>
-          <input className="campos-crear" type="text" name="apellido" id="apellido" required/></span>
-          <div className="error-mensaje-escondido">Este campo es obligatorio</div>
+          <input className="campos-crear" type="text" name="apellido" id="apellido" required/><div className="error-mensaje-escondido">Este campo es obligatorio</div></span>
           </div>
           <label className="labels-crear" htmlFor="correo electronico">Correo electrónico</label>
           <input className="campos-crear" type="email" name="correo electronico" id="correo-electronico" required/>
