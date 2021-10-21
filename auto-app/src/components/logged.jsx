@@ -10,7 +10,7 @@ export default function Logged() {
   const handlerClose=() => {
     history.push("/")
   }
-
+  
   return (
     <>
     <header>
@@ -21,7 +21,7 @@ export default function Logged() {
             <div className="user">
             <i class="fas fa-times" onClick={handlerClose}></i>
             <p className="saludo">Hola,
-              <br/><span className="colorUser"> alumno DH </span></p>{/*revisar*/}
+            <span className="colorUser"> alumno DH </span></p>{/*revisar*/}
             </div>
         </header>
       <Buscador />
