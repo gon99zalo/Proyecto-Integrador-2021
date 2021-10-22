@@ -7,10 +7,10 @@ import Listado from '../components/Listado';
 export default function Home() {
   return (
     <>
-      <Listado />
       <Header />
       <Buscador />
       <Categories />
+      <Listado />
       <Footer />
     </>
   );
