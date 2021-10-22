@@ -8,6 +8,7 @@ header {
   position: sticky;
   top: 0;
   background-color: white;
+  box-shadow: 0px 1px 6px grey;
 }
 
 .logo {
@@ -28,10 +29,10 @@ height: 52px;
 
 .slogan{
     font-weight: 300;
-    font-size: 20px;
+    font-size: 18px;
     font-style: italic;
     line-height: 23px;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
     margin-left: 10px;
 }
 .logo-db{
@@ -62,10 +63,7 @@ height: 52px;
   .slogan{
     display: none;
   }
-  header{
-    box-shadow: 0px 1px 6px grey;
-    
-}
+  
 
 .crearCuenta,
 .iniciarSesion:hover {

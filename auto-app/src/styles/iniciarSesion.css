@@ -4,7 +4,8 @@
 }
 
 .titulo-inicio {
-  color: black;
+  color: rgba(240, 87, 45, 1);;
+  padding-top: 30px;
 }
 
 .form-iniciarSesion {
@@ -39,13 +40,15 @@
     height: 35px;
     width: 100%;
     position:relative;
+    border: none;
+    box-shadow: 0px 3px 2px grey;
   }
 
   #boton-iniciarSesion {
     height: 35px;
-  margin-top: 35px;
+  margin-top: 30px;
   background-color: rgba(240, 87, 45, 1);
-  width: 12vw;
+  width: 22vw;
   border: none;
   border-radius: 5px;
   padding: 10px 35px;
@@ -53,6 +56,7 @@
   display: flex;
   justify-content: center;
   align-self: center;
+  box-shadow: 0px 3px 2px grey;
 }
 
 #boton-iniciarSesion:hover {
@@ -61,20 +65,16 @@
 
 .texto-cuenta {
     margin-top: 10px;
+    font-size: 13px;
 }
 
 /* pantalla 3 Mobile iniciarSesion */
 @media screen and (max-width:  480px){
   .titulo-inicio{
-    color: rgba(240, 87, 45, 1);
     font-size: 25px;
     padding-top:20px;
   }
-  .campos-inicio{
-
-    border: none;
-    box-shadow: 0px 3px 2px grey;
-  }
+ 
   .labels-inicio{
     font-size: 13px;
     gap: 0;
