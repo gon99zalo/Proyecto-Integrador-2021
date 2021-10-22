@@ -42,9 +42,13 @@ public class CategoriaController {
     }
 
     @PutMapping("/modificar/{id}")
-    public ResponseEntity<Categoria> modificarCategoriaPorID(@RequestBody Categoria categoria) {
+    public ResponseEntity<Categoria> modificarCategoriaPorID(@PathVariable Long id, @RequestBody Categoria c) {
         ResponseEntity<Categoria> respuesta = null;
-        if (categoria.getId() != null && categoriaService.buscarCategoriaPorID(categoria.getId()).isPresent()) {
+        if (categoriaService.buscarCategoriaPorID(id).isPresent()) {
+            Categoria categoria = categoriaService.buscarCategoriaPorID(id).get();
+            categoria.setTitulo(c.getTitulo());
+            categoria.setDescripcion(c.getDescripcion());
+            categoria.setUrl(c.getUrl());
             respuesta = ResponseEntity.ok(categoriaService.actualizarCategoria(categoria));
         } else {
             respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -52,10 +56,14 @@ public class CategoriaController {
         return respuesta;
     }
 
-    @PutMapping("/modificar")
-    public ResponseEntity<Categoria> modificarCategoria(@RequestBody Categoria categoria) {
+    @PutMapping("/modificar/{titulo:.+}}")
+    @ResponseBody
+    public ResponseEntity<Categoria> modificarCategoria(@PathVariable String titulo, @RequestBody Categoria c) {
         ResponseEntity<Categoria> respuesta = null;
-        if (categoria.getTitulo() != null && categoriaService.buscarCategoria(categoria.getTitulo()).isPresent()) {
+        if (categoriaService.buscarCategoria(titulo).isPresent()) {
+            Categoria categoria = categoriaService.buscarCategoria(titulo).get();
+            categoria.setDescripcion(c.getDescripcion());
+            categoria.setUrl(c.getUrl());
             respuesta = ResponseEntity.ok(categoriaService.actualizarCategoria(categoria));
         } else {
             respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
