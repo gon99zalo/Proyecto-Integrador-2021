@@ -37,6 +37,8 @@
   }
 }
 
+
+/* pantalla 1 Mobile home */
 @media screen and (max-width:  480px){
 
 .logo{
@@ -103,3 +105,4 @@ footer{
   height: 8vh;
 }
 }
+

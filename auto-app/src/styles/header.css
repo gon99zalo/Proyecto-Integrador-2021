@@ -57,6 +57,16 @@ height: 52px;
   padding: 5px 35px;
 }
 
+/* pantalla 2 Mobile crearCuenta */
+@media screen and (max-width:  480px){
+  .slogan{
+    display: none;
+  }
+  header{
+    box-shadow: 0px 1px 6px grey;
+    
+}
+
 .crearCuenta,
 .iniciarSesion:hover {
   cursor:pointer;
@@ -86,4 +96,5 @@ height: 52px;
 
 .fa-times:hover {
   cursor: pointer;
+}
 }

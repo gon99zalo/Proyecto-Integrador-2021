@@ -60,3 +60,10 @@ p, .txt-1, .txt-2 {
 .txt-2 {
     font-size: 16pt;
 }
+
+/* pantalla 2 Mobile crearCuenta */
+@media screen and (max-width:  480px){
+.txt-1 {
+font-size: 8pt;
+}
+}
