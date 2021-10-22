@@ -56,6 +56,7 @@ height: 52px;
   border-radius: 5px;
   padding: 5px 35px;
 }
+
 /* pantalla 2 Mobile crearCuenta */
 @media screen and (max-width:  480px){
   .slogan{
@@ -65,4 +66,35 @@ height: 52px;
     box-shadow: 0px 1px 6px grey;
     
   }
+
+.crearCuenta,
+.iniciarSesion:hover {
+  cursor:pointer;
+}
+
+.user {
+  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.colorUser {
+  color: rgba(240, 87, 45, 1);
+  display: flex;
+  flex-direction: row;
+}
+
+.fa-times {
+  font-size: 13px;
+  display: flex;
+  justify-content: right;
+}
+
+.saludo{
+  font-size: 0.7em;
+}
+
+.fa-times:hover {
+  cursor: pointer;
+}
 }
