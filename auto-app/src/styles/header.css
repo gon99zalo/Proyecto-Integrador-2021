@@ -56,3 +56,13 @@ height: 52px;
   border-radius: 5px;
   padding: 5px 35px;
 }
+/* pantalla 2 Mobile crearCuenta */
+@media screen and (max-width:  480px){
+  .slogan{
+    display: none;
+  }
+  header{
+    box-shadow: 0px 1px 6px grey;
+    
+  }
+}
