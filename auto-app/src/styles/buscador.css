@@ -22,3 +22,7 @@
     border-radius: 5px;
     padding: 5px 35px;
 }
+select,input[type=date]{
+    border-radius: 5px;
+    
+  }

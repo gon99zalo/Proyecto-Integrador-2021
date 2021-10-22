@@ -19,7 +19,7 @@ export default function IniciarSesion() {
   };
 
   let usuario = {
-    email: "santilamberti4@gmail.com",
+    email: "alumnoDH@gmail.com",
     contrasenia: "123456"
   }
 
@@ -29,6 +29,8 @@ export default function IniciarSesion() {
     let contraseniaUsuario = document.querySelector("#contrasenia").value
     if(usuario.email==emailUsuario && usuario.contrasenia === contraseniaUsuario){
       history.push("/logueado")
+    }else{
+      alert("Por favor, vuelva a intentarlo sus credenciales son inválidas")
     }
   }
 
