@@ -62,3 +62,30 @@
 .texto-cuenta {
     margin-top: 10px;
 }
+
+/* pantalla 3 Mobile iniciarSesion */
+@media screen and (max-width:  480px){
+  .titulo-inicio{
+    color: rgba(240, 87, 45, 1);
+    font-size: 25px;
+    padding-top:20px;
+  }
+  .campos-inicio{
+    height: 32px;
+    border: none;
+    box-shadow: 0px 3px 2px grey;
+    width: 260px;
+  }
+  .labels-inicio{
+    font-size: 13px;
+  }
+  #boton-iniciarSesion{
+    height: 32px;
+    width: 260px;
+    margin-left: 156px;
+    
+  }
+  .form-iniciarSesion{
+    margin-left: 75px;
+  }
+}
