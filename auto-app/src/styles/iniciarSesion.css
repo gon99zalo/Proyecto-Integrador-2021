@@ -79,12 +79,15 @@
     font-size: 13px;
     gap: 0;
   }
-
+  .inputs-inicio {
+    margin-top: 70px;
+  }
   .form-iniciarSesion{
     width: 75%;
   }
 
   #boton-iniciarSesion{
-    width: 50%;
+    width: 100%;
+    box-shadow: 0px 3px 2px grey;
   }
 }
