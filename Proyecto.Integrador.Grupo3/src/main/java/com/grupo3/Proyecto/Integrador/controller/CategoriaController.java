@@ -43,29 +43,26 @@ public class CategoriaController {
 
     @PutMapping("/modificar/{id}")
     public ResponseEntity<Categoria> modificarCategoriaPorID(@RequestBody Categoria categoria) {
-
+        ResponseEntity<Categoria> respuesta = null;
         if (categoria.getId() != null && categoriaService.buscarCategoriaPorID(categoria.getId()).isPresent()) {
-            Categoria categoriaAct = categoriaService.buscarCategoriaPorID(categoria.getId()).get();
-            categoriaAct.actualizar(categoria);
-            return ResponseEntity.ok(categoriaService.actualizarCategoria(categoriaAct));
+            respuesta = ResponseEntity.ok(categoriaService.actualizarCategoria(categoria));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+        return respuesta;
     }
 
     @PutMapping("/modificar")
     public ResponseEntity<Categoria> modificarCategoria(@RequestBody Categoria categoria) {
+        ResponseEntity<Categoria> respuesta = null;
         if (categoria.getTitulo() != null && categoriaService.buscarCategoria(categoria.getTitulo()).isPresent()) {
-
-            Categoria categoriaAct = categoriaService.buscarCategoria(categoria.getTitulo()).get();
-            categoriaAct.actualizar(categoria);
-
-            return ResponseEntity.ok(categoriaService.actualizarCategoria(categoriaAct));
-        }else{
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            respuesta = ResponseEntity.ok(categoriaService.actualizarCategoria(categoria));
+        } else {
+            respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+        return respuesta;
     }
+
 
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminarPorID(@PathVariable Long id) {
