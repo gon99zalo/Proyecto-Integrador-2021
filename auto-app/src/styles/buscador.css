@@ -22,6 +22,11 @@
     border-radius: 5px;
     padding: 5px 35px;
 }
+
+.boton-buscar {
+    cursor: pointer;
+}
+
 select,input[type=date]{
     border-radius: 5px;
     

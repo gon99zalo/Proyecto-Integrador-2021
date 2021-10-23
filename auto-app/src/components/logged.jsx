@@ -18,10 +18,13 @@ export default function Logged() {
             <a href="/"><img src={logo} alt="logo" className="logo-img" /></a>
             <span className="slogan">El auto que necesitas</span>
             </div> 
+            <div className="avatar">
+               <span className="iniciales-avatar"> AD </span>
+              </div>
             <div className="user">
             <i class="fas fa-times" onClick={handlerClose}></i>
             <p className="saludo">Hola,
-            <span className="colorUser"> alumno DH </span></p>{/*revisar*/}
+            <span className="colorUser"> alumno dh </span></p>{/*revisar todo avatar*/}
             </div>
         </header>
       <Buscador />
