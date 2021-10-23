@@ -55,9 +55,7 @@
 .crearCuenta, .iniciarSesion{
   display: none;
 }
-.inputs-header::before{
-  content: '\f0c9';
-  font-family: "Font Awesome 5 Free";
+.opciones{
   font-size: 1.5em;
   font-weight: 900;
 }
