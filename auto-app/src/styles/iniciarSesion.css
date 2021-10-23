@@ -9,7 +9,7 @@
 
 .form-iniciarSesion {
     width: 25.735294117647058vw;
-    height: 80vh; /*cambiar*/
+    height: 80vh; 
     margin: auto;
     display: flex;
     position:relative;
