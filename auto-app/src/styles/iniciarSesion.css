@@ -6,6 +6,7 @@
 .titulo-inicio {
   color: rgba(240, 87, 45, 1);;
   padding-top: 30px;
+  padding-top: 85px;
 }
 
 .form-iniciarSesion {
@@ -40,7 +41,7 @@
 .campos-inicio {
     border-radius: 5px;
     height: 35px;
-    width: 38vw;
+    width: 330px;
     position:relative;
     border: none;
     box-shadow: 0px 3px 2px grey;
@@ -50,7 +51,7 @@
     height: 35px;
   margin-top: 30px;
   background-color: rgba(240, 87, 45, 1);
-  width: 22vw;
+   width: 100%; 
   border: none;
   border-radius: 5px;
   padding: 10px 35px;
@@ -76,6 +77,9 @@
     font-size: 25px;
     padding-top:20px;
   }
+  .campos-inicio{
+    width: 300px;
+  }
  
   .labels-inicio{
     font-size: 13px;
@@ -89,12 +93,27 @@
   }
 
   #boton-iniciarSesion{
-    width: 100%;
+    width: 300px;
     box-shadow: 0px 3px 2px grey;
   }
 }
 @media screen and (min-width: 480px) and (max-width:  768px){
   #boton-iniciarSesion{
-    width: 38vw;
+    width: 300px;
+  }
+  .form-iniciarSesion{
+    width:38vw;
+  }
+  .labels-inicio{
+    text-align: left;
+  }
+  .inputs-inicio{
+    margin-top: 30px;
+  }
+  .campos-inicio{
+    width: 300px;
+  }
+  .texto-cuenta{
+    font-size: 13px;
   }
 }
