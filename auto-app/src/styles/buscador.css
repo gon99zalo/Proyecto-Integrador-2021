@@ -26,3 +26,20 @@ select,input[type=date]{
     border-radius: 5px;
     
   }
+  @media screen and (max-width:  480px){
+      .titulo-buscador{
+        font-size: 25px;
+      }
+  }
+
+  
+  @media screen and (min-width: 480px) and (max-width:  768px){
+    .buscador{
+        padding: 0px 12px;
+        margin-top: 30px;
+    }
+    .titulo-buscador{
+        padding-top: 5px;
+    }
+  }
+  

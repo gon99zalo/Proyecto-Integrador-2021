@@ -14,15 +14,17 @@
     margin: auto;
     display: flex;
     position:relative;
+    justify-content: center;
     /* background-color: red; */
     /* padding: 20px; */
 }
 
 .inputs-inicio {
     margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 .password {
   position: absolute;
@@ -38,7 +40,7 @@
 .campos-inicio {
     border-radius: 5px;
     height: 35px;
-    width: 100%;
+    width: 38vw;
     position:relative;
     border: none;
     box-shadow: 0px 3px 2px grey;
@@ -89,5 +91,10 @@
   #boton-iniciarSesion{
     width: 100%;
     box-shadow: 0px 3px 2px grey;
+  }
+}
+@media screen and (min-width: 480px) and (max-width:  768px){
+  #boton-iniciarSesion{
+    width: 38vw;
   }
 }

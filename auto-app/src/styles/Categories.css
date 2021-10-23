@@ -46,4 +46,22 @@
     color:gray;
     font-weight: 700;
 }
-
+@media screen and (min-width: 480px) and (max-width:  768px){
+    .type-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;  
+    }
+    .type-card{
+        width: auto;
+    }
+    .category {
+        height: 580px;
+    }
+    .category h2{
+        font-size:20px;
+    }
+    h3 {
+        font-size: 13pt;
+    }
+}

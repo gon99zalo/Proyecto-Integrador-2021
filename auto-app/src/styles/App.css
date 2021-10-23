@@ -43,7 +43,6 @@
 
 .logo{
   z-index: 10;
-  
 }
 .logo-img{
   height: 40px;
@@ -63,7 +62,7 @@
 }
 
 .buscador{
-  height: 37vh;
+  height: 30vh;
   width: 95vw;
   padding: 4px 4px;
 }
@@ -104,5 +103,12 @@ select{
 footer{
   height: 8vh;
 }
+}
+
+/* pantalla tablet */
+@media screen and (min-width: 480px) and (max-width:  768px){
+  .slogan{
+    display: none;
+  }
 }
 
