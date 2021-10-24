@@ -6,15 +6,15 @@ import productList from "../json/Listado.json";
 import "../styles/Listado.css";
 
 export default function Listado() {
+  const categoria = "Motos";
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
   const people = <FontAwesomeIcon icon={faUserAlt} />;
   const door = <FontAwesomeIcon icon={faDoorClosed} />;
-  const categoria = "Motos";
-  const [ moreText, setMoreText ] = useState(false);
+  const [ showText, setShowText ] = useState(20);
 
   const handlerShowText = () => {
-    setMoreText(!moreText);
+    setShowText(!showText);
   };
 
   const withDoors = (doors) => {
@@ -22,6 +22,20 @@ export default function Listado() {
       return "";
     } else {
       return ((<><i>{door}</i><strong>{doors}</strong></>));
+    };
+  };
+
+  const qualificationText = (qualification) => {
+    if(qualification >= 1 && qualification <= 2.5) {
+      return "Muy malo";
+    } else if(qualification > 2.5 && qualification <= 5) {
+      return "Malo";
+    } else if(qualification > 5 && qualification <= 7.5) {
+      return "Bueno";
+    } else if(qualification > 7.5 && qualification <= 10) {
+      return "Muy bueno";
+    } else {
+      return "Sin Calificación";
     };
   };
 
@@ -59,23 +73,13 @@ export default function Listado() {
                       <i>{people}</i><strong>{item.people}</strong>
                       {withDoors(item.doors)}
                     </div>
-                    
                     <p className="txt-1 product-description">
-                      {item.description}
-                        <span className={moreText ? "": "hide-text"}>, 
-                          consectetur Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                          Omnis natus commodi, accusamus consequatur officiis sint reprehenderit. 
-                          Temporibus accusamus eveniet officiis, impedit aspernatur laboriosam 
-                          possimus iste placeat reiciendis in repellat eaque. 
-                        </span> 
-                        <span className="show-text" onClick={handlerShowText}> 
-                          {moreText ? " menos..." : " más..."} 
-                        </span>
+                      {<p>{showText ? item.description.substring(0, 20)+"..." : item.description}<span className="show-text" onClick={handlerShowText}> {showText ? "más" : "menos"}</span></p>}
                     </p>
                     <button className="product-show-more btn-1"><a href="./">Ver más</a></button>
                     <div className="qualification">
                       <span>{item.qualification}</span>
-                      <p className="txt-1">Muy bueno</p>
+                      <p className="txt-1">{qualificationText(item.qualification)}</p>
                     </div>
                   </div>
                 </div>

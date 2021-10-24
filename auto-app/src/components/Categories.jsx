@@ -43,7 +43,6 @@ export default function BloqueCategoria() {
                         </a>
                         <h3>{item.titulo}</h3>
                         <p>{item.cantidad}</p>
-                        <br /><br /><br /><br />
                     </div>
                 )}
             </div>
