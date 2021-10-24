@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    margin-bottom: 80px;
 }
 .listado h2 {
     margin:  0 0 9px 2.9%;
