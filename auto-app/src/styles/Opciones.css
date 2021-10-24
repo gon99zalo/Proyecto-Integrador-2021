@@ -1,3 +1,16 @@
 .opciones-header{
     background-color: rgba(240, 87, 45, 1);
 }
+ .opciones>p{
+    background-color: rgba(240, 87, 45, 1);
+    text-align: left;
+    padding-left: 10px;
+    font-weight: 700;  
+    height: 80px;
+}
+.opciones-header>h2{
+    text-align: right;
+    height: 80px;
+    padding-top: 40px;
+    padding-right: 10px;
+} 

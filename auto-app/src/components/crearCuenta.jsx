@@ -13,15 +13,15 @@ export default function CrearCuenta() {
   let confirmarContrasenia = document.getElementById("confirmarContrasenia").value
   let mail = document.getElementById("correo-electronico").value
   if(contrasenia.length<=6){
-    alert("la contraseña debe tener más de 6")
-  }else if(mail.includes("@") == false){
+    alert("La contraseña debe tener más de 6 caracteres")
+  }else if(mail.includes("@") === false){
     alert("por favor introduzca un mail válido")
   }else if(contrasenia != confirmarContrasenia){
-    alert("contraseñas ingresadas no coinciden")
+    alert("Contraseñas ingresadas no coinciden")
   }
   let inputs = document.querySelectorAll(".campos-crear")
   for(inputs of inputs){
-      if(inputs.value == ""){
+      if(inputs.value === ""){
         if(!inputs.classList.contains("error")){
           inputs.classList.toggle("error")
         }

@@ -30,7 +30,7 @@ export default function IniciarSesion() {
     if(usuario.email === emailUsuario && usuario.contrasenia === contraseniaUsuario){
       history.push("/logueado")
     }else{
-      alert("Por favor, vuelva a intentarlo sus credenciales son inválidas")
+      alert("Por favor vuelva a intentarlo, tus credenciales son inválidas")
     }
   }
 
@@ -42,7 +42,7 @@ export default function IniciarSesion() {
       <form className="form-iniciarSesion" action="">
           <div className="inputs-inicio">
           <label className="labels-inicio" htmlFor="correo electronico">Correo electrónico</label>
-          <input className="campos-inicio" type="email" name="correo electronico" id="correo-electronico" required/>
+          <input className="campos-inicio" type="email" name="correo electronico" id="correo-electronico" required />
           <label className="labels-inicio" htmlFor="contrasenia">Contraseña</label>
           <div className="campos-inicio">
             <input className="campos-inicio" type={passwordShown ? "text" : "password"} placeholder={passwordShown ? "contraseña" : "•••••••••"} name="contrasenia" id="contrasenia" required/>

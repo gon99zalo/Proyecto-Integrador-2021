@@ -30,6 +30,9 @@
 .opciones{
   color: black;
 }
+.opciones-link {
+  background-color: #282c34;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -60,6 +63,11 @@
 .opciones{
   font-size: 1.5em;
   font-weight: 900;
+}
+.opciones-links {
+  text-align: right;
+  padding-top: 20px;
+  padding-right: 15px;
 }
 
 .buscador{
