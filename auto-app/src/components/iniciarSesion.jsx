@@ -27,7 +27,7 @@ export default function IniciarSesion() {
     e.preventDefault()
     let emailUsuario = document.querySelector("#correo-electronico").value
     let contraseniaUsuario = document.querySelector("#contrasenia").value
-    if(usuario.email==emailUsuario && usuario.contrasenia === contraseniaUsuario){
+    if(usuario.email === emailUsuario && usuario.contrasenia === contraseniaUsuario){
       history.push("/logueado")
     }else{
       alert("Por favor, vuelva a intentarlo sus credenciales son inválidas")

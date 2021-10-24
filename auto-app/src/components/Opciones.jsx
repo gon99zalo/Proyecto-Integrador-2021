@@ -18,8 +18,8 @@ export default function Opciones(props) {
                 <h2>MENÚ</h2>
             </div>
             <div className="opciones-links" id="opciones-links">
-                {prevLocation == "iniciarSesion" ? "" : <Link to="/iniciarSesion"><h3>Inciar sesión</h3></Link>}
-                {prevLocation == "crearCuenta" ? "" : <Link to="/crearCuenta"><h3>Crear cuenta</h3></Link>}
+                {prevLocation === "iniciarSesion" ? "" : <Link to="/iniciarSesion"><h3>Inciar sesión</h3></Link>}
+                {prevLocation === "crearCuenta" ? "" : <Link to="/crearCuenta"><h3>Crear cuenta</h3></Link>}
             </div>
         </div>
     );

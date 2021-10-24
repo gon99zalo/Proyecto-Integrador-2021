@@ -27,6 +27,9 @@
 .App-link {
   color: #61dafb;
 }
+.opciones{
+  color: black;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -73,7 +76,7 @@ select{
 }
 .category{
   height: 1120px;
-  width: 393px;
+  width: 100%;
 }
 .category h2{
   font-size:20px;
@@ -107,6 +110,9 @@ footer{
 @media screen and (min-width: 480px) and (max-width:  768px){
   .slogan{
     display: none;
+  }
+  .buscador{
+    height: 135px;
   }
 }
 

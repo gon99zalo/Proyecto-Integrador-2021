@@ -1,6 +1,6 @@
 .logIn {
-        background-color: rgba(223, 228, 234, 1);
-        height: 100%;
+  background-color: rgba(223, 228, 234, 1);
+  height: 100%;
 }
 
 .titulo-inicio {
@@ -10,22 +10,22 @@
 }
 
 .form-iniciarSesion {
-    width: 25.735294117647058vw;
-    height: 80vh; /*cambiar*/
-    margin: auto;
-    display: flex;
-    position:relative;
-    justify-content: center;
-    /* background-color: red; */
-    /* padding: 20px; */
+  width: 25.735294117647058vw;
+  height: 80vh; /*cambiar*/
+  margin: auto;
+  display: flex;
+  position:relative;
+  justify-content: center;
+  /* background-color: red; */
+  /* padding: 20px; */
 }
 
 .inputs-inicio {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 .password {
   position: absolute;
@@ -34,24 +34,28 @@
 }
 
 .labels-inicio {
-    margin-top: 10px;
-    text-align: left;
+  margin-top: 10px;
+  text-align: left;
 }
 
 .campos-inicio {
-    border-radius: 5px;
-    height: 35px;
-    width: 330px;
-    position:relative;
-    border: none;
-    box-shadow: 0px 3px 2px grey;
+  border-radius: 5px;
+  height: 35px;
+  width: 330px;
+  position:relative;
+  border: none;
+  box-shadow: 0px 3px 2px grey;
   }
+::placeholder{
+  padding-left: 15px;
+  }
+  
 
-  #boton-iniciarSesion {
-    height: 35px;
+#boton-iniciarSesion {
+  height: 35px;
   margin-top: 30px;
   background-color: rgba(240, 87, 45, 1);
-   width: 100%; 
+  width: 100%; 
   border: none;
   border-radius: 5px;
   padding: 10px 35px;
@@ -67,8 +71,8 @@
 }
 
 .texto-cuenta {
-    margin-top: 10px;
-    font-size: 13px;
+  margin-top: 10px;
+  font-size: 13px;
 }
 
 /* pantalla 3 Mobile iniciarSesion */
