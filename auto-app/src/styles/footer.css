@@ -10,6 +10,9 @@ footer {
     bottom: 0;  
 
 }
+.marca{
+    margin-left: 25px;
+}
 
 .redes {
     /* display: flex;
@@ -19,3 +22,6 @@ footer {
     height: 20px;
     width: 100px;
 }
+/* element.style {
+    margin-left: 8px;
+} */

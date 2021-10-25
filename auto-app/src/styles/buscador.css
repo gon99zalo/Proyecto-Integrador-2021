@@ -1,11 +1,12 @@
 .buscador {
     background-color: rgba(25, 27, 29, 1);
     width: 100vw;
-    height: 20vh;
+    height: auto;
 }
 
 .titulo-buscador {
     color: white;
+    padding-top: 5px;
 }
 
 .buscadores {
@@ -13,6 +14,7 @@
     display: flex;
     justify-content: center;
     gap: 5px;
+    padding-bottom: 15px;
 }
 
 .boton-buscar {
@@ -31,3 +33,20 @@ select,input[type=date]{
     border-radius: 5px;
     
   }
+  @media screen and (max-width:  480px){
+      .titulo-buscador{
+        font-size: 25px;
+      }
+  }
+
+  
+  @media screen and (min-width: 480px) and (max-width:  768px){
+    .buscador{
+        padding: 0px 12px;
+        /* margin-top: 30px; */
+    }
+    .titulo-buscador{
+        padding-top: 5px;
+    }
+  }
+  
