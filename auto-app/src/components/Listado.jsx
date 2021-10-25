@@ -6,15 +6,18 @@ import productList from "../json/Listado.json";
 import "../styles/Listado.css";
 
 export default function Listado() {
-  const categoria = "Motos";
+  const categoria = "Autos";
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
   const people = <FontAwesomeIcon icon={faUserAlt} />;
   const door = <FontAwesomeIcon icon={faDoorClosed} />;
-  const [ showText, setShowText ] = useState(20);
+  const [ showText, setShowText ] = useState({show: false, idText: null});
 
-  const handlerShowText = () => {
-    setShowText(!showText);
+  const handlerShowText = (title) => {
+    setShowText({
+      show: !showText.show,
+      idText: title
+    });
   };
 
   const withDoors = (doors) => {
@@ -45,7 +48,7 @@ export default function Listado() {
         <h2>Recomendaciones</h2>
         <div className="product-container">
 
-          {productList[categoria].map(item => {
+          {productList[categoria].map( (item, i) => {
             return (
               <>
                 <div className="product-card">
@@ -73,9 +76,14 @@ export default function Listado() {
                       <i>{people}</i><strong>{item.people}</strong>
                       {withDoors(item.doors)}
                     </div>
-                    <p className="txt-1 product-description">
-                      {<p>{showText ? item.description.substring(0, 20)+"..." : item.description}<span className="show-text" onClick={handlerShowText}> {showText ? "más" : "menos"}</span></p>}
-                    </p>
+                    <div className="txt-1 product-description">
+                      <p key={`p-${i}`}>
+                        {showText.show && showText.idText === item.title ? item.description : item.description.substring(0, 20)+"..."}
+                        <span key={`s-${i}`} className="show-text" onClick={() => handlerShowText(item.title)}> 
+                          {showText.show && showText.idText === item.title ? " menos" : " más"}
+                        </span>
+                      </p>
+                    </div>
                     <button className="product-show-more btn-1"><a href="./">Ver más</a></button>
                     <div className="qualification">
                       <span>{item.qualification}</span>
