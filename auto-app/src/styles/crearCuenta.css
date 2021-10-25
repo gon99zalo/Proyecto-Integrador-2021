@@ -1,24 +1,25 @@
 .form-crearCuenta {
-    width: 25.735294117647058vw;
+    width: 38vw;
     height: 80vh; /*cambiar*/
     margin: auto;
     display: flex;
+    font-size: 14px;
     /* background-color: red; */
     /* padding: 20px; */
 }
 
 .inputs{
-margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;      
 }
 
 .campos-crear {
     border-radius: 5px;
     height: 35px;
-    width: 100%;
+    border: none;
+    box-shadow: 0px 3px 2px grey;
   }
 
   .labels-crear {
@@ -43,10 +44,10 @@ margin-top: 30px;
   }
 
   #boton-crearCuenta {
-      height: 35px;
-    margin-top: 50px;
+    height: 35px;
+    margin-top: 30px;
     background-color: rgba(240, 87, 45, 1);
-    width: 12vw;
+    width: 22vw;
     border: none;
     border-radius: 5px;
     padding: 10px 35px;
@@ -54,6 +55,7 @@ margin-top: 30px;
     display: flex;
     justify-content: center;
     align-self: center;
+    box-shadow: 0px 3px 2px grey;
   }
 
   #boton-crearCuenta:hover {
@@ -65,12 +67,14 @@ margin-top: 30px;
       height: 100%;
     }
 
-    .texto-inicio {
+  .texto-inicio {
       margin-top: 10px;
+      font-size: 13px;
   }
 
   .titulo-crear {
-    color: black;
+    color: rgba(240, 87, 45, 1);
+    padding-top:30px;
   }
 
   .error {
@@ -115,5 +119,16 @@ margin-top: 30px;
     margin-top: 20px;
     width:260px;
     box-shadow: 0px 3px 2px grey;
+  }
+}
+@media screen and (min-width: 480px) and (max-width:  768px){
+  .campos-pegados{
+    flex-direction: column;
+  }
+  .labels-crear{
+    margin-top: 5px;
+  }
+  #boton-crearCuenta{
+    width: 38vw;
   }
 }

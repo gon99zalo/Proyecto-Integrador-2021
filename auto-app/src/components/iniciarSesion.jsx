@@ -18,9 +18,13 @@ export default function IniciarSesion() {
     setPasswordShown(passwordShown ? false : true);
   };
 
+  let infoUsuario = JSON.parse(localStorage.getItem('infoUsuario'))
+
   let usuario = {
-    email: "alumnoDH@gmail.com",
-    contrasenia: "123456"
+    nombre: infoUsuario.nombre,
+    apellido: infoUsuario.apellido,
+    email: infoUsuario.correo,
+    contrasenia: infoUsuario.contrasenia
   }
 
   const handlerValidate = (e) =>{
@@ -28,9 +32,10 @@ export default function IniciarSesion() {
     let emailUsuario = document.querySelector("#correo-electronico").value
     let contraseniaUsuario = document.querySelector("#contrasenia").value
     if(usuario.email==emailUsuario && usuario.contrasenia === contraseniaUsuario){
+      localStorage.setItem("usuario", JSON.stringify(usuario))
       history.push("/logueado")
     }else{
-      alert("Por favor, vuelva a intentarlo sus credenciales son inválidas")
+      alert("Por favor vuelva a intentarlo, tus credenciales son inválidas")
     }
   }
 
@@ -42,7 +47,7 @@ export default function IniciarSesion() {
       <form className="form-iniciarSesion" action="">
           <div className="inputs-inicio">
           <label className="labels-inicio" htmlFor="correo electronico">Correo electrónico</label>
-          <input className="campos-inicio" type="email" name="correo electronico" id="correo-electronico" required/>
+          <input className="campos-inicio" type="email" name="correo electronico" id="correo-electronico" required />
           <label className="labels-inicio" htmlFor="contrasenia">Contraseña</label>
           <div className="campos-inicio">
             <input className="campos-inicio" type={passwordShown ? "text" : "password"} placeholder={passwordShown ? "contraseña" : "•••••••••"} name="contrasenia" id="contrasenia" required/>

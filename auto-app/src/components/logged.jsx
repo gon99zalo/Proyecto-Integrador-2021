@@ -11,6 +11,17 @@ export default function Logged() {
     history.push("/")
   }
   
+  const usuario = () => {
+    let nombreCompleto = JSON.parse(localStorage.getItem('usuario'))
+    return nombreCompleto.nombre + " " + nombreCompleto.apellido
+  }
+
+  const iniciales = () => {
+    let nombreCompleto = JSON.parse(localStorage.getItem('usuario'))
+    let inicial1 = nombreCompleto.nombre[0]
+    let inicial2 = nombreCompleto.apellido[0]
+    return inicial1.toUpperCase() + inicial2.toUpperCase()
+  }
   return (
     <>
     <header>
@@ -19,12 +30,12 @@ export default function Logged() {
             <span className="slogan">El auto que necesitas</span>
             </div> 
             <div className="avatar">
-               <span className="iniciales-avatar"> AD </span>
+               <span className="iniciales-avatar"> {iniciales()} </span>
               </div>
             <div className="user">
-            <i class="fas fa-times" onClick={handlerClose}></i>
-            <p className="saludo">Hola,
-            <span className="colorUser"> alumno dh </span></p>{/*revisar todo avatar*/}
+            <i className="fas fa-times" onClick={handlerClose}></i>
+            <p className="saludo"> <span className="hola">Hola,</span>
+            <span className="colorUser"> {usuario()} </span></p>{/*revisar todo avatar*/}
             </div>
         </header>
       <Buscador />
