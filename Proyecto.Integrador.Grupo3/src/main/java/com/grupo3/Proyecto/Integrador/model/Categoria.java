@@ -28,11 +28,4 @@ private String url;
         this.url = url;
     }
 
-
-    public void actualizar(Categoria categoria) {
-        this.titulo = categoria.getTitulo();
-        this.descripcion = categoria.getDescripcion();
-        this.url = categoria.getUrl();
-    }
-
 }
