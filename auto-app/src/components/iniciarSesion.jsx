@@ -19,8 +19,10 @@ export default function IniciarSesion() {
   };
 
   let usuario = {
+    nombre: "alumno",
+    apellido: "dh",
     email: "alumnoDH@gmail.com",
-    contrasenia: "123456"
+    contrasenia: "1234567"
   }
 
   const handlerValidate = (e) =>{
@@ -28,6 +30,7 @@ export default function IniciarSesion() {
     let emailUsuario = document.querySelector("#correo-electronico").value
     let contraseniaUsuario = document.querySelector("#contrasenia").value
     if(usuario.email==emailUsuario && usuario.contrasenia === contraseniaUsuario){
+      localStorage.setItem("usuario", JSON.stringify(usuario))
       history.push("/logueado")
     }else{
       alert("Por favor, vuelva a intentarlo sus credenciales son inválidas")
