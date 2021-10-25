@@ -18,11 +18,13 @@ export default function IniciarSesion() {
     setPasswordShown(passwordShown ? false : true);
   };
 
+  let infoUsuario = JSON.parse(localStorage.getItem('infoUsuario'))
+
   let usuario = {
-    nombre: "alumno",
-    apellido: "dh",
-    email: "alumnoDH@gmail.com",
-    contrasenia: "1234567"
+    nombre: infoUsuario.nombre,
+    apellido: infoUsuario.apellido,
+    email: infoUsuario.correo,
+    contrasenia: infoUsuario.contrasenia
   }
 
   const handlerValidate = (e) =>{

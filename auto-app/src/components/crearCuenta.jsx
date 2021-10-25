@@ -2,11 +2,11 @@ import Header from "./header";
 import "../styles/Global.css"
 import "../styles/crearCuenta.css"
 import Footer from "./footer";
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { faIgloo } from "@fortawesome/free-solid-svg-icons";
 
 export default function CrearCuenta() {
-
+  const history = useHistory()
   const handlerSubmit=(e)=>{
     e.preventDefault()
   let contrasenia = document.getElementById("contrasenia").value
@@ -18,6 +18,15 @@ export default function CrearCuenta() {
     alert("por favor introduzca un mail válido")
   }else if(contrasenia != confirmarContrasenia){
     alert("contraseñas ingresadas no coinciden")
+  }else{
+    let infoUsuario = {
+      nombre: document.querySelector("#nombre").value,
+      apellido: document.querySelector("#apellido").value,
+      correo: document.querySelector("#correo-electronico").value,
+      contrasenia: document.querySelector("#contrasenia").value,
+    }
+    localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario))
+    history.push("/iniciarSesion")
   }
   let inputs = document.querySelectorAll(".campos-crear")
   for(inputs of inputs){
