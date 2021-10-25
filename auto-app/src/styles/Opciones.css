@@ -6,11 +6,21 @@
     text-align: left;
     padding-left: 10px;
     font-weight: 700;  
-    height: 80px;
+    height: 10px;
 }
 .opciones-header>h2{
-    text-align: right;
+    text-align: bottom;
     height: 80px;
     padding-top: 40px;
     padding-right: 10px;
 } 
+
+.opciones i{
+    font-family: FontAwesome;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    align-self: left;
+    margin-left: 10px;
+}
+
