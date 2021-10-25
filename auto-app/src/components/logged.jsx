@@ -13,8 +13,14 @@ export default function Logged() {
   
   const usuario = () => {
     let nombreCompleto = JSON.parse(localStorage.getItem('usuario'))
-    console.log("completo", nombreCompleto)
     return nombreCompleto.nombre + " " + nombreCompleto.apellido
+  }
+
+  const iniciales = () => {
+    let nombreCompleto = JSON.parse(localStorage.getItem('usuario'))
+    let inicial1 = nombreCompleto.nombre[0]
+    let inicial2 = nombreCompleto.apellido[0]
+    return inicial1.toUpperCase() + inicial2.toUpperCase()
   }
   return (
     <>
@@ -24,7 +30,7 @@ export default function Logged() {
             <span className="slogan">El auto que necesitas</span>
             </div> 
             <div className="avatar">
-               <span className="iniciales-avatar"> AD </span>
+               <span className="iniciales-avatar"> {iniciales()} </span>
               </div>
             <div className="user">
             <i className="fas fa-times" onClick={handlerClose}></i>
