@@ -20,19 +20,11 @@ export default function IniciarSesion() {
 
   let infoUsuario = JSON.parse(localStorage.getItem('infoUsuario'))
 
-  let usuario = {
-    nombre: infoUsuario.nombre,
-    apellido: infoUsuario.apellido,
-    email: infoUsuario.correo,
-    contrasenia: infoUsuario.contrasenia
-  }
-
   const handlerValidate = (e) =>{
     e.preventDefault()
     let emailUsuario = document.querySelector("#correo-electronico").value
     let contraseniaUsuario = document.querySelector("#contrasenia").value
-    if(usuario.email==emailUsuario && usuario.contrasenia === contraseniaUsuario){
-      localStorage.setItem("usuario", JSON.stringify(usuario))
+    if(infoUsuario.correo==emailUsuario && infoUsuario.contrasenia === contraseniaUsuario){
       history.push("/logueado")
     }else{
       alert("Por favor vuelva a intentarlo, tus credenciales son inválidas")
