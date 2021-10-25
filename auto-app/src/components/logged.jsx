@@ -11,13 +11,13 @@ export default function Logged() {
     history.push("/")
   }
   
+  let nombreCompleto = JSON.parse(localStorage.getItem('infoUsuario'))
+
   const usuario = () => {
-    let nombreCompleto = JSON.parse(localStorage.getItem('usuario'))
     return nombreCompleto.nombre + " " + nombreCompleto.apellido
   }
 
   const iniciales = () => {
-    let nombreCompleto = JSON.parse(localStorage.getItem('usuario'))
     let inicial1 = nombreCompleto.nombre[0]
     let inicial2 = nombreCompleto.apellido[0]
     return inicial1.toUpperCase() + inicial2.toUpperCase()
