@@ -9,6 +9,11 @@
     padding-top: 5px;
 }
 
+.react-datepicker-wrapper {
+    padding: 0;
+    border: 0;
+  }
+
 .buscadores {
     margin-top: 35px;
     display: flex;
