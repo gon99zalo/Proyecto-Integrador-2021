@@ -6,7 +6,7 @@ import productList from "../json/Listado.json";
 import "../styles/Listado.css";
 
 export default function Listado() {
-  const categoria = "Autos";
+  const categoria = "Buses";
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
   const people = <FontAwesomeIcon icon={faUserAlt} />;
