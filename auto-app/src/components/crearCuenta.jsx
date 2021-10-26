@@ -12,6 +12,8 @@ export default function CrearCuenta() {
   let contrasenia = document.getElementById("contrasenia").value
   let confirmarContrasenia = document.getElementById("confirmarContrasenia").value
   let mail = document.getElementById("correo-electronico").value
+  let inputs = document.querySelectorAll(".campos-crear")
+  let valido = true
   if(contrasenia.length<=6){
     alert("La contraseña debe tener más de 6 caracteres")
   }else if(mail.includes("@") === false){
@@ -19,6 +21,18 @@ export default function CrearCuenta() {
   }else if(contrasenia != confirmarContrasenia){
     alert("contraseñas ingresadas no coinciden")
   }else{
+    for(inputs of inputs){
+      if(inputs.value === ""){
+        valido = false
+        if(!inputs.classList.contains("error")){
+          inputs.classList.toggle("error")
+        }
+        if(!inputs.nextElementSibling.classList.contains("error-mensaje")){
+          inputs.nextElementSibling.classList.toggle("error-mensaje")
+        }
+    }
+  }
+  if(valido){
     let infoUsuario = {
       nombre: document.querySelector("#nombre").value,
       apellido: document.querySelector("#apellido").value,
@@ -28,16 +42,6 @@ export default function CrearCuenta() {
     localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario))
     history.push("/iniciarSesion")
   }
-  let inputs = document.querySelectorAll(".campos-crear")
-  for(inputs of inputs){
-      if(inputs.value === ""){
-        if(!inputs.classList.contains("error")){
-          inputs.classList.toggle("error")
-        }
-        if(!inputs.nextElementSibling.classList.contains("error-mensaje")){
-          inputs.nextElementSibling.classList.toggle("error-mensaje")
-        }
-    }
   }
   }
 
@@ -65,7 +69,7 @@ export default function CrearCuenta() {
           <input className="campos-crear" type="password" name="confirmarContrasenia" id="confirmarContrasenia" required/>
           <div className="error-mensaje-escondido">Este campo es obligatorio</div>
           <button onClick={handlerSubmit} type="submit" className="boton-crearCuenta" id="boton-crearCuenta">Crear cuenta</button>
-          <p className="texto-inicio txt-1">¿Ya tenes una cuenta? <Link to="iniciarSesion">Iniciar sesión</Link></p>
+          <p className="texto-inicio txt-1">¿Ya tenes una cuenta? <Link to="iniciarSesion"><span className="color-links">Iniciar sesión</span></Link></p>
           </div>
       </form>
       </div>
