@@ -17,6 +17,12 @@
     padding-bottom: 15px;
 }
 
+input.datePicker {
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px 35px;
+}
+
 .boton-buscar {
     background-color: rgba(240, 87, 45, 1);
     border-color: rgba(240, 87, 45, 1);
@@ -37,6 +43,11 @@ select,input[type=date]{
       .titulo-buscador{
         font-size: 25px;
       }
+      input.datePicker {
+        border-radius: 5px;
+        padding: 5px 35px;
+        width: 92vw;
+    }
   }
 
   
@@ -47,6 +58,11 @@ select,input[type=date]{
     }
     .titulo-buscador{
         padding-top: 5px;
+    }
+    input.datePicker {
+        border-radius: 5px;
+        padding: 5px 35px;
+        width: 30vw;
     }
   }
   

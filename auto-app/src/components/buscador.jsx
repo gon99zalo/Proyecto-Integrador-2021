@@ -1,10 +1,13 @@
 import "../styles/buscador.css"
 import React, { useState } from "react";
-//import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 export default function Buscador() {
-    // const [startDate, setStartDate] = useState(null);
+
+    const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
 
     return (
         <div className="buscador">
@@ -19,8 +22,13 @@ export default function Buscador() {
             <option>Mendoza</option>
             <option>Cordoba</option>
         </select>
-        <input type="date" />
-        <input type="date" />
+            <DatePicker className="datePicker"
+            selectsRange={true}
+            startDate={startDate}
+            endDate={endDate}
+            onChange={(update) => {
+            setDateRange(update);
+            }}/>
         <button className="boton-buscar" id="boton-buscar" >Buscar</button>
         </div>
         </div>
