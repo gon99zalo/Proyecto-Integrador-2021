@@ -46,7 +46,7 @@ export default function IniciarSesion() {
             <i onClick={togglePasswordVisiblity} className="password" id="password">{passwordShown ? visible : notVisible}</i>
           </div>
           <button onClick={handlerValidate} type="submit" className="boton-iniciarSesion" id="boton-iniciarSesion">Ingresar</button>
-          <p className="texto-cuenta txt-1">¿Aún no tenes cuenta? <Link to="/crearCuenta">Registrate</Link></p>
+          <p className="texto-cuenta txt-1">¿Aún no tenes cuenta? <Link to="/crearCuenta"><span className="color-links">Registrate</span></Link></p>
           </div>
       </form>
       </div>

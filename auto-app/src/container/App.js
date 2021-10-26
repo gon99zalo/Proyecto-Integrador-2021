@@ -7,6 +7,7 @@ import Home from "../components/home";
 import CrearCuenta from "../components/crearCuenta";
 import iniciarSesion from "../components/iniciarSesion";
 import Logged from '../components/logged';
+import OpcionesLog from '../components/OpcionesLog';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/iniciarSesion" component={iniciarSesion} />
           <Route exact path="/logueado" component={Logged} />
           <Route exact path="/opciones" component={Opciones} />
+          <Route exact path="/opcionesLog" component={OpcionesLog} />
         </Switch>
       </BrowserRouter>
     </div>
