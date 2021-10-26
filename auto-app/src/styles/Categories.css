@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: initial;
+    margin-bottom: 20px;
 }
 
 .category h2 {
@@ -28,11 +29,10 @@
 }
 .type-card a {
     height: 183px;
-    width: 100%;
 }
 .type-card a img {
     height: 100%;
-    width: inherit;
+    width: 100%;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
 }

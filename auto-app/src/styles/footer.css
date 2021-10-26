@@ -1,6 +1,6 @@
 footer {
-    height: 8vh;
-    width: 100vw;
+    height: 58px;
+    width: 100%;
     display: flex;
     justify-content: space-between; 
     align-items: center;
@@ -8,7 +8,6 @@ footer {
     /* position: absolute;*/
     position: fixed;
     bottom: 0;  
-
 }
 .marca{
     margin-left: 25px;
