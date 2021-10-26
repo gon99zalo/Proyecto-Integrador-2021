@@ -1,3 +1,4 @@
+//@ts-nocheck
 import "../styles/buscador.css"
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
