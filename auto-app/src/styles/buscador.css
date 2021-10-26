@@ -51,7 +51,7 @@ select,input[type=date]{
       input.datePicker {
         border-radius: 5px;
         padding: 5px 35px;
-        width: 92vw;
+        width: 100%;
     }
   }
 
