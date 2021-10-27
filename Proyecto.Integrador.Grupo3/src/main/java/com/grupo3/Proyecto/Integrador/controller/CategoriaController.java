@@ -31,7 +31,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/buscar")
-    public ResponseEntity<Categoria> buscarCategoria(@Param("titulo") String titulo) {
+    public ResponseEntity<Categoria> buscarCategoria(@RequestParam String titulo) {
         Categoria categoria = categoriaService.buscarCategoria(titulo).orElse(null);
         return ResponseEntity.ok(categoria);
     }
@@ -56,9 +56,9 @@ public class CategoriaController {
         return respuesta;
     }
 
-    @PutMapping("/modificar/{titulo:.+}}")
+    @PutMapping("/modificar")
     @ResponseBody
-    public ResponseEntity<Categoria> modificarCategoria(@PathVariable String titulo, @RequestBody Categoria c) {
+    public ResponseEntity<Categoria> modificarCategoria(@RequestParam String titulo, @RequestBody Categoria c) {
         ResponseEntity<Categoria> respuesta = null;
 
         if (categoriaService.buscarCategoria(titulo).isPresent()) {
@@ -72,7 +72,7 @@ public class CategoriaController {
         return respuesta;
     }
 
-            @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminarPorID(@PathVariable Long id) {
         ResponseEntity<String> respuesta = null;
 

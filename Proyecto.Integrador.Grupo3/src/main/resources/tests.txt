@@ -10,7 +10,7 @@
 
                [GET]
  Petición para traer categoría mediante titulo:
-(http://localhost:8080/categorias/buscar?titulo=autos)
+(http://localhost:8080/categorias/buscar?titulo=motos)
 
                [GET]
 Petición para traer todas las categorías:
@@ -19,6 +19,14 @@ Petición para traer todas las categorías:
                [GET]
 Petición para traer categoría por ID:
 (http://localhost:8080/categorias/buscar/1)
+
+               [PUT]
+Petición para modificar categoría por ID:
+(http://localhost:8080/categorias/modificar/1)
+
+               [PUT]
+Petición para modificar categoría por titulo:
+(http://localhost:8080/categorias/modificar?titulo=motos)
 
               [DELETE]
  Petición para eliminar categoría mediante titulo:

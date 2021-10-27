@@ -28,4 +28,15 @@ private String url;
         this.url = url;
     }
 
+
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }
