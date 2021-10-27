@@ -10,6 +10,7 @@
 
 # production
 /build
+auto-app/package-lock.json
 
 # misc
 .DS_Store
