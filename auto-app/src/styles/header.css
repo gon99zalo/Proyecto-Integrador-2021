@@ -190,7 +190,7 @@ height: 45px;
 }
 
 .opciones-links-burger{
-  height: 840px;
+  height: 68vh;
   display: flex;
     flex-direction: row;
     align-content: flex-end;

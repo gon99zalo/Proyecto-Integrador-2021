@@ -48,6 +48,7 @@ export default function OpcionesLog(props) {
         <p>¿Deseas <Link to="/"><span className="color-links">cerrar sesión?</span></Link></p>
     </div>
     <div className="linea-horizontal"></div>
+    {/* Estilos en header.csss */}
     </>
     );
 }
