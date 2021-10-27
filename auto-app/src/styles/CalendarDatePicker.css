@@ -45,6 +45,13 @@
 /* .react-datepicker__day {
     color: violet;
 } */
+.react-datepicker__day--keyboard-selected, .react-datepicker__day--in-range, .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), .react-datepicker__day--in-range:hover {
+    background-color: #F0572D;
+    border-radius: 50%;
+}
+.react-datepicker__close-icon::after {
+    background-color: #F0572D;
+}
 
 
 /* Input */
@@ -55,6 +62,20 @@
     background: #FFFFFF;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 2.1%;
+    color: #7F7F7F;
+}
+.calendar-input i {
+    margin-left: 2%;
+}
+.fa-calendar-day {
+    font-size: 22px;
+    opacity: 0.5;
+}
+.calendar-input p {
+    color: #7F7F7F;
 }
 
 /* button {

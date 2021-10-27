@@ -1,25 +1,28 @@
 //@ts-nocheck
 import "../styles/buscador.css";
 import React, { useState, forwardRef } from "react";
+//Para calendar
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-//Para calendar
 import "../styles/CalendarDatePicker.css";
 //Para que el calendario esté en español
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
+//Íconos
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
+//Formatear fechas
+import { subDays } from 'date-fns';
 
 export default function Buscador() {
-  // const [dateRange, setDateRange] = useState([null, null]);
-  // const [startDate, endDate] = dateRange;
-
-  const [startDate, setStartDate] = useState(new Date());
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
+  const calendarIcon = <FontAwesomeIcon icon={faCalendarDay} />
   registerLocale("es", es);
 
-  const CalendarInput = forwardRef(({ value, onClick }, ref) => (
-    <button className="calendar-input" onClick={onClick} ref={ref}>
-      {value}
+  const CalendarInput = forwardRef(({ value, onClick }) => (
+    <button className="calendar-input" onClick={onClick} >
+      <i>{calendarIcon}</i><p>{value ? value : "Check in - Check out"}</p>
     </button>
   ));
 
@@ -27,8 +30,6 @@ export default function Buscador() {
     <div className="buscador">
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
-        {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
         <select>
           <option hidden selected>
             Elije donde quieres retirar el auto
@@ -98,21 +99,20 @@ export default function Buscador() {
               </button>
             </div>
           )}
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
+          selectsRange={true}
+          
+          startDate={startDate}
+          endDate={endDate}
+          onChange={(update) => {
+            setDateRange(update);
+          }}
+          isClearable={true}
           monthsShown={2}
           locale="es"
-          placeholderText="Select a weekday"
           customInput={<CalendarInput />}
+          shouldCloseOnSelect={false}
+          minDate={subDays(new Date(), 0)}
         />
-
-        {/* <DatePicker className="datePicker"
-            selectsRange={true}
-            startDate={startDate}
-            endDate={endDate}
-            onChange={(update) => {
-            setDateRange(update);
-        }}/> */}
         <button className="boton-buscar" id="boton-buscar">
           Buscar
         </button>
