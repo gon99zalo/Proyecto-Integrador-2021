@@ -15,8 +15,30 @@ export default function CrearCuenta() {
   let inputs = document.querySelectorAll(".campos-crear")
   let valido = true
   if(contrasenia.length<=6){
+    for(inputs of inputs){
+      if(inputs.value === ""){
+        valido = false
+        if(!inputs.classList.contains("error")){
+          inputs.classList.toggle("error")
+        }
+        if(!inputs.nextElementSibling.classList.contains("error-mensaje")){
+          inputs.nextElementSibling.classList.toggle("error-mensaje")
+        }
+    }
+  }
     alert("La contraseña debe tener más de 6 caracteres")
   }else if(mail.includes("@") === false){
+    for(inputs of inputs){
+      if(inputs.value === ""){
+        valido = false
+        if(!inputs.classList.contains("error")){
+          inputs.classList.toggle("error")
+        }
+        if(!inputs.nextElementSibling.classList.contains("error-mensaje")){
+          inputs.nextElementSibling.classList.toggle("error-mensaje")
+        }
+    }
+  }
     alert("por favor introduzca un mail válido")
   }else if(contrasenia != confirmarContrasenia){
     alert("contraseñas ingresadas no coinciden")
