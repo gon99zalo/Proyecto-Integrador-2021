@@ -27,7 +27,7 @@ export default function CrearCuenta() {
     }
   }
     alert("La contraseña debe tener más de 6 caracteres")
-  }else if(mail.includes("@") === false){
+  }else if(!mail.includes("@")){
     for(inputs of inputs){
       if(inputs.value === ""){
         valido = false

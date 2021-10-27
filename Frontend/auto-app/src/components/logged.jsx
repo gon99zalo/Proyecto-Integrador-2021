@@ -61,8 +61,8 @@ export default function Logged() {
       <Buscador /> */}
       <header>
             <div className="logo">
-            <Link to="/"><img src={logo} alt="logo" className="logo-img" /></Link>
-            <span className="slogan">El auto que necesitas</span>
+            <Link to="/logueado"><img src={logo} alt="logo" className="logo-img" /></Link>
+            <Link to="/logueado"><span className="slogan">El auto que necesitas</span></Link>
             </div> 
             {width > 480? 
             <>
