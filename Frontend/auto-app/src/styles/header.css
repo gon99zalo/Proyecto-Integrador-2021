@@ -35,7 +35,14 @@ height: 45px;
     line-height: 23px;
     margin-bottom: 12px;
     margin-left: 10px;
+    color: black;
+    display: flex;
 }
+
+a {
+  text-decoration: none;
+}
+
 .logo-db{
     width: 68px; 
     height: 50px;
