@@ -28,7 +28,7 @@ export default function Header(props) {
         <header>
             <div className="logo">
             <Link to="/"><img src={logo} alt="logo" className="logo-img" /></Link>
-            <span className="slogan">El auto que necesitas</span>
+            <Link to="/"><span className="slogan">El auto que necesitas</span></Link>
             </div> 
             {width > 480? 
             <div className="inputs-header">
