@@ -79,9 +79,7 @@
   flex-direction: column;
   margin: 16px 10px; 
 }
-select{
-  height: 24px;
-}
+
 .category{
   height: 1120px;
   width: 100%;
