@@ -28,6 +28,9 @@ export default function Logged() {
 
     useEffect(() => {
         setwidth(window.screen.availWidth);
+        if (nombreCompleto == null) {
+          handlerClose()
+        }
         function handleResize() {
             setwidth(window.screen.availWidth);
         }
@@ -41,14 +44,20 @@ export default function Logged() {
   }
   
   let nombreCompleto = JSON.parse(localStorage.getItem('infoUsuario'))
+  console.log(nombreCompleto)
 
   const usuario = () => {
-    return nombreCompleto.nombre + " " + nombreCompleto.apellido
+    return nombreCompleto == null ? "" : nombreCompleto.nombre + " " + nombreCompleto.apellido;
   }
 
   const iniciales = () => {
-    let inicial1 = nombreCompleto.nombre[0]
-    let inicial2 = nombreCompleto.apellido[0]
+    let inicial1 = "";
+    let inicial2 = "";
+    if (!(nombreCompleto == null)) {
+      
+    inicial1 = nombreCompleto.nombre[0]
+    inicial2 = nombreCompleto.apellido[0]
+    }
     return inicial1.toUpperCase() + inicial2.toUpperCase()
   }
   return (
