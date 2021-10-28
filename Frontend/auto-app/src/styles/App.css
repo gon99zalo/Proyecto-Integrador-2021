@@ -112,13 +112,5 @@ footer{
 }
 }
 
-/* pantalla tablet */
-@media screen and (min-width: 480px) and (max-width:  768px){
-  .slogan{
-    display: none;
-  }
-  .buscador{
-    height: 135px;
-  }
-}
+
 
