@@ -40,11 +40,15 @@ input.datePicker {
 .boton-buscar {
     cursor: pointer;
 }
+.buscadores select{
+    width: 25vw;
+}
 
 select,input[type=date]{
     border-radius: 5px;
     
   }
+  
   @media screen and (max-width:  480px){
       .titulo-buscador{
         font-size: 25px;
@@ -54,6 +58,10 @@ select,input[type=date]{
         padding: 5px 35px;
         width: 100%;
     }
+    .buscadores select{
+        height: 30px;
+        width: 100%;
+      }
   }
 
   

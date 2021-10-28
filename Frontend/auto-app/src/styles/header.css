@@ -1,6 +1,5 @@
-header {
+.header {
   height: 80px;
-  /* width: 100vw; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,7 +34,14 @@ height: 45px;
     line-height: 23px;
     margin-bottom: 12px;
     margin-left: 10px;
+    color: black;
+    display: flex;
 }
+
+a {
+  text-decoration: none;
+}
+
 .logo-db{
     width: 68px; 
     height: 50px;
@@ -46,7 +52,7 @@ height: 45px;
   flex-direction: row;
   /* justify-content: right; */
   gap: 10px;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .crearCuenta,
@@ -212,4 +218,33 @@ height: 45px;
   margin-top: -14px;
   height: 100px;
 }
+}
+@media screen and (min-width: 480px) and (max-width:  768px){
+  .slogan{
+    display: none;
+  }
+}
+
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 200; /* Stay on top */
+  top: 0;
+  right: 0;
+  background-color: white; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.sidenav-show{
+  height: 100vh; /* 100% Full-height */
+  width: 100%; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 200; /* Stay on top */
+  top: 0;
+  right: 0;
+  background-color: white; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }

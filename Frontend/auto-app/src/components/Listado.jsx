@@ -84,7 +84,7 @@ export default function Listado() {
                         </span>
                       </p>
                     </div>
-                    <button className="product-show-more btn-1"><a href="./">Ver más</a></button>
+                    <button className="product-show-more btn-1"><a href="./">Ver Detalle</a></button>
                     <div className="qualification">
                       <span>{item.qualification}</span>
                       <p className="txt-1">{qualificationText(item.qualification)}</p>
