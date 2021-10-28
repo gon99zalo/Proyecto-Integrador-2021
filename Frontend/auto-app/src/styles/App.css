@@ -79,9 +79,7 @@
   flex-direction: column;
   margin: 16px 10px; 
 }
-select{
-  height: 24px;
-}
+
 .category{
   height: 1120px;
   width: 100%;
@@ -114,13 +112,5 @@ footer{
 }
 }
 
-/* pantalla tablet */
-@media screen and (min-width: 480px) and (max-width:  768px){
-  .slogan{
-    display: none;
-  }
-  .buscador{
-    height: 135px;
-  }
-}
+
 
