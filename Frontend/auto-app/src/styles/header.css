@@ -196,7 +196,7 @@ a {
 }
 
 .opciones-links-burger{
-  height: 68vh;
+  height: 65vh;
   display: flex;
     flex-direction: row;
     align-content: flex-end;
