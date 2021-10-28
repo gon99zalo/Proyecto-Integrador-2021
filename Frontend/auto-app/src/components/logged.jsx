@@ -8,14 +8,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import Listado from '../components/Listado';
+import { faFacebook, faInstagram, faLinkedinIn, faTwitter } from "@fortawesome/free-brands-svg-icons";
+
+const facebook = <FontAwesomeIcon icon={faFacebook} />;
+const linkedin = <FontAwesomeIcon icon={faLinkedinIn} />;
+const twitter = <FontAwesomeIcon icon={faTwitter} />;
+const instagram = <FontAwesomeIcon icon={faInstagram} />;
 const menu = <FontAwesomeIcon icon={faBars} />;
 
 export default function Logged() {
   const history = useHistory();
 
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
-    let url = document.URL.split("/")
-    let router = url[url.length -1]
+  const [show, setShow] = useState("sidenav");
+
+  let toggleNav = () => {
+      setShow(show == "sidenav"? "sidenav-show" : "sidenav");
+    }
 
     useEffect(() => {
         setwidth(window.screen.availWidth);
@@ -44,22 +53,7 @@ export default function Logged() {
   }
   return (
     <>
-    {/* <header>
-            <div className="logo">
-            <a href="/"><img src={logo} alt="logo" className="logo-img" /></a>
-            <span className="slogan">El auto que necesitas</span>
-            </div> 
-            <div className="avatar">
-               <span className="iniciales-avatar"> {iniciales()} </span>
-              </div>
-            <div className="user">
-            <i className="fas fa-times" onClick={handlerClose}></i>
-            <p className="saludo"> <span className="hola">Hola,</span>
-            <span className="colorUser"> {usuario()} </span></p>
-            </div>
-          </header>
-      <Buscador /> */}
-      <header>
+      <header className="header">
             <div className="logo">
             <Link to="/logueado"><img src={logo} alt="logo" className="logo-img" /></Link>
             <Link to="/logueado"><span className="slogan">El auto que necesitas</span></Link>
@@ -76,13 +70,33 @@ export default function Logged() {
            </div>
            </>
             :
-            <div className="inputs-header"><Link to={{pathname: `/opcionesLog`, query: {router}}}><i className="opciones" id="opciones">{menu}</i></Link></div>
+            <div className="inputs-header"><i className="opciones" id="opciones"onClick={toggleNav}>{menu}</i></div>
             }
         </header>
         <Buscador />
       <Categories />
       <Listado />
       <Footer />
+
+      <div className={show}>
+        <div className="opciones" id="opciones">
+            <p onClick={toggleNav}>X</p>
+            <div className="opciones-header-burger" id="opciones-header">
+            <div className="avatar-burger">
+               <span className="iniciales-avatar-burger"> {iniciales()} </span>
+              </div>
+            <div className="user">
+            <p className="saludo"> <span className="hola-burger">Hola,</span>
+            <span className="colorUser-burger"> {usuario()} </span></p>
+            </div>
+            </div>
+            <i>{facebook}  {linkedin}  {twitter}  {instagram}</i>
+        </div>
+        <div className="opciones-links-burger" id="opciones-links">
+        <p>¿Deseas <Link to="/"><span className="color-links">cerrar sesión?</span></Link></p>
+    </div>
+    <div className="linea-horizontal"></div>
+    </div>
     </>
   );
 }
