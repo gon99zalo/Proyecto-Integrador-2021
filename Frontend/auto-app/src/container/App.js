@@ -1,6 +1,5 @@
 //@ts-nocheck
 import '../styles/Global.css';
-import Opciones from "../components/Opciones"
 import "../styles/App.css";
 import { Route, Link, Router, Switch, BrowserRouter } from "react-router-dom";
 import Home from "../components/home";
@@ -18,7 +17,6 @@ function App() {
           <Route exact path="/crearCuenta" component={CrearCuenta} />
           <Route exact path="/iniciarSesion" component={iniciarSesion} />
           <Route exact path="/logueado" component={Logged} />
-          <Route exact path="/opciones" component={Opciones} />
           <Route exact path="/opcionesLog" component={OpcionesLog} />
         </Switch>
       </BrowserRouter>
