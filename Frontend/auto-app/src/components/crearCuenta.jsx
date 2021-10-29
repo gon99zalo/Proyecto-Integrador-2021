@@ -12,6 +12,7 @@ export default function CrearCuenta() {
   let contrasenia = document.getElementById("contrasenia").value
   let confirmarContrasenia = document.getElementById("confirmarContrasenia").value
   let mail = document.getElementById("correo-electronico").value
+  let email = document.getElementById("correo-electronico")
   let inputs = document.querySelectorAll(".campos-crear")
   let valido = true
   if(contrasenia.length<=6){
@@ -27,15 +28,16 @@ export default function CrearCuenta() {
     }
   }
     alert("La contraseña debe tener más de 6 caracteres")
-  }else if(!mail.includes("@")){
+  }else if(!mail.includes("@",1) || !mail.includes(".",mail.indexOf("@") + 2)){
+    valido = false
     for(inputs of inputs){
-      if(inputs.value === ""){
-        valido = false
-        if(!inputs.classList.contains("error")){
-          inputs.classList.toggle("error")
+      if(inputs.value === "" || valido == false){
+        
+        if(!email.classList.contains("error")){
+          email.classList.toggle("error")
         }
-        if(!inputs.nextElementSibling.classList.contains("error-mensaje")){
-          inputs.nextElementSibling.classList.toggle("error-mensaje")
+        if(!email.nextElementSibling.classList.contains("error-mensaje")){
+          email.nextElementSibling.classList.toggle("error-mensaje")
         }
     }
   }
