@@ -1,3 +1,4 @@
+//@ts-nocheck
 import "../styles/header.css";
 import "../styles/Opciones.css"
 import logo  from "../assets/img/logos/logo1DB.png"

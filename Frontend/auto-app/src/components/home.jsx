@@ -1,8 +1,8 @@
-import Buscador from "./buscador";
-import Footer from "./footer";
-import Header from "./header";
-import Categories from '../components/Categories';
-import Listado from '../components/Listado';
+import Buscador from "./Buscador";
+import Footer from "./Footer";
+import Header from "./Header";
+import Categories from './Categories';
+import Listado from './Listado';
 
 export default function Home() {
   return (
