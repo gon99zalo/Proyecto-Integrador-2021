@@ -1,9 +1,9 @@
-import Header from "./header";
+//@ts-nocheck
+import Header from "./Header";
 import "../styles/Global.css"
 import "../styles/crearCuenta.css"
-import Footer from "./footer";
+import Footer from "./Footer";
 import { Link, useHistory } from "react-router-dom"
-import { faIgloo } from "@fortawesome/free-solid-svg-icons";
 
 export default function CrearCuenta() {
   const history = useHistory()
@@ -31,7 +31,7 @@ export default function CrearCuenta() {
   }else if(!mail.includes("@",1) || !mail.includes(".",mail.indexOf("@") + 2)){
     valido = false
     for(inputs of inputs){
-      if(inputs.value === "" || valido == false){
+      if(inputs.value === "" || valido === false){
         
         if(!email.classList.contains("error")){
           email.classList.toggle("error")
@@ -42,7 +42,7 @@ export default function CrearCuenta() {
     }
   }
     alert("por favor introduzca un mail válido")
-  }else if(contrasenia != confirmarContrasenia){
+  }else if(contrasenia !== confirmarContrasenia){
     alert("contraseñas ingresadas no coinciden")
   }else{
     for(inputs of inputs){

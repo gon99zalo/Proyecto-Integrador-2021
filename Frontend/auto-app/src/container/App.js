@@ -1,11 +1,11 @@
 //@ts-nocheck
 import '../styles/Global.css';
 import "../styles/App.css";
-import { Route, Link, Router, Switch, BrowserRouter } from "react-router-dom";
-import Home from "../components/home";
-import CrearCuenta from "../components/crearCuenta";
-import iniciarSesion from "../components/iniciarSesion";
-import Logged from '../components/logged';
+import { Route, Switch, BrowserRouter } from "react-router-dom";
+import Home from "../components/Home";
+import CrearCuenta from "../components/CrearCuenta";
+import iniciarSesion from "../components/IniciarSesion";
+import Logged from '../components/Logged';
 
 function App() {
   return (

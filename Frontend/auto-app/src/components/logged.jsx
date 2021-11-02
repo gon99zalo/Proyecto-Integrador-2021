@@ -1,13 +1,14 @@
-import Buscador from "./buscador";
-import Footer from "./footer";
-import Categories from '../components/Categories';
+//@ts-nocheck
+import Buscador from "./Buscador";
+import Footer from "./Footer";
+import Categories from './Categories';
 import { Link, useHistory } from "react-router-dom"
 import "../styles/header.css";
 import logo  from "../assets/img/logos/logo1DB.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import Listado from '../components/Listado';
+import Listado from './Listado';
 import { faFacebook, faInstagram, faLinkedinIn, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 const facebook = <FontAwesomeIcon icon={faFacebook} />;
@@ -23,7 +24,7 @@ export default function Logged() {
   const [show, setShow] = useState("sidenav");
 
   let toggleNav = () => {
-      setShow(show == "sidenav"? "sidenav-show" : "sidenav");
+      setShow(show === "sidenav"? "sidenav-show" : "sidenav");
     }
 
     useEffect(() => {
@@ -38,7 +39,7 @@ export default function Logged() {
         return _ => {
             window.removeEventListener('resize', handleResize)
         }
-      })
+      });
   const handlerClose=() => {
     history.push("/")
   }

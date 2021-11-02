@@ -1,7 +1,7 @@
 //@ts-nocheck
-import Header from "./header";
+import Header from "./Header";
 import "../styles/iniciarSesion.css"
-import Footer from "./footer";
+import Footer from "./Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
@@ -24,7 +24,7 @@ export default function IniciarSesion() {
     e.preventDefault()
     let emailUsuario = document.querySelector("#correo-electronico").value
     let contraseniaUsuario = document.querySelector("#contrasenia").value
-    if(infoUsuario.correo==emailUsuario && infoUsuario.contrasenia === contraseniaUsuario){
+    if(infoUsuario.correo === emailUsuario && infoUsuario.contrasenia === contraseniaUsuario){
       history.push("/logueado")
     }else{
       alert("Por favor vuelva a intentarlo, tus credenciales son inválidas")
