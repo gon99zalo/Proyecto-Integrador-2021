@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categorias")
@@ -13,12 +14,12 @@ import javax.persistence.*;
 @Setter
 public class Categoria {
 @Id
-@SequenceGenerator(name = "categoria_sequence", sequenceName = "categoria_sequence")
-@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categoria_sequence")
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 private String titulo;
 private String descripcion;
 private String url;
+
 
     public Categoria() { }
 
@@ -27,8 +28,6 @@ private String url;
         this.descripcion = descripcion;
         this.url = url;
     }
-
-
 
     @Override
     public String toString() {

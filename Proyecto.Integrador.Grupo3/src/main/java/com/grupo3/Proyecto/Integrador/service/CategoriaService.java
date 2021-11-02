@@ -28,7 +28,7 @@ public class CategoriaService {
 
     public void eliminarCategoriaPorID(Long id) { categoriaRepository.deleteById((id)); }
 
-    public void eliminarCategoria(String titulo) { categoriaRepository.eliminarPorTitulo(titulo); }
+    public void eliminarCategoria(String titulo) { categoriaRepository.eliminarPorTitulo(titulo); ; }
 
     public List<Categoria> traerTodas() { return categoriaRepository.findAll(); }
 
