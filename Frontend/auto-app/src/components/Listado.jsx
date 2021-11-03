@@ -66,6 +66,7 @@ export default function Listado() {
                         <i>{star}</i>
                         <i>{star}</i>
                         <i>{star}</i>
+                        <i>{star}</i>
                       </div>
                     </div>
                     <h1>{item.title}</h1>
