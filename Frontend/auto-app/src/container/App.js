@@ -6,7 +6,6 @@ import Home from "../components/Home";
 import CrearCuenta from "../components/CrearCuenta";
 import iniciarSesion from "../components/IniciarSesion";
 import Logged from '../components/Logged';
-import FechasDisponibles from '../components/FechasDisponibles';
 
 function App() {
   return (
@@ -17,11 +16,10 @@ function App() {
           <Route exact path="/crearCuenta" component={CrearCuenta} />
           <Route exact path="/iniciarSesion" component={iniciarSesion} />
           <Route exact path="/logueado" component={Logged} />
-          <Route exact path="/fechas" component={FechasDisponibles} />
         </Switch>
       </BrowserRouter>
     </div>
   );
 }
-
+  
 export default App;

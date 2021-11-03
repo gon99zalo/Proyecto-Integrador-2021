@@ -147,7 +147,7 @@
   height: 450px;
   background-color: var(--three-color-with-opacity);
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 .commodity-available-dates .react-datepicker {

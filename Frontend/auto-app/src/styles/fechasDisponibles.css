@@ -1,16 +1,10 @@
-.fechas-disponibles {
-    height: 250px;
-    width: 100%;
-    background-color: rgba(223, 228, 234, 1);
-}
-
 .titulo-fechas {
     display: flex;
     margin-left: 20px;
 }
 
 .inicar-reserva {
-    height: 100px;
+    height: 150px;
     width: 30%;
     background-color: white;
     display: flex;
@@ -22,7 +16,7 @@
 
 .boton-iniciar-reserva {
     width: 75%;
-    height: 25px;
+    height: 40px;
     background-color: rgba(240, 87, 45, 1);
     border-radius: 5px;
     border: none;
