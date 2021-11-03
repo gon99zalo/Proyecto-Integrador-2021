@@ -8,10 +8,10 @@ import Producto from './Producto';
 export default function Home() {
   return (
     <>
-      <Header />
+      {/* <Header />
       <Buscador />
       <Categories />
-      <Listado />
+      <Listado /> */}
       <Producto />
       <Footer />
     </>

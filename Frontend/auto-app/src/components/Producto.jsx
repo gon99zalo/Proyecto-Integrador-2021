@@ -1,5 +1,7 @@
 //@ts-nocheck
 // Librerías
+import React from 'react';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 // Estilo CSS
@@ -28,6 +30,7 @@ export default function Producto() {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
+
 
   const qualificationText = (qualification) => {
     if(qualification >= 1 && qualification <= 2.5) {
@@ -61,6 +64,11 @@ export default function Producto() {
         window.removeEventListener('resize', handleResize)
     }
   }, []);
+
+  const center = {
+    lat: -34.603722,
+    lng: -58.381592
+  };
 
   return (
     <>
@@ -151,11 +159,50 @@ export default function Producto() {
       </div>
 
       <div className="commodity-location">
-
+        <h1>¿Dónde vas a estar?</h1>
+        <hr className="commodity-divisor" />
+        <h4>Aquí la ciudad: {autoTemporal.location}</h4>
+        <div className="commodity-location-container">
+          <div>
+            <LoadScript
+              googleMapsApiKey="AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s"
+            >
+              <GoogleMap
+                mapContainerClassName="google-map"
+                center={center}
+                zoom={10}
+              />
+            </LoadScript>
+          </div>
+        </div>
       </div>
 
       <div className="commodity-rules">
-
+        <h1>Qué tenés que saber</h1>
+        <hr className="commodity-divisor" />
+        <div className="commodity-rule-container">
+          <div>
+            <h3>Normas del vehículo</h3>
+            <p>Norma 1</p>
+            <p>Norma 2</p>
+            <p>Norma 3</p>
+          </div>
+          <div>
+            <h3>Salud y seguridad</h3>
+            <p>Salud 1</p>
+            <p>Salud 2</p>
+            <p>Salud 3</p>
+          </div>
+          <div>
+            <h3>Política de cancelación</h3>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+              Repudiandae suscipit obcaecati illum deserunt quaerat ipsa praesentium 
+              consequatur sed id eos tempora vel, aliquid assumenda sequi nulla repellat 
+              dolorem eum ab!
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );
