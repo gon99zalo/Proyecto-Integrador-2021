@@ -17,6 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 import { subDays } from 'date-fns';
+import "../styles/fechasDisponibles.css"
 
 export default function Producto() {
   const autoTemporal = item.Autos[0];
@@ -156,6 +157,10 @@ export default function Producto() {
         >
           <div className="divider"></div>
         </DatePicker>
+        <div className="inicar-reserva">
+            <p>Agregá tus fechas de viaje para obetener precios exactos</p>
+            <button className="boton-iniciar-reserva">Iniciar reseva</button>
+        </div>
       </div>
 
       <div className="commodity-location">
