@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <>
       <Header />
-      {/* <Buscador />
+      <Buscador />
       <Categories />
-      <Listado /> */}
+      <Listado /> 
       <Producto />
       <Footer />
     </>
