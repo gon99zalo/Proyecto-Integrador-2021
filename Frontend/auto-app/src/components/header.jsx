@@ -1,8 +1,8 @@
 //@ts-nocheck
 import "../styles/header.css";
 import "../styles/Opciones.css"
-import logo  from "../assets/img/logos/logo1DB.png"
-import { Link } from "react-router-dom"
+import logo  from "../assets/img/logos/logo1DB.png";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ export default function Header(props) {
     const [show, setShow] = useState("sidenav");
 
     let toggleNav = () => {
-        setShow(show == "sidenav"? "sidenav-show" : "sidenav");
+        setShow(show === "sidenav"? "sidenav-show" : "sidenav");
       }
 
     useEffect(() => {
@@ -52,7 +52,7 @@ export default function Header(props) {
             }
             </div>
 
-            <div id='mySidenav ' class={show}>
+            <div id='mySidenav ' className={show}>
                 <div className="opciones" id="opciones">
                     <p onClick={toggleNav}>X</p>
                     <div className="opciones-header" id="opciones-header">
