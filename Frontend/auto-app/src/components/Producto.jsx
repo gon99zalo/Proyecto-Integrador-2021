@@ -1,7 +1,7 @@
 //@ts-nocheck
 // Librerías
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // Estilo CSS
 import "../styles/producto.css";
 // JSON
