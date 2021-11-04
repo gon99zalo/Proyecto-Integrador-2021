@@ -32,7 +32,7 @@ export default function Buscador() {
     }
   }, []);
 
-  const CalendarInput = forwardRef(({ value, onClick }) => (
+  const CalendarInput = forwardRef(({ value, onClick }, ref) => (
     <button className="calendar-input" onClick={onClick} >
       <i>{calendarIcon}</i><p>{value ? value : "Check in - Check out"}</p>
     </button>
