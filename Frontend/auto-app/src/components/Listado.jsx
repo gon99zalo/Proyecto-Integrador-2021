@@ -50,8 +50,8 @@ export default function Listado() {
 
           {productList[categoria].map( (item, i) => {
             return (
-              <>
-                <div className="product-card">
+                <div className="product-card" key={i}>
+                  {console.log(i)}
                   <div className="product-image">
                     <img className="product" src={item.img} alt={item.altImg} />
                     <a href="./">
@@ -91,7 +91,6 @@ export default function Listado() {
                     </div>
                   </div>
                 </div>
-              </>
             );
           })}
 
