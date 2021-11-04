@@ -93,7 +93,7 @@
 }
 
 /* pantalla 2 Mobile crearCuenta */
-@media screen and (max-width:  480px){
+@media screen and (max-width: 480px){
   .titulo-crear{
     color: rgba(240, 87, 45, 1);
     font-size: 25px;
