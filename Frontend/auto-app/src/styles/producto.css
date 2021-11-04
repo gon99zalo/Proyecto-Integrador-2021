@@ -155,6 +155,30 @@
   height: auto;
 }
 
+.inicar-reserva {
+  height: 150px;
+  width: 30%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.boton-iniciar-reserva {
+  width: 75%;
+  height: 40px;
+  background-color: rgba(240, 87, 45, 1);
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+
+.boton-iniciar-reserva:hover{
+cursor: pointer;
+}
+
 .commodity-location {
   height: 600px;
   display: flex;
@@ -210,3 +234,73 @@
   gap: 8px;
 }
 
+.react-datepicker__navigation {
+  height: 100%;
+  display: flex;
+}
+
+@media screen and (min-width: 480px) and (max-width:  768px){
+  .commodity-available-dates {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .commodity-available-dates .react-datepicker {
+    width: 88vw;
+    height: auto;
+  }
+
+  .inicar-reserva{
+    width: 88%;
+    display: flex;
+    flex-direction: row;
+    height: auto; 
+    background-color: transparent;
+    gap: 10px;
+  }
+
+  .texto-iniciar-reserva{
+    text-align: left;
+    width: 50%;
+    display: flex;
+  }
+
+  .boton-iniciar-reserva{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .commodity-available-dates {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 550px;
+  }
+
+  .commodity-available-dates .react-datepicker {
+    width: 88vw;
+    height: auto;
+  }
+
+  .inicar-reserva{
+    width: 88%;
+    display: flex;
+    flex-direction: column;
+    height: auto; 
+    width: 100%;
+    background-color: transparent;
+    gap: 10px;
+  }
+
+  .texto-iniciar-reserva{
+    text-align: left;
+    width: 88%;
+    display: flex;
+  }
+
+  .boton-iniciar-reserva{
+    width: 88%;
+  }
+}
