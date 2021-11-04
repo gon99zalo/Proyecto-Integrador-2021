@@ -153,7 +153,7 @@ export default function Buscador() {
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
         <select>
-          <option hidden selected>
+          <option hidden defaultValue>
             Elije donde quieres retirar el auto
           </option>
           <option>San Carlos de Bariloche</option>

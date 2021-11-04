@@ -21,7 +21,7 @@ export default function Header(props) {
     const [show, setShow] = useState("sidenav");
 
     let toggleNav = () => {
-        setShow(show == "sidenav"? "sidenav-show" : "sidenav");
+        setShow(show === "sidenav"? "sidenav-show" : "sidenav");
       }
 
     useEffect(() => {
@@ -33,7 +33,7 @@ export default function Header(props) {
         return _ => {
             window.removeEventListener('resize', handleResize)
         }
-      })
+      }, [])
     
     return (
         <header>
@@ -52,7 +52,7 @@ export default function Header(props) {
             }
             </div>
 
-            <div id='mySidenav ' class={show}>
+            <div id='mySidenav ' className={show}>
                 <div className="opciones" id="opciones">
                     <p onClick={toggleNav}>X</p>
                     <div className="opciones-header" id="opciones-header">
