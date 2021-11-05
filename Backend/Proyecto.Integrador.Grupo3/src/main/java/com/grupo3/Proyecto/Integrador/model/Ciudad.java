@@ -1,5 +1,6 @@
 package com.grupo3.Proyecto.Integrador.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,15 +18,10 @@ public class Ciudad {
     private String nombre;
     private String pais;
     @OneToMany(mappedBy = "ciudad")
+    @JsonIgnore
     private List<Producto> productos;
 
     public Ciudad() { }
-
-    public Ciudad(String nombre, String pais, List<Producto> productos) {
-        this.nombre = nombre;
-        this.pais = pais;
-        this.productos = productos;
-    }
 
     @Override
     public String toString() {

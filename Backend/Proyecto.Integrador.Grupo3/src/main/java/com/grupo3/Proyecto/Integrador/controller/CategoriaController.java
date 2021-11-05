@@ -13,7 +13,6 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/categorias")
 public class CategoriaController {
 
