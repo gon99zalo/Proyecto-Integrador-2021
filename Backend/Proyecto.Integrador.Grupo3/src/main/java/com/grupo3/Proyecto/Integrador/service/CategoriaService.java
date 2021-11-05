@@ -18,7 +18,7 @@ public class CategoriaService {
         this.categoriaRepository = categoriaRepository;
     }
 
-   public Categoria crearCategoria(Categoria categoria) { return categoriaRepository.save(categoria); }
+    public Categoria crearCategoria(Categoria categoria) { return categoriaRepository.save(categoria); }
 
     public Optional<Categoria> buscarCategoriaPorID(Long id) { return categoriaRepository.findById((id)); }
 
