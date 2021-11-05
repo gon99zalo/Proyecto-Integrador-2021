@@ -1,37 +1,36 @@
 //@ts-nocheck
 //Estilos
 import '../styles/Categories.css';
+import { useEffect, useState } from 'react';
 
-//Assets
-import autos from '../assets/Autos.jpeg';
-import buses from '../assets/Buses.jpeg';
-import bicicletas from '../assets/Bicicletas.jpeg';
-import motos from '../assets/Motos.jpeg';
-
-const categorias = [
-    {
-        img: autos,
-        titulo: "Autos",
-        cantidad: "30 autos",
-    },
-    {
-        img: buses,
-        titulo: "Buses",
-        cantidad: "10 buses",
-    },
-    {
-        img: motos,
-        titulo: "Motos",
-        cantidad: "20 motos",
-    },
-    {
-        img: bicicletas,
-        titulo: "Bicicletas",
-        cantidad: "25 bicicletas",
-    },
-];
+const api = "http://localhost:8080"
 
 export default function BloqueCategoria() {
+    
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [categorias, setCategorias] = useState([]);
+
+  useEffect(() => {
+    fetch(api + "/categorias/todos")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setCategorias(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
     return(
         <div className="category">
             <h2>Buscar por tipo de transporte</h2>
@@ -39,13 +38,13 @@ export default function BloqueCategoria() {
                 {categorias.map( (item, i) => 
                     <div className="type-card" key={i}>
                         <a href="./">
-                            <img src={item.img} alt={item.titulo} />
+                            <img src={item.url} alt={item.titulo} />
                         </a>
                         <h3>{item.titulo}</h3>
-                        <p>{item.cantidad}</p>
+                        <p>{item.descripcion}</p>
                     </div>
                 )}
             </div>
         </div>
     );
-};
+}};

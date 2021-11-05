@@ -1,8 +1,8 @@
 //@ts-nocheck
 import "../styles/header.css";
 import "../styles/Opciones.css"
-import logo  from "../assets/img/logos/logo1DB.png"
-import { Link } from "react-router-dom"
+import logo  from "../assets/img/logos/logo1DB.png";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";

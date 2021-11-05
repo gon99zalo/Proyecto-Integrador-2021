@@ -14,11 +14,16 @@ import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 //Formatear fechas
 import { subDays } from 'date-fns';
 
+const api = "http://localhost:8080"
+
 export default function Buscador() {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const calendarIcon = <FontAwesomeIcon icon={faCalendarDay} />
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [ciudades, setCiudades] = useState([]);
   registerLocale("es", es);
 
   useEffect(() => {
@@ -27,6 +32,18 @@ export default function Buscador() {
         setwidth(window.screen.availWidth);
     }
     window.addEventListener('resize', handleResize)
+    fetch(api + "/ciudades/todas")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setCiudades(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
     return _ => {
         window.removeEventListener('resize', handleResize)
     }
@@ -147,7 +164,7 @@ export default function Buscador() {
       </button>
     </div>
   );
-
+  
   return (
     <div className="buscador">
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
@@ -156,10 +173,7 @@ export default function Buscador() {
           <option hidden defaultValue>
             Elije donde quieres retirar el auto
           </option>
-          <option>San Carlos de Bariloche</option>
-          <option>Buenos Aires</option>
-          <option>Mendoza</option>
-          <option>Cordoba</option>
+          {ciudades.map((item) => {console.log(item.nombre); return <option>{item.nombre}</option>})}
         </select>
 
         <DatePicker
