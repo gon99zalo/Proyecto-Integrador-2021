@@ -221,11 +221,8 @@ export default function Producto(props) {
           </div>
           <div>
             <h3>Política de cancelación</h3>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-              Repudiandae suscipit obcaecati illum deserunt quaerat ipsa praesentium 
-              consequatur sed id eos tempora vel, aliquid assumenda sequi nulla repellat 
-              dolorem eum ab!
+            <p className="texto-cancelacion">
+              Agregá las fechas de tu viaje para obtener los detalles de cancelación de esta estadía.
             </p>
           </div>
         </div>
