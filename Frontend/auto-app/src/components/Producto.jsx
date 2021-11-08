@@ -27,21 +27,18 @@ export default function Producto(props) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [producto, setProducto] = useState({
-    "id": 1,
-    "nombre": "Mazda",
-    "descripcion": "es un auto",
-    "categoria": {
-      "titulo": "Autos",
+    id: 0,
+    nombre: "error",
+    descripcion: "error",
+    categoria: {
+      titulo: "error",
     },
-    "ciudad": {
-      "nombre": "Buenos Aires",
-      "pais": "Argentina"
+    ciudad: {
+      nombre: "error",
+      pais: "error"
     }
   });
-
 
   const qualificationText = (qualification) => {
     if(qualification >= 1 && qualification <= 2.5) {
@@ -75,17 +72,15 @@ export default function Producto(props) {
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
-          setProducto(result);
+          result == null ? console.log(result) : setProducto(result);
         },
         (error) => {
-          setIsLoaded(true);
-          setError(error);
+          console.log(error);
         })
     return _ => {
         window.removeEventListener('resize', handleResize)
     }
-  }, []);
+  }, [props.match.params.id]);
 
   const center = {
     lat: -34.603722,
