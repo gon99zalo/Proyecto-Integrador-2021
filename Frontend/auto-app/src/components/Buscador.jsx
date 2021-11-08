@@ -21,8 +21,6 @@ export default function Buscador() {
   const [startDate, endDate] = dateRange;
   const calendarIcon = <FontAwesomeIcon icon={faCalendarDay} />
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [ciudades, setCiudades] = useState([]);
   registerLocale("es", es);
 
@@ -36,12 +34,10 @@ export default function Buscador() {
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
           setCiudades(result);
         },
         (error) => {
-          setIsLoaded(true);
-          setError(error);
+          console.log(error);
         }
       )
     return _ => {
@@ -173,7 +169,7 @@ export default function Buscador() {
           <option hidden defaultValue>
             Elije donde quieres retirar el auto
           </option>
-          {ciudades.map((item) => {console.log(item.nombre); return <option>{item.nombre}</option>})}
+          {ciudades.map((item) => {return <option>{item.nombre}</option>})}
         </select>
 
         <DatePicker

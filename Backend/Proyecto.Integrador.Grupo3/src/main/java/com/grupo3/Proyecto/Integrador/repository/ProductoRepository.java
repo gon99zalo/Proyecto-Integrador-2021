@@ -22,4 +22,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     @Query("FROM Ciudad c WHERE nombre = ?1 ORDER BY id")
     List<Producto> listarPorCiudad(String nombre);
 
+    @Query("SELECT COUNT(u) FROM Producto u")
+    Integer cantProductos();
+
 }
