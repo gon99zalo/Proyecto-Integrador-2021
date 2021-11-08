@@ -97,8 +97,7 @@ export default function Listado() {
 
           {productos.map( (item, i) => {
             return (
-              <>
-                <div className="product-card">
+                <div className="product-card" key={i}>
                   <div className="product-image">
                     <img className="product" src={""} alt={""} />
                     <a href="./">
@@ -139,7 +138,6 @@ export default function Listado() {
                     </div>
                   </div>
                 </div>
-              </>
             );
           })}
 
