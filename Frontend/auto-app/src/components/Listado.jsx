@@ -1,17 +1,20 @@
 //@ts-nocheck
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faMapMarkerAlt, faStar, faUserAlt, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
-import productList from "../json/Listado.json";
 import "../styles/Listado.css";
 
+const api = "http://localhost:8080"
+
 export default function Listado() {
-  const categoria = "Buses";
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
   const people = <FontAwesomeIcon icon={faUserAlt} />;
   const door = <FontAwesomeIcon icon={faDoorClosed} />;
   const [ showText, setShowText ] = useState({show: false, idText: null});
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [productos, setProductos] = useState([]);
 
   const handlerShowText = (title) => {
     setShowText({
@@ -20,7 +23,7 @@ export default function Listado() {
     });
   };
 
-  const withDoors = (doors) => {
+  const withDoors = (categoria, doors) => {
     if(categoria === "Motos" || categoria === "Bicicletas") {
       return "";
     } else {
@@ -42,25 +45,68 @@ export default function Listado() {
     };
   };
 
+  useEffect(() => {
+    fetch(api + "/productos/cantidad")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          let array = [];
+          while(array.length < 6 && array.length < result){
+            var r = Math.floor(Math.random() * result) + 1;
+            if(array.indexOf(r) === -1) array.push(r);
+          }
+          array.map((i) => {
+            fetch(api + "/productos/buscar/" + i)
+            .then(res => res.json())
+            .then(
+              (result) => {
+                setProductos(productos => [...productos, result])
+                console.log(result);
+              },
+              (error) => {
+                let p = {
+                  id: 0,
+                  nombre: "error",
+                  descripcion: "error",
+                  categoria: {
+                    titulo: "error",
+                  },
+                  ciudad: {
+                    nombre: "error",
+                    pais: "error"
+                  }
+                };
+                setProductos(productos.push(p))
+              }
+            )
+          })
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+
   return (
     <>
       <div className="listado">
         <h2>Recomendaciones</h2>
         <div className="product-container">
 
-          {productList[categoria].map( (item, i) => {
+          {productos.map( (item, i) => {
             return (
-              <>
-                <div className="product-card">
+                <div className="product-card" key={i}>
                   <div className="product-image">
-                    <img className="product" src={item.img} alt={item.altImg} />
+                    <img className="product" src={""} alt={""} />
                     <a href="./">
                       <img className="like" src="img/like.png" alt="like" />
                     </a>
                   </div>
                   <div className="product-data">
                     <div className="product-star-rating">
-                      <h4>{item.category}</h4>
+                      <h4>{item.categoria.titulo}</h4>
                       <div>
                         <i>{star}</i>
                         <i>{star}</i>
@@ -69,30 +115,29 @@ export default function Listado() {
                         <i>{star}</i>
                       </div>
                     </div>
-                    <h1>{item.title}</h1>
+                    <h1>{item.nombre}</h1>
                     <p className="txt-1 product-location">
-                      <i>{marker}</i> A 100mt de {item.location} <a href="./"><span>MOSTRAR EN EL MAPA</span></a>
+                      <i>{marker}</i> A 100mt de {item.ciudad.nombre + ", " + item.ciudad.pais} <a href="./"><span>MOSTRAR EN EL MAPA</span></a>
                     </p>
                     <div className="product-features">
-                      <i>{people}</i><strong>{item.people}</strong>
-                      {withDoors(item.doors)}
+                      <i>{people}</i><strong>{/*item.people --cantidad de personas*/}3</strong>
+                      {/*withDoors(item.doors) --cantidad de puertas*/}{withDoors(item.categoria.nombre, 4)}
                     </div>
                     <div className="txt-1 product-description">
                       <p key={`p-${i}`}>
-                        {showText.show && showText.idText === item.title ? item.description : item.description.substring(0, 20)+"..."}
-                        <span key={`s-${i}`} className="show-text" onClick={() => handlerShowText(item.title)}> 
-                          {showText.show && showText.idText === item.title ? " menos" : " más"}
+                        {showText.show && showText.idText === item.nombre ? item.descripcion : item.descripcion.substring(0, 20)+"..."}
+                        <span key={`s-${i}`} className="show-text" onClick={() => handlerShowText(item.nombre)}> 
+                          {showText.show && showText.idText === item.nombre ? " menos" : " más"}
                         </span>
                       </p>
                     </div>
-                    <button className="product-show-more btn-1"><a href="./">Ver Detalle</a></button>
+                    <button className="product-show-more btn-1"><a href={"./" + item.id}>Ver Detalle</a></button>
                     <div className="qualification">
-                      <span>{item.qualification}</span>
-                      <p className="txt-1">{qualificationText(item.qualification)}</p>
+                      <span>{/*item.qualification*/ 7}</span>
+                      <p className="txt-1">{qualificationText(/*item.qualification*/7)}</p>
                     </div>
                   </div>
                 </div>
-              </>
             );
           })}
 

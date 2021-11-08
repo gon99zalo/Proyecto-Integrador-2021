@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,8 +17,8 @@ public class Caracteristica {
     private Long id;
     private String nombre;
     private String icono;
-    @ManyToMany(mappedBy = "caracteristicas")
-    private List<Producto> productos;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, mappedBy = "caracteristicas")
+    private List<Producto> productos = new ArrayList<>();
 
     public Caracteristica() { }
 

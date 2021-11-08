@@ -47,4 +47,7 @@ public class ProductoController {
 
     @GetMapping("/ciudad/{nombre}")
     public ResponseEntity<List<Producto>> traerPorCiudad(@PathVariable String nombre){ return ResponseEntity.ok(productoService.listarPorCiudad(nombre));}
+
+    @GetMapping("/cantidad")
+    public ResponseEntity<Integer> cantidadProductos(){ return ResponseEntity.ok(productoService.cantProductos());}
 }

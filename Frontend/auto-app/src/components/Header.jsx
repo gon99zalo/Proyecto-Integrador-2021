@@ -33,7 +33,7 @@ export default function Header(props) {
         return _ => {
             window.removeEventListener('resize', handleResize)
         }
-      })
+      }, [])
     
     return (
         <header>

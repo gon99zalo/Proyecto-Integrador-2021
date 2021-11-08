@@ -43,6 +43,8 @@ public class ProductoService {
 
     public List<Producto> listarPorCiudad(String nombre) { return productoRepository.listarPorCiudad(nombre);}
 
+    public Integer cantProductos() { return productoRepository.cantProductos(); }
+
 
    /* public List<Producto> traerPorCategoria(Long id){
         productos.stream().filter(p -> p.getCategoria().getId() == p.getCategoria().getId()).collect(Collectors.toList());

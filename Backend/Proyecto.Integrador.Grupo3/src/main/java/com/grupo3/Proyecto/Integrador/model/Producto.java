@@ -29,12 +29,10 @@ public class Producto {
     @JoinColumn(name = "ciudad_id")
     private Ciudad ciudad;
     @OneToMany
-    @JsonIgnore
     @JoinColumn(name = "prod_id")
     private List<Imagen> imagenes = new ArrayList<>();
     @ManyToMany
     @JoinColumn(name = "caract_id")
-    @JsonIgnore
     private List<Caracteristica> caracteristicas = new ArrayList<>();
 
     public Producto() { }
