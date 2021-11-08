@@ -29,14 +29,14 @@ export default function Producto(props) {
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [producto, setProducto] = useState({
     id: 0,
-    nombre: "error",
-    descripcion: "error",
+    nombre: "",
+    descripcion: "",
     categoria: {
-      titulo: "error",
+      titulo: "",
     },
     ciudad: {
-      nombre: "error",
-      pais: "error"
+      nombre: "",
+      pais: ""
     }
   });
 
