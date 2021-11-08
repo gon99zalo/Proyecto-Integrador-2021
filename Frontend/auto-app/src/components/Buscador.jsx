@@ -14,7 +14,8 @@ import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 //Formatear fechas
 import { subDays } from 'date-fns';
 
-const api = "http://localhost:8080"
+const api01 = "http://localhost:8080"
+const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
 
 export default function Buscador() {
   const [dateRange, setDateRange] = useState([null, null]);
