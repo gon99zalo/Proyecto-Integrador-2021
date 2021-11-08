@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Categories from './Categories';
 import Listado from './Listado';
+import Producto from './Producto';
 
 export default function Home() {
   return (
@@ -10,12 +11,8 @@ export default function Home() {
       <Header />
       <Buscador />
       <Categories />
-<<<<<<< HEAD
       <Listado /> 
       <Producto />
-=======
-      <Listado />
->>>>>>> ce9c977816fcbc143f7a8e2ae4f45dfef232ef56
       <Footer />
     </>
   );
