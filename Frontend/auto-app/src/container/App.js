@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/iniciarSesion" component={iniciarSesion} />
           <Route exact path="/logueado" component={Logged} />
           <Route exact path="/buscar" component={Buscar} />
-          <Route exact path="/:id" component={Producto} />
+          <Route exact path="/productos/:id" component={Producto} />
         </Switch>
       </BrowserRouter>
     </div>

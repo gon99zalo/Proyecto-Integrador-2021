@@ -105,7 +105,7 @@ export default function Buscar() {
                         </span>
                       </p>
                     </div>
-                    <button className="product-show-more btn-1"><a href={"./" + item.id}>Ver Detalle</a></button>
+                    <button className="product-show-more btn-1"><a href={"./productos/" + item.id}>Ver Detalle</a></button>
                     <div className="qualification">
                       <span>{/*item.qualification*/ 7}</span>
                       <p className="txt-1">{qualificationText(/*item.qualification*/7)}</p>

@@ -26,11 +26,13 @@ export default function Buscador() {
   registerLocale("es", es);
 
   useEffect(() => {
+    //calculo del ancho de pantalla
     setwidth(window.screen.availWidth);
     function handleResize() {
         setwidth(window.screen.availWidth);
     }
     window.addEventListener('resize', handleResize)
+    //get al api de las ciudades
     fetch(api + "/ciudades/todas")
       .then(res => res.json())
       .then(
@@ -41,7 +43,7 @@ export default function Buscador() {
           console.log(error);
         }
       )
-    return _ => {
+      return _ => {
         window.removeEventListener('resize', handleResize)
     }
   }, []);
