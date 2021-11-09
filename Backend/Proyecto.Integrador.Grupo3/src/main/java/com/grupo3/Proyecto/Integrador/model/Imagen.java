@@ -18,12 +18,17 @@ public class Imagen {
     private Long id;
     private String titulo;
     private String url;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, mappedBy = "imagenes")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIgnore
     private List<Producto> productos = new ArrayList<>();
 
     public Imagen() { }
 
+    public Imagen(String titulo, String url, List<Producto> productos) {
+        this.titulo = titulo;
+        this.url = url;
+        this.productos = productos;
+    }
 
     @Override
     public String toString() {
