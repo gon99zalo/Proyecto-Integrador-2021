@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 //Formatear fechas
 import { subDays } from 'date-fns';
+import { Link } from "react-router-dom";
 
 const api = "http://localhost:8080"
 
@@ -193,9 +194,9 @@ export default function Buscador() {
           <button className="btn-1 calendar-button">Aplicar</button>
           <div className="divider"></div>
         </DatePicker>
-        <button className="boton-buscar" id="boton-buscar">
+        <Link to="/buscar" className="boton-buscar" id="boton-buscar">
           Buscar
-        </button>
+        </Link>
       </div>
     </div>
   );
