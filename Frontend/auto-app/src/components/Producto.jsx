@@ -15,14 +15,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 import { subDays } from 'date-fns';
-<<<<<<< HEAD
 // Galería de imagenes
 import Gallery from './Gallery';
-
-=======
+import SwipeGallery from './SwipeGallery';
 import Header from "./Header";
 import Footer from './Footer';
->>>>>>> 9c4bc7526cce29834065328a6320362951485f7f
 
 export default function Producto(props) {
   const commodityBackArrow = <FontAwesomeIcon icon={faChevronLeft} />;
@@ -137,7 +134,8 @@ export default function Producto(props) {
         </div>
 
         <div className="commodity-gallery" style={{display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <Gallery />
+          {width < 768 ? <SwipeGallery /> : <Gallery /> }
+          
         </div>
 
         <div className="commodity-description">
