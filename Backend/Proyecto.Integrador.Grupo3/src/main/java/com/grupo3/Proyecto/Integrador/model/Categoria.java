@@ -20,7 +20,6 @@ private String titulo;
 private String descripcion;
 private String url;
 
-
     public Categoria() { }
 
     public Categoria(String titulo, String descripcion, String url) {

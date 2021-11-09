@@ -26,6 +26,11 @@ export default function Logged() {
   let toggleNav = () => {
       setShow(show === "sidenav"? "sidenav-show" : "sidenav");
     }
+  const handlerClose=() => {
+      history.push("/")
+    }
+
+    let nombreCompleto = JSON.parse(localStorage.getItem('infoUsuario'))
 
     useEffect(() => {
         setwidth(window.screen.availWidth);
@@ -39,13 +44,7 @@ export default function Logged() {
         return _ => {
             window.removeEventListener('resize', handleResize)
         }
-      });
-  const handlerClose=() => {
-    history.push("/")
-  }
-  
-  let nombreCompleto = JSON.parse(localStorage.getItem('infoUsuario'))
-  console.log(nombreCompleto)
+      }, [handlerClose, nombreCompleto]);
 
   const usuario = () => {
     return nombreCompleto == null ? "" : nombreCompleto.nombre + " " + nombreCompleto.apellido;

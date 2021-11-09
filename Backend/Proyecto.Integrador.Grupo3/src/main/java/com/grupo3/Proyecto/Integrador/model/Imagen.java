@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "imagenes")
@@ -17,14 +18,12 @@ public class Imagen {
     private Long id;
     private String titulo;
     private String url;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, mappedBy = "imagenes")
+    @JsonIgnore
+    private List<Producto> productos;
 
     public Imagen() { }
 
-    public Imagen(String titulo, String url) {
-        this.titulo = titulo;
-        this.url = url;
-
-    }
 
     @Override
     public String toString() {

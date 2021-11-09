@@ -3,16 +3,14 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Categories from './Categories';
 import Listado from './Listado';
-import Producto from './Producto';
 
 export default function Home() {
   return (
     <>
-      {/* <Header />
+      <Header />
       <Buscador />
       <Categories />
-      <Listado /> */}
-      <Producto />
+      <Listado /> 
       <Footer />
     </>
   );

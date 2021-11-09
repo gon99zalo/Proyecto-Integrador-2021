@@ -13,12 +13,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 //Formatear fechas
 import { subDays } from 'date-fns';
+import { Link } from "react-router-dom";
+
+const api = "http://localhost:8080"
 
 export default function Buscador() {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const calendarIcon = <FontAwesomeIcon icon={faCalendarDay} />
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
+  const [ciudades, setCiudades] = useState([]);
   registerLocale("es", es);
 
   useEffect(() => {
@@ -27,12 +31,22 @@ export default function Buscador() {
         setwidth(window.screen.availWidth);
     }
     window.addEventListener('resize', handleResize)
+    fetch(api + "/ciudades/todas")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setCiudades(result);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
     return _ => {
         window.removeEventListener('resize', handleResize)
     }
   }, []);
 
-  const CalendarInput = forwardRef(({ value, onClick }) => (
+  const CalendarInput = forwardRef(({ value, onClick }, ref) => (
     <button className="calendar-input" onClick={onClick} >
       <i>{calendarIcon}</i><p>{value ? value : "Check in - Check out"}</p>
     </button>
@@ -147,19 +161,16 @@ export default function Buscador() {
       </button>
     </div>
   );
-
+  
   return (
     <div className="buscador">
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
         <select>
-          <option hidden selected>
+          <option hidden defaultValue>
             Elije donde quieres retirar el auto
           </option>
-          <option>San Carlos de Bariloche</option>
-          <option>Buenos Aires</option>
-          <option>Mendoza</option>
-          <option>Cordoba</option>
+          {ciudades.map((item) => {return <option>{item.nombre}</option>})}
         </select>
 
         <DatePicker
@@ -183,9 +194,9 @@ export default function Buscador() {
           <button className="btn-1 calendar-button">Aplicar</button>
           <div className="divider"></div>
         </DatePicker>
-        <button className="boton-buscar" id="boton-buscar">
+        <Link to="/buscar" className="boton-buscar" id="boton-buscar">
           Buscar
-        </button>
+        </Link>
       </div>
     </div>
   );

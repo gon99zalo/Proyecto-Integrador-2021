@@ -1,12 +1,14 @@
-//@ts-nocheck
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faMapMarkerAlt, faStar, faUserAlt, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Listado.css";
+import Header from "./Header";
+import Buscador from "./Buscador";
+import Footer from "./Footer";
 
 const api = "http://localhost:8080"
 
-export default function Listado() {
+export default function Buscar() {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
   const people = <FontAwesomeIcon icon={faUserAlt} />;
@@ -46,40 +48,11 @@ export default function Listado() {
   };
 
   useEffect(() => {
-    fetch(api + "/productos/cantidad")
+    fetch(api + "/productos/todos")
       .then(res => res.json())
       .then(
         (result) => {
-          let array = [];
-          while(array.length < 6 && array.length < result){
-            var r = Math.floor(Math.random() * result) + 1;
-            if(array.indexOf(r) === -1) array.push(r);
-          }
-          array.map((i) => {
-            fetch(api + "/productos/buscar/" + i)
-            .then(res => res.json())
-            .then(
-              (result) => {
-                setProductos(productos => [...productos, result])
-                console.log(result);
-              },
-              (error) => {
-                let p = {
-                  id: 0,
-                  nombre: "error",
-                  descripcion: "error",
-                  categoria: {
-                    titulo: "error",
-                  },
-                  ciudad: {
-                    nombre: "error",
-                    pais: "error"
-                  }
-                };
-                setProductos(productos.push(p))
-              }
-            )
-          })
+          setProductos(result);
           setIsLoaded(true);
         },
         (error) => {
@@ -91,8 +64,9 @@ export default function Listado() {
 
   return (
     <>
-      <div className="listado">
-        <h2>Recomendaciones</h2>
+    <Header/>
+    <Buscador/>
+      <div className="buscar">
         <div className="product-container">
 
           {productos.map( (item, i) => {
@@ -143,6 +117,7 @@ export default function Listado() {
 
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

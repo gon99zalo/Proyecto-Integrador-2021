@@ -267,6 +267,34 @@ cursor: pointer;
   .boton-iniciar-reserva{
     width: 50%;
   }
+
+  .commodity-rule-container {
+    flex-direction: column;
+  }
+  .commodity-rule-container div h3 {
+    margin-top: 40px;
+  }
+
+  .commodity-rule-container div p {
+    margin-top: 15px;
+  }
+
+  .texto-cancelacion{
+    width: 40vw;
+  }
+
+  .salud {
+    margin-left: 300px;
+    margin-top: -185px;
+    /* revisar */
+  }
+
+  .commodity-rank { 
+    margin-right: 10px;
+  }
+  .cancelacion {
+    margin-bottom: 75px;
+  }
 }
 
 @media screen and (max-width: 480px){
@@ -300,5 +328,37 @@ cursor: pointer;
 
   .boton-iniciar-reserva{
     width: 88%;
+  }
+
+  .commodity-rule-container {
+    flex-direction: column;
+  }
+  .commodity-rule-container div h3 {
+    margin-top: 40px;
+  }
+
+  .commodity-rule-container div p {
+    margin-top: 15px;
+  }
+
+  .texto-cancelacion{
+    width: 70vw;
+  }
+
+  .commodity-location-ranking{
+    height: 100px;
+  }
+
+  .commodity-location-description {
+    font-size: 15px;
+    width: 44%;
+  }
+
+  .commodity-rank { 
+    margin-right: 10px;
+  }
+  
+  .cancelacion {
+    margin-bottom: 75px;
   }
 }
