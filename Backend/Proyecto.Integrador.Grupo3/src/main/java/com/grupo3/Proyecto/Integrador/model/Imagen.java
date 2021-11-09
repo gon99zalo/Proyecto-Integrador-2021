@@ -18,7 +18,7 @@ public class Imagen {
     private Long id;
     private String titulo;
     private String url;
-    @OneToMany(targetEntity = Producto.class,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, mappedBy = "imagenes")
     @JsonIgnore
     private List<Producto> productos;
 

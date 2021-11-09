@@ -91,7 +91,7 @@
 
 .commodity-gallery {
   height: 441px;
-  background-color: var(--two-color);
+  /* background-color: var(--two-color); */
 }
 
 .commodity-description {
@@ -127,7 +127,6 @@
   border: 1px solid var(--main-color);
 }
 .features-box {
-  width: 100%;
   display: flex;
   margin-left: 3%;
   gap: 25%;
@@ -219,7 +218,6 @@ cursor: pointer;
   margin-left: 3%;
 }
 .commodity-rule-container {
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -269,6 +267,34 @@ cursor: pointer;
   .boton-iniciar-reserva{
     width: 50%;
   }
+
+  .commodity-rule-container {
+    flex-direction: column;
+  }
+  .commodity-rule-container div h3 {
+    margin-top: 40px;
+  }
+
+  .commodity-rule-container div p {
+    margin-top: 15px;
+  }
+
+  .texto-cancelacion{
+    width: 40vw;
+  }
+
+  .salud {
+    margin-left: 300px;
+    margin-top: -185px;
+    /* revisar */
+  }
+
+  .commodity-rank { 
+    margin-right: 10px;
+  }
+  .cancelacion {
+    margin-bottom: 75px;
+  }
 }
 
 @media screen and (max-width: 480px){
@@ -302,5 +328,37 @@ cursor: pointer;
 
   .boton-iniciar-reserva{
     width: 88%;
+  }
+
+  .commodity-rule-container {
+    flex-direction: column;
+  }
+  .commodity-rule-container div h3 {
+    margin-top: 40px;
+  }
+
+  .commodity-rule-container div p {
+    margin-top: 15px;
+  }
+
+  .texto-cancelacion{
+    width: 70vw;
+  }
+
+  .commodity-location-ranking{
+    height: 100px;
+  }
+
+  .commodity-location-description {
+    font-size: 15px;
+    width: 44%;
+  }
+
+  .commodity-rank { 
+    margin-right: 10px;
+  }
+  
+  .cancelacion {
+    margin-bottom: 75px;
   }
 }

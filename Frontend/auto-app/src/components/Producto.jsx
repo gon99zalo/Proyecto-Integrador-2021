@@ -15,6 +15,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 import { subDays } from 'date-fns';
+<<<<<<< HEAD
+// Galería de imagenes
+import Gallery from './Gallery';
+
+=======
+import Header from "./Header";
+import Footer from './Footer';
+>>>>>>> 9c4bc7526cce29834065328a6320362951485f7f
 
 export default function Producto(props) {
   const commodityBackArrow = <FontAwesomeIcon icon={faChevronLeft} />;
@@ -29,14 +37,14 @@ export default function Producto(props) {
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [producto, setProducto] = useState({
     id: 0,
-    nombre: "error",
-    descripcion: "error",
+    nombre: "",
+    descripcion: "",
     categoria: {
-      titulo: "error",
+      titulo: "",
     },
     ciudad: {
-      nombre: "error",
-      pais: "error"
+      nombre: "",
+      pais: ""
     }
   });
 
@@ -89,6 +97,7 @@ export default function Producto(props) {
 
   return (
     <>
+    <Header />
       <div className="commodity-container">
 
         <div className="commodity-header">
@@ -128,7 +137,7 @@ export default function Producto(props) {
         </div>
 
         <div className="commodity-gallery" style={{display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <h1 style={{color: "#FFFFFF"}}>aquí van las imagenes</h1>
+          <Gallery />
         </div>
 
         <div className="commodity-description">
@@ -208,23 +217,21 @@ export default function Producto(props) {
             <p>Norma 2</p>
             <p>Norma 3</p>
           </div>
-          <div>
+          <div className="salud">
             <h3>Salud y seguridad</h3>
             <p>Salud 1</p>
             <p>Salud 2</p>
             <p>Salud 3</p>
           </div>
-          <div>
+          <div className="cancelacion">
             <h3>Política de cancelación</h3>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-              Repudiandae suscipit obcaecati illum deserunt quaerat ipsa praesentium 
-              consequatur sed id eos tempora vel, aliquid assumenda sequi nulla repellat 
-              dolorem eum ab!
+            <p className="texto-cancelacion">
+              Agregá las fechas de tu viaje para obtener los detalles de cancelación de esta estadía.
             </p>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
