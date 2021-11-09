@@ -17,6 +17,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 import { subDays } from 'date-fns';
+// Galería de imagenes
+import Gallery from './Gallery';
+
 
 export default function Producto() {
   const autoTemporal = item.Autos[0];
@@ -111,7 +114,7 @@ export default function Producto() {
         </div>
 
         <div className="commodity-gallery" style={{display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <h1 style={{color: "#FFFFFF"}}>aquí van las imagenes</h1>
+          <Gallery />
         </div>
 
         <div className="commodity-description">
