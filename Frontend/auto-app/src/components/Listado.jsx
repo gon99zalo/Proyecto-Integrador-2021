@@ -51,7 +51,7 @@ export default function Listado() {
       .then(
         (result) => {
           let array = [];
-          while(array.length < 6 && array.length < result){
+          while(array.length < 8 && array.length < result){
             var r = Math.floor(Math.random() * result) + 1;
             if(array.indexOf(r) === -1) array.push(r);
           }
