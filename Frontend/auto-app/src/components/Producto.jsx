@@ -17,11 +17,7 @@ import es from "date-fns/locale/es";
 import { subDays } from 'date-fns';
 // Galería de imagenes
 import Gallery from './Gallery';
-<<<<<<< HEAD
 import SwipeGallery from './SwipeGallery';
-=======
-
->>>>>>> ec388ebdb6ffb26667145acf1d64577f4cf10d3a
 import Header from "./Header";
 import Footer from './Footer';
 
