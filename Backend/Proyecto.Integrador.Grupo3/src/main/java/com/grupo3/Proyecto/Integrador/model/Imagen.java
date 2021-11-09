@@ -20,6 +20,7 @@ public class Imagen {
     private String url;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIgnore
+    @JoinTable(name = "producto_id")
     private List<Producto> productos = new ArrayList<>();
 
     public Imagen() { }
