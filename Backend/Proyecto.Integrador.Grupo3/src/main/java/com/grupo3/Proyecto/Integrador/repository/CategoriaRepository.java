@@ -8,14 +8,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
     @Query("FROM Categoria c WHERE c.titulo like %:titulo%")
-    Optional<Categoria> buscarPorTitulo(@Param("titulo") String titulo);
+    Optional<Categoria> findByTitulo(String titulo);
 
     @Transactional
     @Modifying
