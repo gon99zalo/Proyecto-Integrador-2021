@@ -4,7 +4,6 @@ import Footer from "./Footer";
 import Categories from './Categories';
 import { Link, useHistory } from "react-router-dom"
 import "../styles/header.css";
-import logo  from "../assets/img/logos/logo1DB.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
@@ -64,7 +63,7 @@ export default function Logged() {
     <>
       <header className="header">
             <div className="logo">
-            <Link to="/logueado"><img src={logo} alt="logo" className="logo-img" /></Link>
+            <Link to="/logueado"><img src="https://buimagenes.s3.us-east-2.amazonaws.com/Logo/logo1DB.png" alt="logo" className="logo-img" /></Link>
             <Link to="/logueado"><span className="slogan">El auto que necesitas</span></Link>
             </div> 
             {width > 480? 
