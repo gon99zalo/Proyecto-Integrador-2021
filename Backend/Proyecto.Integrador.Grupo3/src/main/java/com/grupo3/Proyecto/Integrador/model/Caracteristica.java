@@ -1,5 +1,6 @@
 package com.grupo3.Proyecto.Integrador.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,11 +23,6 @@ public class Caracteristica {
 
     public Caracteristica() { }
 
-    public Caracteristica(String nombre, String icono, List<Producto> productos) {
-        this.nombre = nombre;
-        this.icono = icono;
-        this.productos = productos;
-    }
 
     @Override
     public String toString() {
