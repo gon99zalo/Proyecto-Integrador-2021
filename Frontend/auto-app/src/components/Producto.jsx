@@ -15,6 +15,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 import { subDays } from 'date-fns';
+import Header from "./Header";
+import Footer from './Footer';
 
 export default function Producto(props) {
   const commodityBackArrow = <FontAwesomeIcon icon={faChevronLeft} />;
@@ -89,6 +91,7 @@ export default function Producto(props) {
 
   return (
     <>
+    <Header />
       <div className="commodity-container">
 
         <div className="commodity-header">
@@ -208,13 +211,13 @@ export default function Producto(props) {
             <p>Norma 2</p>
             <p>Norma 3</p>
           </div>
-          <div>
+          <div className="salud">
             <h3>Salud y seguridad</h3>
             <p>Salud 1</p>
             <p>Salud 2</p>
             <p>Salud 3</p>
           </div>
-          <div>
+          <div className="cancelacion">
             <h3>Política de cancelación</h3>
             <p className="texto-cancelacion">
               Agregá las fechas de tu viaje para obtener los detalles de cancelación de esta estadía.
@@ -222,6 +225,7 @@ export default function Producto(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
