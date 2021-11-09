@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faMapMarkerAlt, faStar, faUserAlt, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Listado.css";
+import { Link } from "react-router-dom";
 
 const api = "http://localhost:8080"
 
@@ -131,7 +132,7 @@ export default function Listado() {
                         </span>
                       </p>
                     </div>
-                    <button className="product-show-more btn-1"><a href={"./productos/" + item.id}>Ver Detalle</a></button>
+                    <Link className="product-show-more btn-1" to={"./productos/" + item.id}><p>Ver Detalle</p></Link>
                     <div className="qualification">
                       <span>{/*item.qualification*/ 7}</span>
                       <p className="txt-1">{qualificationText(/*item.qualification*/7)}</p>
