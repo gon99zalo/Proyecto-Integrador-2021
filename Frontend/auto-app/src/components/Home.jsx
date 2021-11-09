@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Categories from './Categories';
 import Listado from './Listado';
-import Producto from './Producto';
+//import Producto from './Producto';
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <Buscador />
       <Categories />
       <Listado /> 
-      <Producto />
+      {/* <Producto /> */}
       <Footer />
     </>
   );

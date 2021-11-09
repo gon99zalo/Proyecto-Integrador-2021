@@ -14,3 +14,9 @@ describe('Buscador', () => {
     expect(screen.getByText(/Check in - Check out/i)).toBeInTheDocument();
   })
 });
+
+// describe('Fetch', () =>{
+//   test('Fetch funcionando', () =>{
+
+//   })
+// })
