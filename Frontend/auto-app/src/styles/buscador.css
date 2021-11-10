@@ -12,7 +12,7 @@
 .buscadores div.react-datepicker-wrapper {
     padding: 0;
     border: 0;
-    width: auto;
+    width: 31%;
   }
 
 .buscadores {
@@ -30,18 +30,20 @@ input.datePicker {
 }
 
 .boton-buscar {
+    width: 15.1%;
+    padding: 5px 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
     background-color: rgba(240, 87, 45, 1);
     border-color: rgba(240, 87, 45, 1);
     color: white;
-    border-radius: 5px;
-    padding: 5px 35px;
-}
-
-.boton-buscar {
     cursor: pointer;
 }
+
 .buscadores select{
-    width: 25vw;
+    width: 31%;
 }
 
 select,input[type=date]{
