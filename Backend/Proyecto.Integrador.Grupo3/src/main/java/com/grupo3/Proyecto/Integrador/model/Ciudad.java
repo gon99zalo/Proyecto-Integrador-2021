@@ -19,6 +19,7 @@ public class Ciudad {
     private String nombre;
     private String pais;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, mappedBy = "ciudad")
+    @JsonIgnore
     private List<Producto> productos = new ArrayList<>();
 
     public Ciudad() { }
