@@ -209,7 +209,7 @@ export default function Producto(props) {
         <h1>Qué tenés que saber</h1>
         <hr className="commodity-divisor" />
         <div className="commodity-rule-container">
-          <div>
+          <div className="normas">
             <h3>Normas del vehículo</h3>
             <p>Norma 1</p>
             <p>Norma 2</p>

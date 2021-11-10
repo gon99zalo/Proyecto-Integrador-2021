@@ -269,8 +269,24 @@ cursor: pointer;
   }
 
   .commodity-rule-container {
-    flex-direction: column;
+    /* flex-direction: column; */
+    display: grid;
+
   }
+
+  .normas {
+    grid-column: 1 / 3;
+    grid-row: 1;
+  }
+  .salud {
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+  }
+  .cancelacion {
+    grid-column: 1;
+    grid-row: 2 / 5;
+  }
+
   .commodity-rule-container div h3 {
     margin-top: 40px;
   }
@@ -281,12 +297,6 @@ cursor: pointer;
 
   .texto-cancelacion{
     width: 40vw;
-  }
-
-  .salud {
-    margin-left: 300px;
-    margin-top: -185px;
-    /* revisar */
   }
 
   .commodity-rank { 
