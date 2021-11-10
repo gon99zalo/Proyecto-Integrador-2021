@@ -1,14 +1,14 @@
-//@ts-nocheck
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faMapMarkerAlt, faStar, faUserAlt, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Listado.css";
-import { Link } from "react-router-dom";
+import Header from "./Header";
+import Buscador from "./Buscador";
+import Footer from "./Footer";
 
-const api01 = "http://localhost:8080"
-const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
+const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080/"
 
-export default function Listado() {
+export default function Buscar() {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
   const people = <FontAwesomeIcon icon={faUserAlt} />;
@@ -48,40 +48,11 @@ export default function Listado() {
   };
 
   useEffect(() => {
-    fetch(api + "/productos/cantidad")
+    fetch(api + "/productos/todos")
       .then(res => res.json())
       .then(
         (result) => {
-          let array = [];
-          while(array.length < 8 && array.length < result){
-            var r = Math.floor(Math.random() * result) + 1;
-            if(array.indexOf(r) === -1) array.push(r);
-          }
-          array.map((i) => {
-            fetch(api + "/productos/buscar/" + i)
-            .then(res => res.json())
-            .then(
-              (result) => {
-                setProductos(productos => [...productos, result])
-                console.log(result);
-              },
-              (error) => {
-                let p = {
-                  id: 0,
-                  nombre: "error",
-                  descripcion: "error",
-                  categoria: {
-                    titulo: "error",
-                  },
-                  ciudad: {
-                    nombre: "error",
-                    pais: "error"
-                  }
-                };
-                setProductos(productos.push(p))
-              }
-            )
-          })
+          setProductos(result);
           setIsLoaded(true);
         },
         (error) => {
@@ -93,17 +64,18 @@ export default function Listado() {
 
   return (
     <>
-      <div className="listado">
-        <h2>Recomendaciones</h2>
+    <Header/>
+    <Buscador/>
+      <div className="buscar">
         <div className="product-container">
 
           {productos.map( (item, i) => {
             return (
                 <div className="product-card" key={i}>
                   <div className="product-image">
-                    <img className="product" src={item.imagenes[0].url} alt={item.imagenes[0].titulo} />
+                  <img className="product" src={item.imagenes[0].url} alt={item.imagenes[0].titulo} />
                     <a href="./">
-                      <img className="like" src="https://buimagenes.s3.us-east-2.amazonaws.com/img/like.png" alt="like" />
+                      <img className="like" src="img/like.png" alt="like" />
                     </a>
                   </div>
                   <div className="product-data">
@@ -133,7 +105,7 @@ export default function Listado() {
                         </span>
                       </p>
                     </div>
-                    <Link  to={"./productos/" + item.id}><button className="product-show-more btn-1">Ver Detalle</button></Link>
+                    <button className="product-show-more btn-1"><a href={"./productos/" + item.id}>Ver Detalle</a></button>
                     <div className="qualification">
                       <span>{/*item.qualification*/ 7}</span>
                       <p className="txt-1">{qualificationText(/*item.qualification*/7)}</p>
@@ -145,6 +117,7 @@ export default function Listado() {
 
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

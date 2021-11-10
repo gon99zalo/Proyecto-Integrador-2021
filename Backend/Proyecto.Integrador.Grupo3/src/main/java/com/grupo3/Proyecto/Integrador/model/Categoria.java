@@ -1,11 +1,11 @@
 package com.grupo3.Proyecto.Integrador.model;
 
-import com.sun.istack.NotNull;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +19,9 @@ private Long id;
 private String titulo;
 private String descripcion;
 private String url;
+@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, mappedBy = "categoria")
+@JsonIgnore
+private List<Producto> productos = new ArrayList<>();
 
     public Categoria() { }
 

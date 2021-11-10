@@ -37,8 +37,8 @@ export default function BloqueCategoria() {
         <div className="category">
             <h2>Buscar por tipo de transporte</h2>
             <div className="type-container">
-                {categorias.map( item => 
-                    <div className="type-card">
+                {categorias.map( (item, i) => 
+                    <div className="type-card" key={i}>
                         <a href="./">
                             <img src={item.url} alt={item.titulo} />
                         </a>

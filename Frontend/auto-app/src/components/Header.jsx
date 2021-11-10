@@ -1,7 +1,6 @@
 //@ts-nocheck
 import "../styles/header.css";
 import "../styles/Opciones.css"
-import logo  from "../assets/img/logos/logo1DB.png";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -39,7 +38,7 @@ export default function Header(props) {
         <header>
             <div id="header" className="header">
             <div className="logo">
-            <Link to="/"><img src={logo} alt="logo" className="logo-img" /></Link>
+            <Link to="/"><img src="https://buimagenes.s3.us-east-2.amazonaws.com/Logo/logo1DB.png" alt="logo" className="logo-img" /></Link>
             <Link to="/"><span className="slogan">El auto que necesitas</span></Link>
             </div> 
             {width > 480? 

@@ -15,6 +15,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 import { subDays } from 'date-fns';
+// Galería de imagenes
+import Gallery from './Gallery';
+import SwipeGallery from './SwipeGallery';
+import Header from "./Header";
+import Footer from './Footer';
 
 export default function Producto(props) {
   const commodityBackArrow = <FontAwesomeIcon icon={faChevronLeft} />;
@@ -28,16 +33,22 @@ export default function Producto(props) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [producto, setProducto] = useState({
     id: 0,
-    nombre: "error",
-    descripcion: "error",
+    nombre: "",
+    descripcion: "",
     categoria: {
-      titulo: "error",
+      titulo: "",
     },
     ciudad: {
-      nombre: "error",
-      pais: "error"
+      nombre: "",
+      pais: ""
+    },
+    imagenes: {
+      titulo: "",
+      url: ""
     }
   });
 
@@ -74,9 +85,27 @@ export default function Producto(props) {
       .then(
         (result) => {
           result == null ? console.log(result) : setProducto(result);
+          setIsLoaded(true)
         },
         (error) => {
-          console.log(error);
+          setError(error);
+          setIsLoaded(true)
+          setProducto({
+            id: 0,
+            nombre: "error",
+            descripcion: "error",
+            categoria: {
+              titulo: "error",
+            },
+            imagenes: {
+              titulo:"error",
+              url: "error"
+            },
+            ciudad: {
+              nombre: "error",
+              pais: "error"
+            }
+          })
         })
     return _ => {
         window.removeEventListener('resize', handleResize)
@@ -87,9 +116,26 @@ export default function Producto(props) {
     lat: -34.603722,
     lng: -58.381592
   };
-
+  if (error) {
+    return (
+    <>
+    <Header />
+    <div>Error: {error.message}</div>;
+    <Footer />
+    </>
+    )
+  } else if (!isLoaded) {
+    return (
+      <>
+      <Header />
+      <div>Loading...</div>;
+      <Footer />
+    </>
+    )
+  } else {
   return (
     <>
+    <Header />
       <div className="commodity-container">
 
         <div className="commodity-header">
@@ -129,7 +175,8 @@ export default function Producto(props) {
         </div>
 
         <div className="commodity-gallery" style={{display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <h1 style={{color: "#FFFFFF"}}>aquí van las imagenes</h1>
+          {width < 768 ? <SwipeGallery imagenes={producto.imagenes}/> : <Gallery imagenes={producto.imagenes}/> }
+          {console.log(producto)}
         </div>
 
         <div className="commodity-description">
@@ -203,29 +250,28 @@ export default function Producto(props) {
         <h1>Qué tenés que saber</h1>
         <hr className="commodity-divisor" />
         <div className="commodity-rule-container">
-          <div>
+          <div className="normas">
             <h3>Normas del vehículo</h3>
             <p>Norma 1</p>
             <p>Norma 2</p>
             <p>Norma 3</p>
           </div>
-          <div>
+          <div className="salud">
             <h3>Salud y seguridad</h3>
             <p>Salud 1</p>
             <p>Salud 2</p>
             <p>Salud 3</p>
           </div>
-          <div>
+          <div className="cancelacion">
             <h3>Política de cancelación</h3>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-              Repudiandae suscipit obcaecati illum deserunt quaerat ipsa praesentium 
-              consequatur sed id eos tempora vel, aliquid assumenda sequi nulla repellat 
-              dolorem eum ab!
+            <p className="texto-cancelacion">
+              Agregá las fechas de tu viaje para obtener los detalles de cancelación de esta estadía.
             </p>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
+}
 };
