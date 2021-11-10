@@ -173,13 +173,8 @@ export default function Buscador() {
     <div className="buscador">
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
-<<<<<<< HEAD
-        <select>
-          <option value="" hidden defaultValue>
-=======
         <select onChange={selectChange}>
           <option hidden defaultValue>
->>>>>>> 107ebfee7f6f1c80be22b2523eb31f7658433b27
             Elije donde quieres retirar el auto
           </option>
           {ciudades.map((item) => {return <option value={item.nombre}>{item.nombre}</option>})}

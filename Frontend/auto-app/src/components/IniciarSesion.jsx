@@ -31,15 +31,11 @@ export default function IniciarSesion() {
     if(infoUsuario.correo === emailUsuario && infoUsuario.contrasenia === contraseniaUsuario){
       history.push("/logueado")
     }else{
-<<<<<<< HEAD
-      alert("Por favor vuelva a intentarlo, sus credenciales son inválidas")
-=======
       // alert("Por favor vuelva a intentarlo, tus credenciales son inválidas") 
       for(inputs of inputs){
       inputs.classList.toggle("error")
       }
       boton.nextElementSibling.classList.toggle("error-mensaje")
->>>>>>> 107ebfee7f6f1c80be22b2523eb31f7658433b27
     }
   }
 
