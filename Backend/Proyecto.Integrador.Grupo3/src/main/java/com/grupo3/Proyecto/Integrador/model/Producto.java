@@ -1,12 +1,11 @@
 package com.grupo3.Proyecto.Integrador.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -28,22 +27,30 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "ciudad_id")
     private Ciudad ciudad;
-    @OneToMany
-    @JsonIgnore
-    @JoinColumn(name = "prod_id")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "imagenes_id")
     private List<Imagen> imagenes = new ArrayList<>();
-    @ManyToMany
-    @JoinColumn(name = "caract_id")
-    @JsonIgnore
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "caracteristicas_id")
     private List<Caracteristica> caracteristicas = new ArrayList<>();
 
     public Producto() { }
 
     public Producto(String nombre, String descripcion, Categoria categoria, Ciudad ciudad) {
         this.nombre = nombre;
+
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.ciudad = ciudad;
+    }
+
+    public Producto(String nombre, String descripcion, Categoria categoria, Ciudad ciudad, List<Imagen> imagenes, List<Caracteristica> caracteristicas) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.ciudad = ciudad;
+        this.imagenes = imagenes;
+        this.caracteristicas = caracteristicas;
     }
 
     @Override

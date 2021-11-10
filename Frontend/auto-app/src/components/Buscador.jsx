@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 //Formatear fechas
 import { subDays } from 'date-fns';
+import { Link } from "react-router-dom";
 
 const api01 = "http://localhost:8080"
 const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
@@ -26,11 +27,13 @@ export default function Buscador() {
   registerLocale("es", es);
 
   useEffect(() => {
+    //calculo del ancho de pantalla
     setwidth(window.screen.availWidth);
     function handleResize() {
         setwidth(window.screen.availWidth);
     }
     window.addEventListener('resize', handleResize)
+    //get al api de las ciudades
     fetch(api + "/ciudades/todas")
       .then(res => res.json())
       .then(
@@ -41,12 +44,12 @@ export default function Buscador() {
           console.log(error);
         }
       )
-    return _ => {
+      return _ => {
         window.removeEventListener('resize', handleResize)
     }
   }, []);
 
-  const CalendarInput = forwardRef(({ value, onClick }) => (
+  const CalendarInput = forwardRef(({ value, onClick }, ref) => (
     <button className="calendar-input" onClick={onClick} >
       <i>{calendarIcon}</i><p>{value ? value : "Check in - Check out"}</p>
     </button>
@@ -194,9 +197,9 @@ export default function Buscador() {
           <button className="btn-1 calendar-button">Aplicar</button>
           <div className="divider"></div>
         </DatePicker>
-        <button className="boton-buscar" id="boton-buscar">
+        <Link to="/buscar" className="boton-buscar" id="boton-buscar">
           Buscar
-        </button>
+        </Link>
       </div>
     </div>
   );
