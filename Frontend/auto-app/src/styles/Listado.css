@@ -1,4 +1,4 @@
-.listado {
+.listado, .buscar {
     display: flex;
     flex-direction: column;
     justify-content: center;
