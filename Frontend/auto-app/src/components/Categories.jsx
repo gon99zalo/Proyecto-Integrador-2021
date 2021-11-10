@@ -2,6 +2,7 @@
 //Estilos
 import '../styles/Categories.css';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const api = "http://localhost:8080"
 
@@ -37,9 +38,9 @@ export default function BloqueCategoria() {
             <div className="type-container">
                 {categorias.map( (item, i) => 
                     <div className="type-card" key={i}>
-                        <a href="./">
+                        <Link to={{pathname:"/buscar", state:{ locacion: "", categoria:item.titulo }}}>
                             <img src={item.url} alt={item.titulo} />
-                        </a>
+                        </Link>
                         <h3>{item.titulo}</h3>
                         <p>{item.descripcion}</p>
                     </div>

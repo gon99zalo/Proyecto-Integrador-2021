@@ -62,7 +62,6 @@ export default function Listado() {
             .then(
               (result) => {
                 setProductos(productos => [...productos, result])
-                console.log(result);
               },
               (error) => {
                 let p = {
