@@ -32,6 +32,8 @@ export default function Producto(props) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [producto, setProducto] = useState({
     id: 0,
     nombre: "",
@@ -42,6 +44,10 @@ export default function Producto(props) {
     ciudad: {
       nombre: "",
       pais: ""
+    },
+    imagenes: {
+      titulo: "",
+      url: ""
     }
   });
 
@@ -78,9 +84,11 @@ export default function Producto(props) {
       .then(
         (result) => {
           result == null ? console.log(result) : setProducto(result);
+          setIsLoaded(true)
         },
         (error) => {
-          console.log(error);
+          setError(error);
+          setIsLoaded(true)
           setProducto({
             id: 0,
             nombre: "error",
@@ -107,7 +115,23 @@ export default function Producto(props) {
     lat: -34.603722,
     lng: -58.381592
   };
-
+  if (error) {
+    return (
+    <>
+    <Header />
+    <div>Error: {error.message}</div>;
+    <Footer />
+    </>
+    )
+  } else if (!isLoaded) {
+    return (
+      <>
+      <Header />
+      <div>Loading...</div>;
+      <Footer />
+    </>
+    )
+  } else {
   return (
     <>
     <Header />
@@ -151,7 +175,7 @@ export default function Producto(props) {
 
         <div className="commodity-gallery" style={{display: "flex", justifyContent: "center", alignItems: "center" }}>
           {width < 768 ? <SwipeGallery imagenes={producto.imagenes}/> : <Gallery imagenes={producto.imagenes}/> }
-          
+          {console.log(producto)}
         </div>
 
         <div className="commodity-description">
@@ -225,7 +249,7 @@ export default function Producto(props) {
         <h1>Qué tenés que saber</h1>
         <hr className="commodity-divisor" />
         <div className="commodity-rule-container">
-          <div>
+          <div className="normas">
             <h3>Normas del vehículo</h3>
             <p>Norma 1</p>
             <p>Norma 2</p>
@@ -248,4 +272,5 @@ export default function Producto(props) {
       <Footer />
     </>
   );
+}
 };

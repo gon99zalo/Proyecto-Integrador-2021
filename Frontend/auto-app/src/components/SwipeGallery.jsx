@@ -20,11 +20,15 @@ const mazdaImages = [
   },
 ];
 
-export default function SwipeGallery() {
+export default function SwipeGallery(props) {
+  
+  let images = []
+  props.imagenes.map((image) => {})
+  
   return (
     <>
       <ImageGallery
-        items={mazdaImages}
+        items={images}
         showNav={false}
         showThumbnails={false}
         showPlayButton={false}
