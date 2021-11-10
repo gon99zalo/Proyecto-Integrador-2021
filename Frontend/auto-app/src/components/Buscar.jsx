@@ -8,7 +8,7 @@ import Footer from "./Footer";
 
 const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080/"
 
-export default function Buscar() {
+export default function Buscar(props) {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
   const people = <FontAwesomeIcon icon={faUserAlt} />;
@@ -17,6 +17,9 @@ export default function Buscar() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [productos, setProductos] = useState([]);
+  const { locacion, categoria } = props.location.state
+  console.log(locacion);
+  console.log(categoria);
 
   const handlerShowText = (title) => {
     setShowText({
@@ -48,7 +51,8 @@ export default function Buscar() {
   };
 
   useEffect(() => {
-    fetch(api + "/productos/todos")
+    if((locacion=="") && (categoria=="")){
+      fetch(api + "/productos/todos")
       .then(res => res.json())
       .then(
         (result) => {
@@ -60,6 +64,35 @@ export default function Buscar() {
           setError(error);
         }
       )
+    }
+    else if ((locacion=="")){
+      fetch(api + "/productos/categoria?titulo=" + categoria)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setProductos(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+    }
+    else {
+      fetch(api + "/productos/ciudad?nombre=" + locacion)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setProductos(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+    }
   }, [])
 
   return (
