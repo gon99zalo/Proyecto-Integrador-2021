@@ -4,39 +4,18 @@ import FsLightbox from 'fslightbox-react';
 //Estilos
 import "../styles/Gallery.css";
 
-const mazdaImages = [
-  {
-    src: "img/autos/mazda/mazda3-1.jpeg", 
-    alt: "mazda3-1",
-  },
-  {
-    src: "img/autos/mazda/mazda3-2.jpeg",
-    alt: "mazda3-2",
-  },
-  {
-    src: "img/autos/mazda/mazda3-3.jpeg",
-    alt: "mazda3-3",
-  },
-  {
-    src: "img/autos/mazda/mazda3-4.jpeg",
-    alt: "mazda3-4",
-  },
-  {
-    src: "img/autos/mazda/mazda3-5.jpeg",
-    alt: "mazda3-5",
-  },
-];
 
-export default function Gallery() {
+export default function Gallery(props) {
   const [toggler, setToggler] = useState(false);
+  let images = props.imagenes
 
   return (
     <>
       <div className="gallery-container">
-        {mazdaImages.map( (photo, index) => {
+        {images.map( (photo, index) => {
           return (
             <div key={`photo-${index}`}>
-              <img src={photo.src} alt="" />
+              <img src={photo.url} alt={photo.titulo} />
             </div>
           );
         })}
@@ -45,10 +24,10 @@ export default function Gallery() {
         </div>
         <FsLightbox
           toggler={toggler}
-          sources={mazdaImages.map( photo => photo.src )}
+          sources={images.map( photo => photo.url)}
           type="image"
-          customAttributes={mazdaImages.map( photo => {
-            return { alt: photo.alt, };
+          customAttributes={images.map( photo => {
+            return { alt: photo.titulo, };
           })}
         />
       </div>
