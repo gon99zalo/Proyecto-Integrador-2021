@@ -81,6 +81,22 @@ export default function Producto(props) {
         },
         (error) => {
           console.log(error);
+          setProducto({
+            id: 0,
+            nombre: "error",
+            descripcion: "error",
+            categoria: {
+              titulo: "error",
+            },
+            imagenes: {
+              titulo:"error",
+              url: "error"
+            },
+            ciudad: {
+              nombre: "error",
+              pais: "error"
+            }
+          })
         })
     return _ => {
         window.removeEventListener('resize', handleResize)
@@ -134,7 +150,7 @@ export default function Producto(props) {
         </div>
 
         <div className="commodity-gallery" style={{display: "flex", justifyContent: "center", alignItems: "center" }}>
-          {width < 768 ? <SwipeGallery /> : <Gallery /> }
+          {width < 768 ? <SwipeGallery imagenes={producto.imagenes}/> : <Gallery imagenes={producto.imagenes}/> }
           
         </div>
 
