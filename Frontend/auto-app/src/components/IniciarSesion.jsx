@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom"
+import "../styles/crearCuenta.css"
 const visible = <FontAwesomeIcon icon={faEye} />;
 const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 
@@ -20,14 +21,21 @@ export default function IniciarSesion() {
 
   let infoUsuario = JSON.parse(localStorage.getItem('infoUsuario'))
 
+  
   const handlerValidate = (e) =>{
     e.preventDefault()
     let emailUsuario = document.querySelector("#correo-electronico").value
     let contraseniaUsuario = document.querySelector("#contrasenia").value
+    let inputs = document.querySelectorAll(".campos-inicio")
+    let boton = document.querySelector(".texto-cuenta")
     if(infoUsuario.correo === emailUsuario && infoUsuario.contrasenia === contraseniaUsuario){
       history.push("/logueado")
     }else{
-      alert("Por favor vuelva a intentarlo, tus credenciales son inválidas")
+      // alert("Por favor vuelva a intentarlo, tus credenciales son inválidas") 
+      for(inputs of inputs){
+      inputs.classList.toggle("error")
+      }
+      boton.nextElementSibling.classList.toggle("error-mensaje")
     }
   }
 
@@ -47,6 +55,7 @@ export default function IniciarSesion() {
           </div>
           <button onClick={handlerValidate} type="submit" className="boton-iniciarSesion" id="boton-iniciarSesion">Ingresar</button>
           <p className="texto-cuenta txt-1">¿Aún no tenes cuenta? <Link to="/crearCuenta"><span className="color-links">Registrate</span></Link></p>
+          <div className="error-mensaje-escondido">por favor vuelva a intarlo, sus credenciales son inválidas</div>
           </div>
       </form>
       </div>
