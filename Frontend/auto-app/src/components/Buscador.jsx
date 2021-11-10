@@ -23,6 +23,7 @@ export default function Buscador() {
   const calendarIcon = <FontAwesomeIcon icon={faCalendarDay} />
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [ciudades, setCiudades] = useState([]);
+  const [ciudad, setCiudad] = useState("");
   registerLocale("es", es);
 
   useEffect(() => {
@@ -163,13 +164,22 @@ export default function Buscador() {
       </button>
     </div>
   );
+
+  let selectChange = event => {
+    setCiudad(event.target.value);
+  }
   
   return (
     <div className="buscador">
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
+<<<<<<< HEAD
         <select>
           <option value="" hidden defaultValue>
+=======
+        <select onChange={selectChange}>
+          <option hidden defaultValue>
+>>>>>>> 107ebfee7f6f1c80be22b2523eb31f7658433b27
             Elije donde quieres retirar el auto
           </option>
           {ciudades.map((item) => {return <option value={item.nombre}>{item.nombre}</option>})}
@@ -196,7 +206,7 @@ export default function Buscador() {
           <button className="btn-1 calendar-button">Aplicar</button>
           <div className="divider"></div>
         </DatePicker>
-        <Link to="/buscar" className="boton-buscar" id="boton-buscar">
+        <Link to={{pathname:"/buscar", state:{ locacion: ciudad, categoria:"" }}} className="boton-buscar" id="boton-buscar" >
           Buscar
         </Link> 
       </div>
