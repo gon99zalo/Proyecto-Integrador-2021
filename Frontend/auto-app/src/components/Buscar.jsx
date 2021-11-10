@@ -18,6 +18,8 @@ export default function Buscar(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [productos, setProductos] = useState([]);
   const { locacion, categoria } = props.location.state
+  console.log(locacion);
+  console.log(categoria);
 
   const handlerShowText = (title) => {
     setShowText({
