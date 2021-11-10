@@ -151,7 +151,7 @@ export default function Producto(props) {
           <div className="commodity-location-ranking">
             <div className="commodity-location-description">
               <i>{marker}</i>
-              <div>
+              <div className="texto-locacion">
                 <p> Aquí va la ciudad ingresada en el buscador</p>
                 <p>Aquí la distancia y locación: {producto.ciudad.nombre + ", " + producto.ciudad.pais}</p>
               </div>
@@ -197,7 +197,6 @@ export default function Producto(props) {
           </div>
         </div>
       </div>
-
       <div className="commodity-available-dates">
         <DatePicker
           //para que aparezca sin necesidad del input
