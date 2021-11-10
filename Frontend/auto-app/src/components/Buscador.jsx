@@ -169,10 +169,10 @@ export default function Buscador() {
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
         <select>
-          <option hidden defaultValue>
+          <option value="" hidden defaultValue>
             Elije donde quieres retirar el auto
           </option>
-          {ciudades.map((item) => {return <option>{item.nombre}</option>})}
+          {ciudades.map((item) => {return <option value={item.nombre}>{item.nombre}</option>})}
         </select>
 
         <DatePicker
@@ -198,7 +198,7 @@ export default function Buscador() {
         </DatePicker>
         <Link to="/buscar" className="boton-buscar" id="boton-buscar">
           Buscar
-        </Link>
+        </Link> 
       </div>
     </div>
   );
