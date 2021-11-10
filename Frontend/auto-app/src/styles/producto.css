@@ -306,6 +306,10 @@ cursor: pointer;
   .cancelacion {
     margin-bottom: 75px;
   }
+
+  .commodity-rule-container div {
+    width: auto;
+  }
 }
 
 @media screen and (max-width: 480px){
@@ -350,6 +354,10 @@ cursor: pointer;
 
   .commodity-rule-container div p {
     margin-top: 15px;
+  }
+
+  .commodity-rule-container div {
+    width: auto;
   }
 
   .texto-cancelacion{
