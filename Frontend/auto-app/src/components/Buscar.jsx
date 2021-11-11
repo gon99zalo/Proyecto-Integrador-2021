@@ -92,6 +92,24 @@ export default function Buscar(props) {
     }
   }, [])
 
+
+  if (error) {
+    return (
+    <>
+      <Header/>
+      <Buscador/>
+      <div>Error: {error.message}</div>
+      <Footer/>
+    </>)
+  } else if (!isLoaded) {
+    return (
+    <>
+      <Header/>
+      <Buscador/>
+      <div>Loading...</div>;
+      <Footer/>
+    </>)
+  } else {
   return (
     <>
     <Header/>
@@ -149,5 +167,5 @@ export default function Buscar(props) {
       </div>
       <Footer/>
     </>
-  );
+  );}
 }
