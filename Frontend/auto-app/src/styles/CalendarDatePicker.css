@@ -121,7 +121,7 @@
 
 .calendar-input {
     height: 40px;
-    width: 25vw;
+    width: 100%;
     background: #FFFFFF;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
     border-radius: 5px;

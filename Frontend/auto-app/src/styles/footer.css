@@ -5,22 +5,20 @@ footer {
     justify-content: space-between; 
     align-items: center;
     background-color: rgba(240, 87, 45, 1);
-    /* position: absolute;*/
+    color: #FFFFFF;
     position: fixed;
     bottom: 0;  
 }
 .marca{
     margin-left: 25px;
+    font-weight: 700;
 }
 
 .redes {
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-between; */
-    margin-right: 30px;
     height: 20px;
-    width: 100px;
+    width: 14%;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 30px;
+    font-size: 23px;
 }
-/* element.style {
-    margin-left: 8px;
-} */
