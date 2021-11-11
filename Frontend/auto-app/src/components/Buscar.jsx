@@ -5,6 +5,7 @@ import "../styles/Listado.css";
 import Header from "./Header";
 import Buscador from "./Buscador";
 import Footer from "./Footer";
+import Loading from "./Loading";
 
 const api = "http://localhost:8080"
 
@@ -106,7 +107,8 @@ export default function Buscar(props) {
     <>
       <Header/>
       <Buscador/>
-      <div>Loading...</div>
+      {/* <div>Loading...</div> */}
+      <Loading />
       <Footer/>
     </>)
   } else {

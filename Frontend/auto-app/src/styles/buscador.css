@@ -39,6 +39,7 @@ input.datePicker {
     background-color: rgba(240, 87, 45, 1);
     border-color: rgba(240, 87, 45, 1);
     color: white;
+    font-weight: 700;
     cursor: pointer;
 }
 
@@ -55,6 +56,9 @@ select,input[type=date]{
       .titulo-buscador{
         font-size: 25px;
       }
+      .buscadores div.react-datepicker-wrapper {
+        width: 100%;
+      }
       input.datePicker {
         border-radius: 5px;
         padding: 5px 35px;
@@ -64,6 +68,9 @@ select,input[type=date]{
         height: 30px;
         width: 100%;
       }
+    .boton-buscar {
+        width: 100%;
+    }
   }
 
   
