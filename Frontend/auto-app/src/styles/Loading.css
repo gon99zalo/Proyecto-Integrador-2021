@@ -6,7 +6,7 @@
   margin-top: 20px;
 }
 .loading-conatiner h1 {
-  color:#f0572d;
+  color: #31363F;
 }
 
 .lds-ellipsis {
@@ -21,7 +21,7 @@
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    background: #f0572d;
+    background: #31363F;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
   }
   .lds-ellipsis div:nth-child(1) {
