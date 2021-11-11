@@ -163,6 +163,7 @@ h4 {
 @media screen and (min-width: 480px) and (max-width: 768px) {
     .product-card {
         min-width: 480px;
+        max-width: 100%;
     }
 }
 
@@ -172,6 +173,7 @@ h4 {
         height: 491px;
         width: auto;
         min-width: auto;
+        max-width: 100%;
     }
     .product-image {
         height: 231px;
