@@ -38,7 +38,7 @@ export default function BloqueCategoria() {
             <div className="type-container">
                 {categorias.map( (item, i) => 
                     <div className="type-card" key={i}>
-                        <Link to={{pathname:"/buscar", state:{ locacion: "", categoria:item.titulo }}}>
+                        <Link to={"/buscar/categoria/" + item.titulo}>
                             <img src={item.url} alt={item.titulo} />
                         </Link>
                         <h3>{item.titulo}</h3>

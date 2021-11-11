@@ -18,7 +18,8 @@ function App() {
           <Route exact path="/crearCuenta" component={CrearCuenta} />
           <Route exact path="/iniciarSesion" component={iniciarSesion} />
           <Route exact path="/logueado" component={Logged} />
-          <Route exact path="/buscar" component={Buscar} />
+          <Route exact path="/buscar/:filtro" component={Buscar} />
+          <Route exact path="/buscar/:filtro/:condicion" component={Buscar} />
           <Route exact path="/productos/:id" component={Producto} />
         </Switch>
       </BrowserRouter>
