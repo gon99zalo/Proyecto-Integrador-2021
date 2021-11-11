@@ -20,6 +20,7 @@ import Gallery from './Gallery';
 import SwipeGallery from './SwipeGallery';
 import Header from "./Header";
 import Footer from './Footer';
+import Loading from './Loading';
 
 export default function Producto(props) {
   const commodityBackArrow = <FontAwesomeIcon icon={faChevronLeft} />;
@@ -127,7 +128,8 @@ export default function Producto(props) {
     return (
       <>
       <Header />
-      <div>Loading...</div>;
+      {/* <div>Loading...</div> */}
+      <Loading />
       <Footer />
     </>
     )
