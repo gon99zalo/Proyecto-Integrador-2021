@@ -220,7 +220,7 @@ export default function Producto(props) {
           <div className="divider"></div>
         </DatePicker>
         <div className="inicar-reserva">
-            <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obetener precios exactos</p>
+            <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
             <button className="boton-iniciar-reserva">Iniciar reseva</button>
         </div>
       </div>
