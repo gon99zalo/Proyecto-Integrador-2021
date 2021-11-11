@@ -106,7 +106,7 @@ export default function Buscar(props) {
     <>
       <Header/>
       <Buscador/>
-      <div>Loading...</div>;
+      <div>Loading...</div>
       <Footer/>
     </>)
   } else {
