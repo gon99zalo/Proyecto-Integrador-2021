@@ -5,6 +5,9 @@
     text-align: initial;
     margin-bottom: 80px;
 }
+.buscar {
+    margin-top: 25px;
+}
 .listado h2 {
     margin:  0 0 9px 2.9%;
 }
@@ -48,7 +51,7 @@ h4 {
     top: 20px;
     right: 4.5%;
     height: 19px;
-    width: 6.8%;
+    /* width: 6.8%; */
 }
 .product-data .product-location {
     font-size: 10pt;
