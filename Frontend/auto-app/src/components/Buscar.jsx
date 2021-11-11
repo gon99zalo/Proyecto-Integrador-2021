@@ -17,7 +17,6 @@ export default function Buscar(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [productos, setProductos] = useState([]);
-  const { locacion, categoria } = props.location.state
 
   const handlerShowText = (title) => {
     setShowText({
@@ -49,7 +48,7 @@ export default function Buscar(props) {
   };
 
   useEffect(() => {
-    if((locacion=="") && (categoria=="")){
+    if(props.match.params.filtro == "todos"){
       fetch(api + "/productos/todos")
       .then(res => res.json())
       .then(
@@ -63,8 +62,8 @@ export default function Buscar(props) {
         }
       )
     }
-    else if ((locacion=="")){
-      fetch(api + "/productos/categoria?titulo=" + categoria)
+    else if (props.match.params.filtro == "categoria"){
+      fetch(api + "/productos/categoria?titulo=" + props.match.params.condicion)
       .then(res => res.json())
       .then(
         (result) => {
@@ -77,8 +76,8 @@ export default function Buscar(props) {
         }
       )
     }
-    else {
-      fetch(api + "/productos/ciudad?nombre=" + locacion)
+    else if (props.match.params.filtro == "locacion") {
+      fetch(api + "/productos/ciudad?nombre=" + props.match.params.condicion)
       .then(res => res.json())
       .then(
         (result) => {
@@ -93,6 +92,24 @@ export default function Buscar(props) {
     }
   }, [])
 
+
+  if (error) {
+    return (
+    <>
+      <Header/>
+      <Buscador/>
+      <div>Error: {error.message}</div>
+      <Footer/>
+    </>)
+  } else if (!isLoaded) {
+    return (
+    <>
+      <Header/>
+      <Buscador/>
+      <div>Loading...</div>;
+      <Footer/>
+    </>)
+  } else {
   return (
     <>
     <Header/>
@@ -105,8 +122,8 @@ export default function Buscar(props) {
                 <div className="product-card" key={i}>
                   <div className="product-image">
                   <img className="product" src={item.imagenes[0].url} alt={item.imagenes[0].titulo} />
-                    <a href="./">
-                      <img className="like" src="img/like.png" alt="like" />
+                    <a href="/">
+                      <img className="like" src="https://buimagenes.s3.us-east-2.amazonaws.com/img/like.png" alt="like" />
                     </a>
                   </div>
                   <div className="product-data">
@@ -150,5 +167,5 @@ export default function Buscar(props) {
       </div>
       <Footer/>
     </>
-  );
+  );}
 }

@@ -238,6 +238,11 @@ cursor: pointer;
 }
 
 @media screen and (min-width: 480px) and (max-width:  768px){
+
+  .commodity-location-ranking {
+    height: 65px;
+  }
+
   .commodity-available-dates {
     display: flex;
     flex-direction: column;
@@ -303,6 +308,11 @@ cursor: pointer;
     margin-right: 10px;
     width: 100%;
   }
+
+  .commodity-ranking-description {
+    width: 150px;
+  }
+
   .cancelacion {
     margin-bottom: 75px;
   }
@@ -313,6 +323,11 @@ cursor: pointer;
 }
 
 @media screen and (max-width: 480px){
+
+  .texto-locacion {
+    font-size: 13px;
+  }
+
   .commodity-available-dates {
     display: flex;
     flex-direction: column;
