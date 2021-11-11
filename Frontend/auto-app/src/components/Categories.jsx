@@ -3,6 +3,7 @@
 import '../styles/Categories.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 const api = "http://localhost:8080"
 
@@ -30,7 +31,10 @@ export default function BloqueCategoria() {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return (
+      // <div>Loading...</div>
+      <Loading />
+    );
   } else {
     return(
         <div className="category">
