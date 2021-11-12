@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faMapMarkerAlt, faStar, faUserAlt, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Listado.css";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 const api = "http://localhost:8080"
 
@@ -89,7 +90,14 @@ export default function Listado() {
       )
   }, [])
 
-  return (
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return (
+      <Loading />
+    );
+  } else {
+    return (
     <>
       <div className="listado">
         <h2>Recomendaciones</h2>
@@ -144,5 +152,5 @@ export default function Listado() {
         </div>
       </div>
     </>
-  );
+  );}
 }
