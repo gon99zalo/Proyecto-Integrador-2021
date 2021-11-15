@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import "../styles/producto.css";
 // Íconos
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faChevronLeft, faStar, faMapMarkerAlt, faUserAlt, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
+import {  faChevronLeft, faStar, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 // Calendario
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -26,8 +26,6 @@ export default function Producto(props) {
   const commodityBackArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
-  const people = <FontAwesomeIcon icon={faUserAlt} />;
-  const door = <FontAwesomeIcon icon={faDoorClosed} />;
   registerLocale("es", es);
   const api = "http://localhost:8080"
   const [dateRange, setDateRange] = useState([null, null]);
@@ -63,14 +61,6 @@ export default function Producto(props) {
       return "Muy bueno";
     } else {
       return "Sin Calificación";
-    };
-  };
-
-  const withDoors = (doors) => {
-    if(producto.categoria.titulo === "Motos" || producto.categoria.titulo === "Bicicletas") {
-      return "";
-    } else {
-      return ((<><i>{door}</i><strong>{doors}</strong></>));
     };
   };
 
@@ -190,13 +180,9 @@ export default function Producto(props) {
         <h1>¿Qué ofrece este lugar?</h1>
         <hr className="commodity-divisor" />
         <div className="features-box">
-          <div>
-            <i>{people}</i>
-            <strong>{8}</strong>
-          </div>
-          <div>
-            {withDoors(8)}
-          </div>
+          {producto.caracteristicas.map(caract => {
+            return <><i class={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
+          })}
         </div>
       </div>
       <div className="commodity-available-dates">
@@ -230,7 +216,7 @@ export default function Producto(props) {
       <div className="commodity-location">
         <h1>¿Dónde vas a estar?</h1>
         <hr className="commodity-divisor" />
-        <h4>Aquí la ciudad: {producto.ciudad.nombre}</h4>
+        <h4>{producto.ciudad.nombre}</h4>
         <div className="commodity-location-container">
           <div>
             <LoadScript
