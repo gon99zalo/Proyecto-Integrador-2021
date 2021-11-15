@@ -25,9 +25,24 @@
     position: absolute;
     bottom: 15px;
     right: 1.4%;
-    font-size: 16px;
+    height: 40px;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 17px;
     font-weight: 700;
-    text-decoration: underline;
     color: #FFFFFF;
     cursor: pointer;
+    transition:transform ease-out 200ms;
+}
+.ver-mas:hover {
+    transform:scale(1.2,1.2) translate3d(0,0,0);
+}
+
+@keyframes ver-mas-zoom {
+    0% {width: 17%};
+    
+
 }
