@@ -154,8 +154,8 @@ export default function Producto(props) {
             <div className="commodity-location-description">
               <i>{marker}</i>
               <div className="texto-locacion">
-                <p> Aquí va la ciudad ingresada en el buscador</p>
-                <p>Aquí la distancia y locación: {producto.ciudad.nombre + ", " + producto.ciudad.pais}</p>
+                <p> {producto.ciudad.nombre + ", " + producto.ciudad.pais}</p>
+                <p> A 100mt del Barrio Los Rosales</p>
               </div>
             </div>
             
@@ -230,7 +230,7 @@ export default function Producto(props) {
       <div className="commodity-location">
         <h1>¿Dónde vas a estar?</h1>
         <hr className="commodity-divisor" />
-        <h4>Aquí la ciudad: {producto.ciudad.nombre}</h4>
+        <h4>{producto.ciudad.nombre}</h4>
         <div className="commodity-location-container">
           <div>
             <LoadScript
