@@ -2,6 +2,7 @@
 // Librerías
 import React from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import Geocode from "react-geocode";
 import { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 // Estilo CSS
@@ -33,6 +34,10 @@ export default function Producto(props) {
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [center, setCenter] = useState({
+    lat: -34.603722,
+    lng: -58.381592
+  });
   const [producto, setProducto] = useState({
     id: 0,
     nombre: "",
@@ -49,6 +54,7 @@ export default function Producto(props) {
       url: ""
     }
   });
+  Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
   const qualificationText = (qualification) => {
     if(qualification >= 1 && qualification <= 2.5) {
@@ -75,7 +81,20 @@ export default function Producto(props) {
       .then(
         (result) => {
           result == null ? console.log(result) : setProducto(result);
-          setIsLoaded(true)
+          Geocode.fromAddress(result.ciudad.nombre + ", " + result.ciudad.pais).then(
+            (response) => {
+              const { lat, lng } = response.results[0].geometry.location;
+              setCenter({
+                lat: lat,
+                lng: lng
+              });
+              setIsLoaded(true)
+            },
+            (error) => {
+              console.error(error);
+              setIsLoaded(true)
+            }
+          );
         },
         (error) => {
           setError(error);
@@ -101,11 +120,6 @@ export default function Producto(props) {
         window.removeEventListener('resize', handleResize)
     }
   }, [props.match.params.id]);
-
-  const center = {
-    lat: -34.603722,
-    lng: -58.381592
-  };
   if (error) {
     return (
     <>
@@ -167,7 +181,6 @@ export default function Producto(props) {
 
         <div className="commodity-gallery" style={{display: "flex", justifyContent: "center", alignItems: "center" }}>
           {width < 768 ? <SwipeGallery imagenes={producto.imagenes}/> : <Gallery imagenes={producto.imagenes}/> }
-          {console.log(producto)}
         </div>
 
         <div className="commodity-description">
@@ -181,7 +194,7 @@ export default function Producto(props) {
         <hr className="commodity-divisor" />
         <div className="features-box">
           {producto.caracteristicas.map(caract => {
-            return <><i class={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
+            return <><i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
           })}
         </div>
       </div>
