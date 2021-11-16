@@ -14,6 +14,8 @@ import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 //Formatear fechas
 import { subDays } from 'date-fns';
 import { Link } from "react-router-dom";
+//Autcomplete buscador
+import { AutoComplete } from 'primereact/autocomplete';
 
 const api = "http://localhost:8080"
 
@@ -24,7 +26,24 @@ export default function Buscador() {
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
+  const [selectedCity, setSelectedCity] = useState(null)
+  const [filteredCitites, setFilteredCities] = useState([]);
   registerLocale("es", es);
+
+  //funcion buscador ciudades
+  const searchCities = (event) => {
+    let filteredCities;
+    if (!event.query.trim().length) {
+        filteredCities = [...ciudades];
+    } else {
+        filteredCities = ciudades.filter(ciudad => {
+            return ciudad.nombre.toLowerCase().indexOf(event.query.toLowerCase()) >= 0;
+        });
+        console.log(filteredCitites)
+    }
+
+    setFilteredCities(filteredCities);
+}
 
   useEffect(() => {
     //calculo del ancho de pantalla
@@ -165,20 +184,12 @@ export default function Buscador() {
     </div>
   );
 
-  let selectChange = event => {
-    setCiudad(event.target.value);
-  }
-  
   return (
     <div className="buscador">
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
-        <select id="selecciona-ciudad" onChange={selectChange}>
-          <option hidden defaultValue>
-            Elije donde quieres retirar el auto
-          </option>
-          {ciudades.map((item) => {return <option value={item.nombre}>{item.nombre}</option>})}
-        </select>
+        
+      <AutoComplete placeholder="Elige donde quieres retirar el auto" value={selectedCity} completeMethod={searchCities} suggestions={filteredCitites} field="nombre" onChange={(e) => setSelectedCity(e.value)}/> 
 
         <DatePicker
           renderCustomHeader={width <= 480 ? calendarHeaderMobile : calendarHeader}
