@@ -28,7 +28,7 @@ h4 {
 .product-card {
     display: flex;
     flex-grow: 1;
-    height: 283px;
+    height: 300px;
     width: 46.5%;
     border: 1px solid #DFE4EA;
     box-sizing: border-box;
