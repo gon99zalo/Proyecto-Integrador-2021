@@ -13,6 +13,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^12.1.10",
     "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-adapter-react-17-updated": "^1.0.2",
     "fetch-mock": "^9.10.7",
     "fslightbox-react": "^1.6.2-2",
     "jest-css-modules": "^2.1.0",

@@ -1,5 +1,5 @@
 import React from "react";
-import App from "../container/App";
+
 import DatePicker from "react-datepicker";
 import Buscador from "../components/Buscador";
 import "@testing-library/jest-dom";
@@ -8,14 +8,15 @@ import { MemoryRouter } from "react-router";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import fetchMock from "fetch-mock";
-import renderer from "react-test-renderer";
+import renderer, { act } from "react-test-renderer";
 import { createMemoryHistory } from "history";
 import { shallow, mount } from "enzyme";
 import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Adapter from 'enzyme-adapter-react-17-updated'
 Enzyme.configure({ adapter: new Adapter() });
 
 //Sprint 1
+
 
 let findByTestAttr = (wrapper, val) => wrapper.find(`[data-test='${val}']`);
 const mockSetValue = jest.fn();
@@ -55,35 +56,73 @@ describe("Buscador", () => {
   });
 
   test("Botón de búsqueda", () => {
-    const wrapper = shallow(<Buscador />);
-    //console.log(wrapper.debug())
+    const wrapper = shallow(
+        <Buscador />
+    );
     const boton = wrapper.find("Link.boton-buscar");
     expect(boton.exists()).toBe(true);
-    //const titulo= wrapper.find('h1.titulo-buscador')
     //console.log("boton", boton.debug());
-    //const button = findByTestAttr(wrapper, "boton-buscar");
   });
-  // test("Filtrar por ciudad", () => {
-  //   const history = createMemoryHistory();
+  // test("Renderiza calendario", ()=>{
   //   const wrapper = shallow(
   //     <Router history={history}>
-  //       {" "}
-  //       <Buscador onClick={mockSetValue}/>
+	// 		<Buscador>
+  //       <div>
+  //       <div>
+  //       <DatePicker />
+  //       </div>
+  //       </div>
+  //     </Buscador>
+  //     </Router>
+	// 	);
+  //   console.log(wrapper.debug());
+	// 	const calendario = findByTestAttr(wrapper, ".react-datepicker");
+	// 	expect(calendario).toHaveLength(1);
+  // })
+  // test("Filtrar por ciudad", async () => {
+  //   shallow(
+  //     <Router history={history}>
+  //       <Buscador />
   //     </Router>
   //   );
-  //   const select = wrapper.find("select");
-  //   select.simulate('click', {target: {value:"Bogotá"}});
-  //   console.log("select", select.props());
-  // });
-  test("Renderiza Calendario", () => {
-		const wrapper = mount(
-			<Buscador>
-				<DatePicker />
-			</Buscador>
-		);
-		const calendario = findByTestAttr(wrapper, "react-datepicker");
-    console.log('calendario', calendario.debug());
-		//expect(calendario).toHaveLength(1);
-    
-	});
-});
+  //   const api = "http://localhost:8080";
+  //   function ciudades() {
+  //     try {
+  //       fetch(api + "/ciudades/todas")
+  //         .then((res) => res.json())
+  //         .then(
+  //           (result) => {
+  //             console.log(result);
+  //           },
+  //           (error) => {
+  //             console.log(error);
+  //           }
+  //         );
+  //     } catch (error) {
+  //       console.error("algo salio maluco", error);
+  //     }
+  //   }
+  //   ciudades();
+    // const history = createMemoryHistory();
+    // const wrapper =  mount(
+    //   <Router history={history}>
+    //     <Buscador />
+    //   </Router>
+    // );
+    // const select = wrapper.find("select");
+    // console.log("select", select.debug());
+    //select.simulate("click", { target: { value: "Bogotá" } });
+
+    //expect(mockSetValue).toHaveBeenCalled();
+    //});
+    // test("Renderiza Calendario", () => {
+    // 	const wrapper = mount(
+    // 		<Buscador>
+    // 			<DatePicker />
+    // 		</Buscador>
+    // 	);
+    // 	const calendario = findByTestAttr(wrapper, "react-datepicker");
+    //   console.log('calendario', calendario.debug());
+    // 	//expect(calendario).toHaveLength(1);
+  });
+
