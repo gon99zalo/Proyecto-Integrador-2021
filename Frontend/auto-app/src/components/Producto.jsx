@@ -24,7 +24,7 @@ import Footer from './Footer';
 import Loading from './Loading';
 
 export default function Producto(props) {
-  const commodityBackArrow = <FontAwesomeIcon icon={faChevronLeft} />;
+  const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
   registerLocale("es", es);
@@ -150,7 +150,7 @@ export default function Producto(props) {
               <h4>{producto.categoria.titulo}</h4>
               <h1>{producto.nombre}</h1>
             </div>
-            <i className="commodity-back-arrow"><a href="/">{commodityBackArrow}</a></i>
+            <i className="back-arrow"><a href="/">{backArrow}</a></i>
             
           </div>
 
@@ -158,8 +158,8 @@ export default function Producto(props) {
             <div className="commodity-location-description">
               <i>{marker}</i>
               <div className="texto-locacion">
-                <p> Aquí va la ciudad ingresada en el buscador</p>
-                <p>Aquí la distancia y locación: {producto.ciudad.nombre + ", " + producto.ciudad.pais}</p>
+                <p> {producto.ciudad.nombre + ", " + producto.ciudad.pais}</p>
+                <p> A 100mt del Barrio Los Rosales</p>
               </div>
             </div>
             
@@ -272,5 +272,5 @@ export default function Producto(props) {
       <Footer />
     </>
   );
-}
+};
 };
