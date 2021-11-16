@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faMapMarkerAlt, faStar, faUserAlt, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
+import {  faMapMarkerAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Listado.css";
 import Header from "./Header";
 import Buscador from "./Buscador";
 import Footer from "./Footer";
 import Loading from "./Loading";
+import { Link } from "react-router-dom";
 
 const api = "http://localhost:8080"
 
 export default function Buscar(props) {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
-  const people = <FontAwesomeIcon icon={faUserAlt} />;
-  const door = <FontAwesomeIcon icon={faDoorClosed} />;
   const [ showText, setShowText ] = useState({show: false, idText: null});
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,14 +23,6 @@ export default function Buscar(props) {
       show: !showText.show,
       idText: title
     });
-  };
-
-  const withDoors = (categoria, doors) => {
-    if(categoria === "Motos" || categoria === "Bicicletas") {
-      return "";
-    } else {
-      return ((<><i>{door}</i><strong>{doors}</strong></>));
-    };
   };
 
   const qualificationText = (qualification) => {
@@ -49,7 +40,7 @@ export default function Buscar(props) {
   };
 
   useEffect(() => {
-    if(props.match.params.filtro == "todos"){
+    if(props.match.params.filtro === "todos"){
       fetch(api + "/productos/todos")
       .then(res => res.json())
       .then(
@@ -63,7 +54,7 @@ export default function Buscar(props) {
         }
       )
     }
-    else if (props.match.params.filtro == "categoria"){
+    else if (props.match.params.filtro === "categoria"){
       fetch(api + "/productos/categoria?titulo=" + props.match.params.condicion)
       .then(res => res.json())
       .then(
@@ -77,7 +68,7 @@ export default function Buscar(props) {
         }
       )
     }
-    else if (props.match.params.filtro == "locacion") {
+    else if (props.match.params.filtro === "locacion") {
       fetch(api + "/productos/ciudad?nombre=" + props.match.params.condicion)
       .then(res => res.json())
       .then(
@@ -144,8 +135,9 @@ export default function Buscar(props) {
                       <i>{marker}</i> A 100mt de {item.ciudad.nombre + ", " + item.ciudad.pais} <a href="./"><span>MOSTRAR EN EL MAPA</span></a>
                     </p>
                     <div className="product-features">
-                      <i>{people}</i><strong>{/*item.people --cantidad de personas*/}3</strong>
-                      {/*withDoors(item.doors) --cantidad de puertas*/}{withDoors(item.categoria.nombre, 4)}
+                      {item.caracteristicas.map(caract => {
+                        return <><i class={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
+                      })}
                     </div>
                     <div className="txt-1 product-description">
                       <p key={`p-${i}`}>
@@ -155,7 +147,7 @@ export default function Buscar(props) {
                         </span>
                       </p>
                     </div>
-                    <button className="product-show-more btn-1"><a href={"./productos/" + item.id}>Ver Detalle</a></button>
+                    <button className="product-show-more btn-1"><Link to={"/productos/" + item.id}>Ver Detalle</Link></button>
                     <div className="qualification">
                       <span>{/*item.qualification*/ 7}</span>
                       <p className="txt-1">{qualificationText(/*item.qualification*/7)}</p>
