@@ -8,7 +8,6 @@ import iniciarSesion from "../components/IniciarSesion";
 import Logged from '../components/Logged';
 import Producto from '../components/Producto';
 import Buscar from '../components/Buscar';
-import HorarioLLegada from '../components/HorarioLlegada';
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
           <Route exact path="/buscar/:filtro" component={Buscar} />
           <Route exact path="/buscar/:filtro/:condicion" component={(props) => <Buscar timestamp={new Date().toString()} {...props} />} />
           <Route exact path="/productos/:id" component={Producto} />
-          <Route exact path="/form" component={HorarioLLegada} />
         </Switch>
       </BrowserRouter>
     </div>
