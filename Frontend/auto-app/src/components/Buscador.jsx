@@ -214,7 +214,7 @@ export default function Buscador() {
         </DatePicker>
         <Link to={ciudad=="" ? "/buscar/todos": "/buscar/locacion/" + ciudad} className="boton-buscar" id="boton-buscar" >
           Buscar
-        </Link>
+        </Link> 
       </div>
     </div>
   );
