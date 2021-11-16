@@ -40,15 +40,37 @@ input.datePicker {
 .boton-buscar {
     cursor: pointer;
 }
-.buscadores select{
-    width: 25vw;
-}
 
-select,input[type=date]{
+/* .buscadores select{
+    width: 25vw;
+} */
+
+/* select,input[type=date]{
     border-radius: 5px;
     
   }
-  
+
+.css-b62m3t-container {
+    width: 25%;
+} */
+
+.p-inputtext{
+    width: 25vw;
+    height: 40px;
+    border-radius: 5px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
+}
+
+ .p-autocomplete-panel{
+    background-color: white;
+    position: absolute;
+} 
+
+ul{
+    list-style: none;
+}
+
   @media screen and (max-width:  480px){
       .titulo-buscador{
         font-size: 25px;
