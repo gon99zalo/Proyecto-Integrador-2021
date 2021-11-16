@@ -12,11 +12,11 @@
 .buscadores div.react-datepicker-wrapper {
     padding: 0;
     border: 0;
-    width: auto;
+    width: 31%;
   }
 
 .buscadores {
-    margin-top: 35px;
+    margin-top: 23px;
     display: flex;
     justify-content: center;
     gap: 5px;
@@ -30,20 +30,22 @@ input.datePicker {
 }
 
 .boton-buscar {
+    width: 15.1%;
+    padding: 5px 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
     background-color: rgba(240, 87, 45, 1);
     border-color: rgba(240, 87, 45, 1);
     color: white;
-    border-radius: 5px;
-    padding: 5px 35px;
-}
-
-.boton-buscar {
+    font-weight: 700;
     cursor: pointer;
 }
 
-/* .buscadores select{
-    width: 25vw;
-} */
+.buscadores select{
+    width: 31%;
+}
 
 /* select,input[type=date]{
     border-radius: 5px;
@@ -75,6 +77,9 @@ ul{
       .titulo-buscador{
         font-size: 25px;
       }
+      .buscadores div.react-datepicker-wrapper {
+        width: 100%;
+      }
       input.datePicker {
         border-radius: 5px;
         padding: 5px 35px;
@@ -84,6 +89,9 @@ ul{
         height: 30px;
         width: 100%;
       }
+    .boton-buscar {
+        width: 100%;
+    }
   }
 
   

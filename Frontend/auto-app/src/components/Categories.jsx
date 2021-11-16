@@ -3,6 +3,7 @@
 import '../styles/Categories.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 const api = "http://localhost:8080"
 
@@ -30,7 +31,9 @@ export default function BloqueCategoria() {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return (
+      <Loading />
+    );
   } else {
     return(
         <div className="category">
@@ -38,7 +41,7 @@ export default function BloqueCategoria() {
             <div className="type-container">
                 {categorias.map( (item, i) => 
                     <div className="type-card" key={i}>
-                        <Link to={{pathname:"/buscar", state:{ locacion: "", categoria:item.titulo }}}>
+                        <Link to={"/buscar/categoria/" + item.titulo}>
                             <img src={item.url} alt={item.titulo} />
                         </Link>
                         <h3>{item.titulo}</h3>
