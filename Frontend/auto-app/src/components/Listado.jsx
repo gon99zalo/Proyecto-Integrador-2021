@@ -47,7 +47,7 @@ export default function Listado() {
             var r = Math.floor(Math.random() * result) + 1;
             if(array.indexOf(r) === -1) array.push(r);
           }
-          array.map((i) => {
+          array.forEach((i) => {
             fetch(api + "/productos/buscar/" + i)
             .then(res => res.json())
             .then(
