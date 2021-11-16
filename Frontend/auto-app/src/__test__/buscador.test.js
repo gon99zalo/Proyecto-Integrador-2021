@@ -37,7 +37,7 @@ describe("Buscador", () => {
       screen.getByText(/Busca el auto que necesitas/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Elije donde quieres retirar el auto/i)
+      screen.getByText(/Elige donde quieres retirar el auto/i)
     ).toBeInTheDocument();
     expect(screen.getByText(/Check in - Check out/i)).toBeInTheDocument();
   });

@@ -26,6 +26,7 @@
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    background-color: rgba(240, 87, 45, 1);
 }
 .type-card a {
     height: 183px;
@@ -43,7 +44,7 @@
     margin-top: 5px;
 }
 .type-card p{
-    color:gray;
+    color:white;
     font-weight: 700;
 }
 @media screen and (max-width:  480px){
