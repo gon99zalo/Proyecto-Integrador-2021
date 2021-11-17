@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Categories from './Categories';
 import Listado from './Listado';
+// import Reservas from "./Reservas";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Buscador />
       <Categories />
       <Listado /> 
+      {/* <Reservas /> */}
       <Footer />
     </>
   );

@@ -19,7 +19,7 @@ export default function Gallery(props) {
             </div>
           );
         })}
-        <div className="ver-mas" onClick={() => setToggler(!toggler)}>
+        <div className="ver-mas btn-1" onClick={() => setToggler(!toggler)}>
           Ver más
         </div>
         <FsLightbox

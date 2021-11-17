@@ -2,13 +2,14 @@
 // Librerías
 import React from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import Geocode from "react-geocode";
 import { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 // Estilo CSS
 import "../styles/producto.css";
 // Íconos
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faChevronLeft, faStar, faMapMarkerAlt, faUserAlt, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
+import {  faChevronLeft, faStar, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 // Calendario
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -20,13 +21,12 @@ import Gallery from './Gallery';
 import SwipeGallery from './SwipeGallery';
 import Header from "./Header";
 import Footer from './Footer';
+import Loading from './Loading';
 
 export default function Producto(props) {
-  const commodityBackArrow = <FontAwesomeIcon icon={faChevronLeft} />;
+  const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
-  const people = <FontAwesomeIcon icon={faUserAlt} />;
-  const door = <FontAwesomeIcon icon={faDoorClosed} />;
   registerLocale("es", es);
   const api01 = "http://localhost:8080"
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
@@ -35,6 +35,10 @@ export default function Producto(props) {
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [center, setCenter] = useState({
+    lat: -34.603722,
+    lng: -58.381592
+  });
   const [producto, setProducto] = useState({
     id: 0,
     nombre: "",
@@ -51,6 +55,7 @@ export default function Producto(props) {
       url: ""
     }
   });
+  Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
   const qualificationText = (qualification) => {
     if(qualification >= 1 && qualification <= 2.5) {
@@ -66,14 +71,6 @@ export default function Producto(props) {
     };
   };
 
-  const withDoors = (doors) => {
-    if(producto.categoria.titulo === "Motos" || producto.categoria.titulo === "Bicicletas") {
-      return "";
-    } else {
-      return ((<><i>{door}</i><strong>{doors}</strong></>));
-    };
-  };
-
   useEffect(() => {
     setwidth(window.screen.availWidth);
     function handleResize() {
@@ -85,6 +82,18 @@ export default function Producto(props) {
       .then(
         (result) => {
           result == null ? console.log(result) : setProducto(result);
+          Geocode.fromAddress(result.ciudad.nombre + ", " + result.ciudad.pais).then(
+            (response) => {
+              const { lat, lng } = response.results[0].geometry.location;
+              setCenter({
+                lat: lat,
+                lng: lng
+              });
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
           setIsLoaded(true)
         },
         (error) => {
@@ -111,11 +120,6 @@ export default function Producto(props) {
         window.removeEventListener('resize', handleResize)
     }
   }, [props.match.params.id]);
-
-  const center = {
-    lat: -34.603722,
-    lng: -58.381592
-  };
   if (error) {
     return (
     <>
@@ -128,7 +132,8 @@ export default function Producto(props) {
     return (
       <>
       <Header />
-      <div>Loading...</div>;
+      {/* <div>Loading...</div> */}
+      <Loading />
       <Footer />
     </>
     )
@@ -145,16 +150,16 @@ export default function Producto(props) {
               <h4>{producto.categoria.titulo}</h4>
               <h1>{producto.nombre}</h1>
             </div>
-            <i className="commodity-back-arrow"><a href="/">{commodityBackArrow}</a></i>
+            <i className="back-arrow"><a href="/">{backArrow}</a></i>
             
           </div>
 
           <div className="commodity-location-ranking">
             <div className="commodity-location-description">
               <i>{marker}</i>
-              <div>
-                <p> Aquí va la ciudad ingresada en el buscador</p>
-                <p>Aquí la distancia y locación: {producto.ciudad.nombre + ", " + producto.ciudad.pais}</p>
+              <div className="texto-locacion">
+                <p> {producto.ciudad.nombre + ", " + producto.ciudad.pais}</p>
+                <p> A 100mt del Barrio Los Rosales</p>
               </div>
             </div>
             
@@ -176,7 +181,6 @@ export default function Producto(props) {
 
         <div className="commodity-gallery" style={{display: "flex", justifyContent: "center", alignItems: "center" }}>
           {width < 768 ? <SwipeGallery imagenes={producto.imagenes}/> : <Gallery imagenes={producto.imagenes}/> }
-          {console.log(producto)}
         </div>
 
         <div className="commodity-description">
@@ -189,16 +193,11 @@ export default function Producto(props) {
         <h1>¿Qué ofrece este lugar?</h1>
         <hr className="commodity-divisor" />
         <div className="features-box">
-          <div>
-            <i>{people}</i>
-            <strong>{8}</strong>
-          </div>
-          <div>
-            {withDoors(8)}
-          </div>
+          {producto.caracteristicas.map(caract => {
+            return <><i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
+          })}
         </div>
       </div>
-
       <div className="commodity-available-dates">
         <DatePicker
           //para que aparezca sin necesidad del input
@@ -222,7 +221,7 @@ export default function Producto(props) {
           <div className="divider"></div>
         </DatePicker>
         <div className="inicar-reserva">
-            <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obetener precios exactos</p>
+            <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
             <button className="boton-iniciar-reserva">Iniciar reseva</button>
         </div>
       </div>
@@ -230,7 +229,7 @@ export default function Producto(props) {
       <div className="commodity-location">
         <h1>¿Dónde vas a estar?</h1>
         <hr className="commodity-divisor" />
-        <h4>Aquí la ciudad: {producto.ciudad.nombre}</h4>
+        <h4>{producto.ciudad.nombre}</h4>
         <div className="commodity-location-container">
           <div>
             <LoadScript
@@ -273,5 +272,5 @@ export default function Producto(props) {
       <Footer />
     </>
   );
-}
+};
 };

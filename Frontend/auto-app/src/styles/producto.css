@@ -7,11 +7,6 @@
   --four-color: #dfe4ea;
 }
 
-/* Container */
-.commodity-container {
-  height: 820px;
-}
-
 /* Header */
 .commodity-header {
   display: flex;
@@ -35,10 +30,10 @@
   color: #ffffff;
   line-height: 1em;
 }
-.commodity-back-arrow {
+.back-arrow {
   margin-right: 3%;
 }
-.commodity-back-arrow a {
+.back-arrow a {
   color: #ffffff;
   text-decoration: none;
   font-size: 40px
@@ -90,8 +85,10 @@
 }
 
 .commodity-gallery {
-  height: 441px;
-  /* background-color: var(--two-color); */
+  margin-top: 2em;
+}
+.commodity-gallery .image-gallery {
+  width: 100%;
 }
 
 .commodity-description {
@@ -112,7 +109,7 @@
 }
 
 .commodity-features {
-  height: 280px;
+  /* height: 280px; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -129,6 +126,7 @@
 .features-box {
   display: flex;
   margin-left: 3%;
+  margin-bottom: 2em;
   gap: 25%;
 }
 .features-box div i {
@@ -238,6 +236,11 @@ cursor: pointer;
 }
 
 @media screen and (min-width: 480px) and (max-width:  768px){
+
+  .commodity-location-ranking {
+    height: 65px;
+  }
+
   .commodity-available-dates {
     display: flex;
     flex-direction: column;
@@ -303,6 +306,11 @@ cursor: pointer;
     margin-right: 10px;
     width: 100%;
   }
+
+  .commodity-ranking-description {
+    width: 150px;
+  }
+
   .cancelacion {
     margin-bottom: 75px;
   }
@@ -313,6 +321,11 @@ cursor: pointer;
 }
 
 @media screen and (max-width: 480px){
+
+  .texto-locacion {
+    font-size: 13px;
+  }
+
   .commodity-available-dates {
     display: flex;
     flex-direction: column;

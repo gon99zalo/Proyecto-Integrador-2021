@@ -1,9 +1,10 @@
 //@ts-nocheck
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faMapMarkerAlt, faStar, faUserAlt, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
+import {  faMapMarkerAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Listado.css";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 const api01 = "http://localhost:8080"
 const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
@@ -11,8 +12,6 @@ const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
 export default function Listado() {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
-  const people = <FontAwesomeIcon icon={faUserAlt} />;
-  const door = <FontAwesomeIcon icon={faDoorClosed} />;
   const [ showText, setShowText ] = useState({show: false, idText: null});
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,14 +22,6 @@ export default function Listado() {
       show: !showText.show,
       idText: title
     });
-  };
-
-  const withDoors = (categoria, doors) => {
-    if(categoria === "Motos" || categoria === "Bicicletas") {
-      return "";
-    } else {
-      return ((<><i>{door}</i><strong>{doors}</strong></>));
-    };
   };
 
   const qualificationText = (qualification) => {
@@ -57,7 +48,7 @@ export default function Listado() {
             var r = Math.floor(Math.random() * result) + 1;
             if(array.indexOf(r) === -1) array.push(r);
           }
-          array.map((i) => {
+          array.forEach((i) => {
             fetch(api + "/productos/buscar/" + i)
             .then(res => res.json())
             .then(
@@ -90,7 +81,14 @@ export default function Listado() {
       )
   }, [])
 
-  return (
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return (
+      <Loading />
+    );
+  } else {
+    return (
     <>
       <div className="listado">
         <h2>Recomendaciones</h2>
@@ -101,7 +99,7 @@ export default function Listado() {
                 <div className="product-card" key={i}>
                   <div className="product-image">
                     <img className="product" src={item.imagenes[0].url} alt={item.imagenes[0].titulo} />
-                    <a href="./">
+                    <a href="/">
                       <img className="like" src="https://buimagenes.s3.us-east-2.amazonaws.com/img/like.png" alt="like" />
                     </a>
                   </div>
@@ -121,8 +119,9 @@ export default function Listado() {
                       <i>{marker}</i> A 100mt de {item.ciudad.nombre + ", " + item.ciudad.pais} <a href="./"><span>MOSTRAR EN EL MAPA</span></a>
                     </p>
                     <div className="product-features">
-                      <i>{people}</i><strong>{/*item.people --cantidad de personas*/}3</strong>
-                      {/*withDoors(item.doors) --cantidad de puertas*/}{withDoors(item.categoria.nombre, 4)}
+                    {item.caracteristicas.map(caract => {
+                        return <><i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
+                      })}
                     </div>
                     <div className="txt-1 product-description">
                       <p key={`p-${i}`}>
@@ -132,7 +131,7 @@ export default function Listado() {
                         </span>
                       </p>
                     </div>
-                    <Link  to={"./productos/" + item.id}><button className="product-show-more btn-1">Ver Detalle</button></Link>
+                    <Link  to={"/productos/" + item.id}><button className="product-show-more btn-1">Ver Detalle</button></Link>
                     <div className="qualification">
                       <span>{/*item.qualification*/ 7}</span>
                       <p className="txt-1">{qualificationText(/*item.qualification*/7)}</p>
@@ -145,5 +144,5 @@ export default function Listado() {
         </div>
       </div>
     </>
-  );
+  );}
 }
