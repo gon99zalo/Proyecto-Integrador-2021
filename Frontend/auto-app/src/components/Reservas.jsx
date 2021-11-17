@@ -5,11 +5,14 @@ import "../styles/Reservas.css";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faMapMarkerAlt, faStar } from "@fortawesome/free-solid-svg-icons";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 //Componentes
 import Header from "./Header";
 import Footer from "./Footer";
 import Loading from "./Loading";
 import FormDatos from "./FormDatos";
+import HorarioLLegada from "./HorarioLlegada";
 
 export default function Reservas(props) {
   // HOOKS
@@ -112,20 +115,20 @@ export default function Reservas(props) {
             <div className="booking-data">
 
               {/* FORMULARIO */}
-              <div style={{height: "271px", border: "1px solid #DFE4EA", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "8px", marginBottom: "35px"}}>
+              <div style={{height: "217px", border: "1px solid #DFE4EA", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "8px", marginBottom: "35px"}}>
                 <FormDatos />
               </div>
 
               {/* CALENDARIO */}
-              <h1 style={{marginBottom: "13px"}}>Selecciona tu fecha de reserva</h1>
-              <div style={{height: "297px", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "5px", marginBottom: "36px"}}>
-                Aquí Calendario
+              <h1 style={{marginBottom: "13px"}}>Seleccioná tu fecha de reserva</h1>
+              <div className="booking-calendar" style={{height: "297px", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "5px", marginBottom: "36px"}}>
+                <DatePicker inline />
               </div>
 
               {/* HORARIO */}
               <h1 style={{marginBottom: "16px"}}>Tu horario de llegada</h1>
               <div style={{height: "144px", border: "1px solid #DFE4EA", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "8px"}}>
-                Aquí Horario
+                <HorarioLLegada />
               </div>
             </div>
 

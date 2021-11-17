@@ -3,9 +3,9 @@ import "../styles/formDatos.css";
 export default function FormDatos() {
   //TODO: Si no se llena este campo arroja una pantalla de error hay que buscar una condición o algo
   // const infoUsuario = JSON.parse(localStorage.getItem("infoUsuario"));
-  const nombreUsuario =  "Joan";
-  const apellidoUsuario =  "González";
-  const correoUsuario =  "joan.gs@outlook.com";
+  const nombreUsuario =  "Cosme";
+  const apellidoUsuario =  "Fulanito";
+  const correoUsuario =  "comse.fulanito@mail.com";
 
   return (
     <>
