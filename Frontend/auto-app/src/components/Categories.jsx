@@ -5,7 +5,9 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
 
-const api = "http://localhost:8080"
+const api01 = "http://localhost:8080"
+const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
+
 
 export default function BloqueCategoria() {
     
