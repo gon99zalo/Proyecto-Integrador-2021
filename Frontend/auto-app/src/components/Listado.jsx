@@ -119,7 +119,7 @@ export default function Listado() {
                     </p>
                     <div className="product-features">
                     {item.caracteristicas.map(caract => {
-                        return <><i class={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
+                        return <><i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
                       })}
                     </div>
                     <div className="txt-1 product-description">

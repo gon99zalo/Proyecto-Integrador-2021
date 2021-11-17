@@ -46,9 +46,9 @@ export default function IniciarSesion() {
       <h1 className="titulo-inicio">Iniciar sesión</h1>
       <form className="form-iniciarSesion" action="">
           <div className="inputs-inicio">
-          <label className="labels-inicio" htmlFor="correo electronico">Correo electrónico</label>
-          <input className="campos-inicio" type="email" name="correo electronico" id="correo-electronico" required />
-          <label className="labels-inicio" htmlFor="contrasenia">Contraseña</label>
+          <label className="labels-inicio" htmlFor="correo-electronico">Correo electrónico</label>
+          <input className="campos-inicio" type="email" name="correo-electronico" id="correo-electronico" required />
+          <label  className="labels-inicio" htmlFor="contrasenia">Contraseña</label>
           <div className="campos-inicio">
             <input className="campos-inicio" type={passwordShown ? "text" : "password"} placeholder={passwordShown ? "contraseña" : "•••••••••"} name="contrasenia" id="contrasenia" required/>
             <i onClick={togglePasswordVisiblity} className="password" id="password">{passwordShown ? visible : notVisible}</i>
