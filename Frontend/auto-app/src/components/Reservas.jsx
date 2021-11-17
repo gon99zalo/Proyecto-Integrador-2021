@@ -9,6 +9,7 @@ import { faChevronLeft, faMapMarkerAlt, faStar } from "@fortawesome/free-solid-s
 import Header from "./Header";
 import Footer from "./Footer";
 import Loading from "./Loading";
+import FormDatos from "./FormDatos";
 
 export default function Reservas(props) {
   // HOOKS
@@ -112,7 +113,7 @@ export default function Reservas(props) {
 
               {/* FORMULARIO */}
               <div style={{height: "271px", border: "1px solid #DFE4EA", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "8px", marginBottom: "35px"}}>
-                Aquí Formulario
+                <FormDatos />
               </div>
 
               {/* CALENDARIO */}

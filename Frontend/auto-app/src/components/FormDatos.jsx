@@ -1,15 +1,14 @@
 import "../styles/formDatos.css";
 
 export default function FormDatos() {
-  const infoUsuario = JSON.parse(localStorage.getItem("infoUsuario"));
-  const nombreUsuario = infoUsuario.nombre;
-  const apellidoUsuario = infoUsuario.apellido;
-  const correoUsuario = infoUsuario.correo;
+  //TODO: Si no se llena este campo arroja una pantalla de error hay que buscar una condición o algo
+  // const infoUsuario = JSON.parse(localStorage.getItem("infoUsuario"));
+  const nombreUsuario =  "Joan";
+  const apellidoUsuario =  "González";
+  const correoUsuario =  "joan.gs@outlook.com";
 
   return (
     <>
-      <div className="datosUsuario">
-        <h2>Completá tus datos</h2>
         <form className="form-datosUsuario" action="">
           <div className="inputs-formDatosUsuario">
             <div>
@@ -29,7 +28,6 @@ export default function FormDatos() {
             </div>
           </div>
         </form>
-      </div>
     </>
   );
 };
