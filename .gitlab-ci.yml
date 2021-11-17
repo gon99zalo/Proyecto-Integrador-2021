@@ -20,6 +20,7 @@ stages:          # List of stages for jobs, and their order of execution
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
+  image: node
   only:
     - main
   script:
@@ -31,6 +32,7 @@ build-job:       # This job runs in the build stage, which runs first.
 
 test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
+  image: node
   only:
     - main
   before_script:
@@ -42,6 +44,7 @@ test-job:   # This job runs in the test stage.
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+  image: node
   only: 
     - main
   script:
