@@ -88,13 +88,12 @@ export default function Producto(props) {
                 lat: lat,
                 lng: lng
               });
-              setIsLoaded(true)
             },
             (error) => {
               console.error(error);
-              setIsLoaded(true)
             }
           );
+          setIsLoaded(true)
         },
         (error) => {
           setError(error);
