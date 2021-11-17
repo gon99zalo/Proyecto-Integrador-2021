@@ -33,11 +33,12 @@ describe("Buscador", () => {
         <Buscador />
       </Router>
     );
+    //screen.debug();
     expect(
       screen.getByText(/Busca el auto que necesitas/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Elige donde quieres retirar el auto/i)
+      screen.getByRole('searchbox', /Elige donde quieres retirar el auto/i)
     ).toBeInTheDocument();
     expect(screen.getByText(/Check in - Check out/i)).toBeInTheDocument();
   });
@@ -52,7 +53,7 @@ describe("Buscador", () => {
       )
       .toJSON();
     expect(rendered).toBeTruthy();
-    //screen.debug();
+    screen.debug();
   });
 
   test("Botón de búsqueda", () => {
