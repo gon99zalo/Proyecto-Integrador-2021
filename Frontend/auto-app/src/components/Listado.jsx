@@ -6,7 +6,8 @@ import "../styles/Listado.css";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
 
-const api = "http://localhost:8080"
+const api01 = "http://localhost:8080"
+const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
 
 export default function Listado() {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
@@ -119,7 +120,7 @@ export default function Listado() {
                     </p>
                     <div className="product-features">
                     {item.caracteristicas.map(caract => {
-                        return <><i class={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
+                        return <><i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
                       })}
                     </div>
                     <div className="txt-1 product-description">

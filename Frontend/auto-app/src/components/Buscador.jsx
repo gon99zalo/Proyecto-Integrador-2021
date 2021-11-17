@@ -17,7 +17,8 @@ import { Link } from "react-router-dom";
 //Autcomplete buscador
 import { AutoComplete } from 'primereact/autocomplete';
 
-const api = "http://localhost:8080"
+const api01 = "http://localhost:8080"
+const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
 
 export default function Buscador() {
   const [dateRange, setDateRange] = useState([null, null]);
@@ -189,7 +190,7 @@ export default function Buscador() {
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
         
-      <AutoComplete placeholder="Elige donde quieres retirar el auto" value={selectedCity} completeMethod={searchCities} suggestions={filteredCitites} field="nombre" onChange={(e) => setSelectedCity(e.value)}/> 
+      <AutoComplete placeholder="Elige donde quieres retirar el auto" value={selectedCity} completeMethod={searchCities} suggestions={filteredCitites} field="nombre" onChange={(e) => {setCiudad(e.value.nombre); setSelectedCity(e.value)}}/> 
 
         <DatePicker
           renderCustomHeader={width <= 480 ? calendarHeaderMobile : calendarHeader}
@@ -212,7 +213,7 @@ export default function Buscador() {
           <button className="btn-1 calendar-button">Aplicar</button>
           <div className="divider"></div>
         </DatePicker>
-        <Link to={ciudad==="" ? "/buscar/todos": "/buscar/locacion/" + ciudad} className="boton-buscar" id="boton-buscar" >
+        <Link to={ciudad==="" ? "/buscar": "/buscar?locacion=" + ciudad} className="boton-buscar" id="boton-buscar" >
           Buscar
         </Link> 
       </div>

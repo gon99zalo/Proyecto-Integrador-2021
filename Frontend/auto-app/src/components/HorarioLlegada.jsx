@@ -1,6 +1,17 @@
 import "../styles/horarioLlegada.css"
+import React, { useState, forwardRef, useEffect } from "react";
 
 export default function HorarioLLegada() {
+const [selectedOption, setSelectedOption] = useState(null)
+
+let horaElegida = null
+  
+  const handleChange = () => {
+    horaElegida = document.querySelector('option:checked').value
+    setSelectedOption(horaElegida)
+    console.log(horaElegida)
+  }
+
 
     return (
          <>
@@ -8,11 +19,35 @@ export default function HorarioLLegada() {
          <h2>Tu horario de llegada</h2>
          <form action="" className="form-horarioLlegada">
              <div>
-             <p>Tu habitación va a estar lista para el check-in entre las</p>
-             <label htmlFor="horarioElegido">Indicá tu horario estimado de llegada</label> 
-             <select>
+             <p>Tu auto va a estar listo en el siguiente horario: {selectedOption}</p>
+              <label htmlFor="horarioElegido">Indicá tu horario estimado de llegada</label> 
+             <select onClick={handleChange}>
              <option value="" selected disabled hidden>Seleccionar hora</option>
-             </select>
+             <option value="12:00 AM">12:00 AM</option>
+             <option value="1:00 AM">1:00 AM</option>
+             <option value="2:00 AM">2:00 AM</option>
+             <option value="3:00 AM">3:00 AM</option>
+             <option value="4:00 AM">4:00 AM</option>
+             <option value="5:00 AM">5:00 AM</option>
+             <option value="6:00 AM">6:00 AM</option>
+             <option value="7:00 AM">7:00 AM</option>
+             <option value="8:00 AM">8:00 AM</option>
+             <option value="9:00 AM">9:00 AM</option>
+             <option value="10:00 AM">10:00 AM</option>
+             <option value="11:00 AM">11:00 AM</option>
+             <option value="12:00 PM">12:00 PM</option>
+             <option value="1:00 PM">1:00 PM</option>
+             <option value="2:00 PM">2:00 PM</option>
+             <option value="3:00 PM">3:00 PM</option>
+             <option value="4:00 PM">4:00 PM</option>
+             <option value="5:00 PM">5:00 PM</option>
+             <option value="6:00 PM">6:00 PM</option>
+             <option value="7:00 PM">7:00 PM</option>
+             <option value="8:00 PM">8:00 PM</option>
+             <option value="9:00 PM">9:00 PM</option>
+             <option value="10:00 PM">10:00 PM</option>
+             <option value="11:00 PM">11:00 PM</option>
+             </select> 
              </div>
          </form>
          </div>
