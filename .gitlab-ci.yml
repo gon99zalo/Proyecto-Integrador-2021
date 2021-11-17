@@ -27,6 +27,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - npm --version
     - cd Frontend/auto-app
     - npm install --force
+    - export NODE_OPTIONS=--openssl-legacy-provider
     - npm run build
   
 
