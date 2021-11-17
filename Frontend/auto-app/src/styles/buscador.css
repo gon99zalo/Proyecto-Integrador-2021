@@ -92,6 +92,12 @@ ul{
     .boton-buscar {
         width: 100%;
     }
+    .p-inputtext{
+        width: 100%;
+    }
+    .p-autocomplete-item{
+        width: 100%;
+    }
   }
 
   
@@ -107,6 +113,12 @@ ul{
         border-radius: 5px;
         padding: 5px 35px;
         width: 30vw;
+    }
+    .p-inputtext{
+        width: 100%;
+    }
+    .p-autocomplete-item{
+        width: 100%;
     }
   }
   
