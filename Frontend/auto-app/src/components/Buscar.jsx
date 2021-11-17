@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
 
-const api = "http://localhost:8080"
+const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080/"
 
 export default function Buscar(props) {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
@@ -17,6 +17,8 @@ export default function Buscar(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [productos, setProductos] = useState([]);
+  const params = new URLSearchParams(window.location.search);
+  console.log(params.get("filtro"));
 
   const handlerShowText = (title) => {
     setShowText({
@@ -40,36 +42,36 @@ export default function Buscar(props) {
   };
 
   useEffect(() => {
-    if(props.match.params.filtro === "todos"){
+    if (params.get("categoria") != null){
+      fetch(api + "/productos/categoria?titulo=" + params.get("categoria"))
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setProductos(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+    }
+    else if (params.get("locacion") != null) {
+      fetch(api + "/productos/ciudad?nombre=" + params.get("locacion"))
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setProductos(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+    }
+    else {
       fetch(api + "/productos/todos")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setProductos(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    }
-    else if (props.match.params.filtro === "categoria"){
-      fetch(api + "/productos/categoria?titulo=" + props.match.params.condicion)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setProductos(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    }
-    else if (props.match.params.filtro === "locacion") {
-      fetch(api + "/productos/ciudad?nombre=" + props.match.params.condicion)
       .then(res => res.json())
       .then(
         (result) => {
@@ -136,7 +138,7 @@ export default function Buscar(props) {
                     </p>
                     <div className="product-features">
                       {item.caracteristicas.map(caract => {
-                        return <><i class={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
+                        return <><i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
                       })}
                     </div>
                     <div className="txt-1 product-description">
