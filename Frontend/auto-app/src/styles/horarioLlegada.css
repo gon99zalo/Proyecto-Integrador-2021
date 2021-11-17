@@ -30,14 +30,9 @@
     align-items: flex-start;
 }
 
-.form-horarioLlegada input {
+.form-horarioLlegada select {
     width: 48%;
     height: 35px;
-}
-
-.datepicker {
-    width: auto;
-    height: auto;
 }
 
 @media screen and (min-width: 480px) and (max-width:  768px){
@@ -45,7 +40,7 @@
         width: 97%;
     }
 
-    .form-horarioLlegada input {
+    .form-horarioLlegada select {
         width: 97%;
     }
 }
@@ -55,7 +50,7 @@
         width: 97%;
     }
 
-    .form-horarioLlegada input {
+    .form-horarioLlegada select {
         width: 97%;
     }
 }
