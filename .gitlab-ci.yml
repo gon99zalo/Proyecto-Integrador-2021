@@ -23,6 +23,7 @@ build-job:       # This job runs in the build stage, which runs first.
   only:
     - main
   script:
+    - npm install
     - npm run build
   
 
