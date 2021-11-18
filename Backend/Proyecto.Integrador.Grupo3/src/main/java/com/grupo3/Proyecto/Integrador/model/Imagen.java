@@ -3,6 +3,7 @@ package com.grupo3.Proyecto.Integrador.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,17 +19,22 @@ public class Imagen {
     private Long id;
     private String titulo;
     private String url;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonIgnore
     @JoinTable(name = "producto_id")
-    private List<Producto> productos = new ArrayList<>();
+    private Producto producto;
 
     public Imagen() { }
 
-    public Imagen(String titulo, String url, List<Producto> productos) {
+    public Imagen(String titulo, String url) {
         this.titulo = titulo;
         this.url = url;
-        this.productos = productos;
+    }
+
+    public Imagen(String titulo, String url, Producto producto) {
+        this.titulo = titulo;
+        this.url = url;
+        this.producto = producto;
     }
 
     @Override
@@ -37,6 +43,7 @@ public class Imagen {
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +
                 ", url='" + url + '\'' +
+                ", producto=" + producto +
                 '}';
     }
 }

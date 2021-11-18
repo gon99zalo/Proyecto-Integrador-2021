@@ -22,11 +22,6 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
     void eliminarPorTitulo(@Param("titulo") String titulo);
 
 
-  /*  Optional<Categoria> findByTitulo(String titulo);
-
-    @Transactional
-    Optional<Categoria> deleteByTitulo(String titulo);*/
-
 
 
 }

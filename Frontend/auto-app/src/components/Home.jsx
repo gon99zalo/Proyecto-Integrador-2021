@@ -1,19 +1,17 @@
-// import Buscador from "./Buscador";
+import Buscador from "./Buscador";
 import Footer from "./Footer";
 import Header from "./Header";
-// import Categories from './Categories';
-// import Listado from './Listado';
-import Reservas from "./Reservas";
+import Categories from './Categories';
+import Listado from './Listado';
 
 
 export default function Home() {
   return (
     <>
       <Header />
-      {/* <Buscador />
+      <Buscador />
       <Categories />
-      <Listado />  */}
-      <Reservas />
+      <Listado />
       <Footer />
     </>
   );
