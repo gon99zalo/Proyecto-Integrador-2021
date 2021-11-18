@@ -26,7 +26,7 @@ export default function HorarioLLegada() {
             <label htmlFor="horarioElegido">
               Indicá tu horario estimado de llegada
             </label>
-            <select onClick={handleChange}>
+            <select name="horario" onClick={handleChange}>
               <option value="" selected disabled hidden>
                 Seleccionar hora
               </option>
