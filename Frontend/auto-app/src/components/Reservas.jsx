@@ -43,9 +43,7 @@ export default function Reservas(props) {
   useEffect(() => {
     // Dirección de la API
     const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
-    // Aquí se hardcodeo el ID
-    //------------------------------
-    fetch(api + "/productos/buscar/9")
+    fetch(api + "/productos/buscar/" + props.match.params.id)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -73,14 +71,14 @@ export default function Reservas(props) {
           });
         }
       );
-  }, []);
+  }, [props.match.params.id]);
 
   // ESTA CONDICIÓN PERMITE MOSTRAR ERROR O PANTALLA DE CARGA
   if (error) {
     return (
       <>
         <Header />
-          <div>Error: {error.message}</div>;
+          <div>Error: {error.message}</div>
         <Footer />
       </>
     );
