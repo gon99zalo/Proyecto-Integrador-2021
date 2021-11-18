@@ -22,13 +22,13 @@ import SwipeGallery from './SwipeGallery';
 import Header from "./Header";
 import Footer from './Footer';
 import Loading from './Loading';
+import { Link } from 'react-router-dom';
 
 export default function Producto(props) {
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
   registerLocale("es", es);
-  const api01 = "http://localhost:8080"
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
@@ -132,7 +132,6 @@ export default function Producto(props) {
     return (
       <>
       <Header />
-      {/* <div>Loading...</div> */}
       <Loading />
       <Footer />
     </>
@@ -222,7 +221,7 @@ export default function Producto(props) {
         </DatePicker>
         <div className="inicar-reserva">
             <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
-            <button className="boton-iniciar-reserva">Iniciar reseva</button>
+            <Link to={"/productos/" + props.match.params.id + "/reserva"} className="boton-iniciar-reserva">Iniciar reseva</Link>
         </div>
       </div>
 
