@@ -31,6 +31,13 @@ private List<Producto> productos = new ArrayList<>();
         this.url = url;
     }
 
+    public Categoria(String titulo, String descripcion, String url, List<Producto> productos) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.url = url;
+        this.productos = productos;
+    }
+
     @Override
     public String toString() {
         return "Categoria{" +
@@ -38,6 +45,7 @@ private List<Producto> productos = new ArrayList<>();
                 ", titulo='" + titulo + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", url='" + url + '\'' +
+                ", productos=" + productos +
                 '}';
     }
 }

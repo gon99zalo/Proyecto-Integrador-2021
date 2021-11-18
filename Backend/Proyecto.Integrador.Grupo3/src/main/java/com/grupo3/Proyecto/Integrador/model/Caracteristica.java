@@ -18,7 +18,7 @@ public class Caracteristica {
     private Long id;
     private String nombre;
     private String icono;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonIgnore
     @JoinTable(name = "producto_id")
     private List<Producto> productos = new ArrayList<>();
@@ -28,7 +28,6 @@ public class Caracteristica {
     public Caracteristica(String nombre, String icono) {
         this.nombre = nombre;
         this.icono = icono;
-
     }
 
     @Override

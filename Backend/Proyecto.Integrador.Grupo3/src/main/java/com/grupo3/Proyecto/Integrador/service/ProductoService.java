@@ -5,6 +5,7 @@ import com.grupo3.Proyecto.Integrador.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,10 @@ public class ProductoService {
         return productoRepository.findById(id);
     }
 
+    public Producto actualizarProducto(Producto producto) { return productoRepository.save(producto);}
+
+    public void eliminarProductoPorID(Long id) { productoRepository.deleteById(id);}
+
     public List<Producto> listarTodos() {
         return productoRepository.findAll();
     }
@@ -35,6 +40,7 @@ public class ProductoService {
     public List<Producto> listarPorCiudad(String nombre) { return productoRepository.findAllByCiudadNombre(nombre);}
 
     public Integer cantProductos() { return productoRepository.cantProductos(); }
+
 
     }
 
