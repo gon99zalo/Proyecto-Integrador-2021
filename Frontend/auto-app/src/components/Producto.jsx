@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import "../styles/producto.css";
 // Íconos
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faChevronLeft, faStar, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faStar, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 // Calendario
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

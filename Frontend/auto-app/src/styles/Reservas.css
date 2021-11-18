@@ -1,3 +1,160 @@
-h1 {
-  color: var(--main-color);
+/* HEADER */
+.booking-header {
+  display: flex;
+  flex-direction: column;
+}
+.booking-header-titles {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--three-color);
+}
+.booking-header-titles div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3%;
+  text-align: left;
+}
+.booking-header-titles div h1,
+.booking-header-titles div h4 {
+  color: #ffffff;
+  line-height: 1em;
+}
+.back-arrow {
+  margin-right: 3%;
+}
+.back-arrow a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 40px
+}
+
+/* MAIN DETAILS */
+.booking-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 37px;
+}
+.booking-main h1 {
+  margin-left: 3%;
+  margin-bottom: 16px;
+}
+
+/* SECCIONES DEL MAIN */
+.booking-sections {
+  width: 94%; 
+  height: 817px;
+  display: flex;
+  margin-left: 3.5%;
+}
+
+/* DATOS DEL USUARIO Y RESERVA */
+.booking-data {
+  width: 66%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: 1%;
+}
+.booking-data div {
+  width: 100%;
+}
+.booking-data h1 {
+  margin-left: 0;
+}
+
+/* CALENDARIO */
+.booking-calendar {
+  height: auto;
+}
+
+/* DATOS DEL PRODUCTO */
+.booking-details {
+  width: 32%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  border: 1px solid #DFE4EA;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+.booking-details h1 {
+  width: 90.5%;
+  text-align: left;
+  margin: 0 auto;
+  font-size: 20pt;
+}
+.booking-details-image {
+  height: 300px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.booking-details-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.booking-details-info {
+  width: 90.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+.booking-details-info h4 {
+  line-height: 10px;
+}
+.booking-details-info h1 {
+  margin: 0;
+}
+.details-stars {
+  margin-bottom: 17px;
+  margin-left: 2px;
+}
+.booking-details-location {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.booking-details-location div {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 8px;
+  margin-bottom: 20px;
+}
+.booking-details-check {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.booking-details-divisor {
+  width: 90.5%;
+  border: 1px solid #BEBEBE;
+  margin-bottom: 19px;
+}
+.checks {
+  width: 84.5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.btn-details {
+  width: 89%;
+  height: 50px;
+  margin: 10px auto 0;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
 }
