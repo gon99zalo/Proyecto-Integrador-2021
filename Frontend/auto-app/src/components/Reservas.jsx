@@ -29,10 +29,10 @@ export default function Reservas(props) {
       nombre: "",
       pais: "",
     },
-    imagenes: {
+    imagenes: [{
       titulo: "",
       url: "",
-    },
+    }],
   });
   // ÍCONOS
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
@@ -139,6 +139,7 @@ export default function Reservas(props) {
 
               {/* IMAGEN RESERVA */}
               <div className="booking-details-image">
+                {console.log(producto.imagenes)}
                 <img src={producto.imagenes[0].url} alt={producto.imagenes[0].titulo} />
               </div>
 
