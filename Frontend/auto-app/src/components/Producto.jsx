@@ -221,7 +221,7 @@ export default function Producto(props) {
         </DatePicker>
         <div className="inicar-reserva">
             <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
-            <Link to={"/productos/" + props.match.params.id + "/reserva"} className="boton-iniciar-reserva">Iniciar reseva</Link>
+            <Link to={"/productos/" + props.match.params.id + "/reserva"} className="boton-iniciar-reserva">Iniciar reserva</Link>
         </div>
       </div>
 
