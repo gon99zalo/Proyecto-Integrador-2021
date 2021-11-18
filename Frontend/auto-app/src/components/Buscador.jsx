@@ -31,18 +31,23 @@ export default function Buscador() {
   registerLocale("es", es);
 
   //funcion buscador ciudades
-  const searchCities = (event) => {
-    let filteredCities;
-    if (!event.query.trim().length) {
-        filteredCities = [...ciudades];
-    } else {
-        filteredCities = ciudades.filter(ciudad => {
-            return ciudad.nombre.toLowerCase().indexOf(event.query.toLowerCase()) >= 0;
-        });
-        console.log(filteredCitites)
-    }
+//   const searchCities = (event) => {
+//     let filteredCities;
+//     if (!event.query.trim().length) {
+//         filteredCities = [...ciudades];
+//     } else {
+//         filteredCities = ciudades.filter(ciudad => {
+//             return ciudad.nombre.toLowerCase().indexOf(event.query.toLowerCase()) >= 0;
+//         });
+//         console.log(filteredCitites)
+//     }
 
-    setFilteredCities(filteredCities);
+//     setFilteredCities(filteredCities);
+// }
+
+const handlerCiudad = () => {
+  const ciudadElegida = document.querySelector("option:checked").value
+    setCiudad(ciudadElegida);
 }
 
   useEffect(() => {
@@ -189,9 +194,11 @@ export default function Buscador() {
     <div className="buscador">
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
-        
-      <AutoComplete placeholder="Elige donde quieres retirar el auto" value={selectedCity} completeMethod={searchCities} suggestions={filteredCitites} field="nombre" onChange={(e) => {setCiudad(e.value.nombre); setSelectedCity(e.value)}}/> 
-
+      {/* <AutoComplete placeholder="Elige donde quieres retirar el auto" value={selectedCity} completeMethod={searchCities} suggestions={filteredCitites} field="nombre" onChange={(e) => {setCiudad(e.value.nombre); setSelectedCity(e.value)}}/>  */}
+      <select name="ciudades" onClick={handlerCiudad}>
+      <option value="" selected disabled hidden>Elige donde quieres retirar el auto</option>
+        {ciudades.map(ciudad => <option value={ciudad.nombre}>{ciudad.nombre}</option>)}
+      </select>
         <DatePicker
           renderCustomHeader={width <= 480 ? calendarHeaderMobile : calendarHeader}
           selectsRange={true}
@@ -213,7 +220,7 @@ export default function Buscador() {
           <button className="btn-1 calendar-button">Aplicar</button>
           <div className="divider"></div>
         </DatePicker>
-        <Link to={ciudad === "" ? "/buscar/todos": "/buscar/locacion/" + ciudad} className="boton-buscar" id="boton-buscar" >
+        <Link to={ciudad === "" ? "/buscar": "/buscar?locacion=" + ciudad} className="boton-buscar" id="boton-buscar" >
           Buscar
         </Link> 
       </div>

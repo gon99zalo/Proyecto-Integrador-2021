@@ -45,18 +45,13 @@ input.datePicker {
 
 .buscadores select{
     width: 31%;
+    height: 40px;
+    border-radius: 5px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
 }
 
-/* select,input[type=date]{
-    border-radius: 5px;
-    
-  }
-
-.css-b62m3t-container {
-    width: 25%;
-} */
-
-.p-inputtext{
+/* .p-inputtext{
     width: 25vw;
     height: 40px;
     border-radius: 5px;
@@ -64,14 +59,34 @@ input.datePicker {
     box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
 }
 
+
  .p-autocomplete-panel{
     background-color: white;
     position: absolute;
+    margin-top: 5px;
 } 
 
+.p-autocomplete-item{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.p-autocomplete-item:hover {
+    cursor:pointer;
+    background-color: #f2f2f2;
+}
+
+.p-autocomplete-item::before{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 501;
+    content: "\f3c5";
+} 
+ 
 ul{
     list-style: none;
-}
+}*/
 
   @media screen and (max-width:  480px){
       .titulo-buscador{
@@ -92,12 +107,12 @@ ul{
     .boton-buscar {
         width: 100%;
     }
-    .p-inputtext{
+    /* .p-inputtext{
         width: 100%;
     }
     .p-autocomplete-item{
         width: 100%;
-    }
+    } */
   }
 
   
@@ -114,11 +129,11 @@ ul{
         padding: 5px 35px;
         width: 30vw;
     }
-    .p-inputtext{
+    /* .p-inputtext{
         width: 100%;
     }
     .p-autocomplete-item{
         width: 100%;
-    }
+    } */
   }
   
