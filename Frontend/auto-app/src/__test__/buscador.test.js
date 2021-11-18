@@ -42,7 +42,7 @@ describe("Buscador", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/Check in - Check out/i)).toBeInTheDocument();
   });
-
+  //este si
   test("Input seleccion ciudad", () => {
     fetchMock.mock("/ciudades/todas", "Buenos Aires");
     const rendered = renderer
@@ -52,10 +52,12 @@ describe("Buscador", () => {
         </Router>
       )
       .toJSON();
+      screen.debug(rendered);
     expect(rendered).toBeTruthy();
     screen.debug();
   });
 
+  //este si
   test("Botón de búsqueda", () => {
     const wrapper = shallow(
         <Buscador />
