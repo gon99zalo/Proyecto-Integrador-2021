@@ -21,7 +21,7 @@ let horaElegida = null
              <div>
              <p>Tu auto va a estar listo en el siguiente horario: {selectedOption}</p>
               <label htmlFor="horarioElegido">Indicá tu horario estimado de llegada</label> 
-             <select onClick={handleChange}>
+             <select required onClick={handleChange}>
              <option value="" selected disabled hidden>Seleccionar hora</option>
              <option value="12:00 AM">12:00 AM</option>
              <option value="1:00 AM">1:00 AM</option>
