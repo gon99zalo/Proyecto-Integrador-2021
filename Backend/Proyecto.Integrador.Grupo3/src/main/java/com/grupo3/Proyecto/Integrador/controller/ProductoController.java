@@ -1,11 +1,14 @@
 package com.grupo3.Proyecto.Integrador.controller;
 
+import com.grupo3.Proyecto.Integrador.model.Categoria;
 import com.grupo3.Proyecto.Integrador.model.Producto;
 import com.grupo3.Proyecto.Integrador.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,9 +31,43 @@ public class ProductoController {
         return productoService.buscarPorId(id);
     }
 
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<?> eliminarPorID(@PathVariable Long id) {
+        ResponseEntity<String> respuesta = null;
+
+        if (productoService.buscarPorId(id).isPresent()) {
+            productoService.eliminarProductoPorID(id);
+            respuesta = ResponseEntity.status(HttpStatus.OK).body("¡Producto Eliminado!");
+        } else {
+            respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return respuesta;
+    }
+
     @GetMapping("/todos")
     public ResponseEntity<List<Producto>> traerProductos() {
         return ResponseEntity.ok(productoService.listarTodos());
+    }
+
+    @PutMapping("/modificar")
+    @ResponseBody
+    public ResponseEntity<Producto> actualizarProducto(@RequestParam Long id, @RequestBody Producto p) {
+        ResponseEntity<Producto> respuesta = null;
+
+        if (productoService.buscarPorId(id).isPresent()) {
+            Producto producto = productoService.buscarPorId(id).get();
+            producto.setNombre(p.getNombre());
+            producto.setDescripcion(p.getDescripcion());
+            producto.setCategoria(p.getCategoria());
+            producto.setCiudad(p.getCiudad());
+            producto.setImagenes(p.getImagenes());
+            producto.setCaracteristicas(p.getCaracteristicas());
+            producto.setReservas(p.getReservas());
+            respuesta = ResponseEntity.ok(productoService.actualizarProducto(producto));
+        } else {
+            respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return respuesta;
     }
 
 
@@ -45,6 +82,13 @@ public class ProductoController {
     @GetMapping("/ciudad")
     public ResponseEntity<List<Producto>> listarPorCiudad(@RequestParam("nombre") String nombre) {
         return ResponseEntity.ok(productoService.listarPorCiudad(nombre));}
+
+    //Agregar un método que nos permita filtrar productos por dos fechas
+
+ /*   @GetMapping("/fechas")
+    public ResponseEntity<List<Producto>> listarPorFechas(String fechaInicial, String fechaFinal){
+        return ResponseEntity.ok(productoService.listarPorFechas(fechaInicial, fechaFinal));
+    }*/
 
     @GetMapping("/cantidad")
     public ResponseEntity<Integer> cantidadProductos(){ return ResponseEntity.ok(productoService.cantProductos());}

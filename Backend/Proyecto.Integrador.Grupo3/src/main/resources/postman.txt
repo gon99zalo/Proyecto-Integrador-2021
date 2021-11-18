@@ -19,14 +19,14 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"var response = pm.response.json();\r",
-									"\r",
 									"\r",
 									"pm.test(\"Validar atributo: nombre\", function () {\r",
+									"    var response = pm.response.json();\r",
 									"    pm.expect(pm.response.text()).to.include(\"nombre\")\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Validar atributo: descripcion\", function () {\r",
+									"    var response = pm.response.json();\r",
 									"    pm.expect(pm.response.text()).to.include(\"descripcion\")\r",
 									"    });"
 								],
@@ -39,7 +39,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"moto\",\r\n    \"descripcion\": \"verde\",\r\n    \"categoria\": { \r\n        \"id\": 1\r\n    },\r\n    \"ciudad\": {\r\n        \"id\": 2\r\n    },\r\n    \"caracteristica\": {\r\n        \"nombre\": \"gama media-alta\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Bugatti Test\",\r\n    \"descripcion\": \"Negro\",\r\n    \"categoria\": { \r\n        \"id\": 1\r\n    },\r\n    \"ciudad\": {\r\n        \"id\": 1\r\n    },\r\n    \"caracteristicas\": [{\r\n        \"nombre\": \"Test\"\r\n    }],\r\n    \"imagenes\": [{\r\n        \"icono\": \"coche\"\r\n    }]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -73,16 +73,27 @@
 									"\r",
 									"var response = pm.response.json();\r",
 									"\r",
-									"pm.test(\"El id es: 5\", function () {\r",
-									"    pm.expect(response.id).to.equal(5);\r",
+									"pm.test(\"El id es: 1\", function () {\r",
+									"    pm.expect(response.id).to.equal(1);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"El nombre es: Mazda\", function () {\r",
+									"    pm.expect(response.nombre).to.equal(\"Mazda\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La descripcion es: An intense commitment to your total satisfaction, that's The Mazda Way.\", function () {\r",
+									"    pm.expect(response.descripcion).to.equal(\"An intense commitment to your total satisfaction, that's The Mazda Way.\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Test JSON\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Validar atributos: nombre, descripcion, categoria, ciudad\", function () {\r",
-									"    pm.expect(pm.response.text()).to.includes(\"nombre\", \"descripcion\", \"categoria\", \"ciudad\")});"
+									"pm.test(\"Validando atributos: nombre, descripcion, categoria, ciudad\", function () {\r",
+									"    pm.expect(pm.response.text()).to.includes(\"nombre\", \"descripcion\", \"categoria\", \"ciudad\", \"imagenes\", \"caracteristicas\")});\r",
+									"\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -92,7 +103,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/productos/buscar/5",
+							"raw": "http://localhost:8080/productos/buscar/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -101,7 +112,7 @@
 							"path": [
 								"productos",
 								"buscar",
-								"5"
+								"1"
 							]
 						}
 					},
@@ -124,8 +135,8 @@
 									"    var jsonData = pm.response.json();\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Validar atributos: nombre, descripcion, categoria, ciudad\", function () {\r",
-									"    pm.expect(pm.response.text()).to.includes(\"nombre\", \"descripcion\", \"categoria\", \"ciudad\")});\r",
+									"pm.test(\"Validando atributos: nombre, descripcion, categoria, ciudad, imagenes, caracteristicas\", function () {\r",
+									"    pm.expect(pm.response.text()).to.includes(\"nombre\", \"descripcion\", \"categoria\", \"ciudad\", \"imagenes\", \"caracteristicas\")});\r",
 									""
 								],
 								"type": "text/javascript"
@@ -179,7 +190,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Lanus\",\r\n    \"pais\": \"Argentina\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Rosario\",\r\n    \"pais\": \"Argentina\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -256,9 +267,13 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
 									"pm.test(\"Test JSON\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"});"
+									"});\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -314,7 +329,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/productos/ciudad?nombre=lanus",
+							"raw": "http://localhost:8080/productos/ciudad?nombre=bogota",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -327,7 +342,7 @@
 							"query": [
 								{
 									"key": "nombre",
-									"value": "lanus"
+									"value": "bogota"
 								}
 							]
 						}
@@ -374,7 +389,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"autos0\",\r\n    \"descripcion\": \"gama alta\",\r\n    \"url\": \"autosgamaalta.com\"\r\n}",
+							"raw": "{\r\n    \"titulo\": \"autos0KM\",\r\n    \"descripcion\": \"gama alta\",\r\n    \"url\": \"autosgamaalta.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -406,9 +421,9 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"La categoría es: autos0KM\", function () {\r",
+									"pm.test(\"La categoría es: Autos\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.titulo).to.equal(\"autos0KM\");\r",
+									"    pm.expect(jsonData.titulo).to.equal(\"Autos\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Validar atributos: titulo, descripcion, url\", function () {\r",
@@ -424,7 +439,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/categorias/buscar?titulo=autos0KM",
+							"raw": "http://localhost:8080/categorias/buscar?titulo=autos",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -437,7 +452,7 @@
 							"query": [
 								{
 									"key": "titulo",
-									"value": "autos0KM"
+									"value": "autos"
 								}
 							]
 						}
@@ -473,7 +488,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/categorias/modificar/1",
+							"raw": "http://localhost:8080/categorias/modificar/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -482,7 +497,7 @@
 							"path": [
 								"categorias",
 								"modificar",
-								"1"
+								""
 							]
 						}
 					},
@@ -517,7 +532,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/categorias/modificar?titulo=autos0",
+							"raw": "http://localhost:8080/categorias/modificar?titulo=",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -530,7 +545,7 @@
 							"query": [
 								{
 									"key": "titulo",
-									"value": "autos0"
+									"value": ""
 								}
 							]
 						}
@@ -557,7 +572,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/categorias/eliminar?titulo=autos",
+							"raw": "http://localhost:8080/categorias/eliminar?titulo",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -570,7 +585,7 @@
 							"query": [
 								{
 									"key": "titulo",
-									"value": "autos"
+									"value": null
 								}
 							]
 						}
@@ -597,7 +612,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/categorias/eliminar/402",
+							"raw": "http://localhost:8080/categorias/eliminar/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -606,7 +621,7 @@
 							"path": [
 								"categorias",
 								"eliminar",
-								"402"
+								""
 							]
 						}
 					},
@@ -660,21 +675,21 @@
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"La categoría es: autos\", function () {\r",
+									"pm.test(\"La categoría es: Buses\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.titulo).to.equal(\"autos\");\r",
+									"    pm.expect(jsonData.titulo).to.equal(\"Buses\");\r",
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"La descripción es: gama alta\", function () {\r",
+									"pm.test(\"La descripción es: 35 Buses\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.descripcion).to.equal(\"gama alta\");\r",
+									"    pm.expect(jsonData.descripcion).to.equal(\"35 Buses\");\r",
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"La URL es: autogamaalta.com\", function () {\r",
+									"pm.test(\"La URL es: https://buimagenes.s3.us-east-2.amazonaws.com/img/Categoria_buses.jpeg\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.url).to.equal(\"autogamaalta.com\");\r",
+									"    pm.expect(jsonData.url).to.equal(\"https://buimagenes.s3.us-east-2.amazonaws.com/img/Categoria_buses.jpeg\");\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -688,7 +703,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/categorias/buscar/1",
+							"raw": "http://localhost:8080/categorias/buscar/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -697,7 +712,7 @@
 							"path": [
 								"categorias",
 								"buscar",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -715,27 +730,27 @@
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"El id es: 1\", function () {\r",
+									"pm.test(\"El id es: 3\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.id).to.equal(1);\r",
+									"    pm.expect(jsonData.id).to.equal(3);\r",
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"La categoría es: autos\", function () {\r",
+									"pm.test(\"La categoría es: Motos\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.titulo).to.equal(\"autos\");\r",
+									"    pm.expect(jsonData.titulo).to.equal(\"Motos\");\r",
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"La descripción es: gama alta\", function () {\r",
+									"pm.test(\"La descripción es: 30 Motos\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.descripcion).to.equal(\"gama alta\");\r",
+									"    pm.expect(jsonData.descripcion).to.equal(\"30 Motos\");\r",
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"La URL es: autogamaalta.com\", function () {\r",
+									"pm.test(\"La URL es: https://buimagenes.s3.us-east-2.amazonaws.com/img/Categoria_motos.jpeg\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.url).to.equal(\"autogamaalta.com\");\r",
+									"    pm.expect(jsonData.url).to.equal(\"https://buimagenes.s3.us-east-2.amazonaws.com/img/Categoria_motos.jpeg\");\r",
 									"});\r",
 									"\r",
 									""
@@ -755,7 +770,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/categorias/buscar/1",
+							"raw": "http://localhost:8080/categorias/buscar/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -764,7 +779,7 @@
 							"path": [
 								"categorias",
 								"buscar",
-								"1"
+								"3"
 							]
 						}
 					},

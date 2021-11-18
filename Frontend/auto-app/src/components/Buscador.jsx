@@ -213,7 +213,7 @@ export default function Buscador() {
           <button className="btn-1 calendar-button">Aplicar</button>
           <div className="divider"></div>
         </DatePicker>
-        <Link to={ciudad==="" ? "/buscar": "/buscar?locacion=" + ciudad} className="boton-buscar" id="boton-buscar" >
+        <Link to={ciudad === "" ? "/buscar/todos": "/buscar/locacion/" + ciudad} className="boton-buscar" id="boton-buscar" >
           Buscar
         </Link> 
       </div>
