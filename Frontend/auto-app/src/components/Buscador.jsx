@@ -57,6 +57,7 @@ export default function Buscador() {
       .then(res => res.json())
       .then(
         (result) => {
+          console.log("esteeeeee", result);
           setCiudades(result);
         },
         (error) => {
