@@ -25,9 +25,8 @@
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    background-color: rgba(240, 87, 45, 1);
 }
-.type-card a {
+.type-card-header {
     height: 183px;
 }
 .type-card a img {
@@ -35,6 +34,11 @@
     width: 100%;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
+}
+.type-card-footer {
+    height: 63.67px;
+    border-radius: 0 0 10px 10px;
+    background-color: var(--main-color);
 }
 .type-card h3, .type-card p {
     margin-left: 3.5%;

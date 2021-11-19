@@ -167,12 +167,12 @@ export default function Reservas(props) {
               {/* CHECK IN - CHECK OUT */}
               <div className="booking-details-check">
                 <div className="booking-details-divisor"></div>
-                <div className="txt-2 checks">
+                <div className="txt-2 checks check-in">
                   <p>Check in</p>
                   <span>_/_/_</span>
                 </div>
                 <div className="booking-details-divisor"></div>
-                <div className="txt-2 checks">
+                <div className="txt-2 checks check-out">
                   <p>Check out</p>
                   <span>_/_/_</span>
                 </div>
