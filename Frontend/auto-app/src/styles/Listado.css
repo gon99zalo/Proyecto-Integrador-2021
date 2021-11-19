@@ -44,14 +44,13 @@ h4 {
     object-fit: cover;
     height: 100%;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
 }
 .product-image a {
     position: absolute;
     top: 20px;
     right: 4.5%;
     height: 19px;
-    /* width: 6.8%; */
 }
 .product-data .product-location {
     font-size: 10pt;
