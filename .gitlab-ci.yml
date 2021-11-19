@@ -24,11 +24,7 @@ build-job:       # This job runs in the build stage, which runs first.
   only:
     - main
   script:
-    - npm --version
-    - cd Frontend/auto-app
-    - npm install --force
-    - export NODE_OPTIONS=--openssl-legacy-provider
-    - npm run build
+    - echo "Ejecutando build ...."
   
 
 test-job:   # This job runs in the test stage.
@@ -40,8 +36,6 @@ test-job:   # This job runs in the test stage.
     - echo "Running unit tests... This will take about 60 seconds."
   script:
     - cd Frontend/auto-app
-    - npm install --force
-    - npm test
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
