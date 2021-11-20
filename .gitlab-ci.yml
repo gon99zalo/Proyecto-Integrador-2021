@@ -12,7 +12,7 @@ build-job:       # This job runs in the build stage, which runs first.
   script:
     - echo "Ejecutando build "
     - cd Frontend/auto-app
-    - npm install
+    - npm install --force
     - npm run build
   artifacts:
     paths:
