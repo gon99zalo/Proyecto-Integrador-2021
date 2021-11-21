@@ -26,8 +26,8 @@ export default function Buscador() {
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
-  const [selectedCity, setSelectedCity] = useState(null)
-  const [filteredCitites, setFilteredCities] = useState([]);
+  //const [selectedCity, setSelectedCity] = useState(null)
+  //const [filteredCitites, setFilteredCities] = useState([]);
   registerLocale("es", es);
 
   //funcion buscador ciudades

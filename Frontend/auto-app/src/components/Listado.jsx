@@ -67,7 +67,7 @@ export default function Listado() {
                     pais: "error"
                   }
                 };
-                setProductos(productos.push(p))
+                setProductos(productos => productos.push(p))
               }
             )
           })

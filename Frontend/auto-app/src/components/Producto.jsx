@@ -124,7 +124,7 @@ export default function Producto(props) {
     return (
     <>
     <Header />
-    <div>Error: {error.message}</div>;
+    <div>Error: {error.message}</div>
     <Footer />
     </>
     )
@@ -183,8 +183,7 @@ export default function Producto(props) {
         </div>
 
         <div className="commodity-description">
-          <h1>{"An intense commitment to your total satisfaction, that's The Mazda Way."}</h1>
-          <p>{producto.descripcion}</p>
+          <h1>{producto.descripcion}</h1>
         </div>
       </div>
 
