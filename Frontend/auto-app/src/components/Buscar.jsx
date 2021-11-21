@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faMapMarkerAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Listado.css";
@@ -17,7 +17,7 @@ export default function Buscar(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [productos, setProductos] = useState([]);
-  const params = new URLSearchParams(window.location.search);
+  const params = useMemo(() => new URLSearchParams(window.location.search),[]);
   console.log(params.get("filtro"));
 
   const handlerShowText = (title) => {
@@ -84,7 +84,7 @@ export default function Buscar(props) {
         }
       )
     }
-  }, [])
+  }, [params])
 
 
   if (error) {
