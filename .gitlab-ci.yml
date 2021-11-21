@@ -15,7 +15,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - rm ./package-lock.json
     - npm cache clear --force
     - npm install --force
-    - npm run build:prod --if-present --serverTimeout 30000
+    - npm run build --serverTimeout 30000
   artifacts:
     paths:
       - build
