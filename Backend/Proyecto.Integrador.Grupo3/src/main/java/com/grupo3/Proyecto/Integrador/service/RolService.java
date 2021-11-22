@@ -21,4 +21,5 @@ public class RolService {
     public List<Rol> traerTodos() { return rolesRepository.findAll(); }
 
     public Optional<Rol>  buscarPorNombre(String nombre) { return rolesRepository.buscarPorNombre(nombre); }
+    
 }

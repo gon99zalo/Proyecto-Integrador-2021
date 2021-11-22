@@ -13,8 +13,10 @@ import java.util.List;
 @RequestMapping("/roles")
 public class RolController {
 
-    @Autowired
     private RolService rolService;
+
+    @Autowired
+    public RolController(RolService rolService) { this.rolService = rolService; }
 
     @PostMapping()
     public ResponseEntity<Rol> crearRol(@RequestBody Rol rol) {
