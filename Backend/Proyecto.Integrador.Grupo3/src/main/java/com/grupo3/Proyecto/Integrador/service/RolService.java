@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RolService {
@@ -18,4 +19,6 @@ public class RolService {
     public Rol crearRol(Rol rol) { return rolesRepository.save(rol);}
 
     public List<Rol> traerTodos() { return rolesRepository.findAll(); }
+
+    public Optional<Rol>  buscarPorNombre(String nombre) { return rolesRepository.buscarPorNombre(nombre); }
 }

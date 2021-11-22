@@ -1,7 +1,9 @@
 package com.grupo3.Proyecto.Integrador.controller;
 
 import com.grupo3.Proyecto.Integrador.dto.UsuarioLoginDTO;
+import com.grupo3.Proyecto.Integrador.model.Rol;
 import com.grupo3.Proyecto.Integrador.model.Usuario;
+import com.grupo3.Proyecto.Integrador.service.RolService;
 import com.grupo3.Proyecto.Integrador.service.UsuarioService;
 import com.grupo3.Proyecto.Integrador.service.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +23,36 @@ import java.util.Optional;
 public class LoginController {
 
     private UsuarioService usuarioService;
+    private RolService rolService;
     private AuthenticationManager authenticationManager;
     private TokenService tokenService;
 
     @Autowired
-    public LoginController(UsuarioService usuarioService, AuthenticationManager authenticationManager, TokenService tokenService) {
+    public LoginController(UsuarioService usuarioService, RolService rolService, AuthenticationManager authenticationManager, TokenService tokenService) {
         this.usuarioService = usuarioService;
+        this.rolService = rolService;
         this.authenticationManager = authenticationManager;
         this.tokenService = tokenService;
     }
+
 
     @PostMapping("/registro")
     public ResponseEntity<?> registroUsuario(@RequestBody Usuario usuario) {
         Optional<Usuario> userOptional = Optional.ofNullable(usuarioService.crearUsuario(usuario));
         if (userOptional.isPresent()) {
             Optional<UsuarioLoginDTO> usuarioLoginDto = usuarioService.login(usuario);
+            Optional<Rol> roleOptional;
+            if (usuario.getRol() == null) {
+                roleOptional = rolService.buscarPorNombre("USUARIO");
+                if (roleOptional.isEmpty()) {
+                    roleOptional = Optional.ofNullable(rolService.crearRol(new Rol("USUARIO")));
+                }
+                usuario.setRol(roleOptional.get());
+            }
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioLoginDto.get());
         }
         return ResponseEntity.badRequest().build();
+
     }
 
 
