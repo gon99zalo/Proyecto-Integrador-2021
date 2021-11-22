@@ -100,6 +100,7 @@ h4 {
     display: flex;
     margin-bottom: 23px;
     color: #F0572D;
+    gap: 2%;
 }
 .product-features strong {
     color: #31363F;

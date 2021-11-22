@@ -1,8 +1,5 @@
 package com.grupo3.Proyecto.Integrador.controller;
 
-import com.grupo3.Proyecto.Integrador.model.Categoria;
-import com.grupo3.Proyecto.Integrador.model.Producto;
-import com.grupo3.Proyecto.Integrador.model.Reserva;
 import com.grupo3.Proyecto.Integrador.model.Usuario;
 import com.grupo3.Proyecto.Integrador.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +23,13 @@ public class UsuarioController {
     }
 
     @GetMapping("buscar/{id}")
-    public Optional<Usuario> buscarUsuarioPorID(@PathVariable Long id) {
+    public Optional<Usuario> buscarUsuarioPorID(@PathVariable Integer id) {
         return usuarioService.buscarPorId(id);
     }
 
     @PutMapping("/modificar")
     @ResponseBody
-    public ResponseEntity<Usuario> actualizarUsuario(@RequestParam Long id, @RequestBody Usuario u) {
+    public ResponseEntity<Usuario> actualizarUsuario(@RequestParam Integer id, @RequestBody Usuario u) {
         ResponseEntity<Usuario> respuesta = null;
 
         if (usuarioService.buscarPorId(id).isPresent()) {
@@ -48,4 +45,6 @@ public class UsuarioController {
         }
         return respuesta;
     }
+
+
 }

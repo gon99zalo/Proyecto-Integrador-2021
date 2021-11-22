@@ -11,10 +11,12 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/roles")
-public class RolRepository {
+public class RolController {
+
+    private RolService rolService;
 
     @Autowired
-    private RolService rolService;
+    public RolController(RolService rolService) { this.rolService = rolService; }
 
     @PostMapping()
     public ResponseEntity<Rol> crearRol(@RequestBody Rol rol) {
