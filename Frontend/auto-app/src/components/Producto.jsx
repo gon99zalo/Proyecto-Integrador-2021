@@ -117,7 +117,7 @@ export default function Producto(props) {
     return _ => {
         window.removeEventListener('resize', handleResize)
     }
-  }, [props.match.params.id]);
+  }, [props.match.params.id, producto.ciudad.nombre, producto.ciudad.pais]);
   if (error) {
     return (
     <>
