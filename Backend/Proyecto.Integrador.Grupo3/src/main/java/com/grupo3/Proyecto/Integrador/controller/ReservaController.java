@@ -24,10 +24,13 @@ public class ReservaController {
         return ResponseEntity.ok(reservaService.crearReserva(reserva));
     }
 
-    @GetMapping("buscar/{id}")
+    @GetMapping("/buscar/{id}")
     public Optional<Reserva> buscarPorID(@PathVariable Long id) {
         return reservaService.buscarPorId(id);
     }
+
+    @GetMapping("/producto/{id}")
+    public Optional<Reserva> buscarPorIDProducto(@PathVariable Long id) { return reservaService.buscarPorIDProducto(id); }
 
     @GetMapping("/fechas")
     public ResponseEntity<List<Reserva>> buscarPorFecha(@RequestParam("fechaInicial") String fechaInicial, @RequestParam("fechaFinal") String fechaFinal)

@@ -83,12 +83,9 @@ public class ProductoController {
     public ResponseEntity<List<Producto>> listarPorCiudad(@RequestParam("nombre") String nombre) {
         return ResponseEntity.ok(productoService.listarPorCiudad(nombre));}
 
-    //Agregar un método que nos permita filtrar productos por dos fechas
+    //Agregar un método que nos permita filtrar productos por dos fechas y ciudad
 
- /*   @GetMapping("/fechas")
-    public ResponseEntity<List<Producto>> listarPorFechas(String fechaInicial, String fechaFinal){
-        return ResponseEntity.ok(productoService.listarPorFechas(fechaInicial, fechaFinal));
-    }*/
+
 
     @GetMapping("/cantidad")
     public ResponseEntity<Integer> cantidadProductos(){ return ResponseEntity.ok(productoService.cantProductos());}
