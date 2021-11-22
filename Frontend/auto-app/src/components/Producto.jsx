@@ -50,10 +50,8 @@ export default function Producto(props) {
       nombre: "",
       pais: ""
     },
-    imagenes: {
-      titulo: "",
-      url: ""
-    }
+    imagenes: [],
+    caracteristicas: []
   });
   Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
@@ -81,8 +79,8 @@ export default function Producto(props) {
       .then(res => res.json())
       .then(
         (result) => {
-          result == null ? console.log(result) : setProducto(result);
-          Geocode.fromAddress(result.ciudad.nombre + ", " + result.ciudad.pais).then(
+          result == null ? setError({message : "Este producto no existe"}) : setProducto(result);
+          Geocode.fromAddress(producto.ciudad.nombre + ", " + producto.ciudad.pais).then(
             (response) => {
               const { lat, lng } = response.results[0].geometry.location;
               setCenter({
