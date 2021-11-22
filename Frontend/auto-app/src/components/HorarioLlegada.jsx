@@ -27,7 +27,7 @@ export default function HorarioLLegada() {
               Indicá tu horario estimado de llegada
             </label>
             <select name="horario" onClick={handleChange}>
-              <option value="" selected disabled hidden>
+              <option value="" defaultValue="Seleccionar hora" disabled hidden>
                 Seleccionar hora
               </option>
               <option value="12:00 AM">12:00 AM</option>
