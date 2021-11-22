@@ -28,4 +28,6 @@ public class ReservaService {
     public Reserva actualizarReserva(Reserva reserva) { return reservaRepository.save(reserva);}
 
     public List<Reserva> traerTodas() { return reservaRepository.findAll(); }
+
+    public Optional<Reserva> buscarPorIDProducto(Long id) { return reservaRepository.findByProductoId(id); }
 }
