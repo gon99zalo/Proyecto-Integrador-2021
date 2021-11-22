@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
@@ -25,7 +25,7 @@ describe("Crear Cuenta", () => {
     // );
     const botonCrear = screen.getByRole("heading", { name: /Crear Cuenta/i });
     expect(window.location.pathname).toBe("/");
-    userEvent.click(botonCrear);
+    fireEvent.click(botonCrear);
     expect(window.location.pathname).toBe("/crearCuenta");
     expect(screen.getByText(/Nombre/i)).toBeInTheDocument();
     expect(screen.getByText(/Apellido/i)).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe("Crear Cuenta", () => {
     const botonCrear = screen.getByRole("heading", {
       name: /Crear Cuenta/i,
     });
-    userEvent.click(botonCrear);
+    fireEvent.click(botonCrear);
     //screen.debug()
     const nombre = screen.getByLabelText(/Nombre/i);
     const apellido = screen.getByLabelText(/Apellido/i);

@@ -3,6 +3,8 @@ import Buscador, { api } from "../components/Buscador";
 import "@testing-library/jest-dom";
 import { Router } from "react-router-dom";
 import { MemoryRouter } from "react-router";
+import { createMemoryHistory } from "history";
+import fetchMock from "fetch-mock";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen, waitFor } from "@testing-library/react";
 import renderer, { act } from "react-test-renderer";
@@ -76,5 +78,18 @@ describe("Buscador", () => {
   //   expect(boton.exists()).toBe(true);
   //   //console.log(wrapper.debug());
   // });
+  test("Input seleccion ciudad", () => {
+    fetchMock.mock("/ciudades/todas", "Buenos Aires");
+    const history = createMemoryHistory();
+    const rendered = renderer
+      .create(
+        <Router history={history}>
+          <Buscador />
+        </Router>
+      )
+      .toJSON();
+    expect(rendered).toBeTruthy();
+    //screen.debug();
+  });
 });
 

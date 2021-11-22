@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
@@ -21,7 +21,7 @@ describe("Iniciar Sesión", () => {
       name: /Iniciar Sesión/i,
     });
     expect(window.location.pathname).toBe("/");
-    userEvent.click(botonIniciar);
+    fireEvent.click(botonIniciar);
     expect(window.location.pathname).toBe("/iniciarSesion");
     expect(screen.getByText(/Correo electrónico/i)).toBeInTheDocument();
     expect(screen.getByText(/Contraseña/i)).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe("Iniciar Sesión", () => {
     const botonIniciar = screen.getByRole("heading", {
       name: /Iniciar Sesión/i,
     });
-    userEvent.click(botonIniciar);
+    fireEvent.click(botonIniciar);
     const correo = screen.getByLabelText(/Correo electrónico/i);
     const pass = screen.getByLabelText(/Contraseña/i);
     userEvent.type(correo, "jaimito@mail.com");
