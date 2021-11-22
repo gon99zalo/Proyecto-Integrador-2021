@@ -33,7 +33,7 @@ test-job:   # This job runs in the test stage.
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
   dependencies:
-    - build
+    - build-job
   image: 
     name: amazon/aws-cli
     entrypoint: [""]
