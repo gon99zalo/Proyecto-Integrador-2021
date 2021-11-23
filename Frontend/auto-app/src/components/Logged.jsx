@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom"
 import "../styles/header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Listado from './Listado';
 import { faFacebook, faInstagram, faLinkedinIn, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
@@ -25,11 +25,12 @@ export default function Logged() {
   let toggleNav = () => {
       setShow(show === "sidenav"? "sidenav-show" : "sidenav");
     }
-  const handlerClose=() => {
+  const handlerClose = useCallback(() => {
+      sessionStorage.removeItem('infoUsuario')
       history.push("/")
-    }
+    }, [history])
 
-    let nombreCompleto = JSON.parse(localStorage.getItem('infoUsuario'))
+    let nombreCompleto = JSON.parse(sessionStorage.getItem('infoUsuario'))
 
     useEffect(() => {
         setwidth(window.screen.availWidth);

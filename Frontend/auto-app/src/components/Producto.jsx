@@ -51,10 +51,8 @@ export default function Producto(props) {
       nombre: "",
       pais: ""
     },
-    imagenes: {
-      titulo: "",
-      url: ""
-    }
+    imagenes: [],
+    caracteristicas: []
   });
   Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
@@ -82,8 +80,8 @@ export default function Producto(props) {
       .then(res => res.json())
       .then(
         (result) => {
-          result == null ? console.log(result) : setProducto(result);
-          Geocode.fromAddress(result.ciudad.nombre + ", " + result.ciudad.pais).then(
+          result == null ? setError({message : "Este producto no existe"}) : setProducto(result);
+          Geocode.fromAddress(producto.ciudad.nombre + ", " + producto.ciudad.pais).then(
             (response) => {
               const { lat, lng } = response.results[0].geometry.location;
               setCenter({
@@ -120,12 +118,12 @@ export default function Producto(props) {
     return _ => {
         window.removeEventListener('resize', handleResize)
     }
-  }, [props.match.params.id]);
+  }, [props.match.params.id, producto.ciudad.nombre, producto.ciudad.pais]);
   if (error) {
     return (
     <>
     <Header />
-    <div>Error: {error.message}</div>;
+    <div>Error: {error.message}</div>
     <Footer />
     </>
     )
@@ -184,8 +182,7 @@ export default function Producto(props) {
         </div>
 
         <div className="commodity-description">
-          <h1>{"An intense commitment to your total satisfaction, that's The Mazda Way."}</h1>
-          <p>{producto.descripcion}</p>
+          <h1>{producto.descripcion}</h1>
         </div>
       </div>
 

@@ -1,6 +1,5 @@
 package com.grupo3.Proyecto.Integrador.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +25,11 @@ public class Reserva {
     private Usuario usuario;
 
     public Reserva() { }
+
+    public Reserva(String fechaInicial, String fechaFinal) {
+        this.fechaInicial = fechaInicial;
+        this.fechaFinal = fechaFinal;
+    }
 
     public Reserva(String fechaInicial, String fechaFinal, String hora, Producto producto, Usuario usuario) {
         this.fechaInicial = fechaInicial;

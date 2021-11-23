@@ -26,8 +26,8 @@ export default function Buscador() {
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
-  const [selectedCity, setSelectedCity] = useState(null)
-  const [filteredCitites, setFilteredCities] = useState([]);
+  //const [selectedCity, setSelectedCity] = useState(null)
+  //const [filteredCitites, setFilteredCities] = useState([]);
   registerLocale("es", es);
 
   //funcion buscador ciudades
@@ -45,10 +45,10 @@ export default function Buscador() {
 //     setFilteredCities(filteredCities);
 // }
 
-const handlerCiudad = () => {
-  const ciudadElegida = document.querySelector("option:checked").value
-    setCiudad(ciudadElegida);
-}
+  const handlerCiudad = () => {
+    const ciudadElegida = document.querySelector("option:checked").value
+      setCiudad(ciudadElegida);
+  }
 
   useEffect(() => {
     //calculo del ancho de pantalla
@@ -197,7 +197,7 @@ const handlerCiudad = () => {
       <div className="buscadores">
       {/* <AutoComplete placeholder="Elige donde quieres retirar el auto" value={selectedCity} completeMethod={searchCities} suggestions={filteredCitites} field="nombre" onChange={(e) => {setCiudad(e.value.nombre); setSelectedCity(e.value)}}/>  */}
       <select name="ciudades" onClick={handlerCiudad}>
-      <option value="" defaultValue disabled hidden>Elige donde quieres retirar el auto</option>
+      <option value="" selected disabled hidden>Elige donde quieres retirar el auto</option>
         {ciudades.map(ciudad => <option value={ciudad.nombre}>{ciudad.nombre}</option>)}
       </select>
         <DatePicker

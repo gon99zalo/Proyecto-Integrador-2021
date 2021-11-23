@@ -3,14 +3,12 @@ package com.grupo3.Proyecto.Integrador.controller;
 import com.grupo3.Proyecto.Integrador.model.Categoria;
 import com.grupo3.Proyecto.Integrador.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @CrossOrigin
 @RestController
