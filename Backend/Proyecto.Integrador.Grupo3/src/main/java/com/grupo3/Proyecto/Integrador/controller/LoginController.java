@@ -43,9 +43,9 @@ public class LoginController {
             Optional<UsuarioLoginDTO> usuarioLoginDto = usuarioService.login(usuario);
             Optional<Rol> roleOptional;
             if (usuario.getRol() == null) {
-                roleOptional = rolService.buscarPorNombre("USUARIO");
+                roleOptional = rolService.buscarPorNombre("CLIENTE");
                 if (roleOptional.isEmpty()) {
-                    roleOptional = Optional.ofNullable(rolService.crearRol(new Rol("USUARIO")));
+                    roleOptional = Optional.ofNullable(rolService.crearRol(new Rol("CLIENTE")));
                 }
                 usuario.setRol(roleOptional.get());
             }
