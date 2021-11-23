@@ -26,10 +26,11 @@ export default function Logged() {
       setShow(show === "sidenav"? "sidenav-show" : "sidenav");
     }
   const handlerClose = useCallback(() => {
+      sessionStorage.removeItem('infoUsuario')
       history.push("/")
     }, [history])
 
-    let nombreCompleto = JSON.parse(localStorage.getItem('infoUsuario'))
+    let nombreCompleto = JSON.parse(sessionStorage.getItem('infoUsuario'))
 
     useEffect(() => {
         setwidth(window.screen.availWidth);
