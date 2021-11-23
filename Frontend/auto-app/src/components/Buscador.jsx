@@ -16,6 +16,7 @@ import { subDays } from 'date-fns';
 import { Link } from "react-router-dom";
 //Autcomplete buscador
 import { AutoComplete } from 'primereact/autocomplete';
+import { PROPERTY_TYPES } from "@babel/types";
 
 const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
 
@@ -45,6 +46,7 @@ export default function Buscador() {
 //     setFilteredCities(filteredCities);
 // }
 
+//para guardar la ciudad elegida en el select
 const handlerCiudad = () => {
   const ciudadElegida = document.querySelector("option:checked").value
     setCiudad(ciudadElegida);
@@ -194,10 +196,11 @@ const handlerCiudad = () => {
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
       {/* <AutoComplete placeholder="Elige donde quieres retirar el auto" value={selectedCity} completeMethod={searchCities} suggestions={filteredCitites} field="nombre" onChange={(e) => {setCiudad(e.value.nombre); setSelectedCity(e.value)}}/>  */}
-      <select name="ciudades" onClick={handlerCiudad}>
+      <select name="ciudades" data-testid="select" onChange={handlerCiudad}>
       <option value="" selected disabled hidden>Elige donde quieres retirar el auto</option>
         {ciudades.map(ciudad => <option value={ciudad.nombre}>{ciudad.nombre}</option>)}
       </select>
+
         <DatePicker
           renderCustomHeader={width <= 480 ? calendarHeaderMobile : calendarHeader}
           selectsRange={true}

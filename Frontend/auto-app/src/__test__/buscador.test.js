@@ -3,10 +3,10 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import Buscador from "../components/Buscador";
 import "@testing-library/jest-dom";
-import { Router } from "react-router-dom";
+import { BrowserRouter, Router } from "react-router-dom";
 import { MemoryRouter } from "react-router";
 import "@testing-library/jest-dom/extend-expect";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import fetchMock from "fetch-mock";
 import renderer, { act } from "react-test-renderer";
 import { createMemoryHistory } from "history";
@@ -124,5 +124,32 @@ describe("Buscador", () => {
     // 	const calendario = findByTestAttr(wrapper, "react-datepicker");
     //   console.log('calendario', calendario.debug());
     // 	//expect(calendario).toHaveLength(1);
-  });
 
+    let originalFetch;
+
+    beforeEach(() => {
+        originalFetch = global.fetch;
+        global.fetch = jest.fn(() => Promise.resolve({
+            json: () => Promise.resolve({
+                value: "Buenos Aires"
+            })
+        }));
+    });
+
+    afterEach(() => {
+        global.fetch = originalFetch;
+    });
+  test("Test selector ciudades", async() => {
+    // fetchMock.get("/ciudades/todas");
+    render(<BrowserRouter>
+      <Buscador />
+      </BrowserRouter>);
+    expect(screen.getByText("Elige donde quieres retirar el auto")).toBeInTheDocument();
+    // highlight-start
+    fireEvent.change(screen.getByTestId("select"), {
+      target: { value: "Buenos Aires" },
+    });
+    // highlight-end
+    expect(screen.getByText("Buenos Aires")).toBeInTheDocument();
+  });
+  });
