@@ -8,7 +8,6 @@ import fetchMock from "fetch-mock";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen, waitFor } from "@testing-library/react";
 import renderer from "react-test-renderer";
-import {act} from 'react-dom/test-utils';
 import { shallow, mount } from "enzyme";
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-17-updated";
@@ -17,46 +16,44 @@ global.fetch = require("jest-fetch-mock");
 
 
 describe("Buscador", () => {
-  // beforeEach(() => {
-  // });
+
   test("Fetch a Api Ciudades", async () => {
-      await act(async ()=>{
-        jest.spyOn(window, "addEventListener");
-        const firstResponse = {
-          json: jest.fn(() => []),
-        };
-        global.fetch = jest.fn().mockResolvedValue(firstResponse);
-        render(
-          <MemoryRouter>
-            <Buscador />
-          </MemoryRouter>
-        );
-    
-        expect(window.addEventListener).toBeCalledWith(
-          "resize",
-          expect.any(Function)
-        );
-        expect(global.fetch).toBeCalledWith(api + "/ciudades/todas");
-        await waitFor(() => {
-          expect(firstResponse.json).toBeCalledWith();
-        });
-      })
-      
+    jest.spyOn(window, "addEventListener");
+    const firstResponse = {
+      json: jest.fn(() => []),
+    };
+    global.fetch = jest.fn().mockResolvedValue(firstResponse);
+    render(
+      <MemoryRouter>
+        <Buscador />
+      </MemoryRouter>
+    );
+
+    expect(window.addEventListener).toBeCalledWith(
+      "resize",
+      expect.any(Function)
+    );
+    expect(global.fetch).toBeCalledWith(api + "/ciudades/todas");
+    await waitFor(() => {
+      expect(firstResponse.json).toBeCalledWith();
+    });
   });
-  test("Debe contener el texto", async () => {
-    await act(async ()=>{
+
+  test("Debe contener el texto", async() => {
       jest.spyOn(window, "addEventListener");
       const firstResponse = {
         json: jest.fn(() => []),
       };
       global.fetch = jest.fn().mockResolvedValue(firstResponse);
-      //console.log(firstResponse)
-      render(
-        <MemoryRouter>
+
+
+        render(
+          <MemoryRouter>
           <Buscador />
         </MemoryRouter>
       );
-      //screen.debug();
+
+    await waitFor(() => {  
       expect(
         screen.getByText(/Busca el auto que necesitas/i)
       ).toBeInTheDocument();
@@ -95,7 +92,6 @@ describe("Buscador", () => {
       )
       .toJSON();
     expect(rendered).toBeTruthy();
-    //screen.debug();
   });
 });
 
