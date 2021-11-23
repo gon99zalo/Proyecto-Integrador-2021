@@ -45,10 +45,10 @@ export default function Buscador() {
 //     setFilteredCities(filteredCities);
 // }
 
-const handlerCiudad = () => {
-  const ciudadElegida = document.querySelector("option:checked").value
-    setCiudad(ciudadElegida);
-}
+  const handlerCiudad = () => {
+    const ciudadElegida = document.querySelector("option:checked").value
+      setCiudad(ciudadElegida);
+  }
 
   useEffect(() => {
     //calculo del ancho de pantalla
