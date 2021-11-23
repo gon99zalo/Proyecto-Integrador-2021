@@ -8,7 +8,6 @@ import fetchMock from "fetch-mock";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen, waitFor } from "@testing-library/react";
 import renderer from "react-test-renderer";
-import {act} from 'react-dom/test-utils';
 import { shallow, mount } from "enzyme";
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-17-updated";
