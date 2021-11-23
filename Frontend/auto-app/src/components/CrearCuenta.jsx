@@ -7,6 +7,7 @@ import { Link, useHistory } from "react-router-dom"
 
 export default function CrearCuenta() {
   const history = useHistory()
+  const api = "http://localhost:8080"
   const handlerSubmit=(e)=>{
     e.preventDefault()
   let contrasenia = document.getElementById("contrasenia").value
@@ -60,11 +61,23 @@ export default function CrearCuenta() {
     let infoUsuario = {
       nombre: document.querySelector("#nombre").value,
       apellido: document.querySelector("#apellido").value,
-      correo: document.querySelector("#correo-electronico").value,
+      email: document.querySelector("#correo-electronico").value,
       contrasenia: document.querySelector("#contrasenia").value,
+      rol: {
+        id:2
+      }
     }
-    localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario))
-    history.push("/iniciarSesion")
+    fetch(api + "/registro",{method: 'POST', body: JSON.stringify(infoUsuario), headers: {'Content-Type' : 'application/json'}})
+    .then(res => res.json())
+    .then(
+      (result) => {
+        history.push("/iniciarSesion")
+      },
+      (error) => {
+        console.log(error);
+        alert(error)
+      }
+    )
   }
   }
   }
