@@ -19,9 +19,6 @@ export default function IniciarSesion() {
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
-
-  let infoUsuario = JSON.parse(localStorage.getItem('infoUsuario'))
-
   
   const handlerValidate = (e) =>{
     e.preventDefault()
