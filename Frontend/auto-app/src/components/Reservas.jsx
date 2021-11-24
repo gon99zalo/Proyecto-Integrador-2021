@@ -235,11 +235,8 @@ export default function Reservas(props) {
                   marginBottom: "36px",
                 }}
               >
-                {/* <DatePicker inline monthsShown={2}/> */}
-                {/* <Calendario /> */}
                 <DatePicker
                   inline
-                  monthsShown={2}
                   renderCustomHeader={calendarHeaderReservas}
                   //para poder seleccionar un rango de fechas
                   selectsRange={true}
@@ -259,7 +256,9 @@ export default function Reservas(props) {
                     day.charAt(0).toUpperCase() + day.substring(1, 2)
                   }
                   showPopperArrow={false}
-                />
+                >
+                  <div className="divider-reserva"></div>
+                </ DatePicker>
               </div>
 
               {/* HORARIO */}

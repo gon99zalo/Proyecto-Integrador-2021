@@ -255,12 +255,11 @@ export default function Producto(props) {
             //para que aparezca sin necesidad del input
             inline 
             //para poder seleccionar un rango de fechas
-            selectsRange={true} 
-            startDate={startDate}
-            endDate={endDate}
-            onChange={(update) => {
-                setDateRange(update);
-              }}
+            selected={false}
+            // selectsRange={false} 
+            // startDate={false}
+            // endDate={endDate}
+            // onChange={null}
             //para que cuando sea menor a 480 se vuelva uno
             monthsShown={width <= 480 ? 1 : 2}
             //para que sea en español
