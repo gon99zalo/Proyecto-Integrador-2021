@@ -5,11 +5,10 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
 
-const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
+export const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
 
 
 export default function BloqueCategoria() {
-    
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [categorias, setCategorias] = useState([]);
@@ -42,11 +41,15 @@ export default function BloqueCategoria() {
             <div className="type-container">
                 {categorias.map( (item, i) => 
                     <div className="type-card" key={i}>
-                        <Link to={"/buscar?categoria=" + item.titulo}>
-                            <img src={item.url} alt={item.titulo} />
-                        </Link>
-                        <h3>{item.titulo}</h3>
-                        <p>{item.descripcion}</p>
+                        <div className="type-card-header">
+                          <Link to={"/buscar?categoria=" + item.titulo}>
+                              <img src={item.url} alt={item.titulo} />
+                          </Link>
+                        </div>
+                        <div className="type-card-footer">
+                          <h3>{item.titulo}</h3>
+                          <p>{item.descripcion}</p>
+                        </div>
                     </div>
                 )}
             </div>

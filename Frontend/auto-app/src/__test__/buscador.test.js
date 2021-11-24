@@ -1,49 +1,93 @@
 import React from "react";
-
-import DatePicker from "react-datepicker";
-import Buscador from "../components/Buscador";
+import Buscador, { api } from "../components/Buscador";
 import "@testing-library/jest-dom";
 import { BrowserRouter, Router } from "react-router-dom";
 import { MemoryRouter } from "react-router";
 import "@testing-library/jest-dom/extend-expect";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import fetchMock from "fetch-mock";
 import renderer, { act } from "react-test-renderer";
 import { createMemoryHistory } from "history";
+import "@testing-library/jest-dom/extend-expect";
+// import {act} from 'react-dom/test-utils';
 import { shallow, mount } from "enzyme";
 import Enzyme from "enzyme";
-import Adapter from 'enzyme-adapter-react-17-updated'
+import Adapter from "enzyme-adapter-react-17-updated";
 Enzyme.configure({ adapter: new Adapter() });
+// global.fetch = require("jest-fetch-mock");
 
-//Sprint 1
-
-
-let findByTestAttr = (wrapper, val) => wrapper.find(`[data-test='${val}']`);
-const mockSetValue = jest.fn();
-jest.mock("react", () => ({
-  ...jest.requireActual("react"),
-  useState: (initialState) => [initialState, mockSetValue],
-}));
 
 describe("Buscador", () => {
-  const history = createMemoryHistory();
-  test("Renderiza el texto", () => {
-    render(
-      <Router history={history}>
-        <Buscador />
-      </Router>
-    );
-    expect(
-      screen.getByText(/Busca el auto que necesitas/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/Elige donde quieres retirar el auto/i)
-    ).toBeInTheDocument();
-    expect(screen.getByText(/Check in - Check out/i)).toBeInTheDocument();
+  // beforeEach(() => {
+  // });
+  test("Fetch a Api Ciudades", async () => {
+      await act(async ()=>{
+        jest.spyOn(window, "addEventListener");
+        const firstResponse = {
+          json: jest.fn(() => []),
+        };
+        global.fetch = jest.fn().mockResolvedValue(firstResponse);
+        render(
+          <MemoryRouter>
+            <Buscador />
+          </MemoryRouter>
+        );
+    
+        expect(window.addEventListener).toBeCalledWith(
+          "resize",
+          expect.any(Function)
+        );
+        expect(global.fetch).toBeCalledWith(api + "/ciudades/todas");
+        await waitFor(() => {
+          expect(firstResponse.json).toBeCalledWith();
+        });
+      })
+      
   });
+  test("Debe contener el texto", async () => {
+    await act(async ()=>{
+      jest.spyOn(window, "addEventListener");
+      const firstResponse = {
+        json: jest.fn(() => []),
+      };
+      global.fetch = jest.fn().mockResolvedValue(firstResponse);
+      //console.log(firstResponse)
+      render(
+        <MemoryRouter>
+          <Buscador />
+        </MemoryRouter>
+      );
+      //screen.debug();
+      expect(
+        screen.getByText(/Busca el auto que necesitas/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/Elige donde quieres retirar el auto/i)
+      ).toBeInTheDocument();
+      expect(screen.getByText(/Check in - Check out/i)).toBeInTheDocument();
+      expect(screen.getByText(/Buscar/i)).toBeInTheDocument();
+    });
+    })
+    
+  //   test("Botón de búsqueda", async () => {
+  //     jest.spyOn(window, "addEventListener");
+  //     const firstResponse = {
+  //       json: jest.fn(() => []),
+  //     };
+  //     global.fetch = jest.fn().mockResolvedValue(firstResponse);
 
+  //     render(
+  //       <MemoryRouter>
+  //         <Buscador />
+  //       </MemoryRouter>
+  //     );
+  //   const boton = wrapper.find("Link.boton-buscar");
+  //   expect(boton.exists()).toBe(true);
+  //   //console.log(wrapper.debug());
+  // });
   test("Input seleccion ciudad", () => {
     fetchMock.mock("/ciudades/todas", "Buenos Aires");
+    const history = createMemoryHistory();
     const rendered = renderer
       .create(
         <Router history={history}>
@@ -125,31 +169,38 @@ describe("Buscador", () => {
     //   console.log('calendario', calendario.debug());
     // 	//expect(calendario).toHaveLength(1);
 
-    let originalFetch;
+    // let originalFetch;
 
-    beforeEach(() => {
-        originalFetch = global.fetch;
-        global.fetch = jest.fn(() => Promise.resolve({
-            json: () => Promise.resolve({
-                value: "Buenos Aires"
-            })
-        }));
-    });
+    // beforeEach(() => {
+    //     originalFetch = global.fetch;
+    //     global.fetch = jest.fn(() => Promise.resolve({
+    //         json: () => Promise.resolve({
+    //             value: "Buenos Aires"
+    //         })
+    //     }));
+    // });
 
-    afterEach(() => {
-        global.fetch = originalFetch;
-    });
-  test("Test selector ciudades", async() => {
-    // fetchMock.get("/ciudades/todas");
-    render(<BrowserRouter>
-      <Buscador />
-      </BrowserRouter>);
-    expect(screen.getByText("Elige donde quieres retirar el auto")).toBeInTheDocument();
-    // highlight-start
-    fireEvent.change(screen.getByTestId("select"), {
-      target: { value: "Buenos Aires" },
-    });
-    // highlight-end
-    expect(screen.getByText("Buenos Aires")).toBeInTheDocument();
-  });
+    // afterEach(() => {
+    //     global.fetch = originalFetch;
+    // });
+  // test("Test selector ciudades", async() => {
+  //   global.fetch = jest.fn().mockImplementation(() => {
+  //     return new Promise((resolve) =>
+  //         resolve({
+  //             json: () => {
+  //                 return { data: "Buenos Aires"};
+  //             }
+  //         })
+  //     );})
+  //   render(<BrowserRouter>
+  //     <Buscador />
+  //     </BrowserRouter>);
+  //   expect(screen.getByText("Elige donde quieres retirar el auto")).toBeInTheDocument();
+  //   // highlight-start
+  //   fireEvent.change(screen.getByTestId("select"), {
+  //     target: { value: "Buenos Aires" },
+  //   });
+  //   // highlight-end
+  //   expect(screen.getByText("Buenos Aires")).toBeInTheDocument();
+  // });
   });

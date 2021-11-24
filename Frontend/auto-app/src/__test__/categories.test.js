@@ -1,33 +1,59 @@
-import React from "react";
-import Categories from "../components/Categories";
-import "@testing-library/jest-dom";
+ import React from "react";
+ import Categories, { api } from "../components/Categories";
+ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
-import { render, screen } from "@testing-library/react";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
+import { render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
+import { shallow, mount } from "enzyme";
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-17-updated";
+Enzyme.configure({ adapter: new Adapter() });
 
-//Sprint 1
 
-// let findByTestAttr = (wrapper, val) => wrapper.find(`[data-test='${val}']`);
-// const mockSetValue = jest.fn();
-// jest.mock("react", () => ({
-//   ...jest.requireActual("react"),
-//   useState: (initialState) => [initialState, mockSetValue],
-// }));
+ describe("Categorias", () => {
+  test("Fetch a Api Categorias", async () => {
+    jest.spyOn(React,"useEffect");
+    const firstResponse = {
+      json: jest.fn(() => []),
+    };
+    global.fetch = jest.fn().mockResolvedValue(firstResponse);
 
-describe("Categorias", () => {
-  const history = createMemoryHistory();
-  test("Renderiza el texto", () => {
     render(
-      <Router history={history}>
+      <MemoryRouter>
         <Categories />
-      </Router>
+      </MemoryRouter>
     );
-    screen.debug();
-    //const h2 = screen.getAllByRole('heading');
-
-    //expect(screen.getAllByText(/Buscar por tipo de transporte/i)).toBeInTheDocument();
-    //expect(screen.getAllByRole(h2)).toBeInTheDocument();
-    //screen.debug();
+    
+    expect(global.fetch).toBeCalledWith(api + "/categorias/todos");
+    await waitFor(() => {
+    expect(firstResponse.json).toBeCalledWith(); 
+    
   });
 });
+  
+  // test("Debe renderizar el texto", async () => {
+  //   jest.spyOn(React,"useEffect");
+  //   const firstResponse = {
+  //     json: jest.fn(() => []),
+  //   };
+  //   global.fetch = jest.fn().mockResolvedValue(firstResponse);
+
+  //   render(
+  //     <MemoryRouter>
+  //       <Categories />
+  //     </MemoryRouter>
+  //   );
+    
+    
+  //   await waitFor(() => {
+  //   expect(global.fetch).toBeCalledWith(api + "/categorias/todos");
+  //   expect(firstResponse.json).toBeCalledWith();
+  //   screen.debug();
+    
+    // expect(
+    //     screen.getByText(/Buscar por tipo de transporte/i)
+    //    ).toBeInTheDocument();
+    
+});
+//});
+//});

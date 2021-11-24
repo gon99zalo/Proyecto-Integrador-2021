@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 
-export default function HorarioLLegada() {
+export default function HorarioLLegada(props) {
   const [selectedOption, setSelectedOption] = useState(null);
   const checkCircle = <FontAwesomeIcon icon={faCheckCircle} />;
 
@@ -12,8 +12,8 @@ export default function HorarioLLegada() {
 
   const handleChange = () => {
     horaElegida = document.querySelector("option:checked").value;
-    setSelectedOption(horaElegida);
-    console.log(horaElegida);
+    setSelectedOption(document.querySelector("option:checked").value);
+    props.horario(horaElegida)
   };
 
   return (
@@ -26,8 +26,8 @@ export default function HorarioLLegada() {
             <label htmlFor="horarioElegido">
               Indicá tu horario estimado de llegada
             </label>
-            <select name="horario" onClick={handleChange}>
-              <option value="" selected disabled hidden>
+            <select name="horario" onChange={handleChange}>
+              <option value="" defaultValue="Seleccionar hora" disabled hidden>
                 Seleccionar hora
               </option>
               <option value="12:00 AM">12:00 AM</option>

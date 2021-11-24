@@ -1,6 +1,5 @@
 package com.grupo3.Proyecto.Integrador.controller;
 
-import com.grupo3.Proyecto.Integrador.model.Categoria;
 import com.grupo3.Proyecto.Integrador.model.Producto;
 import com.grupo3.Proyecto.Integrador.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,12 +81,9 @@ public class ProductoController {
     public ResponseEntity<List<Producto>> listarPorCiudad(@RequestParam("nombre") String nombre) {
         return ResponseEntity.ok(productoService.listarPorCiudad(nombre));}
 
-    //Agregar un método que nos permita filtrar productos por dos fechas
+    //Agregar un método que nos permita filtrar productos por dos fechas y ciudad
 
- /*   @GetMapping("/fechas")
-    public ResponseEntity<List<Producto>> listarPorFechas(String fechaInicial, String fechaFinal){
-        return ResponseEntity.ok(productoService.listarPorFechas(fechaInicial, fechaFinal));
-    }*/
+
 
     @GetMapping("/cantidad")
     public ResponseEntity<Integer> cantidadProductos(){ return ResponseEntity.ok(productoService.cantProductos());}

@@ -15,10 +15,11 @@ import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { subDays } from 'date-fns';
 import { Link } from "react-router-dom";
 //Autcomplete buscador
-import { AutoComplete } from 'primereact/autocomplete';
-import { PROPERTY_TYPES } from "@babel/types";
+// import { AutoComplete } from 'primereact/autocomplete';
+// import { PROPERTY_TYPES } from "@babel/types";
+//import { AutoComplete } from 'primereact/autocomplete';
 
-const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
+export const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
 
 export default function Buscador() {
   const [dateRange, setDateRange] = useState([null, null]);
@@ -27,8 +28,8 @@ export default function Buscador() {
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
-  const [selectedCity, setSelectedCity] = useState(null)
-  const [filteredCitites, setFilteredCities] = useState([]);
+  //const [selectedCity, setSelectedCity] = useState(null)
+  //const [filteredCitites, setFilteredCities] = useState([]);
   registerLocale("es", es);
 
   //funcion buscador ciudades
@@ -58,8 +59,10 @@ const handlerCiudad = () => {
     function handleResize() {
         setwidth(window.screen.availWidth);
     }
+
     window.addEventListener('resize', handleResize)
-    //get al api de las ciudades
+    //get al api de ciudades
+
     fetch(api + "/ciudades/todas")
       .then(res => res.json())
       .then(

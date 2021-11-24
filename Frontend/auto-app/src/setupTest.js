@@ -5,4 +5,4 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 Enzyme.configure({ adapter: new Adapter() });
 //expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));enzyme-adapter-react-16
 //window.SVGPathElement = jest.fn();
-global.fetch = require('jest-fetch-mock');
+// global.fetch = require('jest-fetch-mock');

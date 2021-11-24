@@ -14,13 +14,11 @@ const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 
 export default function IniciarSesion() {
   const history = useHistory();
+  const api = "http://localhost:8080"
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
-
-  let infoUsuario = JSON.parse(localStorage.getItem('infoUsuario'))
-
   
   const handlerValidate = (e) =>{
     e.preventDefault()
@@ -28,20 +26,32 @@ export default function IniciarSesion() {
     let contraseniaUsuario = document.querySelector("#contrasenia").value
     let inputs = document.querySelectorAll(".campos-inicio")
     let boton = document.querySelector(".texto-cuenta")
-    if(infoUsuario.correo === emailUsuario && infoUsuario.contrasenia === contraseniaUsuario){
-      history.push("/logueado")
-    }else{
-      // alert("Por favor vuelva a intentarlo, tus credenciales son inválidas") 
-      for(inputs of inputs){
-      inputs.classList.toggle("error")
-      }
-      boton.nextElementSibling.classList.toggle("error-mensaje")
+    let formData = {
+      email: emailUsuario,
+      contrasenia: contraseniaUsuario
     }
+    fetch(api + "/login", {method: 'POST', body: JSON.stringify(formData), headers: {'Content-Type' : 'application/json'}})
+    .then(res => res.json())
+    .then(
+      (result) => {
+        console.log(result);
+        sessionStorage.setItem("infoUsuario", JSON.stringify(result))
+        history.push("/")
+      },
+      (error) => {
+        console.log(error);
+        alert("Por favor vuelva a intentarlo, tus credenciales son inválidas") 
+        for(inputs of inputs){
+        inputs.classList.toggle("error")
+        }
+        boton.nextElementSibling.classList.toggle("error-mensaje")
+      }
+    )
   }
 
   return (
     <>
-      <Header login={true}/>
+      <Header />
       <div className="logIn">
       <h1 className="titulo-inicio">Iniciar sesión</h1>
       <form className="form-iniciarSesion" action="">

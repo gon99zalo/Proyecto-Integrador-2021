@@ -44,14 +44,13 @@ h4 {
     object-fit: cover;
     height: 100%;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
 }
 .product-image a {
     position: absolute;
     top: 20px;
     right: 4.5%;
     height: 19px;
-    /* width: 6.8%; */
 }
 .product-data .product-location {
     font-size: 10pt;
@@ -71,7 +70,7 @@ h4 {
 }
 .product-data h1 {
     margin-bottom: 23px;
-    font-size: 20pt;
+    font-size: 24px;
 }
 .product-data .txt-1 {
     font-size: 9.2pt;
@@ -101,6 +100,7 @@ h4 {
     display: flex;
     margin-bottom: 23px;
     color: #F0572D;
+    gap: 2%;
 }
 .product-features strong {
     color: #31363F;
@@ -135,7 +135,7 @@ h4 {
 
 .qualification {
     position: absolute;
-    top: 20px;
+    top: 5px;
     right: 4.5%;
     display: flex;
     flex-direction: column;
