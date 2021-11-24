@@ -26,6 +26,8 @@ import Footer from './Footer';
 import Loading from './Loading';
 import { Link } from 'react-router-dom';
 
+Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
+
 export default function Producto(props) {
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
@@ -56,7 +58,6 @@ export default function Producto(props) {
     imagenes: [],
     caracteristicas: []
   });
-  Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
   const qualificationText = (qualification) => {
     if(qualification >= 1 && qualification <= 2.5) {
@@ -276,7 +277,7 @@ export default function Producto(props) {
         </div>
         <div className="inicar-reserva">
             <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
-            <Link to={"/productos/" + props.match.params.id + "/reserva"} className="boton-iniciar-reserva">Iniciar reserva</Link>
+            <Link to={sessionStorage.getItem("infoUsuario")!= null ? "/productos/" + props.match.params.id + "/reserva" : "/iniciarSesion?reserva=" + props.match.params.id} className="boton-iniciar-reserva">Iniciar reserva</Link>
         </div>
       </div>
 
@@ -298,7 +299,35 @@ export default function Producto(props) {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <Politicas />
+=======
+
+      <div className="commodity-rules">
+        <h1>Qué tenés que saber</h1>
+        <hr className="commodity-divisor" />
+        <div className="commodity-rule-container">
+          <div className="normas">
+            <h3>Normas del vehículo</h3>
+            <p>Norma 1</p>
+            <p>Norma 2</p>
+            <p>Norma 3</p>
+          </div>
+          <div className="salud">
+            <h3>Salud y seguridad</h3>
+            <p>Salud 1</p>
+            <p>Salud 2</p>
+            <p>Salud 3</p>
+          </div>
+          <div className="cancelacion">
+            <h3>Política de cancelación</h3>
+            <p className="texto-cancelacion">
+              Agregá las fechas de tu viaje para obtener los detalles de cancelación de este vehículo.
+            </p>
+          </div>
+        </div>
+      </div>
+>>>>>>> 257017aee398aea3e9bae9f307eeea55fec3654d
       <Footer />
     </>
   );

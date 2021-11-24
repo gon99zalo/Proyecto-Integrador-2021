@@ -8,11 +8,13 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.security.Key;
 import java.time.LocalDateTime;
 
 
+@CrossOrigin
 @Service
 public class TokenService {
     private static Key key;

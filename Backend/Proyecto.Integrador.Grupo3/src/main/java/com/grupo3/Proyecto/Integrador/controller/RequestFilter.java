@@ -6,6 +6,7 @@ import com.grupo3.Proyecto.Integrador.service.security.TokenService;
 import com.grupo3.Proyecto.Integrador.service.UsuarioService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
     public class RequestFilter extends OncePerRequestFilter {
         private TokenService tokenService;

@@ -12,8 +12,12 @@ export default function Gallery(props) {
   return (
     <>
       <div className="gallery-container">
+<<<<<<< HEAD
         {images.map( (photo, index ) => {
           console.log("index: ", index);
+=======
+      {images.map( (photo, index ) => {
+>>>>>>> 257017aee398aea3e9bae9f307eeea55fec3654d
           if (index < 5) {
             return (
               <div key={`photo-${index}`}>

@@ -27,6 +27,7 @@ export default function Reservas(props) {
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [horario, setHorario] = useState(null)
   const [producto, setProducto] = useState({
     id: 0,
     nombre: "",
@@ -47,11 +48,45 @@ export default function Reservas(props) {
   });
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
+  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
   // ÍCONOS
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
+
+  let datosDeUsuario = sessionStorage.getItem("infoUsuario")
+  let datosDeUsuarioParseado = JSON.parse(datosDeUsuario)
+  
+
+
+  const handlerReserva = (e) => {
+    e.preventDefault()
+    const fechaIn = document.querySelector(".hora-check-in").value
+    const fechaOut = document.querySelector(".hora-check-out").value
+    console.log(fechaIn)
+    let valores= {
+      fechaInicial: fechaIn,
+      fechaFinal: fechaOut,
+      hora: horario,
+      producto: producto,
+      usuario: datosDeUsuarioParseado
+  }
+
+    let config = {
+      method: "POST",
+      body: JSON.stringify(valores),
+      headers: {
+        "Content-Type": "application/JSON",
+        "Authorization": datosDeUsuarioParseado.token
+      },
+    };
+
+    fetch(api + "/reservas", config)
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error), alert("Lamentablemente la reserva no ha podido realizarse”. Por favor, intente más tarde"));
+  };
   
 
   const calendarHeaderReservas = ({
@@ -136,7 +171,6 @@ export default function Reservas(props) {
         }
       );
   }, [props.match.params.id]);
-
   // ESTA CONDICIÓN PERMITE MOSTRAR ERROR O PANTALLA DE CARGA
   if (error) {
     return (
@@ -285,18 +319,20 @@ export default function Reservas(props) {
                 <div className="booking-details-divisor"></div>
                 <div className="txt-2 checks check-in">
                   <p>Check in</p>
-                  <span>_/_/_</span>
+                  <span className="hora-check-in">_/_/_</span>
                 </div>
                 <div className="booking-details-divisor"></div>
                 <div className="txt-2 checks check-out">
                   <p>Check out</p>
-                  <span>_/_/_</span>
+                  <span className="hora-check-out">_/_/_</span>
                 </div>
                 <div className="booking-details-divisor"></div>
               </div>
 
               {/* BOTÓN DE RESERVA */}
-              <button className="btn-2 btn-details">Confirmar reserva</button>
+              <button className="btn-2 btn-details" onClick={handlerReserva}>
+                Confirmar reserva
+              </button>
             </div>
           </div>
         </main>
@@ -307,5 +343,5 @@ export default function Reservas(props) {
         <Footer />
       </>
     );
-  }
-}
+  };
+};
