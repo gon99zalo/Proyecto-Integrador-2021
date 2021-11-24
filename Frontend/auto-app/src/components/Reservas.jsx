@@ -13,6 +13,8 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { subDays } from 'date-fns';
+import { registerLocale } from "react-datepicker";
+import es from "date-fns/locale/es";
 //Componentes
 import Header from "./Header";
 import Politicas from "./Politicas";
@@ -49,6 +51,8 @@ export default function Reservas(props) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
+  registerLocale("es", es);
+
   // ÍCONOS
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
@@ -236,6 +240,7 @@ export default function Reservas(props) {
                 }}
               >
                 <DatePicker
+                  disabledKeyboardNavigation
                   inline
                   renderCustomHeader={calendarHeaderReservas}
                   //para poder seleccionar un rango de fechas

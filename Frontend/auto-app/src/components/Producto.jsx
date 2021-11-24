@@ -251,6 +251,7 @@ export default function Producto(props) {
       <div className="commodity-available-dates">
         <div className="commodity-calendar">
           <DatePicker
+            disabledKeyboardNavigation
             renderCustomHeader={calendarHeaderProducto}
             //para que aparezca sin necesidad del input
             inline 
