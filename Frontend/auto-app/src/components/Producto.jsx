@@ -35,8 +35,6 @@ export default function Producto(props) {
   const star = <FontAwesomeIcon icon={faStar} />;
   registerLocale("es", es);
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
-  const [dateRange, setDateRange] = useState([null, null]);
-  const [startDate, endDate] = dateRange;
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
