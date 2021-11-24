@@ -26,6 +26,7 @@ describe("Buscador", () => {
       json: jest.fn(() => []),
     };
     global.fetch = jest.fn().mockResolvedValue(firstResponse);
+
     render(
       <MemoryRouter>
         <Buscador />
