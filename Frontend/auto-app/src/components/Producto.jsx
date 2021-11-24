@@ -24,6 +24,8 @@ import Footer from './Footer';
 import Loading from './Loading';
 import { Link } from 'react-router-dom';
 
+Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
+
 export default function Producto(props) {
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
@@ -53,7 +55,6 @@ export default function Producto(props) {
     imagenes: [],
     caracteristicas: []
   });
-  Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
   const qualificationText = (qualification) => {
     if(qualification >= 1 && qualification <= 2.5) {
