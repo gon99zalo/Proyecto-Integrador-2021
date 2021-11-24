@@ -12,7 +12,7 @@ export default function Gallery(props) {
   return (
     <>
       <div className="gallery-container">
-        {images.map( (photo, index) => {
+        {images.map( (photo, index ) => {
           return (
             <div key={`photo-${index}`}>
               <img src={photo.url} alt={photo.titulo} />

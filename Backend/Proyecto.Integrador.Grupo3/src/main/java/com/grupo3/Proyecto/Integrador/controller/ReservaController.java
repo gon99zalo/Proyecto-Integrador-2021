@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,9 +33,15 @@ public class ReservaController {
     @GetMapping("/producto/{id}")
     public Optional<Reserva> buscarPorIDProducto(@PathVariable Long id) { return reservaService.buscarPorIDProducto(id); }
 
-    @GetMapping("/fechas")
+  /* @GetMapping("/fechas")
     public ResponseEntity<List<Reserva>> buscarPorFecha(@RequestParam("fechaInicial") String fechaInicial, @RequestParam("fechaFinal") String fechaFinal)
-    { return ResponseEntity.ok(reservaService.buscarPorFecha(fechaInicial, fechaFinal)); }
+    { return ResponseEntity.ok(reservaService.buscarPorFecha(fechaInicial, fechaFinal)); }*/
+
+   /* @GetMapping("/fechas")
+    public ResponseEntity<List<String>> filtrarFechas(@RequestParam("fechaInicial")  Date fechaInicial,
+                                                      @RequestParam("fechaFinal")  Date fechaFinal) {
+        return ResponseEntity.ok(reservaService.filtrarFechas(fechaInicial, fechaFinal));
+    }*/
 
     @PutMapping("/modificar")
     @ResponseBody

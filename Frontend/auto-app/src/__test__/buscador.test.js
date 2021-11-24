@@ -3,9 +3,11 @@ import Buscador, { api } from "../components/Buscador";
 import "@testing-library/jest-dom";
 import { Router } from "react-router-dom";
 import { MemoryRouter } from "react-router";
+import { createMemoryHistory } from "history";
+import fetchMock from "fetch-mock";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen, waitFor } from "@testing-library/react";
-import renderer, { act } from "react-test-renderer";
+import renderer from "react-test-renderer";
 import { shallow, mount } from "enzyme";
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-17-updated";
@@ -14,8 +16,7 @@ global.fetch = require("jest-fetch-mock");
 
 
 describe("Buscador", () => {
-  // beforeEach(() => {
-  // });
+
   test("Fetch a Api Ciudades", async () => {
     jest.spyOn(window, "addEventListener");
     const firstResponse = {
@@ -38,28 +39,33 @@ describe("Buscador", () => {
       expect(firstResponse.json).toBeCalledWith();
     });
   });
-  test("Debe contener el texto", async () => {
-    jest.spyOn(window, "addEventListener");
-    const firstResponse = {
-      json: jest.fn(() => []),
-    };
-    global.fetch = jest.fn().mockResolvedValue(firstResponse);
 
-    render(
-      <MemoryRouter>
-        <Buscador />
-      </MemoryRouter>
-    );
-    //screen.debug();
-    expect(
-      screen.getByText(/Busca el auto que necesitas/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/Elige donde quieres retirar el auto/i)
-    ).toBeInTheDocument();
-    expect(screen.getByText(/Check in - Check out/i)).toBeInTheDocument();
-    expect(screen.getByText(/Buscar/i)).toBeInTheDocument();
-  });
+  test("Debe contener el texto", async() => {
+      jest.spyOn(window, "addEventListener");
+      const firstResponse = {
+        json: jest.fn(() => []),
+      };
+      global.fetch = jest.fn().mockResolvedValue(firstResponse);
+
+
+        render(
+          <MemoryRouter>
+          <Buscador />
+        </MemoryRouter>
+      );
+
+    await waitFor(() => {  
+      expect(
+        screen.getByText(/Busca el auto que necesitas/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/Elige donde quieres retirar el auto/i)
+      ).toBeInTheDocument();
+      expect(screen.getByText(/Check in - Check out/i)).toBeInTheDocument();
+      expect(screen.getByText(/Buscar/i)).toBeInTheDocument();
+    });
+    })
+    
   //   test("Botón de búsqueda", async () => {
   //     jest.spyOn(window, "addEventListener");
   //     const firstResponse = {
@@ -76,5 +82,17 @@ describe("Buscador", () => {
   //   expect(boton.exists()).toBe(true);
   //   //console.log(wrapper.debug());
   // });
+  test("Input seleccion ciudad", () => {
+    fetchMock.mock("/ciudades/todas", "Buenos Aires");
+    const history = createMemoryHistory();
+    const rendered = renderer
+      .create(
+        <Router history={history}>
+          <Buscador />
+        </Router>
+      )
+      .toJSON();
+    expect(rendered).toBeTruthy();
+  });
 });
 

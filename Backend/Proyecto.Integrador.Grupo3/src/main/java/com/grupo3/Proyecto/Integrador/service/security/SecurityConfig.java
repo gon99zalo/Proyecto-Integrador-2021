@@ -15,7 +15,9 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @Service
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -42,7 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
   //              .antMatchers("/registro").permitAll()
-                .antMatchers("/reservas/**").hasRole("USUARIO")
+                .antMatchers("/reservas").hasAuthority("cliente")
+                .antMatchers("/reservas/**").hasAuthority("cliente")
+    //          .antMatchers("/reservas/**").hasRole("CLIENTE")
+    //           .antMatchers("/reservas").hasRole("CLIENTE")
                 .anyRequest().permitAll()
   //            .and()
  //             .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)

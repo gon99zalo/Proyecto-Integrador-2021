@@ -24,6 +24,8 @@ import Footer from './Footer';
 import Loading from './Loading';
 import { Link } from 'react-router-dom';
 
+Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
+
 export default function Producto(props) {
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
@@ -53,7 +55,6 @@ export default function Producto(props) {
     imagenes: [],
     caracteristicas: []
   });
-  Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
   const qualificationText = (qualification) => {
     if(qualification >= 1 && qualification <= 2.5) {
@@ -186,7 +187,7 @@ export default function Producto(props) {
       </div>
 
       <div className="commodity-features">
-        <h1>¿Qué ofrece este lugar?</h1>
+        <h1>¿Qué ofrece este vehículo?</h1>
         <hr className="commodity-divisor" />
         <div className="features-box">
           {producto.caracteristicas.map(caract => {
@@ -218,7 +219,7 @@ export default function Producto(props) {
         </DatePicker>
         <div className="inicar-reserva">
             <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
-            <Link to={"/productos/" + props.match.params.id + "/reserva"} className="boton-iniciar-reserva">Iniciar reserva</Link>
+            <Link to={sessionStorage.getItem("infoUsuario")!= null ? "/productos/" + props.match.params.id + "/reserva" : "/iniciarSesion?reserva=" + props.match.params.id} className="boton-iniciar-reserva">Iniciar reserva</Link>
         </div>
       </div>
 
@@ -260,7 +261,7 @@ export default function Producto(props) {
           <div className="cancelacion">
             <h3>Política de cancelación</h3>
             <p className="texto-cancelacion">
-              Agregá las fechas de tu viaje para obtener los detalles de cancelación de esta estadía.
+              Agregá las fechas de tu viaje para obtener los detalles de cancelación de este vehículo.
             </p>
           </div>
         </div>

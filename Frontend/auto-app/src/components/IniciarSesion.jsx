@@ -7,6 +7,7 @@ import {  faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom"
 import "../styles/crearCuenta.css"
+import { useMemo } from "react";
 const visible = <FontAwesomeIcon icon={faEye} />;
 const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 
@@ -14,13 +15,13 @@ const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 
 export default function IniciarSesion() {
   const history = useHistory();
+  const api = "http://localhost:8080"
+  const params = useMemo(() => new URLSearchParams(window.location.search),[]);
   const [passwordShown, setPasswordShown] = useState(false);
+  const [reserva/*, serReserva*/] = useState(params.get("reserva") !== null)
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
-
-  let infoUsuario = JSON.parse(localStorage.getItem('infoUsuario'))
-
   
   const handlerValidate = (e) =>{
     e.preventDefault()
@@ -28,15 +29,26 @@ export default function IniciarSesion() {
     let contraseniaUsuario = document.querySelector("#contrasenia").value
     let inputs = document.querySelectorAll(".campos-inicio")
     let boton = document.querySelector(".texto-cuenta")
-    if(infoUsuario.correo === emailUsuario && infoUsuario.contrasenia === contraseniaUsuario){
-      history.push("/logueado")
-    }else{
-      // alert("Por favor vuelva a intentarlo, tus credenciales son inválidas") 
-      for(inputs of inputs){
-      inputs.classList.toggle("error")
-      }
-      boton.nextElementSibling.classList.toggle("error-mensaje")
+    let formData = {
+      email: emailUsuario,
+      contrasenia: contraseniaUsuario
     }
+    fetch(api + "/login", {method: 'POST', body: JSON.stringify(formData), headers: {'Content-Type' : 'application/json'}})
+    .then(res => res.json())
+    .then(
+      (result) => {
+        sessionStorage.setItem("infoUsuario", JSON.stringify(result))
+        reserva ? history.push("/productos/" + params.get("reserva") + "/reserva") :history.push("/")
+      },
+      (error) => {
+        console.log(error);
+        alert("Por favor vuelva a intentarlo, tus credenciales son inválidas") 
+        for(inputs of inputs){
+        inputs.classList.toggle("error")
+        }
+        boton.nextElementSibling.classList.toggle("error-mensaje")
+      }
+    )
   }
 
   return (
@@ -60,6 +72,7 @@ export default function IniciarSesion() {
       </form>
       </div>
     <Footer />
+    {reserva? alert("Debe estar registrado para poder realizar una reserva") : ""}
       </>
   )
 }
