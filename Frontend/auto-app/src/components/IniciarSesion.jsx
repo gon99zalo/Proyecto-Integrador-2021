@@ -7,6 +7,7 @@ import {  faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom"
 import "../styles/crearCuenta.css"
+import { useMemo } from "react";
 const visible = <FontAwesomeIcon icon={faEye} />;
 const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 
@@ -15,6 +16,7 @@ const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 export default function IniciarSesion() {
   const history = useHistory();
   const api = "http://localhost:8080"
+  const params = useMemo(() => new URLSearchParams(window.location.search),[]);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -34,9 +36,8 @@ export default function IniciarSesion() {
     .then(res => res.json())
     .then(
       (result) => {
-        console.log(result);
         sessionStorage.setItem("infoUsuario", JSON.stringify(result))
-        history.push("/logueado")
+        params.get("reserva") === null? history.push("/") : history.push("/productos/" + params.get("reserva") + "/reserva")
       },
       (error) => {
         console.log(error);
