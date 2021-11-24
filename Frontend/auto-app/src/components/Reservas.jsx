@@ -22,11 +22,10 @@ import Footer from "./Footer";
 import Loading from "./Loading";
 import FormDatos from "./FormDatos";
 import HorarioLLegada from "./HorarioLlegada";
-import Calendario from "./CalendarDatePicker";
 
 export default function Reservas(props) {
   // HOOKS
-  const [width, setwidth] = useState ({ width: window.screen.availWidth });
+  const [width] = useState ({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [horario, setHorario] = useState(null)
@@ -66,15 +65,12 @@ export default function Reservas(props) {
 
   const handlerReserva = (e) => {
     e.preventDefault()
-    const fechaIn = document.querySelector(".hora-check-in").value
-    const fechaOut = document.querySelector(".hora-check-out").value
-    console.log(fechaIn)
     let valores= {
-      fechaInicial: fechaIn,
-      fechaFinal: fechaOut,
+      fechaInicial: startDate,
+      fechaFinal: endDate,
       hora: horario,
-      producto: producto,
-      usuario: datosDeUsuarioParseado
+      producto: {id : props.match.params.id},
+      //usuario: datosDeUsuarioParseado
   }
 
     let config = {
@@ -87,9 +83,7 @@ export default function Reservas(props) {
     };
 
     fetch(api + "/reservas", config)
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error), alert("Lamentablemente la reserva no ha podido realizarse”. Por favor, intente más tarde"));
+      .catch((error) => console.log(error));
   };
   
 
