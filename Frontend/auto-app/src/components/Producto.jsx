@@ -182,7 +182,8 @@ export default function Producto(props) {
         </div>
 
         <div className="commodity-description">
-          <h1>{producto.descripcion}</h1>
+          <h1>{producto.nombre}</h1>
+          <p>{producto.descripcion}</p>
         </div>
       </div>
 
