@@ -276,7 +276,7 @@ export default function Reservas(props) {
                   borderRadius: "8px",
                 }}
               >
-                <HorarioLLegada />
+                <HorarioLLegada horario ={setHorario}/>
               </div>
             </div>
 
