@@ -68,7 +68,6 @@ export default function CrearCuenta() {
       }
     }
     fetch(api + "/registro",{method: 'POST', body: JSON.stringify(infoUsuario), headers: {'Content-Type' : 'application/json'}})
-    .then(res => res.json())
     .then(
       (result) => {
         history.push("/iniciarSesion")
