@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom"
 
 export default function CrearCuenta() {
   const history = useHistory()
-  const api = "http://localhost:8080"
+  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
   const handlerSubmit=(e)=>{
     e.preventDefault()
   let contrasenia = document.getElementById("contrasenia").value
