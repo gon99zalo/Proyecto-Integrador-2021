@@ -9,6 +9,7 @@ import Logged from '../components/Logged';
 import Producto from '../components/Producto';
 import Buscar from '../components/Buscar';
 import Reservas from '../components/Reservas';
+import PantallaExito from '../components/PantallaExito';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/buscar" component={Buscar} />
           <Route exact path="/productos/:id" component={Producto} />
           <Route exact path="/productos/:id/reserva" component={Reservas} />
+          <Route exact path="/exito" component={PantallaExito} />
         </Switch>
       </BrowserRouter>
     </div>

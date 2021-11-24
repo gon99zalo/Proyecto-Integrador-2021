@@ -67,8 +67,8 @@
 }
 
 /* CALENDARIO */
-.booking-calendar {
-  height: auto;
+.booking-calendar div .react-datepicker {
+  padding: 20px 8.41%;
 }
 
 /* DATOS DEL PRODUCTO */

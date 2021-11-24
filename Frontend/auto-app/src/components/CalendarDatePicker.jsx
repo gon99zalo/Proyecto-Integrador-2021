@@ -6,7 +6,6 @@ import { registerLocale } from "react-datepicker";
 import { subDays, getDate } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCalendarDay,
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +18,6 @@ export default function Calendario() {
   const [width, setwidth] = useState({ width: window.screen.availWidth });
   const [conInput, setConInput] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
-  const calendarIcon = <FontAwesomeIcon icon={faCalendarDay} />;
   const previousArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
   registerLocale("es", es);
@@ -55,7 +53,9 @@ export default function Calendario() {
   const CalendarInput = forwardRef(({ value, onClick }, ref) => (
     <button className="calendar-picker-input" onClick={onClick} ref={ref}>
       {/* PlaceHolder */}
-      <i>{calendarIcon}</i>
+      <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.8 2H18.7V0H16.5V2H5.5V0H3.3V2H2.2C0.99 2 0 2.9 0 4V20C0 21.1 0.99 22 2.2 22H19.8C21.01 22 22 21.1 22 20V4C22 2.9 21.01 2 19.8 2ZM19.8 20H2.2V7H19.8V20Z" fill="#191b1d"/>
+      </svg>
       <p>{value ? value : "Check in - Check out"}</p>
     </button>
   ));
@@ -195,9 +195,9 @@ export default function Calendario() {
         renderCustomHeader={calendarHeader}
         //--------- --------- para modificar el texto de los días
         // renderDayContents={calendarDays}
-        //
+        //--------- --------- para modifica el contenedor de los días
         dayClassName={calendarDayStyle}
-        // Formato de fechas mostradas en Input
+        //--------- --------- formato de fechas mostradas en Input
         dateFormat="d 'de' MMM'.'"
         //--------- --------- para poder seleccionar un rango de fechas
         selectsRange={true}
@@ -213,14 +213,12 @@ export default function Calendario() {
         //--------- --------- para que no se puedan escojer fechas pasadas a la actual
         minDate={subDays(new Date(), 0)}
         //--------- --------- para que el nombre de los meses quede con mayúscula inicial
-        formatWeekDay={(day) =>
-          day.charAt(0).toUpperCase() + day.substring(1, 2)
-        }
-        // Excluye fechas
+        formatWeekDay={(day) => day.charAt(0).toUpperCase() + day.substring(1, 2)}
+        //--------- --------- excluye fechas
         filterDate={excludedDates}
-        // Cierra el calendario después de seleccionar las fechas
+        //--------- --------- cierra el calendario después de seleccionar las fechas
         shouldCloseOnSelect={false}
-        // Muestra o desaparece la flecha en el popper
+        //--------- --------- muestra o desaparece la flecha en el popper
         showPopperArrow={false}
       >
         <div className="divider"></div>

@@ -13,11 +13,16 @@ export default function Gallery(props) {
     <>
       <div className="gallery-container">
         {images.map( (photo, index ) => {
-          return (
-            <div key={`photo-${index}`}>
-              <img src={photo.url} alt={photo.titulo} />
-            </div>
-          );
+          console.log("index: ", index);
+          if (index < 5) {
+            return (
+              <div key={`photo-${index}`}>
+                <img src={photo.url} alt={photo.titulo} />
+              </div>
+            );
+          } else {
+            return null;
+          }
         })}
         <div className="ver-mas btn-1" onClick={() => setToggler(!toggler)}>
           Ver más
