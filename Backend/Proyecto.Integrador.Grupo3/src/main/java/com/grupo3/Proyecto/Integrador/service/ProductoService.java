@@ -5,7 +5,6 @@ import com.grupo3.Proyecto.Integrador.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +39,6 @@ public class ProductoService {
     public List<Producto> listarPorCiudad(String nombre) { return productoRepository.findAllByCiudadNombre(nombre);}
 
     public Integer cantProductos() { return productoRepository.cantProductos(); }
-
 
     }
 
