@@ -95,7 +95,7 @@
 .popper-calendar-buscador div .react-datepicker {
     /* Ancho del calendario */
     height: 359px;
-    /* width: 100%; */
+    width: 100%;
     padding-top: 20px;
     display: flex;
     justify-content: center;
