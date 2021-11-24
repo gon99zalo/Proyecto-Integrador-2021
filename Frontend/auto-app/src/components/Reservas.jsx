@@ -286,7 +286,6 @@ export default function Reservas(props) {
 
               {/* IMAGEN RESERVA */}
               <div className="booking-details-image">
-                {console.log(producto.imagenes)}
                 <img
                   src={producto.imagenes[0].url}
                   alt={producto.imagenes[0].titulo}
@@ -323,12 +322,12 @@ export default function Reservas(props) {
                 <div className="booking-details-divisor"></div>
                 <div className="txt-2 checks check-in">
                   <p>Check in</p>
-                  <span className="hora-check-in">_/_/_</span>
+                  <span className="hora-check-in">{startDate ? startDate.toLocaleDateString() : "_/_/_"}</span>
                 </div>
                 <div className="booking-details-divisor"></div>
                 <div className="txt-2 checks check-out">
                   <p>Check out</p>
-                  <span className="hora-check-out">_/_/_</span>
+                  <span className="hora-check-out">{endDate ? endDate.toLocaleDateString() : "_/_/_"}</span>
                 </div>
                 <div className="booking-details-divisor"></div>
               </div>
