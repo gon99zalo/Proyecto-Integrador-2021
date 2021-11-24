@@ -18,6 +18,7 @@ export default function IniciarSesion() {
   const api = "http://localhost:8080"
   const params = useMemo(() => new URLSearchParams(window.location.search),[]);
   const [passwordShown, setPasswordShown] = useState(false);
+  const [reserva/*, serReserva*/] = useState(params.get("reserva") !== null)
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
@@ -37,7 +38,7 @@ export default function IniciarSesion() {
     .then(
       (result) => {
         sessionStorage.setItem("infoUsuario", JSON.stringify(result))
-        params.get("reserva") === null? history.push("/") : history.push("/productos/" + params.get("reserva") + "/reserva")
+        reserva ? history.push("/productos/" + params.get("reserva") + "/reserva") :history.push("/")
       },
       (error) => {
         console.log(error);
@@ -71,6 +72,7 @@ export default function IniciarSesion() {
       </form>
       </div>
     <Footer />
+    {reserva? alert("Debe estar registrado para poder realizar una reserva") : ""}
       </>
   )
 }
