@@ -1,54 +1,49 @@
 .buscador {
-    background-color: rgba(25, 27, 29, 1);
-    width: 100%;
-    height: auto;
+  background-color: rgba(25, 27, 29, 1);
+  width: 100%;
+  height: auto;
 }
 
 .titulo-buscador {
-    color: white;
-    padding-top: 5px;
+  color: white;
+  padding-top: 5px;
 }
 
 .buscadores div.react-datepicker-wrapper {
-    padding: 0;
-    border: 0;
-    width: 31%;
-  }
-
-.buscadores {
-    margin-top: 23px;
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    padding-bottom: 15px;
+  padding: 0;
+  border: 0;
+  width: 31%;
 }
 
-input.datePicker {
-    height: 30px;
-    border-radius: 5px;
-    padding: 5px 35px;
+.buscadores {
+  width: 100%;
+  margin-top: 23px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding-bottom: 15px;
 }
 
 .boton-buscar {
-    width: 15.1%;
-    padding: 5px 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    background-color: rgba(240, 87, 45, 1);
-    border-color: rgba(240, 87, 45, 1);
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
+  width: 15.1%;
+  padding: 5px 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba(240, 87, 45, 1);
+  border-color: rgba(240, 87, 45, 1);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.buscadores select{
-    width: 31%;
-    height: 40px;
-    border-radius: 5px;
-    background: #FFFFFF;
-    box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
+.buscadores select {
+  width: 31%;
+  height: 40px;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
 }
 
 /* .p-inputtext{
@@ -88,52 +83,41 @@ ul{
     list-style: none;
 }*/
 
-  @media screen and (max-width:  480px){
-      .titulo-buscador{
-        font-size: 25px;
-      }
-      .buscadores div.react-datepicker-wrapper {
-        width: 100%;
-      }
-      input.datePicker {
-        border-radius: 5px;
-        padding: 5px 35px;
-        width: 100%;
-    }
-    .buscadores select{
-        height: 30px;
-        width: 100%;
-      }
-    .boton-buscar {
-        width: 100%;
-    }
-    /* .p-inputtext{
-        width: 100%;
-    }
-    .p-autocomplete-item{
-        width: 100%;
-    } */
+@media screen and (max-width: 480px) {
+  .titulo-buscador {
+    font-size: 25px;
+  }
+  .buscadores div.react-datepicker-wrapper {
+    width: 95%;
   }
 
-  
-  @media screen and (min-width: 480px) and (max-width:  768px){
-    .buscador{
-        padding: 0px 12px;
-        /* margin-top: 30px; */
-    }
-    .titulo-buscador{
-        padding-top: 5px;
-    }
-    input.datePicker {
-        border-radius: 5px;
-        padding: 5px 35px;
-        width: 30vw;
-    }
-    /* .p-inputtext{
+  .buscadores select {
+    height: 30px;
+    width: 95%;
+  }
+  .boton-buscar {
+    width: 95%;
+  }
+  /* .p-inputtext{
         width: 100%;
     }
     .p-autocomplete-item{
         width: 100%;
     } */
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .buscador {
+    padding: 0px 12px;
+    /* margin-top: 30px; */
   }
-  
+  .titulo-buscador {
+    padding-top: 5px;
+  }
+  /* .p-inputtext{
+        width: 100%;
+    }
+    .p-autocomplete-item{
+        width: 100%;
+    } */
+}

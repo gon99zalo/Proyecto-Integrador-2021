@@ -64,8 +64,8 @@ export default function Header(props) {
           return(
         <header className="header">
         <div className="logo">
-        <Link to="/logueado"><img src="https://buimagenes.s3.us-east-2.amazonaws.com/Logo/logo1DB.png" alt="logo" className="logo-img" /></Link>
-        <Link to="/logueado"><span className="slogan">El auto que necesitas</span></Link>
+        <Link to="/"><img src="https://buimagenes.s3.us-east-2.amazonaws.com/Logo/logo1DB.png" alt="logo" className="logo-img" /></Link>
+        <Link to="/"><span className="slogan">El auto que necesitas</span></Link>
         </div> 
         {width > 480? 
         <>

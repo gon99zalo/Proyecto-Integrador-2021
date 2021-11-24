@@ -15,7 +15,7 @@ const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 
 export default function IniciarSesion() {
   const history = useHistory();
-  const api = "http://localhost:8080"
+  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
   const params = useMemo(() => new URLSearchParams(window.location.search),[]);
   const [passwordShown, setPasswordShown] = useState(false);
   const [reserva/*, serReserva*/] = useState(params.get("reserva") !== null)
