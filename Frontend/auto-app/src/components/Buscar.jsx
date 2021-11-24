@@ -9,6 +9,7 @@ import Loading from "./Loading";
 import { Link } from "react-router-dom";
 
 const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080/"
+const url = window.location.href
 
 export default function Buscar(props) {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
@@ -18,7 +19,6 @@ export default function Buscar(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [productos, setProductos] = useState([]);
   const params = useMemo(() => new URLSearchParams(window.location.search),[]);
-  console.log(params.get("filtro"));
 
   const handlerShowText = (title) => {
     setShowText({
@@ -41,6 +41,7 @@ export default function Buscar(props) {
     };
   };
 
+  //useEffect que funciona como componentDidMount
   useEffect(() => {
     if (params.get("categoria") != null){
       fetch(api + "/productos/categoria?titulo=" + params.get("categoria"))
@@ -86,6 +87,14 @@ export default function Buscar(props) {
     }
   }, [params])
 
+  //useEffect que funciona como componentDidUpdate
+  useEffect(() => {
+    if(window.location.href !== url){
+      window.location.reload()
+      console.log("reload");
+    }
+  })
+
 
   if (error) {
     return (
@@ -100,7 +109,6 @@ export default function Buscar(props) {
     <>
       <Header/>
       <Buscador/>
-      {/* <div>Loading...</div> */}
       <Loading />
       <Footer/>
     </>)
@@ -109,7 +117,7 @@ export default function Buscar(props) {
     <>
     <Header/>
     <Buscador/>
-      <div className="buscar">
+      <div className="buscar"  key={params.get("locacion")}>
         <div className="product-container">
 
           {productos.map( (item, i) => {

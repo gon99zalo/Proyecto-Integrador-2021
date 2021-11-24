@@ -13,4 +13,5 @@ public interface RolesRepository extends JpaRepository<Rol, Long> {
 
     @Query("FROM Rol r WHERE r.nombre like %:nombre%")
     Optional<Rol> buscarPorNombre(String nombre);
+
 }

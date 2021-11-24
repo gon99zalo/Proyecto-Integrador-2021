@@ -35,24 +35,28 @@ export default function Reservas(props) {
       url: "",
     }],
   });
-  const api = "http://localhost:8080"
+  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
   // ÍCONOS
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
 
   let datosDeUsuario = sessionStorage.getItem("infoUsuario")
-    let datosDeUsuarioParseado = JSON.parse(datosDeUsuario)
+  let datosDeUsuarioParseado = JSON.parse(datosDeUsuario)
+  const fechaIn = document.querySelector(".hora-check-in").value
+  const fechaOut = document.querySelector(".hora-check-out").value
+  console.log(fechaIn)
+
 
   const handlerReserva = (e) => {
     e.preventDefault()
-  
+
     let valores= {
-      fechaInicial: document.querySelector(".hora-check-in").value,
-      fechaFinal: document.querySelector(".hora-check-out").value,
+      fechaInicial: fechaIn,
+      fechaFinal: fechaOut,
       hora: horario,
       producto: producto,
-    usuario: datosDeUsuarioParseado
+      usuario: datosDeUsuarioParseado
   }
 
     let config = {
@@ -63,11 +67,11 @@ export default function Reservas(props) {
         "Authorization": datosDeUsuarioParseado.token
       },
     };
-    
+
     fetch(api + "/reservas", config)
       .then((response) => response.json())
       .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error), alert("Lamentablemente la reserva no ha podido realizarse”. Por favor, intente más tarde"));
   };
   
   // AQUÍ SE TRAE LOS DATOS DEL PRODUCTO - API
