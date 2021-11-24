@@ -186,7 +186,7 @@ export default function Producto(props) {
       </div>
 
       <div className="commodity-features">
-        <h1>¿Qué ofrece este lugar?</h1>
+        <h1>¿Qué ofrece este vehículo?</h1>
         <hr className="commodity-divisor" />
         <div className="features-box">
           {producto.caracteristicas.map(caract => {
@@ -260,7 +260,7 @@ export default function Producto(props) {
           <div className="cancelacion">
             <h3>Política de cancelación</h3>
             <p className="texto-cancelacion">
-              Agregá las fechas de tu viaje para obtener los detalles de cancelación de esta estadía.
+              Agregá las fechas de tu viaje para obtener los detalles de cancelación de este vehículo.
             </p>
           </div>
         </div>

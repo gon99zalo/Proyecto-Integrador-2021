@@ -208,7 +208,7 @@ export default function Reservas(props) {
             <div className="cancelacion">
               <h3>Política de cancelación</h3>
               <p className="texto-cancelacion">
-                Agregá las fechas de tu viaje para obtener los detalles de cancelación de esta estadía.
+                Agregá las fechas de tu viaje para obtener los detalles de cancelación de este vehículo.
               </p>
             </div>
           </div>
