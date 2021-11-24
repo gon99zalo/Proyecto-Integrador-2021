@@ -1,0 +1,72 @@
+/* .commodity-available-dates div:nth-child(1) {
+    width: 62%;
+    height: 297px;
+} */
+/* .commodity-available-dates div .react-datepicker {
+    width: 100%;
+    display: flex;
+} */
+/* .commodity-available-dates div .react-datepicker .react-datepicker__month-container {
+    width: 50%;
+} */
+.commodity-calendar {
+    width: 60%;
+}
+.commodity-calendar div .react-datepicker {
+    width: auto;
+    padding: 20px 8.41%;
+}
+
+.divider-producto {
+    position: absolute;
+    border: 1px solid #A8A8A8;
+    height: 89.2%;
+}
+.header-calendar-producto {
+    position: static;
+}
+.navigation-arrows-producto {
+    position: absolute;
+    height: 35px;
+    width: 34px;
+    background: var(--main-color);
+    border-radius: 50%;
+    color: #FFFFFF;
+    border: none;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    top: 40%;
+}
+.back-arrow-producto {
+    left: 2.4%;
+}
+.next-arrow-producto {
+    right: 2.4%;
+}
+.navigation-arrows-producto:hover {
+    border: 1px solid var(--four-color);
+}
+.navigation-arrows-producto i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 19px;
+}
+
+/* CONTENEDOR DEL DÍA - HOVERS */
+.react-datepicker__day--keyboard-selected:hover, 
+.react-datepicker__month-text--keyboard-selected:hover, 
+.react-datepicker__quarter-text--keyboard-selected:hover, 
+.react-datepicker__year-text--keyboard-selected:hover {
+    background-color: var(--main-color);
+    border-radius: 50%;
+    color: #FFFFFF;
+}
+.react-datepicker__week div.react-datepicker__day:hover, 
+.react-datepicker__week div.react-datepicker__month-text:hover, 
+.react-datepicker__week div.react-datepicker__quarter-text:hover, 
+.react-datepicker__week div.react-datepicker__year-text:hover {
+    background-color: var(--main-color);
+    border-radius: 50%;
+    color: #FFFFFF;
+}
