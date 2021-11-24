@@ -3,9 +3,9 @@ import "../styles/formDatos.css";
 export default function FormDatos() {
   //TODO: Si no se llena este campo arroja una pantalla de error hay que buscar una condición o algo
   // const infoUsuario = JSON.parse(localStorage.getItem("infoUsuario"));
-  const nombreUsuario =  "Cosme";
-  const apellidoUsuario =  "Fulanito";
-  const correoUsuario =  "comse.fulanito@mail.com";
+
+  let datosDeUsuario = sessionStorage.getItem("infoUsuario")
+  let datosDeUsuarioParseado = JSON.parse(datosDeUsuario)
 
   return (
     <>
@@ -13,15 +13,15 @@ export default function FormDatos() {
           <div className="inputs-formDatosUsuario">
             <div>
               <label htmlFor="nombre">Nombre</label>
-              <input type="text" disabled value={nombreUsuario} />
+              <input type="text" disabled value={datosDeUsuarioParseado.nombre} />
 
               <label htmlFor="email">Email</label>
-              <input type="text" disabled value={correoUsuario} />
+              <input type="text" disabled value={datosDeUsuarioParseado.email} />
             </div>
 
             <div>
               <label htmlFor="apellido">Apellido</label>
-              <input type="text" disabled value={apellidoUsuario} />
+              <input type="text" disabled value={datosDeUsuarioParseado.apellido} />
 
               <label htmlFor="ciudad">Ciudad</label>
               <input type="text" required />
