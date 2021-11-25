@@ -22,11 +22,11 @@ import Footer from "./Footer";
 import Loading from "./Loading";
 import FormDatos from "./FormDatos";
 import HorarioLLegada from "./HorarioLlegada";
-import Calendario from "./CalendarDatePicker";
+import { useHistory } from "react-router";
 
 export default function Reservas(props) {
   // HOOKS
-  const [width, setwidth] = useState ({ width: window.screen.availWidth });
+  const [width] = useState ({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [horario, setHorario] = useState(null)
@@ -49,6 +49,7 @@ export default function Reservas(props) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
+  const history = useHistory()
   registerLocale("es", es);
 
   // ÍCONOS
@@ -64,15 +65,12 @@ export default function Reservas(props) {
 
   const handlerReserva = (e) => {
     e.preventDefault()
-    const fechaIn = startDate.toLocaleDateString()
-    const fechaOut = endDate.toLocaleDateString()
-    
     let valores= {
-      fechaInicial: fechaIn,
-      fechaFinal: fechaOut,
+      fechaInicial: startDate,
+      fechaFinal: endDate,
       hora: horario,
-      producto: producto,
-      usuario: datosDeUsuarioParseado
+      producto: {id : props.match.params.id},
+      // usuario: datosDeUsuarioParseado
   }
 
     let config = {
@@ -86,8 +84,8 @@ export default function Reservas(props) {
 
     fetch(api + "/reservas", config)
       .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error), alert("Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde"));
+      .then((data) => console.log(data), history.push(("/exito")))
+      .catch((error) => console.log(error));
   };
   
 
