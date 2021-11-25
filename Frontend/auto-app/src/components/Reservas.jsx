@@ -24,6 +24,8 @@ import FormDatos from "./FormDatos";
 import HorarioLLegada from "./HorarioLlegada";
 import Calendario from "./CalendarDatePicker";
 
+console.log(Calendario);
+
 export default function Reservas(props) {
   // HOOKS
   const [width, setwidth] = useState({ width: window.screen.availWidth });
@@ -242,7 +244,7 @@ export default function Reservas(props) {
                     setDateRange(update);
                   }}
                   //para que cuando sea menor a 480 se vuelva uno
-                  monthsShown={console.log(width), width <= 480 ? 1 : 2}
+                  monthsShown={width <= 480 ? 1 : 2}
                   //para que sea en español
                   locale="es"
                   //para que no se puedan escojer fechas pasadas a la actual
