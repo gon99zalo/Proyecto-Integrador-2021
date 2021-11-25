@@ -187,16 +187,17 @@ export default function Buscador() {
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
       <div className="buscadores">
         {/* <AutoComplete placeholder="Elige donde quieres retirar el auto" value={selectedCity} completeMethod={searchCities} suggestions={filteredCitites} field="nombre" onChange={(e) => {setCiudad(e.value.nombre); setSelectedCity(e.value)}}/>  */}
-        <select name="ciudades" onClick={handlerCiudad}>
-          <option value="" selected disabled hidden>
+        <select defaultValue="Elige donde quieres retirar el auto" name="ciudades" onClick={handlerCiudad}>
+          <option value="Elige donde quieres retirar el auto" disabled>
             Elige donde quieres retirar el auto
           </option>
-          {ciudades.map((ciudad) => (
-            <option value={ciudad.nombre}>{ciudad.nombre}</option>
+          {ciudades.map((ciudad, index) => (
+            <option key={index} value={ciudad.nombre}>{ciudad.nombre}</option>
           ))}
         </select>
 
         <DatePicker
+          disabledKeyboardNavigation
           renderCustomHeader={ width <= 480 ? calendarHeaderMobile : calendarHeader }
           showPopperArrow={false}
           customInput={<CalendarBuscadorInput />}

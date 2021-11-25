@@ -169,6 +169,8 @@ export default function Calendario() {
         Cerrar
       </button>
       <DatePicker
+        //--------- --------- desabilita el uso del teclado, evita que se pinten las fechas donde esté el selector del teclado
+        disabledKeyboardNavigation
         //--------- --------- para hacer algo cuando se cierre el calendario
         onCalendarClose={handleCalendarClose}
         //--------- --------- para que aparezca sin necesidad del input
