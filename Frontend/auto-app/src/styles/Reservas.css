@@ -42,13 +42,16 @@
   margin-bottom: 16px;
 }
 
+
 /* SECCIONES DEL MAIN */
 .booking-sections {
-  width: 94%; 
-  height: 817px;
+  width: 100%; 
+  /* height: 817px; */
   display: flex;
-  margin-left: 3.5%;
+  justify-content: space-between;
+  padding: 0 3.1%;
 }
+
 
 /* DATOS DEL USUARIO Y RESERVA */
 .booking-data {
@@ -57,18 +60,42 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-right: 1%;
 }
 .booking-data div {
   width: 100%;
+}
+.booking-data-form {
+  height: 217px;
+  border: 1px solid #DFE4EA;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  margin-bottom: 35px;
+}
+.booking-calendar {
+  height: 297px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin-bottom: 36px;
+}
+.booking-data-horario {
+  height: 144px;
+  border: 1px solid #DFE4EA;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
 }
 .booking-data h1 {
   margin-left: 0;
 }
 
 /* CALENDARIO */
-.booking-calendar {
-  height: auto;
+.booking-calendar div .react-datepicker {
+  padding: 20px 8.41%;
+}
+div.divider-reserva {
+  width: 0;
+  position: absolute;
+  border: 1px solid #A8A8A8;
+  height: 89.2%;
 }
 
 /* DATOS DEL PRODUCTO */
@@ -179,4 +206,149 @@
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
   cursor: pointer;;
+}
+
+@media screen and (min-width: 480px) and (max-width:  768px){
+  .booking-main {
+    margin-top: 38px;
+  }
+  .booking-main h1 {
+    margin-left: 4%;
+    margin-bottom: 13px;
+  }
+
+  .booking-sections {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 3.9%;
+  }
+
+  .booking-data {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .booking-data h1 {
+    margin-left: 0;
+  }
+
+  .booking-details {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 3.5% 36px;
+  }
+  .booking-details h1 {
+    margin: 0 0 10px 0;
+  }
+  .booking-image-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .booking-details-image {
+    height: 396px;
+    width: 48.3%;
+    margin-bottom: 0;
+  }
+  .booking-details-image img {
+    border-radius: 5px;
+  }
+  .booking-info-container {
+    width: 49.2%;
+  }
+  .booking-details-info {
+    width: unset;
+  }
+  .checks {
+    width: 95%;
+  }
+  .booking-details-divisor {
+    width: 100%;
+  }
+  .btn-details {
+    width: 100%;
+  }
+
+  /* img 48.3% info 49.2%*/
+
+}
+@media screen and (max-width: 480px){
+  .booking-main {
+    margin-top: 30px;
+  }
+  .booking-main h1 {
+    margin-left: 2.2%;
+    margin-bottom: 15px;
+  }
+
+  .booking-sections {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2.9%;
+  }
+
+  .booking-data {
+    width: 100%;
+    margin-bottom: 47px;
+  }
+  .booking-data h1 {
+    margin-left: 2.2%;
+    text-align: left;
+  }
+
+  .booking-data-form {
+    height: 379px;
+    width: 95.4%;
+  }
+  /* ----- Esta propiedad hace parte del formDatos.css ----- */
+  div.inputs-formDatosUsuario div {
+    margin-left: 0;
+  }
+  .form-horarioLlegada p:nth-child(1) {
+    text-align: left;
+  }
+  /* ------------------------------------------------------- */
+
+  .booking-calendar {
+    height: 328px;
+    width: 95.4%;
+  }
+  .divider-reserva {
+    display: none;
+  }
+
+  .booking-data-horario {
+    height: 163px;
+  }
+
+  .booking-details{
+    width: 100%;
+    height: 686px;
+  }
+  .booking-details h1:nth-child(1) {
+    margin: 24px auto 10px;
+  }
+  .booking-details-image {
+    height: 269px;
+    margin-bottom: 15px;
+  }
+  .booking-details-image img {
+    border-radius: 0px;
+  }
+  .booking-details-info {
+    margin: 0 auto 20px;
+  }
+  .booking-details-info h1 {
+    margin-left: 0;
+    margin-bottom: 7px;
+  }
+  .booking-details-check {
+    margin-bottom: 26px;
+  }
+  .checks {
+    margin-bottom: 8px;
+  }
+
 }
