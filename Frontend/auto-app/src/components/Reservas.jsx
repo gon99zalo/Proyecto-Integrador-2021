@@ -24,6 +24,8 @@ import FormDatos from "./FormDatos";
 import HorarioLLegada from "./HorarioLlegada";
 import Calendario from "./CalendarDatePicker";
 
+console.log(Calendario);
+
 export default function Reservas(props) {
   // HOOKS
   const [width, setwidth] = useState({ width: window.screen.availWidth });
@@ -66,13 +68,22 @@ export default function Reservas(props) {
     e.preventDefault();
     const fechaIn = document.querySelector(".hora-check-in").value;
     const fechaOut = document.querySelector(".hora-check-out").value;
-    console.log(fechaIn);
+    
+    //obtenemos el id del usuario logueado a partir del token de seguridad
+    let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));   
+    let idUsuario = JSON.parse(jsonPayload).sub.split("'")[1];
+
     let valores = {
       fechaInicial: fechaIn,
       fechaFinal: fechaOut,
       hora: horario,
       producto: producto,
-      usuario: datosDeUsuarioParseado,
+      usuario: parseInt(idUsuario),
     };
 
     let config = {
@@ -242,7 +253,7 @@ export default function Reservas(props) {
                     setDateRange(update);
                   }}
                   //para que cuando sea menor a 480 se vuelva uno
-                  monthsShown={console.log(width), width <= 480 ? 1 : 2}
+                  monthsShown={width <= 480 ? 1 : 2}
                   //para que sea en español
                   locale="es"
                   //para que no se puedan escojer fechas pasadas a la actual

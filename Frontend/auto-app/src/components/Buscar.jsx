@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
 
-const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080/"
+const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
 const url = window.location.href
 
 export default function Buscar(props) {
