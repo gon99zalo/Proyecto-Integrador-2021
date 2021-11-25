@@ -170,6 +170,12 @@
   border-radius: 5px;
 }
 
+.texto-iniciar-reserva{
+  text-align: left;
+  margin-left: 13px;
+  width: 79%;
+}
+
 .boton-iniciar-reserva {
   width: 75%;
   height: 40px;
