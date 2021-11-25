@@ -120,6 +120,44 @@ export default function Producto(props) {
     );
   };
 
+  const calendarHeaderProductoMobile = ({
+    monthDate,
+    customHeaderCount,
+    decreaseMonth,
+    increaseMonth,
+  }) => (
+    <div className="header-calendar-buscador">
+      <button
+        aria-label="Previous Month"
+        className={"navigation-arrows-buscador back-arrow-buscador"}
+        style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
+        onClick={decreaseMonth}
+      >
+        {<i>{backArrow}</i>}
+      </button>
+      <span className="react-datepicker__current-month">
+        {monthDate
+          .toLocaleString("es-CO", {
+            month: "long",
+          })
+          .charAt(0)
+          .toUpperCase() +
+          monthDate
+            .toLocaleString("es-CO", {
+              month: "long",
+            })
+            .slice(1)}
+      </span>
+      <button
+        aria-label="Next Month"
+        className={"navigation-arrows-buscador next-arrow-buscador"}
+        onClick={increaseMonth}
+      >
+        {<i>{nextArrow}</i>}
+      </button>
+    </div>
+  );
+
   useEffect(() => {
     setwidth(window.screen.availWidth);
     function handleResize() {
@@ -247,35 +285,38 @@ export default function Producto(props) {
         </div>
       </div>
       <div className="commodity-available-dates">
-        <div className="commodity-calendar">
-          <DatePicker
-            disabledKeyboardNavigation
-            renderCustomHeader={calendarHeaderProducto}
-            //para que aparezca sin necesidad del input
-            inline 
-            //para poder seleccionar un rango de fechas
-            selected={false}
-            // selectsRange={false} 
-            // startDate={false}
-            // endDate={endDate}
-            // onChange={null}
-            //para que cuando sea menor a 480 se vuelva uno
-            monthsShown={width <= 480 ? 1 : 2}
-            //para que sea en español
-            locale="es"
-            //para que no se puedan escojer fechas pasadas a la actual
-            minDate={subDays(new Date(), 0)}
-            //para que el nombre de los meses quede con mayúscula inicial
-            formatWeekDay={day => day.charAt(0).toUpperCase() + day.substring(1,2) }
-            showPopperArrow={false}
-            
-          >
-            <div className="divider-producto"></div>
-          </DatePicker>
-        </div>
-        <div className="inicar-reserva">
-            <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
-            <Link to={sessionStorage.getItem("infoUsuario")!= null ? "/productos/" + props.match.params.id + "/reserva" : "/iniciarSesion?reserva=" + props.match.params.id} className="boton-iniciar-reserva">Iniciar reserva</Link>
+        <h1>Fechas disponibles</h1>
+        <div className="commodity-container-calendar-reserva">
+          <div className="commodity-calendar">
+            <DatePicker
+              disabledKeyboardNavigation
+              renderCustomHeader={width <= 480 ? calendarHeaderProductoMobile : calendarHeaderProducto}
+              //para que aparezca sin necesidad del input
+              inline 
+              //para poder seleccionar un rango de fechas
+              selected={false}
+              // selectsRange={false} 
+              // startDate={false}
+              // endDate={endDate}
+              // onChange={null}
+              //para que cuando sea menor a 480 se vuelva uno
+              monthsShown={width <= 480 ? 1 : 2}
+              //para que sea en español
+              locale="es"
+              //para que no se puedan escojer fechas pasadas a la actual
+              minDate={subDays(new Date(), 0)}
+              //para que el nombre de los meses quede con mayúscula inicial
+              formatWeekDay={day => day.charAt(0).toUpperCase() + day.substring(1,2) }
+              showPopperArrow={false}
+              
+            >
+              <div className="divider-producto"></div>
+            </DatePicker>
+          </div>
+          <div className="inicar-reserva">
+              <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
+              <Link to={sessionStorage.getItem("infoUsuario")!= null ? "/productos/" + props.match.params.id + "/reserva" : "/iniciarSesion?reserva=" + props.match.params.id} className="boton-iniciar-reserva">Iniciar reserva</Link>
+          </div>
         </div>
       </div>
 

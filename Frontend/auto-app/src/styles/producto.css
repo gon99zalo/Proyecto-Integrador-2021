@@ -148,11 +148,15 @@
 }
 
 .commodity-available-dates {
-  height: 450px;
+  height: 400px;
   background-color: var(--three-color-with-opacity);
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+.commodity-available-dates h1 {
+  margin-left: 3%;
 }
 /* .commodity-available-dates .react-datepicker {
   width: 60vw;
@@ -232,11 +236,18 @@ cursor: pointer;
   }
 
   .commodity-available-dates {
+    height: 481.47px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
   }
-
+  .commodity-available-dates h1 {
+    margin-left: 5.2%;
+    margin-bottom: 18px;
+  }
+  .inicar-reserva {
+    height: 76.08px;
+  }
   .commodity-available-dates .react-datepicker {
     width: 88vw;
     height: auto;
@@ -282,7 +293,7 @@ cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 550px;
+    height: 560px;
   }
 
   .commodity-available-dates .react-datepicker {
