@@ -19,6 +19,8 @@ import {
 import { subDays, getDate } from "date-fns";
 import { Link } from "react-router-dom";
 //Autcomplete buscador
+// import { AutoComplete } from 'primereact/autocomplete';
+// import { PROPERTY_TYPES } from "@babel/types";
 //import { AutoComplete } from 'primereact/autocomplete';
 
 export const api =
@@ -51,10 +53,11 @@ export default function Buscador() {
   //     setFilteredCities(filteredCities);
   // }
 
-  const handlerCiudad = () => {
-    const ciudadElegida = document.querySelector("option:checked").value;
+//para guardar la ciudad elegida en el select
+const handlerCiudad = () => {
+  const ciudadElegida = document.querySelector("option:checked").value
     setCiudad(ciudadElegida);
-  };
+}
 
   useEffect(() => {
     //calculo del ancho de pantalla

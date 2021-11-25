@@ -22,7 +22,10 @@ import Footer from "./Footer";
 import Loading from "./Loading";
 import FormDatos from "./FormDatos";
 import HorarioLLegada from "./HorarioLlegada";
+import { useHistory } from "react-router";
 import Calendario from "./CalendarDatePicker";
+import Swal from 'sweetalert2'
+
 
 console.log(Calendario);
 
@@ -43,16 +46,15 @@ export default function Reservas(props) {
       nombre: "",
       pais: "",
     },
-    imagenes: [
-      {
-        titulo: "",
-        url: "",
-      },
-    ],
+    imagenes: [{
+      titulo: "",
+      url: "",
+    }],
   });
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
-  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
+  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
+  const history = useHistory()
   registerLocale("es", es);
 
   // ÍCONOS
@@ -95,15 +97,14 @@ export default function Reservas(props) {
       },
     };
 
-    fetch(api + "/reservas", config)
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch(
-        (error) => console.log(error),
-        alert(
-          "Lamentablemente la reserva no ha podido realizarse”. Por favor, intente más tarde"
-        )
-      );
+      fetch(api + "/reservas", config)
+      .then((response) => response.status === 200 ? history.push(("/exito")) :Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde'
+      }))
+      .catch((error) => console.log(error));
+
   };
 
   const calendarHeaderReservas = ({
@@ -198,7 +199,7 @@ export default function Reservas(props) {
     return (
       <>
         <Header />
-        <div>Error: {error.message}</div>
+          <div>Error: {error.message}</div>
         <Footer />
       </>
     );

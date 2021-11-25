@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom"
 import "../styles/crearCuenta.css"
 import { useMemo } from "react";
+import Swal from 'sweetalert2'
 const visible = <FontAwesomeIcon icon={faEye} />;
 const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 
@@ -53,7 +54,7 @@ export default function IniciarSesion() {
 
   return (
     <>
-      <Header login={true}/>
+      <Header />
       <div className="logIn">
       <h1 className="titulo-inicio">Iniciar sesión</h1>
       <form className="form-iniciarSesion" action="">
@@ -72,7 +73,12 @@ export default function IniciarSesion() {
       </form>
       </div>
     <Footer />
-    {reserva? alert("Debe estar registrado para poder realizar una reserva") : ""}
+    {reserva? Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe estar registrado para poder realizar una reserva',
+        footer: '<a href="crearCuenta">Pulse aquí para registrarse</a>'
+      }): ""}
       </>
   )
 }
