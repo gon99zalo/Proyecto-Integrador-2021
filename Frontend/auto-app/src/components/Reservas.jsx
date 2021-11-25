@@ -85,7 +85,7 @@ export default function Reservas(props) {
       fechaFinal: fechaOut,
       hora: horario,
       producto: producto,
-      usuario: parseInt(idUsuario),
+      usuario: {id:parseInt(idUsuario)},
     };
 
     let config = {
@@ -104,7 +104,6 @@ export default function Reservas(props) {
         text: 'Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde'
       }))
       .catch((error) => console.log(error));
-
   };
 
   const calendarHeaderReservas = ({
