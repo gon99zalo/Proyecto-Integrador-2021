@@ -83,7 +83,7 @@ export default function Reservas(props) {
       fechaFinal: fechaOut,
       hora: horario,
       producto: producto,
-      usuario: idUsuario,
+      usuario: parseInt(idUsuario),
     };
 
     let config = {
