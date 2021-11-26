@@ -67,10 +67,7 @@ export default function Reservas(props) {
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
 
   const handlerReserva = (e) => {
-    e.preventDefault();
-    const fechaIn = document.querySelector(".hora-check-in").value;
-    const fechaOut = document.querySelector(".hora-check-out").value;
-    
+    e.preventDefault();   
     //obtenemos el id del usuario logueado a partir del token de seguridad
     let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token
     let base64Url = token.split('.')[1];
@@ -79,13 +76,14 @@ export default function Reservas(props) {
     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));   
     let idUsuario = JSON.parse(jsonPayload).sub.split("'")[1];
+    console.log(parseInt(idUsuario).valueOf());
 
     let valores = {
-      fechaInicial: fechaIn,
-      fechaFinal: fechaOut,
+      fechaInicial: startDate,
+      fechaFinal: endDate,
       hora: horario,
-      producto: producto,
-      usuario: {id:parseInt(idUsuario)},
+      producto: {id: producto.id},
+      usuario: {id: idUsuario}
     };
 
     let config = {
