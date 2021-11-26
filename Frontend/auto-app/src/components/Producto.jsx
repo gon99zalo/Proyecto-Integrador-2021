@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faStar, faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 // Calendario
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 import { subDays } from 'date-fns';
@@ -126,10 +126,10 @@ export default function Producto(props) {
     decreaseMonth,
     increaseMonth,
   }) => (
-    <div className="header-calendar-buscador">
+    <div className="header-calendar-producto">
       <button
         aria-label="Previous Month"
-        className={"navigation-arrows-buscador back-arrow-buscador"}
+        className={"navigation-arrows-producto back-arrow-producto"}
         style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
         onClick={decreaseMonth}
       >
@@ -150,7 +150,7 @@ export default function Producto(props) {
       </span>
       <button
         aria-label="Next Month"
-        className={"navigation-arrows-buscador next-arrow-buscador"}
+        className={"navigation-arrows-producto next-arrow-producto"}
         onClick={increaseMonth}
       >
         {<i>{nextArrow}</i>}
@@ -286,7 +286,7 @@ export default function Producto(props) {
       </div>
       <div className="commodity-available-dates">
         <h1>Fechas disponibles</h1>
-        <div className="commodity-container-calendar-reserva">
+        <div className="commodity-container-calendar">
           <div className="commodity-calendar">
             <DatePicker
               disabledKeyboardNavigation
@@ -295,10 +295,6 @@ export default function Producto(props) {
               inline 
               //para poder seleccionar un rango de fechas
               selected={false}
-              // selectsRange={false} 
-              // startDate={false}
-              // endDate={endDate}
-              // onChange={null}
               //para que cuando sea menor a 480 se vuelva uno
               monthsShown={width <= 480 ? 1 : 2}
               //para que sea en español
@@ -308,7 +304,6 @@ export default function Producto(props) {
               //para que el nombre de los meses quede con mayúscula inicial
               formatWeekDay={day => day.charAt(0).toUpperCase() + day.substring(1,2) }
               showPopperArrow={false}
-              
             >
               <div className="divider-producto"></div>
             </DatePicker>
