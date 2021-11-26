@@ -89,7 +89,10 @@
 }
 
 .error-mensaje{
-  display:block;
+  display: block;
+  width: auto;
+  margin-left: -95px;
+  margin-top: 10px;
 }
 
 /* pantalla 2 Mobile crearCuenta */

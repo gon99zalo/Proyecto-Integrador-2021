@@ -22,7 +22,10 @@ import Footer from "./Footer";
 import Loading from "./Loading";
 import FormDatos from "./FormDatos";
 import HorarioLLegada from "./HorarioLlegada";
+import { useHistory } from "react-router";
 import Calendario from "./CalendarDatePicker";
+import Swal from 'sweetalert2'
+
 
 console.log(Calendario);
 
@@ -43,16 +46,15 @@ export default function Reservas(props) {
       nombre: "",
       pais: "",
     },
-    imagenes: [
-      {
-        titulo: "",
-        url: "",
-      },
-    ],
+    imagenes: [{
+      titulo: "",
+      url: "",
+    }],
   });
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
-  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
+  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
+  const history = useHistory()
   registerLocale("es", es);
 
   // ÍCONOS
@@ -65,16 +67,23 @@ export default function Reservas(props) {
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
 
   const handlerReserva = (e) => {
-    e.preventDefault();
-    const fechaIn = document.querySelector(".hora-check-in").value;
-    const fechaOut = document.querySelector(".hora-check-out").value;
-    console.log(fechaIn);
+    e.preventDefault();   
+    //obtenemos el id del usuario logueado a partir del token de seguridad
+    let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));   
+    let idUsuario = JSON.parse(jsonPayload).sub.split("'")[1];
+    console.log(parseInt(idUsuario).valueOf());
+
     let valores = {
-      fechaInicial: fechaIn,
-      fechaFinal: fechaOut,
+      fechaInicial: startDate,
+      fechaFinal: endDate,
       hora: horario,
-      producto: producto,
-      usuario: datosDeUsuarioParseado,
+      producto: {id: producto.id},
+      usuario: {id: idUsuario}
     };
 
     let config = {
@@ -86,15 +95,13 @@ export default function Reservas(props) {
       },
     };
 
-    fetch(api + "/reservas", config)
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch(
-        (error) => console.log(error),
-        alert(
-          "Lamentablemente la reserva no ha podido realizarse”. Por favor, intente más tarde"
-        )
-      );
+      fetch(api + "/reservas", config)
+      .then((response) => response.status === 200 ? history.push(("/exito")) :Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde'
+      }))
+      .catch((error) => console.log(error));
   };
 
   const calendarHeaderReservas = ({
@@ -189,7 +196,7 @@ export default function Reservas(props) {
     return (
       <>
         <Header />
-        <div>Error: {error.message}</div>
+          <div>Error: {error.message}</div>
         <Footer />
       </>
     );

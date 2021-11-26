@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom"
 import "../styles/crearCuenta.css"
 import { useMemo } from "react";
+import Swal from 'sweetalert2'
 const visible = <FontAwesomeIcon icon={faEye} />;
 const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 
@@ -42,7 +43,8 @@ export default function IniciarSesion() {
       },
       (error) => {
         console.log(error);
-        alert("Por favor vuelva a intentarlo, tus credenciales son inválidas") 
+        const credenciales = document.querySelector(".error-credenciales")
+        credenciales.classList.toggle("credenciales-mostrar")
         for(inputs of inputs){
         inputs.classList.toggle("error")
         }
@@ -53,7 +55,7 @@ export default function IniciarSesion() {
 
   return (
     <>
-      <Header login={true}/>
+      <Header />
       <div className="logIn">
       <h1 className="titulo-inicio">Iniciar sesión</h1>
       <form className="form-iniciarSesion" action="">
@@ -67,12 +69,17 @@ export default function IniciarSesion() {
           </div>
           <button onClick={handlerValidate} type="submit" className="boton-iniciarSesion" id="boton-iniciarSesion">Ingresar</button>
           <p className="texto-cuenta txt-1">¿Aún no tenes cuenta? <Link to="/crearCuenta"><span className="color-links">Registrate</span></Link></p>
-          <div className="error-mensaje-escondido">por favor vuelva a intarlo, sus credenciales son inválidas</div>
+          <div className="error-mensaje-escondido"><p className="error-credenciales">Por favor vuelva a intentarlo, tus credenciales son inválidas</p></div>
           </div>
       </form>
       </div>
     <Footer />
-    {reserva? alert("Debe estar registrado para poder realizar una reserva") : ""}
+    {reserva? Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe estar registrado para poder realizar una reserva',
+        footer: '<a href="crearCuenta">Pulse aquí para registrarse</a>'
+      }): ""}
       </>
   )
 }
