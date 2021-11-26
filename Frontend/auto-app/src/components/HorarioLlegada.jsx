@@ -8,7 +8,7 @@ export default function HorarioLLegada(props) {
   const [selectedOption, setSelectedOption] = useState(null);
   const checkCircle = <FontAwesomeIcon icon={faCheckCircle} />;
 
-  let horaElegida = null;
+  let horaElegida = "12:00 AM";
 
   const handleChange = () => {
     horaElegida = document.querySelector("option:checked").value;
@@ -24,7 +24,7 @@ export default function HorarioLLegada(props) {
               Tu auto va a estar listo en el siguiente horario: {selectedOption}
             </p>
             <label htmlFor="horarioElegido">
-              IndicÃ¡ tu horario estimado de llegada
+              Indica tu horario estimado de llegada
             </label>
             <select name="horario" onChange={handleChange}>
               <option value="" defaultValue="Seleccionar hora" disabled hidden>

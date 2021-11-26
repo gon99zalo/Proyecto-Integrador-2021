@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useCallback, useEffect, useState } from "react";
 import { faFacebook, faInstagram, faLinkedinIn, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { useHistory } from "react-router-dom";
 
 const facebook = <FontAwesomeIcon icon={faFacebook} />;
 const linkedin = <FontAwesomeIcon icon={faLinkedinIn} />;
@@ -15,6 +16,8 @@ const menu = <FontAwesomeIcon icon={faBars} />;
 
 
 export default function Header(props) {
+    const history = useHistory()
+
     const [width, setwidth] = useState ({ width: window.screen.availWidth });
     const [show, setShow] = useState("sidenav");
     const [userActive, setUserActive] = useState(false)
@@ -41,7 +44,8 @@ export default function Header(props) {
       const handlerClose = useCallback(() => {
         sessionStorage.removeItem('infoUsuario')
         setUserActive(false)
-      }, [])
+        if(window.location.href.includes("reserva")){history.push("/")}
+      }, [history])
   
       let nombreCompleto = JSON.parse(sessionStorage.getItem('infoUsuario'))
 

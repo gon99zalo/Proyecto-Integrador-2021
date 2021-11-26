@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 // Estilo CSS
 import "../styles/producto.css";
+import "../styles/CalendarProducto.css";
 // Íconos
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faStar, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faStar, faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 // Calendario
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -20,6 +21,7 @@ import { subDays } from 'date-fns';
 import Gallery from './Gallery';
 import SwipeGallery from './SwipeGallery';
 import Header from "./Header";
+import Politicas from "./Politicas";
 import Footer from './Footer';
 import Loading from './Loading';
 import { Link } from 'react-router-dom';
@@ -28,12 +30,11 @@ Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
 export default function Producto(props) {
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
+  const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
   registerLocale("es", es);
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
-  const [dateRange, setDateRange] = useState([null, null]);
-  const [startDate, endDate] = dateRange;
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -69,6 +70,93 @@ export default function Producto(props) {
       return "Sin Calificación";
     };
   };
+
+  const calendarHeaderProducto = ({
+    monthDate,
+    customHeaderCount,
+    decreaseMonth,
+    increaseMonth,
+  }) => {
+    return (
+      <>
+        {/* CONTENEDOR DEL HEADER */}
+        <div className="header-calendar-producto">
+          {/* BOTÓN PARA REGRESAR MES */}
+          <button
+            aria-label="Previous Month"
+            className={"navigation-arrows-producto back-arrow-producto"}
+            style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
+            onClick={decreaseMonth}
+          >
+            {<i>{backArrow}</i>}
+          </button>
+
+          {/* LOS MESES MOSTRADOS EN EL HEADER */}
+          <span className="react-datepicker__current-month">
+            {monthDate
+              .toLocaleString("es-CO", {
+                month: "long",
+              })
+              .charAt(0)
+              .toUpperCase() +
+              monthDate
+                .toLocaleString("es-CO", {
+                  month: "long",
+                })
+                .slice(1)}
+          </span>
+
+          {/* BOTÓN PARA AUMENTAR MES */}
+          <button
+            aria-label="Next Month"
+            className={"navigation-arrows-producto next-arrow-producto"}
+            style={customHeaderCount === 0 ? { visibility: "hidden" } : null}
+            onClick={increaseMonth}
+          >
+            {<i>{nextArrow}</i>}
+          </button>
+        </div>
+      </>
+    );
+  };
+
+  const calendarHeaderProductoMobile = ({
+    monthDate,
+    customHeaderCount,
+    decreaseMonth,
+    increaseMonth,
+  }) => (
+    <div className="header-calendar-buscador">
+      <button
+        aria-label="Previous Month"
+        className={"navigation-arrows-buscador back-arrow-buscador"}
+        style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
+        onClick={decreaseMonth}
+      >
+        {<i>{backArrow}</i>}
+      </button>
+      <span className="react-datepicker__current-month">
+        {monthDate
+          .toLocaleString("es-CO", {
+            month: "long",
+          })
+          .charAt(0)
+          .toUpperCase() +
+          monthDate
+            .toLocaleString("es-CO", {
+              month: "long",
+            })
+            .slice(1)}
+      </span>
+      <button
+        aria-label="Next Month"
+        className={"navigation-arrows-buscador next-arrow-buscador"}
+        onClick={increaseMonth}
+      >
+        {<i>{nextArrow}</i>}
+      </button>
+    </div>
+  );
 
   useEffect(() => {
     setwidth(window.screen.availWidth);
@@ -192,40 +280,48 @@ export default function Producto(props) {
         <hr className="commodity-divisor" />
         <div className="features-box">
           {producto.caracteristicas.map(caract => {
-            return <><i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
+            return <div><i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong></div>
           })}
         </div>
       </div>
       <div className="commodity-available-dates">
-        <DatePicker
-          //para que aparezca sin necesidad del input
-          inline 
-          //para poder seleccionar un rango de fechas
-          selectsRange={true} 
-          startDate={startDate}
-          endDate={endDate}
-          onChange={(update) => {
-              setDateRange(update);
-            }}
-          //para que cuando sea menor a 480 se vuelva uno
-          monthsShown={width <= 480 ? 1 : 2}
-          //para que sea en español
-          locale="es"
-          //para que no se puedan escojer fechas pasadas a la actual
-          minDate={subDays(new Date(), 0)}
-          //para que el nombre de los meses quede con mayúscula inicial
-          formatWeekDay={day => day.charAt(0).toUpperCase() + day.substring(1,2) }
-        >
-          <div className="divider"></div>
-        </DatePicker>
-        <div className="inicar-reserva">
-            <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
-            <Link to={sessionStorage.getItem("infoUsuario")!= null ? "/productos/" + props.match.params.id + "/reserva" : "/iniciarSesion?reserva=" + props.match.params.id} className="boton-iniciar-reserva">Iniciar reserva</Link>
+        <h1>Fechas disponibles</h1>
+        <div className="commodity-container-calendar-reserva">
+          <div className="commodity-calendar">
+            <DatePicker
+              disabledKeyboardNavigation
+              renderCustomHeader={width <= 480 ? calendarHeaderProductoMobile : calendarHeaderProducto}
+              //para que aparezca sin necesidad del input
+              inline 
+              //para poder seleccionar un rango de fechas
+              selected={false}
+              // selectsRange={false} 
+              // startDate={false}
+              // endDate={endDate}
+              // onChange={null}
+              //para que cuando sea menor a 480 se vuelva uno
+              monthsShown={width <= 480 ? 1 : 2}
+              //para que sea en español
+              locale="es"
+              //para que no se puedan escojer fechas pasadas a la actual
+              minDate={subDays(new Date(), 0)}
+              //para que el nombre de los meses quede con mayúscula inicial
+              formatWeekDay={day => day.charAt(0).toUpperCase() + day.substring(1,2) }
+              showPopperArrow={false}
+              
+            >
+              <div className="divider-producto"></div>
+            </DatePicker>
+          </div>
+          <div className="inicar-reserva">
+              <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
+              <Link to={sessionStorage.getItem("infoUsuario")!= null ? "/productos/" + props.match.params.id + "/reserva" : "/iniciarSesion?reserva=" + props.match.params.id} className="boton-iniciar-reserva">Iniciar reserva</Link>
+          </div>
         </div>
       </div>
 
       <div className="commodity-location">
-        <h1>¿Dónde vas a estar?</h1>
+        <h1>¿Dónde lo encontrás?</h1>
         <hr className="commodity-divisor" />
         <h4>{producto.ciudad.nombre}</h4>
         <div className="commodity-location-container">
@@ -242,31 +338,7 @@ export default function Producto(props) {
           </div>
         </div>
       </div>
-
-      <div className="commodity-rules">
-        <h1>Qué tenés que saber</h1>
-        <hr className="commodity-divisor" />
-        <div className="commodity-rule-container">
-          <div className="normas">
-            <h3>Normas del vehículo</h3>
-            <p>Norma 1</p>
-            <p>Norma 2</p>
-            <p>Norma 3</p>
-          </div>
-          <div className="salud">
-            <h3>Salud y seguridad</h3>
-            <p>Salud 1</p>
-            <p>Salud 2</p>
-            <p>Salud 3</p>
-          </div>
-          <div className="cancelacion">
-            <h3>Política de cancelación</h3>
-            <p className="texto-cancelacion">
-              Agregá las fechas de tu viaje para obtener los detalles de cancelación de este vehículo.
-            </p>
-          </div>
-        </div>
-      </div>
+      <Politicas />
       <Footer />
     </>
   );

@@ -104,13 +104,13 @@
   color: var(--two-color);
 }
 .commodity-description p {
+  width: 90%;
   margin-left: 3%;
   text-align: left;
   width: 90%;
 }
 
 .commodity-features {
-  /* height: 280px; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -125,33 +125,43 @@
   border: 1px solid var(--main-color);
 }
 .features-box {
+  width: 90%;
   display: flex;
   margin-left: 3%;
   margin-bottom: 2em;
   gap: 25%;
 }
+.features-box div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
 .features-box div i {
   margin-right: 8px;
-  font-size: 25px;
+  font-size: 22px;
   color: var(--main-color);
 }
 .features-box div strong {
-  font-size: 25px;
+  font-size: 14px;
   color: var(--three-color);
 }
 
-
 .commodity-available-dates {
-  height: 450px;
+  height: 400px;
   background-color: var(--three-color-with-opacity);
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
-.commodity-available-dates .react-datepicker {
+.commodity-available-dates h1 {
+  margin-left: 3%;
+}
+/* .commodity-available-dates .react-datepicker {
   width: 60vw;
   height: auto;
-}
+} */
 
 .inicar-reserva {
   height: 150px;
@@ -162,6 +172,12 @@
   justify-content: space-around;
   align-items: center;
   border-radius: 5px;
+}
+
+.texto-iniciar-reserva{
+  text-align: left;
+  margin-left: 13px;
+  width: 79%;
 }
 
 .boton-iniciar-reserva {
@@ -208,36 +224,10 @@ cursor: pointer;
   border-radius: 10px;
 }
 
-.commodity-rules {
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 28px;
-  gap: 28px;
-}
-.commodity-rules h1 {
-  margin-left: 3%;
-}
-.commodity-rule-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-left: 3%;
-}
-.commodity-rule-container div {
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 8px;
-}
-
-.react-datepicker__navigation {
+/* .react-datepicker__navigation {
   height: 100%;
   display: flex;
-}
+} */
 
 @media screen and (min-width: 480px) and (max-width:  768px){
 
@@ -246,11 +236,18 @@ cursor: pointer;
   }
 
   .commodity-available-dates {
+    height: 481.47px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
   }
-
+  .commodity-available-dates h1 {
+    margin-left: 5.2%;
+    margin-bottom: 18px;
+  }
+  .inicar-reserva {
+    height: 76.08px;
+  }
   .commodity-available-dates .react-datepicker {
     width: 88vw;
     height: auto;
@@ -275,37 +272,6 @@ cursor: pointer;
     width: 50%;
   }
 
-  .commodity-rule-container {
-    /* flex-direction: column; */
-    display: grid;
-
-  }
-
-  .normas {
-    grid-column: 1 / 3;
-    grid-row: 1;
-  }
-  .salud {
-    grid-column: 2 / 4;
-    grid-row: 1 / 3;
-  }
-  .cancelacion {
-    grid-column: 1;
-    grid-row: 2 / 5;
-  }
-
-  .commodity-rule-container div h3 {
-    margin-top: 40px;
-  }
-
-  .commodity-rule-container div p {
-    margin-top: 15px;
-  }
-
-  .texto-cancelacion{
-    width: 40vw;
-  }
-
   .commodity-rank { 
     margin-right: 10px;
     width: 100%;
@@ -315,13 +281,6 @@ cursor: pointer;
     width: 150px;
   }
 
-  .cancelacion {
-    margin-bottom: 75px;
-  }
-
-  .commodity-rule-container div {
-    width: auto;
-  }
 }
 
 @media screen and (max-width: 480px){
@@ -334,7 +293,7 @@ cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 550px;
+    height: 560px;
   }
 
   .commodity-available-dates .react-datepicker {
@@ -362,25 +321,6 @@ cursor: pointer;
     width: 88%;
   }
 
-  .commodity-rule-container {
-    flex-direction: column;
-  }
-  .commodity-rule-container div h3 {
-    margin-top: 40px;
-  }
-
-  .commodity-rule-container div p {
-    margin-top: 15px;
-  }
-
-  .commodity-rule-container div {
-    width: auto;
-  }
-
-  .texto-cancelacion{
-    width: 70vw;
-  }
-
   .commodity-location-ranking{
     height: 100px;
   }
@@ -394,7 +334,4 @@ cursor: pointer;
     margin-right: 10px;
   }
   
-  .cancelacion {
-    margin-bottom: 75px;
-  }
 }

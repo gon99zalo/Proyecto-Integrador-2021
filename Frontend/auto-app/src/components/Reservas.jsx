@@ -4,21 +4,37 @@ import "../styles/Reservas.css";
 //Librerías
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faMapMarkerAlt, faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faMapMarkerAlt,
+  faStar,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { subDays } from "date-fns";
+import { registerLocale } from "react-datepicker";
+import es from "date-fns/locale/es";
 //Componentes
 import Header from "./Header";
+import Politicas from "./Politicas";
 import Footer from "./Footer";
 import Loading from "./Loading";
 import FormDatos from "./FormDatos";
 import HorarioLLegada from "./HorarioLlegada";
+import { useHistory } from "react-router";
+import Calendario from "./CalendarDatePicker";
+import Swal from 'sweetalert2'
+
+
+console.log(Calendario);
 
 export default function Reservas(props) {
   // HOOKS
+  const [width, setwidth] = useState({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [horario, setHorario] = useState(null)
+  const [horario, setHorario] = useState(null);
   const [producto, setProducto] = useState({
     id: 0,
     nombre: "",
@@ -35,47 +51,116 @@ export default function Reservas(props) {
       url: "",
     }],
   });
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
+  const history = useHistory()
+  registerLocale("es", es);
+
   // ÍCONOS
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
+  const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
 
-  let datosDeUsuario = sessionStorage.getItem("infoUsuario")
-  let datosDeUsuarioParseado = JSON.parse(datosDeUsuario)
-  
-
+  let datosDeUsuario = sessionStorage.getItem("infoUsuario");
+  let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
 
   const handlerReserva = (e) => {
-    e.preventDefault()
-    const fechaIn = document.querySelector(".hora-check-in").value
-    const fechaOut = document.querySelector(".hora-check-out").value
-    console.log(fechaIn)
-    let valores= {
-      fechaInicial: fechaIn,
-      fechaFinal: fechaOut,
+    e.preventDefault();   
+    //obtenemos el id del usuario logueado a partir del token de seguridad
+    let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));   
+    let idUsuario = JSON.parse(jsonPayload).sub.split("'")[1];
+    console.log(parseInt(idUsuario).valueOf());
+
+    let valores = {
+      fechaInicial: startDate,
+      fechaFinal: endDate,
       hora: horario,
-      producto: producto,
-      usuario: datosDeUsuarioParseado
-  }
+      producto: {id: producto.id},
+      usuario: {id: idUsuario}
+    };
 
     let config = {
       method: "POST",
       body: JSON.stringify(valores),
       headers: {
         "Content-Type": "application/JSON",
-        "Authorization": datosDeUsuarioParseado.token
+        Authorization: datosDeUsuarioParseado.token,
       },
     };
 
-    fetch(api + "/reservas", config)
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error), alert("Lamentablemente la reserva no ha podido realizarse”. Por favor, intente más tarde"));
+      fetch(api + "/reservas", config)
+      .then((response) => response.status === 200 ? history.push(("/exito")) :Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde'
+      }))
+      .catch((error) => console.log(error));
+
   };
-  
+
+  const calendarHeaderReservas = ({
+    monthDate,
+    customHeaderCount,
+    decreaseMonth,
+    increaseMonth,
+  }) => {
+    return (
+      <>
+        {/* CONTENEDOR DEL HEADER */}
+        <div className="header-calendar-producto">
+          {/* BOTÓN PARA REGRESAR MES */}
+          <button
+            aria-label="Previous Month"
+            className={"navigation-arrows-producto back-arrow-producto"}
+            style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
+            onClick={decreaseMonth}
+          >
+            {<i>{backArrow}</i>}
+          </button>
+
+          {/* LOS MESES MOSTRADOS EN EL HEADER */}
+          <span className="react-datepicker__current-month">
+            {monthDate
+              .toLocaleString("es-CO", {
+                month: "long",
+              })
+              .charAt(0)
+              .toUpperCase() +
+              monthDate
+                .toLocaleString("es-CO", {
+                  month: "long",
+                })
+                .slice(1)}
+          </span>
+
+          {/* BOTÓN PARA AUMENTAR MES */}
+          <button
+            aria-label="Next Month"
+            className={"navigation-arrows-producto next-arrow-producto"}
+            style={customHeaderCount === 0 ? { visibility: "hidden" } : null}
+            onClick={increaseMonth}
+          >
+            {<i>{nextArrow}</i>}
+          </button>
+        </div>
+      </>
+    );
+  };
+
   // AQUÍ SE TRAE LOS DATOS DEL PRODUCTO - API
   useEffect(() => {
+    setwidth(window.screen.availWidth);
+    function handleResize() {
+        setwidth(window.screen.availWidth);
+    }
+    window.addEventListener('resize', handleResize)
     // Dirección de la API
     const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
     fetch(api + "/productos/buscar/" + props.match.params.id)
@@ -143,112 +228,128 @@ export default function Reservas(props) {
         <main className="booking-main">
           <h1>Completá tus datos</h1>
           <div className="booking-sections">
-
             {/* DATOS PARA LA RESERVA - LADO IZQUIERDO */}
             <div className="booking-data">
-
               {/* FORMULARIO */}
-              <div style={{height: "217px", border: "1px solid #DFE4EA", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "8px", marginBottom: "35px"}}>
+              <div className="booking-data-form">
                 <FormDatos />
               </div>
 
               {/* CALENDARIO */}
-              <h1 style={{marginBottom: "13px"}}>Seleccioná tu fecha de reserva</h1>
-              <div className="booking-calendar" style={{height: "297px", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "5px", marginBottom: "36px"}}>
-                <DatePicker inline />
+              <h1 style={{ marginBottom: "13px" }}>
+                Seleccioná tu fecha de reserva
+              </h1>
+              <div className="booking-calendar">
+                <DatePicker
+                  disabledKeyboardNavigation
+                  inline
+                  renderCustomHeader={calendarHeaderReservas}
+                  //para poder seleccionar un rango de fechas
+                  selectsRange={true}
+                  startDate={startDate}
+                  endDate={endDate}
+                  onChange={(update) => {
+                    setDateRange(update);
+                  }}
+                  //para que cuando sea menor a 480 se vuelva uno
+                  monthsShown={width <= 480 ? 1 : 2}
+                  //para que sea en español
+                  locale="es"
+                  //para que no se puedan escojer fechas pasadas a la actual
+                  minDate={subDays(new Date(), 0)}
+                  //para que el nombre de los meses quede con mayúscula inicial
+                  formatWeekDay={(day) =>
+                    day.charAt(0).toUpperCase() + day.substring(1, 2)
+                  }
+                  showPopperArrow={false}
+                >
+                  <div className="divider-reserva"></div>
+                </DatePicker>
               </div>
 
               {/* HORARIO */}
-              <h1 style={{marginBottom: "16px"}}>Tu horario de llegada</h1>
-              <div style={{height: "144px", border: "1px solid #DFE4EA", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "8px"}}>
-                <HorarioLLegada horario={setHorario}/>
+              <h1 style={{ marginBottom: "16px" }}>Tu horario de llegada</h1>
+              <div className="booking-data-horario">
+                <HorarioLLegada horario={setHorario} />
               </div>
             </div>
 
             {/* DETALLES DE RESERVA - LADO DERECHO */}
             <div className="booking-details">
-
               <h1>Detalles de la reserva</h1>
 
-              {/* IMAGEN RESERVA */}
-              <div className="booking-details-image">
-                {console.log(producto.imagenes)}
-                <img src={producto.imagenes[0].url} alt={producto.imagenes[0].titulo} />
-              </div>
-
-              {/* INFORMACIÓN DEL PRODUCTO */}
-              <div className="booking-details-info">
-                <h4>{producto.categoria.titulo}</h4>
-                <h1>{producto.nombre}</h1>
-                <div className="details-stars">
-                  <i>{star}</i>
-                  <i>{star}</i>
-                  <i>{star}</i>
-                  <i>{star}</i>
-                  <i>{star}</i>
+              <div className="booking-image-info">
+                {/* IMAGEN RESERVA */}
+                <div className="booking-details-image">
+                  <img
+                    src={producto.imagenes[0].url}
+                    alt={producto.imagenes[0].titulo}
+                  />
                 </div>
 
-                {/* INFORMACIÓN DE LOCACIÓN DEL PRODUCTO */}
-                <div className="booking-details-location">
-                  <i>{marker}</i>
-                  <div>
-                    <p> A 100mt del Barrio Los Rosales</p>
-                    <p> {producto.ciudad.nombre + ", " + producto.ciudad.pais}</p>
+                {/* INFORMACIÓN DEL PRODUCTO */}
+                <div className="booking-info-container">
+                  <div className="booking-details-info">
+                    <h4>{producto.categoria.titulo}</h4>
+                    <h1>{producto.nombre}</h1>
+                    <div className="details-stars">
+                      <i>{star}</i>
+                      <i>{star}</i>
+                      <i>{star}</i>
+                      <i>{star}</i>
+                      <i>{star}</i>
+                    </div>
+
+                    {/* INFORMACIÓN DE LOCACIÓN DEL PRODUCTO */}
+                    <div className="booking-details-location">
+                      <i>{marker}</i>
+                      <div>
+                        <p> A 100mt del Barrio Los Rosales</p>
+                        <p>
+                          {" "}
+                          {producto.ciudad.nombre + ", " + producto.ciudad.pais}
+                        </p>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* CHECK IN - CHECK OUT */}
+                  <div className="booking-details-check">
+                    <div className="booking-details-divisor"></div>
+                    <div className="txt-2 checks check-in">
+                      <p>Check in</p>
+                      <span className="hora-check-in">
+                        {startDate ? startDate.toLocaleDateString() : "_/_/_"}
+                      </span>
+                    </div>
+                    <div className="booking-details-divisor"></div>
+                    <div className="txt-2 checks check-out">
+                      <p>Check out</p>
+                      <span className="hora-check-out">
+                        {endDate ? endDate.toLocaleDateString() : "_/_/_"}
+                      </span>
+                    </div>
+                    <div className="booking-details-divisor"></div>
+                  </div>
+
+                  {/* BOTÓN DE RESERVA */}
+                  <button
+                    className="btn-2 btn-details"
+                    onClick={handlerReserva}
+                  >
+                    Confirmar reserva
+                  </button>
                 </div>
               </div>
-
-              {/* CHECK IN - CHECK OUT */}
-              <div className="booking-details-check">
-                <div className="booking-details-divisor"></div>
-                <div className="txt-2 checks check-in">
-                  <p>Check in</p>
-                  <span className="hora-check-in">_/_/_</span>
-                </div>
-                <div className="booking-details-divisor"></div>
-                <div className="txt-2 checks check-out">
-                  <p>Check out</p>
-                  <span className="hora-check-out">_/_/_</span>
-                </div>
-                <div className="booking-details-divisor"></div>
-              </div>
-
-              {/* BOTÓN DE RESERVA */}
-              <button className="btn-2 btn-details" onClick={handlerReserva}>
-                Confirmar reserva
-              </button>
             </div>
           </div>
         </main>
 
         {/* REGLAS */}
-        {/* TODO: PUEDE CREARSE UN COMPONENTE Y USARLO AQUÍ Y EN LA SECCIÓN DE PRODUCTO  */}
-        <div className="commodity-rules">
-          <h1>Qué tenés que saber</h1>
-          <hr className="commodity-divisor" />
-          <div className="commodity-rule-container">
-            <div className="normas">
-              <h3>Normas del vehículo</h3>
-              <p>Norma 1</p>
-              <p>Norma 2</p>
-              <p>Norma 3</p>
-            </div>
-            <div className="salud">
-              <h3>Salud y seguridad</h3>
-              <p>Salud 1</p>
-              <p>Salud 2</p>
-              <p>Salud 3</p>
-            </div>
-            <div className="cancelacion">
-              <h3>Política de cancelación</h3>
-              <p className="texto-cancelacion">
-                Agregá las fechas de tu viaje para obtener los detalles de cancelación de esta estadía.
-              </p>
-            </div>
-          </div>
-        </div>
+        <Politicas />
+
         <Footer />
       </>
     );
-  };
-};
+  }
+}

@@ -1,0 +1,165 @@
+/* .commodity-available-dates div:nth-child(1) {
+    width: 62%;
+    height: 297px;
+} */
+/* .commodity-available-dates div .react-datepicker {
+    width: 100%;
+    display: flex;
+} */
+/* .commodity-available-dates div .react-datepicker .react-datepicker__month-container {
+    width: 50%;
+} */
+.commodity-container-calendar-reserva {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.commodity-calendar {
+  height: 100%;
+  width: 62%;
+}
+.commodity-calendar div .react-datepicker {
+  height: 297px;
+  width: auto;
+  padding: 20px 8.41%;
+}
+
+.divider-producto {
+  position: absolute;
+  border: 1px solid #a8a8a8;
+  height: 87.2%;
+}
+.header-calendar-producto {
+  position: static;
+  margin-bottom: 4px;
+}
+.navigation-arrows-producto {
+  position: absolute;
+  height: 35px;
+  width: 34px;
+  background: var(--main-color);
+  border-radius: 50%;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12),
+    0px 1px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  top: 40%;
+}
+.back-arrow-producto {
+  left: 2.4%;
+}
+.next-arrow-producto {
+  right: 2.4%;
+}
+.navigation-arrows-producto:hover {
+  border: 1px solid var(--four-color);
+}
+.navigation-arrows-producto i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 19px;
+}
+
+.commodity-calendar .react-datepicker__day-names {
+  margin-bottom: 5px;
+}
+.commodity-calendar .react-datepicker__week {
+  margin-bottom: 2px;
+}
+/* CONTENEDOR DEL DÍA - HOVERS */
+.react-datepicker__day--keyboard-selected:hover,
+.react-datepicker__month-text--keyboard-selected:hover,
+.react-datepicker__quarter-text--keyboard-selected:hover,
+.react-datepicker__year-text--keyboard-selected:hover {
+  background-color: var(--main-color);
+  border-radius: 50%;
+  color: #ffffff;
+}
+.react-datepicker__week div.react-datepicker__day:hover,
+.react-datepicker__week div.react-datepicker__month-text:hover,
+.react-datepicker__week div.react-datepicker__quarter-text:hover,
+.react-datepicker__week div.react-datepicker__year-text:hover {
+  background-color: var(--main-color);
+  border-radius: 50%;
+  color: #ffffff;
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .commodity-calendar div .react-datepicker {
+    height: 312.3px;
+    padding: 27px 8.41%;
+  }
+  .commodity-calendar {
+    width: 91.2%;
+  }
+  .header-calendar-producto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .commodity-container-calendar-reserva {
+    height: 392.38px;
+    flex-direction: column;
+  }
+  .navigation-arrows-producto {
+    position: relative;
+    height: 11px;
+    width: 11px;
+    background: transparent;
+    border-radius: none;
+    color: #ffffff;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+  }
+  .navigation-arrows-producto i {
+    font-size: 15px;
+    color: #666666;
+  }
+  .navigation-arrows-producto:hover {
+    border: none;
+    opacity: 0.5;
+  }
+  .react-datepicker__day-names {
+    margin-bottom: 7px;
+  }
+  .commodity-calendar .react-datepicker__week {
+    margin-bottom: 1px;
+  }
+  .divider-producto {
+    height: 82%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .commodity-container-calendar-reserva {
+    height: 455px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .commodity-calendar {
+    height: 328px;
+    width: 95.2%;
+    margin-bottom: 31px;
+  }
+  .divider-producto {
+    display: none;
+  }
+  .commodity-calendar div .react-datepicker {
+    height: 100%;
+    padding: 42px 13.2%;
+  }
+  .commodity-calendar .react-datepicker__month-container {
+    width: 100%;
+  }
+  .commodity-calendar .react-datepicker__week {
+    margin-bottom: 1px;
+  }
+  .commodity-calendar .react-datepicker__day-names {
+    margin-bottom: 3px;
+  }
+}
