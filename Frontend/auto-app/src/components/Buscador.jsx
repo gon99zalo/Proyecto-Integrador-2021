@@ -1,12 +1,11 @@
 //@ts-nocheck
-import "../styles/buscador.css";
 import React, { useState, forwardRef, useEffect } from "react";
 //Para calendar
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import "../styles/buscador.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import "../styles/CalendarBuscador.css";
-// import "../styles/CalendarDatePicker.css";
 //Para que el calendario esté en español
+import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 //Íconos
@@ -211,7 +210,6 @@ const handlerCiudad = () => {
           onChange={(update) => {
             setDateRange(update);
           }}
-          isClearable
           monthsShown={width <= 480 ? 1 : 2}
           locale="es"
           shouldCloseOnSelect={false}
@@ -220,7 +218,7 @@ const handlerCiudad = () => {
           formatWeekDay={(day) =>
             day.charAt(0).toUpperCase() + day.substring(1, 2)
           }
-          popperPlacement={width <= 768 ? "bottom-end" : "bottom-start"}
+          popperPlacement={width <= 768 ? (width <= 468 ? "bottom" : "bottom-end") : "bottom-start"}
           popperClassName="popper-calendar-buscador"
         >
           <button onClick={handleCloseCalendar} className="btn-1 calendar-button-buscador">Aplicar</button>
