@@ -156,7 +156,10 @@ div.popper-calendar-buscador > div > div.react-datepicker {
 /* Estilo de texto de los números */
 .buscador-day-style {
     font-size: 12px;
+    cursor: default;
 }
+/* Es probable que no este funcionando, en calendarProducto
+no funcionó, se usó el nombre de la clase de la librería  */
 .buscador-day-style:hover {
     background-color: var(--main-color);
     border-radius: 50%;
@@ -203,7 +206,6 @@ div.popper-calendar-buscador > div > div.react-datepicker {
 /* Hover para las fechas que están deshabilitadas  */
 .react-datepicker div.buscador-day-style.react-datepicker__day--disabled:hover {
     background-color: transparent;
-    color: black;
     font-weight: 500;
     cursor:default
 }

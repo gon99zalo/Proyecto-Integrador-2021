@@ -203,7 +203,7 @@ const handlerCiudad = () => {
           renderCustomHeader={ width <= 480 ? calendarHeaderMobile : calendarHeader }
           showPopperArrow={false}
           customInput={<CalendarBuscadorInput />}
-          dayClassName={buscadorDayStyle} //probablemente no sea necesario
+          dayClassName={buscadorDayStyle}
           selectsRange={true}
           startDate={startDate}
           endDate={endDate}

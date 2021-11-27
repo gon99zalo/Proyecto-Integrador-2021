@@ -4,6 +4,7 @@ import React from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import Geocode from "react-geocode";
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 // import { Link } from "react-router-dom";
 // Estilo CSS
 import "../styles/producto.css";
@@ -16,15 +17,14 @@ import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
-import { subDays } from 'date-fns';
-// Galería de imagenes
+import { subDays, getDate } from 'date-fns';
+// Componentes
 import Gallery from './Gallery';
 import SwipeGallery from './SwipeGallery';
 import Header from "./Header";
 import Politicas from "./Politicas";
 import Footer from './Footer';
 import Loading from './Loading';
-import { Link } from 'react-router-dom';
 
 Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
@@ -70,6 +70,9 @@ export default function Producto(props) {
       return "Sin Calificación";
     };
   };
+
+// Estilo de días
+const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefined;
 
   const calendarHeaderProducto = ({
     monthDate,
@@ -290,6 +293,8 @@ export default function Producto(props) {
           <div className="commodity-calendar">
             <DatePicker
               disabledKeyboardNavigation
+              //para estilizar el texto número de los días
+              dayClassName={buscadorDayStyle}
               renderCustomHeader={width <= 480 ? calendarHeaderProductoMobile : calendarHeaderProducto}
               //para que aparezca sin necesidad del input
               inline 
