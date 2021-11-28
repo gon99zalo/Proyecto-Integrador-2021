@@ -1,6 +1,7 @@
 //@ts-nocheck
 //Estilos
 import "../styles/Reservas.css";
+import "../styles/CalendarReservas.css";
 //Librerías
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,8 +12,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { subDays } from "date-fns";
+import { subDays, getDate } from "date-fns";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 //Componentes
@@ -23,11 +23,7 @@ import Loading from "./Loading";
 import FormDatos from "./FormDatos";
 import HorarioLLegada from "./HorarioLlegada";
 import { useHistory } from "react-router";
-import Calendario from "./CalendarDatePicker";
-import Swal from 'sweetalert2'
-
-
-console.log(Calendario);
+import Swal from "sweetalert2";
 
 export default function Reservas(props) {
   // HOOKS
@@ -46,15 +42,17 @@ export default function Reservas(props) {
       nombre: "",
       pais: "",
     },
-    imagenes: [{
-      titulo: "",
-      url: "",
-    }],
+    imagenes: [
+      {
+        titulo: "",
+        url: "",
+      },
+    ],
   });
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
-  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
-  const history = useHistory()
+  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
+  const history = useHistory();
   registerLocale("es", es);
 
   // ÍCONOS
@@ -67,14 +65,23 @@ export default function Reservas(props) {
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
 
   const handlerReserva = (e) => {
+    e.preventDefault();
+    const fechaIn = document.querySelector(".hora-check-in").value;
+    const fechaOut = document.querySelector(".hora-check-out").value;
+
     e.preventDefault();   
     //obtenemos el id del usuario logueado a partir del token de seguridad
-    let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token
-    let base64Url = token.split('.')[1];
-    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));   
+    let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token;
+    let base64Url = token.split(".")[1];
+    let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    let jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
     let idUsuario = JSON.parse(jsonPayload).sub.split("'")[1];
     console.log(parseInt(idUsuario).valueOf());
 
@@ -95,14 +102,21 @@ export default function Reservas(props) {
       },
     };
 
-      fetch(api + "/reservas", config)
-      .then((response) => response.status === 200 ? history.push(("/exito")) :Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde'
-      }))
+    fetch(api + "/reservas", config)
+      .then((response) =>
+        response.status === 200
+          ? history.push("/exito")
+          : Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde",
+            })
+      )
       .catch((error) => console.log(error));
   };
+
+  // Estilo de días
+const buscadorDayStyle = (date) => getDate(date) ? "reservas-day-style" : undefined;
 
   const calendarHeaderReservas = ({
     monthDate,
@@ -113,11 +127,11 @@ export default function Reservas(props) {
     return (
       <>
         {/* CONTENEDOR DEL HEADER */}
-        <div className="header-calendar-producto">
+        <div className="header-calendar-reservas">
           {/* BOTÓN PARA REGRESAR MES */}
           <button
             aria-label="Previous Month"
-            className={"navigation-arrows-producto back-arrow-producto"}
+            className={"navigation-arrows-reservas back-arrow-reservas"}
             style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
             onClick={decreaseMonth}
           >
@@ -142,7 +156,7 @@ export default function Reservas(props) {
           {/* BOTÓN PARA AUMENTAR MES */}
           <button
             aria-label="Next Month"
-            className={"navigation-arrows-producto next-arrow-producto"}
+            className={"navigation-arrows-reservas next-arrow-reservas"}
             style={customHeaderCount === 0 ? { visibility: "hidden" } : null}
             onClick={increaseMonth}
           >
@@ -153,13 +167,51 @@ export default function Reservas(props) {
     );
   };
 
+  const calendarHeaderReservasMobile = ({
+    monthDate,
+    customHeaderCount,
+    decreaseMonth,
+    increaseMonth,
+  }) => (
+    <div className="header-calendar-reservas">
+      <button
+        aria-label="Previous Month"
+        className={"navigation-arrows-reservas back-arrow-reservas"}
+        style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
+        onClick={decreaseMonth}
+      >
+        {<i>{backArrow}</i>}
+      </button>
+      <span className="react-datepicker__current-month">
+        {monthDate
+          .toLocaleString("es-CO", {
+            month: "long",
+          })
+          .charAt(0)
+          .toUpperCase() +
+          monthDate
+            .toLocaleString("es-CO", {
+              month: "long",
+            })
+            .slice(1)}
+      </span>
+      <button
+        aria-label="Next Month"
+        className={"navigation-arrows-reservas next-arrow-reservas"}
+        onClick={increaseMonth}
+      >
+        {<i>{nextArrow}</i>}
+      </button>
+    </div>
+  );
+
   // AQUÍ SE TRAE LOS DATOS DEL PRODUCTO - API
   useEffect(() => {
     setwidth(window.screen.availWidth);
     function handleResize() {
-        setwidth(window.screen.availWidth);
+      setwidth(window.screen.availWidth);
     }
-    window.addEventListener('resize', handleResize)
+    window.addEventListener("resize", handleResize);
     // Dirección de la API
     const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
     fetch(api + "/productos/buscar/" + props.match.params.id)
@@ -196,7 +248,7 @@ export default function Reservas(props) {
     return (
       <>
         <Header />
-          <div>Error: {error.message}</div>
+        <div>Error: {error.message}</div>
         <Footer />
       </>
     );
@@ -242,7 +294,8 @@ export default function Reservas(props) {
                 <DatePicker
                   disabledKeyboardNavigation
                   inline
-                  renderCustomHeader={calendarHeaderReservas}
+                  dayClassName={buscadorDayStyle}
+                  renderCustomHeader={ width <= 480 ? calendarHeaderReservasMobile : calendarHeaderReservas }
                   //para poder seleccionar un rango de fechas
                   selectsRange={true}
                   startDate={startDate}

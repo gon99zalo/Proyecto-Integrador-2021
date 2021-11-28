@@ -9,8 +9,8 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import "react-datepicker/dist/react-datepicker.css";
-import "../styles/CalendarDatePicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
+// import "../styles/CalendarDatePicker.css";
 
 export default function Calendario() {
   const [dateRange, setDateRange] = useState([null, null]);
