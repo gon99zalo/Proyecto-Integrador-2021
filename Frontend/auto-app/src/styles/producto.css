@@ -154,7 +154,7 @@
   height: auto;
 } */
 
-.inicar-reserva {
+.iniciar-reserva {
   height: 150px;
   width: 30%;
   background-color: white;
@@ -243,7 +243,7 @@ cursor: pointer;
     margin-left: 5.2%;
     margin-bottom: 18px;
   }
-  .inicar-reserva {
+  .iniciar-reserva {
     height: auto;
     width: 91.2%;
     background-color: transparent;
@@ -288,10 +288,13 @@ cursor: pointer;
   }
 
   .commodity-available-dates {
+    height: 560px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    height: 560px;
+    justify-content: flex-start;
+  }
+  .commodity-available-dates h1 {
+    margin: 25px 0 15px 2.4%;
   }
 
   .commodity-available-dates .react-datepicker {
@@ -299,24 +302,22 @@ cursor: pointer;
     height: auto;
   }
 
-  .inicar-reserva{
-    width: 88%;
-    display: flex;
-    flex-direction: column;
+  .iniciar-reserva{
     height: auto; 
-    width: 100%;
+    width: 95.2%;
     background-color: transparent;
+    border: 0;
+    box-shadow: none;
     gap: 10px;
+  }
+  .iniciar-reserva > p, 
+  .iniciar-reserva > a {
+    width: 100%;
   }
 
   .texto-iniciar-reserva{
     text-align: left;
-    width: 88%;
     display: flex;
-  }
-
-  .boton-iniciar-reserva{
-    width: 88%;
   }
 
   .commodity-location-ranking{

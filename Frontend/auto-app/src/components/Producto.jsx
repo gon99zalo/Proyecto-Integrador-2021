@@ -313,7 +313,7 @@ const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefi
               <div className="divider-producto"></div>
             </DatePicker>
           </div>
-          <div className="inicar-reserva">
+          <div className="iniciar-reserva">
               <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
               <Link to={sessionStorage.getItem("infoUsuario")!= null ? "/productos/" + props.match.params.id + "/reserva" : "/iniciarSesion?reserva=" + props.match.params.id} className="boton-iniciar-reserva">Iniciar reserva</Link>
           </div>
