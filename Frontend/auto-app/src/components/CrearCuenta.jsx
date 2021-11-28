@@ -19,7 +19,7 @@ export default function CrearCuenta() {
   let valido = true
   let errorContrasenia = document.querySelector(".error-contrasenia")
   let errorMail = document.querySelector(".error-mail")
-  if(contrasenia.length<=6 && !mail.includes("@",1) || !mail.includes(".",mail.indexOf("@") + 2)){
+  if((contrasenia.length<=6 && !mail.includes("@",1)) || (!mail.includes(".",mail.indexOf("@") + 2))){
     for(inputs of inputs){
       if(inputs.value === ""){
         valido = false
