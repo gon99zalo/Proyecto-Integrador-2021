@@ -4,6 +4,7 @@ import React from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import Geocode from "react-geocode";
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 // import { Link } from "react-router-dom";
 // Estilo CSS
 import "../styles/producto.css";
@@ -13,18 +14,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faStar, faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 // Calendario
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
-import { subDays } from 'date-fns';
-// Galería de imagenes
+import { subDays, getDate } from 'date-fns';
+// Componentes
 import Gallery from './Gallery';
 import SwipeGallery from './SwipeGallery';
 import Header from "./Header";
 import Politicas from "./Politicas";
 import Footer from './Footer';
 import Loading from './Loading';
-import { Link } from 'react-router-dom';
 
 Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
@@ -70,6 +70,9 @@ export default function Producto(props) {
       return "Sin Calificación";
     };
   };
+
+// Estilo de días
+const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefined;
 
   const calendarHeaderProducto = ({
     monthDate,
@@ -126,10 +129,10 @@ export default function Producto(props) {
     decreaseMonth,
     increaseMonth,
   }) => (
-    <div className="header-calendar-buscador">
+    <div className="header-calendar-producto">
       <button
         aria-label="Previous Month"
-        className={"navigation-arrows-buscador back-arrow-buscador"}
+        className={"navigation-arrows-producto back-arrow-producto"}
         style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
         onClick={decreaseMonth}
       >
@@ -150,7 +153,7 @@ export default function Producto(props) {
       </span>
       <button
         aria-label="Next Month"
-        className={"navigation-arrows-buscador next-arrow-buscador"}
+        className={"navigation-arrows-producto next-arrow-producto"}
         onClick={increaseMonth}
       >
         {<i>{nextArrow}</i>}
@@ -286,19 +289,17 @@ export default function Producto(props) {
       </div>
       <div className="commodity-available-dates">
         <h1>Fechas disponibles</h1>
-        <div className="commodity-container-calendar-reserva">
+        <div className="commodity-container-calendar">
           <div className="commodity-calendar">
             <DatePicker
               disabledKeyboardNavigation
+              //para estilizar el texto número de los días
+              dayClassName={buscadorDayStyle}
               renderCustomHeader={width <= 480 ? calendarHeaderProductoMobile : calendarHeaderProducto}
               //para que aparezca sin necesidad del input
               inline 
               //para poder seleccionar un rango de fechas
               selected={false}
-              // selectsRange={false} 
-              // startDate={false}
-              // endDate={endDate}
-              // onChange={null}
               //para que cuando sea menor a 480 se vuelva uno
               monthsShown={width <= 480 ? 1 : 2}
               //para que sea en español
@@ -308,12 +309,11 @@ export default function Producto(props) {
               //para que el nombre de los meses quede con mayúscula inicial
               formatWeekDay={day => day.charAt(0).toUpperCase() + day.substring(1,2) }
               showPopperArrow={false}
-              
             >
               <div className="divider-producto"></div>
             </DatePicker>
           </div>
-          <div className="inicar-reserva">
+          <div className="iniciar-reserva">
               <p className="texto-iniciar-reserva">Agregá tus fechas de viaje para obtener precios exactos</p>
               <Link to={sessionStorage.getItem("infoUsuario")!= null ? "/productos/" + props.match.params.id + "/reserva" : "/iniciarSesion?reserva=" + props.match.params.id} className="boton-iniciar-reserva">Iniciar reserva</Link>
           </div>
