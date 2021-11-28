@@ -104,7 +104,7 @@
   justify-content: center;
   align-items: center;
 }
-/* hover de los números de los días */
+/* hover de los números de los días pasados */
 .commodity-calendar .react-datepicker__week div.react-datepicker__day--disabled.react-datepicker__day:hover {
   background-color: transparent;
   border-radius: 50%;
@@ -269,8 +269,12 @@
   }
   .navigation-arrows-producto:hover {
     border: none;
+    opacity: 1;
   }
   .navigation-arrows-producto i {
     font-size: 14px;
+  }
+  .divider-producto {
+    display: none;
   }
 }
