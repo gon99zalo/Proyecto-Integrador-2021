@@ -1,6 +1,7 @@
 //@ts-nocheck
 //Estilos
 import "../styles/Reservas.css";
+import "../styles/CalendarReservas.css";
 //Librerías
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,8 +12,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
-import { subDays } from "date-fns";
+import { subDays, getDate } from "date-fns";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 //Componentes
@@ -23,10 +23,7 @@ import Loading from "./Loading";
 import FormDatos from "./FormDatos";
 import HorarioLLegada from "./HorarioLlegada";
 import { useHistory } from "react-router";
-// import Calendario from "./CalendarDatePicker";
 import Swal from "sweetalert2";
-
-// console.log(Calendario);
 
 export default function Reservas(props) {
   // HOOKS
@@ -118,6 +115,9 @@ export default function Reservas(props) {
       .catch((error) => console.log(error));
   };
 
+  // Estilo de días
+const buscadorDayStyle = (date) => getDate(date) ? "reservas-day-style" : undefined;
+
   const calendarHeaderReservas = ({
     monthDate,
     customHeaderCount,
@@ -127,11 +127,11 @@ export default function Reservas(props) {
     return (
       <>
         {/* CONTENEDOR DEL HEADER */}
-        <div className="header-calendar-producto">
+        <div className="header-calendar-reservas">
           {/* BOTÓN PARA REGRESAR MES */}
           <button
             aria-label="Previous Month"
-            className={"navigation-arrows-producto back-arrow-producto"}
+            className={"navigation-arrows-reservas back-arrow-reservas"}
             style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
             onClick={decreaseMonth}
           >
@@ -156,7 +156,7 @@ export default function Reservas(props) {
           {/* BOTÓN PARA AUMENTAR MES */}
           <button
             aria-label="Next Month"
-            className={"navigation-arrows-producto next-arrow-producto"}
+            className={"navigation-arrows-reservas next-arrow-reservas"}
             style={customHeaderCount === 0 ? { visibility: "hidden" } : null}
             onClick={increaseMonth}
           >
@@ -166,6 +166,44 @@ export default function Reservas(props) {
       </>
     );
   };
+
+  const calendarHeaderReservasMobile = ({
+    monthDate,
+    customHeaderCount,
+    decreaseMonth,
+    increaseMonth,
+  }) => (
+    <div className="header-calendar-reservas">
+      <button
+        aria-label="Previous Month"
+        className={"navigation-arrows-reservas back-arrow-reservas"}
+        style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
+        onClick={decreaseMonth}
+      >
+        {<i>{backArrow}</i>}
+      </button>
+      <span className="react-datepicker__current-month">
+        {monthDate
+          .toLocaleString("es-CO", {
+            month: "long",
+          })
+          .charAt(0)
+          .toUpperCase() +
+          monthDate
+            .toLocaleString("es-CO", {
+              month: "long",
+            })
+            .slice(1)}
+      </span>
+      <button
+        aria-label="Next Month"
+        className={"navigation-arrows-reservas next-arrow-reservas"}
+        onClick={increaseMonth}
+      >
+        {<i>{nextArrow}</i>}
+      </button>
+    </div>
+  );
 
   // AQUÍ SE TRAE LOS DATOS DEL PRODUCTO - API
   useEffect(() => {
@@ -256,7 +294,8 @@ export default function Reservas(props) {
                 <DatePicker
                   disabledKeyboardNavigation
                   inline
-                  renderCustomHeader={calendarHeaderReservas}
+                  dayClassName={buscadorDayStyle}
+                  renderCustomHeader={ width <= 480 ? calendarHeaderReservasMobile : calendarHeaderReservas }
                   //para poder seleccionar un rango de fechas
                   selectsRange={true}
                   startDate={startDate}
