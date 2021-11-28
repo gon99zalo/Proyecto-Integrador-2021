@@ -90,6 +90,8 @@
 .credenciales-mostrar{
   display: block;
   width: auto;
+  font-size: 14px;
+  margin-right: 48px;
 }
 
 
