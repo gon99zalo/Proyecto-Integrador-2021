@@ -9,6 +9,7 @@ import { Link, useHistory } from "react-router-dom"
 import "../styles/crearCuenta.css"
 import { useMemo } from "react";
 import Swal from 'sweetalert2'
+import { useEffect } from "react";
 const visible = <FontAwesomeIcon icon={faEye} />;
 const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 
@@ -23,7 +24,14 @@ export default function IniciarSesion() {
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
-  
+
+  const MostrarErrorLogueo = () => {
+    // const errorNoLogueado = document.querySelector(".no-logueado")
+    // return params.get("reserva") === null ? "" : errorNoLogueado.classList.add("mostrar-no-logueado")}
+    return (<div className={params.get("reserva") != null ? "mostrar-no-logueado": "no-logueado"}><p><i class="fas fa-exclamation-circle"></i> Para realizar una reserva necesitas estar logueado</p></div>)
+  }
+
+
   const handlerValidate = (e) =>{
     e.preventDefault()
     let emailUsuario = document.querySelector("#correo-electronico").value
@@ -55,8 +63,12 @@ export default function IniciarSesion() {
 
   return (
     <>
-      <Header />
+      <Header login={true}/>
       <div className="logIn">
+        <MostrarErrorLogueo />
+        {/* <div className="no-logueado">
+        <p><i class="fas fa-exclamation-circle"></i> Para realizar una reserva necesitas estar logueado</p>
+        </div> */}
       <h1 className="titulo-inicio">Iniciar sesión</h1>
       <form className="form-iniciarSesion" action="">
           <div className="inputs-inicio">
@@ -78,8 +90,9 @@ export default function IniciarSesion() {
         icon: 'error',
         title: 'Oops...',
         text: 'Debe estar registrado para poder realizar una reserva',
-        footer: '<a href="crearCuenta">Pulse aquí para registrarse</a>'
-      }): ""}
+        footer: '<a href="iniciarSesion" >Pulse aquí para registrarse</a>'
+      })
+      : ""}
       </>
   )
 }

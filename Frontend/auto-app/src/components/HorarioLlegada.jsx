@@ -7,13 +7,10 @@ import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 export default function HorarioLLegada(props) {
   const [selectedOption, setSelectedOption] = useState(null);
   const checkCircle = <FontAwesomeIcon icon={faCheckCircle} />;
-
-  let horaElegida = "12:00 AM";
-
+  
   const handleChange = () => {
-    horaElegida = document.querySelector("option:checked").value;
     setSelectedOption(document.querySelector("option:checked").value);
-    props.horario(horaElegida)
+    props.horario(selectedOption)
   };
 
   return (
