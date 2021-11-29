@@ -85,6 +85,19 @@ export default function Header(props) {
         :
         <div className="inputs-header"><i className="opciones" id="opciones"onClick={toggleNav}>{menu}</i></div>
         }
+        <div id='mySidenav ' className={show}>
+                    <div className="opciones" id="opciones">
+                        <p onClick={toggleNav}>X</p>
+                        <div className="opciones-header" id="opciones-header">
+                            <h2>MENÚ</h2>
+                        </div>
+                        <div className="opciones-links" id="opciones-links">
+                            {props.login ? "" : <Link to="/iniciarSesion"><h3>Iniciar sesión</h3></Link>}
+                            {props.crearCuenta ? "" : <Link to="/crearCuenta"><h3>Crear cuenta</h3></Link>}
+                        </div>
+                        <i>{facebook}  {linkedin}  {twitter}  {instagram}</i>
+                    </div>
+                </div>
     </header>
           )
       }else{

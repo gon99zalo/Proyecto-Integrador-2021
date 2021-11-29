@@ -4,7 +4,7 @@ import "../styles/iniciarSesion.css"
 import Footer from "./Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom"
 import "../styles/crearCuenta.css"
 import { useMemo } from "react";
@@ -43,7 +43,8 @@ export default function IniciarSesion() {
       },
       (error) => {
         console.log(error);
-        alert("Por favor vuelva a intentarlo, tus credenciales son inválidas") 
+        const credenciales = document.querySelector(".error-credenciales")
+        credenciales.classList.toggle("credenciales-mostrar")
         for(inputs of inputs){
         inputs.classList.toggle("error")
         }
@@ -51,6 +52,8 @@ export default function IniciarSesion() {
       }
     )
   }
+
+  useEffect(() => {if(sessionStorage.getItem('infoUsuario') !== null){history.push("/")}})
 
   return (
     <>
@@ -68,7 +71,7 @@ export default function IniciarSesion() {
           </div>
           <button onClick={handlerValidate} type="submit" className="boton-iniciarSesion" id="boton-iniciarSesion">Ingresar</button>
           <p className="texto-cuenta txt-1">¿Aún no tenes cuenta? <Link to="/crearCuenta"><span className="color-links">Registrate</span></Link></p>
-          <div className="error-mensaje-escondido">por favor vuelva a intarlo, sus credenciales son inválidas</div>
+          <div className="error-mensaje-escondido"><p className="error-credenciales">Por favor vuelva a intentarlo, tus credenciales son inválidas</p></div>
           </div>
       </form>
       </div>

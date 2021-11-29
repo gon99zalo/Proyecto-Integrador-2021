@@ -78,11 +78,11 @@
   padding-right: 15px;
 }
 
-.buscador{
+/* .buscador{
   height: 30vh;
   width: 95vw;
   padding: 4px 4px;
-}
+} */
 .buscadores{
   flex-direction: column;
   margin: 16px 10px; 
