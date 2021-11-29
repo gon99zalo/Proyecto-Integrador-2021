@@ -9,7 +9,6 @@ import { Link, useHistory } from "react-router-dom"
 import "../styles/crearCuenta.css"
 import { useMemo } from "react";
 import Swal from 'sweetalert2'
-import { useEffect } from "react";
 const visible = <FontAwesomeIcon icon={faEye} />;
 const notVisible = <FontAwesomeIcon icon={faEyeSlash} />;
 
@@ -20,18 +19,13 @@ export default function IniciarSesion() {
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
   const params = useMemo(() => new URLSearchParams(window.location.search),[]);
   const [passwordShown, setPasswordShown] = useState(false);
-  const [reserva/*, serReserva*/] = useState(params.get("reserva") !== null)
+  const [alerta] = useState(params.get("alerta") ? true: false)
+  const [reserva] = useState(params.get("reserva"))
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  const MostrarErrorLogueo = () => {
-    // const errorNoLogueado = document.querySelector(".no-logueado")
-    // return params.get("reserva") === null ? "" : errorNoLogueado.classList.add("mostrar-no-logueado")}
-    return (<div className={params.get("reserva") != null ? "mostrar-no-logueado": "no-logueado"}><p><i class="fas fa-exclamation-circle"></i> Para realizar una reserva necesitas estar logueado</p></div>)
-  }
-
-
+  console.log(reserva);
   const handlerValidate = (e) =>{
     e.preventDefault()
     let emailUsuario = document.querySelector("#correo-electronico").value
@@ -47,7 +41,7 @@ export default function IniciarSesion() {
     .then(
       (result) => {
         sessionStorage.setItem("infoUsuario", JSON.stringify(result))
-        reserva ? history.push("/productos/" + params.get("reserva") + "/reserva") :history.push("/")
+        alerta ? history.push("/productos/" + reserva + "/reserva") :history.push("/")
       },
       (error) => {
         console.log(error);
@@ -65,10 +59,9 @@ export default function IniciarSesion() {
     <>
       <Header login={true}/>
       <div className="logIn">
-        <MostrarErrorLogueo />
-        {/* <div className="no-logueado">
+      <div className={params.get("reserva") != null ? "mostrar-no-logueado": "no-logueado"}>
         <p><i class="fas fa-exclamation-circle"></i> Para realizar una reserva necesitas estar logueado</p>
-        </div> */}
+      </div>
       <h1 className="titulo-inicio">Iniciar sesión</h1>
       <form className="form-iniciarSesion" action="">
           <div className="inputs-inicio">
@@ -86,11 +79,12 @@ export default function IniciarSesion() {
       </form>
       </div>
     <Footer />
-    {reserva? Swal.fire({
+    {alerta? Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Debe estar registrado para poder realizar una reserva',
-        footer: '<a href="iniciarSesion" >Pulse aquí para registrarse</a>'
+        showConfirmButton: false,
+        footer: '<a href="iniciarSesion?reserva='+ reserva +'" >Pulse aquí para registrarse</a>'
       })
       : ""}
       </>
