@@ -4,6 +4,7 @@ import "../styles/Global.css"
 import "../styles/crearCuenta.css"
 import Footer from "./Footer";
 import { Link, useHistory } from "react-router-dom"
+import { useEffect } from "react";
 
 export default function CrearCuenta() {
   const history = useHistory()
@@ -11,12 +12,15 @@ export default function CrearCuenta() {
   const handlerSubmit=(e)=>{
     e.preventDefault()
   let contrasenia = document.getElementById("contrasenia").value
-  let confirmarContrasenia = document.getElementById("confirmarContrasenia").value
+  let password = document.getElementById("contrasenia")
+  let confirmPassword = document.getElementById("confirmarContrasenia")
   let mail = document.getElementById("correo-electronico").value
   let email = document.getElementById("correo-electronico")
   let inputs = document.querySelectorAll(".campos-crear")
   let valido = true
-  if(contrasenia.length<=6){
+  let errorContrasenia = document.querySelector(".error-contrasenia")
+  let errorMail = document.querySelector(".error-mail")
+  if((contrasenia.length<=6 && !mail.includes("@",1)) || (!mail.includes(".",mail.indexOf("@") + 2))){
     for(inputs of inputs){
       if(inputs.value === ""){
         valido = false
@@ -28,8 +32,28 @@ export default function CrearCuenta() {
         }
     }
   }
-    alert("La contraseña debe tener más de 6 caracteres")
-  }else if(!mail.includes("@",1) || !mail.includes(".",mail.indexOf("@") + 2)){
+    errorContrasenia.classList.toggle("error-validacion-mostrar")
+    errorMail.classList.toggle("error-validacion-mostrar")
+    email.classList.add("error")
+    password.classList.add("error")
+    confirmPassword.classList.add("error")
+  }else if(contrasenia.length<=6){
+    for(inputs of inputs){
+      if(inputs.value === ""){
+        valido = false
+        if(!inputs.classList.contains("error")){
+          inputs.classList.toggle("error")
+        }
+        if(!inputs.nextElementSibling.classList.contains("error-mensaje")){
+          inputs.nextElementSibling.classList.toggle("error-mensaje")
+        }
+    }
+  }
+    errorContrasenia.classList.toggle("error-validacion-mostrar")
+    password.classList.add("error")
+    confirmPassword.classList.add("error")
+  }
+  else if(!mail.includes("@",1) || !mail.includes(".",mail.indexOf("@") + 2)){
     valido = false
     for(inputs of inputs){
       if(inputs.value === "" || valido === false){
@@ -42,9 +66,8 @@ export default function CrearCuenta() {
         }
     }
   }
-    alert("por favor introduzca un mail válido")
-  }else if(contrasenia !== confirmarContrasenia){
-    alert("contraseñas ingresadas no coinciden")
+  errorMail.classList.toggle("error-validacion-mostrar")
+  email.classList.add("error")
   }else{
     for(inputs of inputs){
       if(inputs.value === ""){
@@ -81,6 +104,8 @@ export default function CrearCuenta() {
   }
   }
 
+  useEffect(() => {if(sessionStorage.getItem('infoUsuario') !== null){history.push("/")}})
+
   return (
     <>
       <Header crearCuenta={true}/>
@@ -106,6 +131,8 @@ export default function CrearCuenta() {
           <div className="error-mensaje-escondido">Este campo es obligatorio</div>
           <button onClick={handlerSubmit} type="submit" className="boton-crearCuenta" id="boton-crearCuenta">Crear cuenta</button>
           <p className="texto-inicio txt-1">¿Ya tenes una cuenta? <Link to="iniciarSesion"><span className="color-links">Iniciar sesión</span></Link></p>
+          <div className="error-mail"><p>Por favor introduzca un mail válido</p></div>
+          <div className="error-contrasenia"><p>La contraseña debe tener más de 6 caracteres</p></div>
           </div>
       </form>
       </div>

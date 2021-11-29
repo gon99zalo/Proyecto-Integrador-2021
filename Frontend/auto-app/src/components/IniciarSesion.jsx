@@ -4,7 +4,7 @@ import "../styles/iniciarSesion.css"
 import Footer from "./Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom"
 import "../styles/crearCuenta.css"
 import { useMemo } from "react";
@@ -52,6 +52,8 @@ export default function IniciarSesion() {
       }
     )
   }
+
+  useEffect(() => {if(sessionStorage.getItem('infoUsuario') !== null){history.push("/")}})
 
   return (
     <>

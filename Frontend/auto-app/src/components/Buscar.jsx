@@ -157,7 +157,7 @@ export default function Buscar(props) {
                         </span>
                       </p>
                     </div>
-                    <button className="product-show-more btn-1"><Link to={"/productos/" + item.id}>Ver Detalle</Link></button>
+                    <Link to={"/productos/" + item.id}><button className="product-show-more btn-1">Ver Detalle</button></Link>
                     <div className="qualification">
                       <span>{/*item.qualification*/ 7}</span>
                       <p className="txt-1">{qualificationText(/*item.qualification*/7)}</p>
