@@ -66,8 +66,7 @@ export default function Reservas(props) {
 
   const handlerReserva = (e) => {
     e.preventDefault();
-    const fechaIn = document.querySelector(".hora-check-in").value;
-    const fechaOut = document.querySelector(".hora-check-out").value;
+    
 
     e.preventDefault();   
     //obtenemos el id del usuario logueado a partir del token de seguridad
