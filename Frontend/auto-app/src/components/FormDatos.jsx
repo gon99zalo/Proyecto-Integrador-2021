@@ -9,9 +9,11 @@ export default function FormDatos(props) {
   let datosDeUsuario = sessionStorage.getItem("infoUsuario")
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario)
 
+  let ciudadElegida = ""
   const handleCiudad = () => {
+    ciudadElegida = document.querySelector("#ciudad").value
     setSelectedOption(document.querySelector("#ciudad").value);
-    props.ciudad(selectedOption)
+    props.ciudad(ciudadElegida)
   };
 
   return (

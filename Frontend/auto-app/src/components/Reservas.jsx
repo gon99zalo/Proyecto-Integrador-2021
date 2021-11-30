@@ -112,7 +112,7 @@ export default function Reservas(props) {
       // el response status no funciona en el segundo fetch, pero si lo pongo en el primero, el catch no funciona.
         response.status === 200
           ? history.push("/exito")
-          : null
+          : null,
       )
       .catch((error) => console.log(error),
       Swal.fire({

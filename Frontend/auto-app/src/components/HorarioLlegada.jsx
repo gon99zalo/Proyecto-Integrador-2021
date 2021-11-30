@@ -8,9 +8,12 @@ export default function HorarioLLegada(props) {
   const [selectedOption, setSelectedOption] = useState(null);
   const checkCircle = <FontAwesomeIcon icon={faCheckCircle} />;
   
+  let horaElegida = ""
+
   const handleChange = () => {
+    horaElegida = document.querySelector("option:checked").value
     setSelectedOption(document.querySelector("option:checked").value);
-    props.horario(selectedOption)
+    props.horario(horaElegida)
   };
 
   return (

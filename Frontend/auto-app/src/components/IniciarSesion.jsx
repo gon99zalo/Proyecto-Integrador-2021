@@ -59,7 +59,7 @@ export default function IniciarSesion() {
     <>
       <Header login={true}/>
       <div className="logIn">
-      <div className={params.get("reserva") != null ? "mostrar-no-logueado": "no-logueado"}>
+      <div className={params.get("reserva") != null ? "mostrar-no-logueado no-logueado": "no-logueado"}>
         <p><i class="fas fa-exclamation-circle"></i> Para realizar una reserva necesitas estar logueado</p>
       </div>
       <h1 className="titulo-inicio">Iniciar sesión</h1>
