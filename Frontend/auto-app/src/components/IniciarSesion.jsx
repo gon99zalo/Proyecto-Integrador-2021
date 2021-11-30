@@ -86,7 +86,7 @@ export default function IniciarSesion() {
         title: 'Oops...',
         text: 'Debe estar registrado para poder realizar una reserva',
         showConfirmButton: false,
-        footer: '<a href="iniciarSesion?reserva='+ reserva +'" >Pulse aquí para registrarse</a>'
+        footer: '<a href="iniciarSesion?reserva='+ reserva +'" >Pulse aquí para iniciar sesión</a>'
       })
       : ""}
       </>
