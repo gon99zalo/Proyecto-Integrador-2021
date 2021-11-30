@@ -31,27 +31,27 @@ Enzyme.configure({ adapter: new Adapter() });
   });
 });
   
-  test("Debe renderizar el texto", async () => {
-    jest.spyOn(React,"useEffect");
-    const firstResponse = {
-      json: jest.fn(() => []),
-    };
-    global.fetch = jest.fn().mockResolvedValue(firstResponse);
+  // test("Debe renderizar el texto", async () => {
+  //   jest.spyOn(React,"useEffect");
+  //   const firstResponse = {
+  //     json: jest.fn(() => []),
+  //   };
+  //   global.fetch = jest.fn().mockResolvedValue(firstResponse);
 
-    render(
-      <MemoryRouter>
-        <Categories />
-      </MemoryRouter>
-    );
-    await waitFor(() => {
-    expect(global.fetch).toBeCalledWith(api + "/categorias/todos");
-    expect(firstResponse.json).toBeCalledWith();
-    screen.debug();
+  //   render(
+  //     <MemoryRouter>
+  //       <Categories />
+  //     </MemoryRouter>
+  //   );
+  //   await waitFor(() => {
+  //   expect(global.fetch).toBeCalledWith(api + "/categorias/todos");
+  //   expect(firstResponse.json).toBeCalledWith();
+  //   screen.debug();
     
     // expect(
     //     screen.getByText(/Buscar por tipo de transporte/i)
     //    ).toBeInTheDocument();
     
 });
-});
-});
+// });
+// });
