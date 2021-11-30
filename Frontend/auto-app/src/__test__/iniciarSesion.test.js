@@ -27,8 +27,8 @@ describe("Iniciar Sesión", () => {
     expect(screen.getByText(/Contraseña/i)).toBeInTheDocument();
   });
   test("Form Iniciar Sesión", () => {
-    const botonIniciar = screen.getByRole("heading", {
-      name: /Iniciar Sesión/i,
+    const botonIniciar = screen.getByRole("button", {
+      name: /Ingresar/i,
     });
     fireEvent.click(botonIniciar);
     const correo = screen.getByLabelText(/Correo electrónico/i);

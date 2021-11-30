@@ -45,7 +45,7 @@ describe("Reservas", () => {
     });
   });
 
-  it("Deberia renderizar correctamente si la llamada no falla", async () => {
+  fit("Deberia renderizar correctamente si la llamada no falla", async () => {
     const match = { params: { id: "1" } };
 
     const producto = {
@@ -68,6 +68,12 @@ describe("Reservas", () => {
       json: jest.fn().mockResolvedValue(producto),
     };
 
+    const getItemSpy = jest.spyOn(window.sessionStorage, "getItem").mockReturnValue(
+        '{"token":"123","nombre":"nombre","email":"email.@email.com"}'
+      );
+
+      console.log(getItemSpy);
+
     global.fetch = jest.fn().mockResolvedValue(firstResponse);
 
     const { queryAllByText } = makeRender({ match });
@@ -76,7 +82,7 @@ describe("Reservas", () => {
       expect(global.fetch).toBeCalledWith(
         api + "/productos/buscar/" + match.params.id
       );
-      expect(queryAllByText(producto.nombre).length).toEqual(2);
+      expect(queryAllByText(producto.nombre)).toEqual(2);
     });
   });
 });
