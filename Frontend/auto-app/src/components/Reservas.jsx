@@ -31,6 +31,7 @@ export default function Reservas(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [horario, setHorario] = useState(null);
+  const [ciudad, setCiudad] = useState(null);
   const [producto, setProducto] = useState({
     id: 0,
     nombre: "",
@@ -65,8 +66,6 @@ export default function Reservas(props) {
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
 
   const handlerReserva = (e) => {
-    e.preventDefault();
-
     e.preventDefault();   
     //obtenemos el id del usuario logueado a partir del token de seguridad
     let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token;
@@ -87,8 +86,8 @@ export default function Reservas(props) {
       fechaInicial: startDate,
       fechaFinal: endDate,
       hora: horario,
-      producto: {id: producto.id},
-      usuario: {id: idUsuario}
+      producto: { id: producto.id },
+      usuario: { id: idUsuario },
     };
 
     let config = {
@@ -100,22 +99,33 @@ export default function Reservas(props) {
       },
     };
 
+    if(endDate === null || startDate === null || horario === null || ciudad === null){
+      Swal.fire({
+        icon: "error",
+        title: "Faltan datos",
+        text: "Debe llenar todos los campos",
+      });
+    }else{
     fetch(api + "/reservas", config)
-    .then((response)=>response.json())
+      .then((response) => console.log(response))
       .then((response) =>
+      // el response status no funciona en el segundo fetch, pero si lo pongo en el primero, el catch no funciona.
         response.status === 200
           ? history.push("/exito")
-          : Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde",
-            })
+          : null,
       )
-      .catch((error) => console.log(error,));
-  };
+      .catch((error) => console.log(error),
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde",
+      }));
+  }
+};
 
   // Estilo de días
-const buscadorDayStyle = (date) => getDate(date) ? "reservas-day-style" : undefined;
+  const buscadorDayStyle = (date) =>
+    getDate(date) ? "reservas-day-style" : undefined;
 
   const calendarHeaderReservas = ({
     monthDate,
@@ -282,7 +292,7 @@ const buscadorDayStyle = (date) => getDate(date) ? "reservas-day-style" : undefi
             <div className="booking-data">
               {/* FORMULARIO */}
               <div className="booking-data-form">
-                <FormDatos />
+                <FormDatos ciudad={setCiudad}/>
               </div>
 
               {/* CALENDARIO */}
@@ -294,7 +304,11 @@ const buscadorDayStyle = (date) => getDate(date) ? "reservas-day-style" : undefi
                   disabledKeyboardNavigation
                   inline
                   dayClassName={buscadorDayStyle}
-                  renderCustomHeader={ width <= 480 ? calendarHeaderReservasMobile : calendarHeaderReservas }
+                  renderCustomHeader={
+                    width <= 480
+                      ? calendarHeaderReservasMobile
+                      : calendarHeaderReservas
+                  }
                   //para poder seleccionar un rango de fechas
                   selectsRange={true}
                   startDate={startDate}

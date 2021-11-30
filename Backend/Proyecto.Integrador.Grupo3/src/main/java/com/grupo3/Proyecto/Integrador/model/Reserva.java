@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 
 @Entity
@@ -14,8 +15,8 @@ public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String fechaInicial;
-    private String fechaFinal;
+    private LocalDate fechaInicial;
+    private LocalDate fechaFinal;
     private String hora;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "producto_id")
@@ -26,12 +27,12 @@ public class Reserva {
 
     public Reserva() { }
 
-    public Reserva(String fechaInicial, String fechaFinal) {
+    public Reserva(LocalDate fechaInicial, LocalDate fechaFinal) {
         this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
     }
 
-    public Reserva(String fechaInicial, String fechaFinal, String hora, Producto producto, Usuario usuario) {
+    public Reserva(LocalDate fechaInicial, LocalDate fechaFinal, String hora, Producto producto, Usuario usuario) {
         this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
         this.hora = hora;

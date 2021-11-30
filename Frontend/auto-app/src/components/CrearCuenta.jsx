@@ -4,6 +4,7 @@ import "../styles/Global.css"
 import "../styles/crearCuenta.css"
 import Footer from "./Footer";
 import { Link, useHistory } from "react-router-dom"
+import { useEffect } from "react";
 
 export default function CrearCuenta() {
   const history = useHistory()
@@ -19,7 +20,7 @@ export default function CrearCuenta() {
   let valido = true
   let errorContrasenia = document.querySelector(".error-contrasenia")
   let errorMail = document.querySelector(".error-mail")
-  if(contrasenia.length<=6 && !mail.includes("@",1) || !mail.includes(".",mail.indexOf("@") + 2)){
+  if((contrasenia.length<=6 && !mail.includes("@",1)) || (!mail.includes(".",mail.indexOf("@") + 2))){
     for(inputs of inputs){
       if(inputs.value === ""){
         valido = false
@@ -102,6 +103,8 @@ export default function CrearCuenta() {
   }
   }
   }
+
+  useEffect(() => {if(sessionStorage.getItem('infoUsuario') !== null){history.push("/")}})
 
   return (
     <>
