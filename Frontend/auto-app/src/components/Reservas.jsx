@@ -86,8 +86,8 @@ export default function Reservas(props) {
       fechaInicial: startDate,
       fechaFinal: endDate,
       hora: horario,
-      producto: {id: producto.id},
-      usuario: {id: idUsuario}
+      producto: { id: producto.id },
+      usuario: { id: idUsuario },
     };
 
     let config = {
@@ -107,7 +107,7 @@ export default function Reservas(props) {
       });
     }else{
     fetch(api + "/reservas", config)
-    .then((response)=>console.log(response))
+      .then((response) => console.log(response))
       .then((response) =>
       // el response status no funciona en el segundo fetch, pero si lo pongo en el primero, el catch no funciona.
         response.status === 200
@@ -124,7 +124,8 @@ export default function Reservas(props) {
 };
 
   // Estilo de días
-const buscadorDayStyle = (date) => getDate(date) ? "reservas-day-style" : undefined;
+  const buscadorDayStyle = (date) =>
+    getDate(date) ? "reservas-day-style" : undefined;
 
   const calendarHeaderReservas = ({
     monthDate,
@@ -303,7 +304,11 @@ const buscadorDayStyle = (date) => getDate(date) ? "reservas-day-style" : undefi
                   disabledKeyboardNavigation
                   inline
                   dayClassName={buscadorDayStyle}
-                  renderCustomHeader={ width <= 480 ? calendarHeaderReservasMobile : calendarHeaderReservas }
+                  renderCustomHeader={
+                    width <= 480
+                      ? calendarHeaderReservasMobile
+                      : calendarHeaderReservas
+                  }
                   //para poder seleccionar un rango de fechas
                   selectsRange={true}
                   startDate={startDate}

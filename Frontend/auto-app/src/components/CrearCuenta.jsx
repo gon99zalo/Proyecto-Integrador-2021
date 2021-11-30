@@ -4,6 +4,7 @@ import "../styles/Global.css"
 import "../styles/crearCuenta.css"
 import Footer from "./Footer";
 import { Link, useHistory } from "react-router-dom"
+import { useEffect } from "react";
 
 export default function CrearCuenta() {
   const history = useHistory()
@@ -102,6 +103,8 @@ export default function CrearCuenta() {
   }
   }
   }
+
+  useEffect(() => {if(sessionStorage.getItem('infoUsuario') !== null){history.push("/")}})
 
   return (
     <>
