@@ -1,11 +1,20 @@
+import { useState } from "react";
 import "../styles/formDatos.css";
 
-export default function FormDatos() {
+export default function FormDatos(props) {
   //TODO: Si no se llena este campo arroja una pantalla de error hay que buscar una condición o algo
   // const infoUsuario = JSON.parse(localStorage.getItem("infoUsuario"));
+  const [selectedOption, setSelectedOption] = useState(null)
 
   let datosDeUsuario = sessionStorage.getItem("infoUsuario")
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario)
+
+  let ciudadElegida = ""
+  const handleCiudad = () => {
+    ciudadElegida = document.querySelector("#ciudad").value
+    setSelectedOption(document.querySelector("#ciudad").value);
+    props.ciudad(ciudadElegida)
+  };
 
   return (
     <>
@@ -24,7 +33,7 @@ export default function FormDatos() {
               <input type="text" disabled value={datosDeUsuarioParseado.apellido} />
 
               <label htmlFor="ciudad">Ciudad</label>
-              <input type="text" required />
+              <input type="text" id="ciudad" required onChange={handleCiudad}/>
             </div>
           </div>
         </form>
