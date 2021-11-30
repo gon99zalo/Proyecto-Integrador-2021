@@ -112,6 +112,7 @@
   font-weight: 500;
   font-size: 12px;
   cursor: default;
+  text-decoration: line-through;
 }
 /* Estilo de texto de los números */
 .producto-day-style {
@@ -127,10 +128,12 @@
 /* Estilo para los días pasados */
 .react-datepicker__week div.react-datepicker__day.react-datepicker__day--disabled {
   color: #BEBEBE;
-  cursor:default
+  cursor:default;
+  text-decoration: line-through;
 }
 .react-datepicker div.buscador-day-style.react-datepicker__day--disabled:hover {
   color: #BEBEBE;
+  text-decoration: line-through;
 }
 /* CONTENEDOR DEL DÍA HOVERS */
 .react-datepicker__day--keyboard-selected:hover,

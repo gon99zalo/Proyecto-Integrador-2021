@@ -207,6 +207,7 @@ no funcionó, se usó el nombre de la clase de la librería  */
 .react-datepicker div.buscador-day-style.react-datepicker__day--disabled:hover {
     background-color: transparent;
     font-weight: 500;
+    text-decoration: line-through;
     cursor:default
 }
 /* ------------------------------------------------------------------------------ */
