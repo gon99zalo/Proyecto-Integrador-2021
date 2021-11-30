@@ -1,6 +1,7 @@
 package com.grupo3.Proyecto.Integrador.controller;
 
 
+import com.grupo3.Proyecto.Integrador.model.Producto;
 import com.grupo3.Proyecto.Integrador.model.Reserva;
 import com.grupo3.Proyecto.Integrador.service.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,12 @@ public class ReservaController {
     public Optional<Reserva> buscarPorIDProducto(@PathVariable Long id) { return reservaService.buscarPorIDProducto(id); }
 
   @GetMapping("/fechas")
-    public ResponseEntity<List<Reserva>> buscarPorFecha(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaInicial, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaFinal)
+    public ResponseEntity<List<Producto>> buscarPorFecha(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaInicial, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaFinal)
     { return ResponseEntity.ok(reservaService.buscarPorFecha(fechaInicial, fechaFinal)); }
+
+    @GetMapping("/ciudadYFechas")
+    public ResponseEntity<List<Producto>> buscarPorCiudadYFecha(@RequestParam String ciudad, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaInicial, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaFinal)
+    { return ResponseEntity.ok(reservaService.buscarPorCiudadYFecha(ciudad, fechaInicial, fechaFinal)); }
 
    /* @GetMapping("/fechas")
     public ResponseEntity<List<String>> filtrarFechas(@RequestParam("fechaInicial")  Date fechaInicial,
