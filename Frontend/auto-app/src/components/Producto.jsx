@@ -17,7 +17,7 @@ import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
-import { subDays, getDate } from 'date-fns';
+import { subDays, getDate, format, eachDayOfInterval } from 'date-fns';
 // Componentes
 import Gallery from './Gallery';
 import SwipeGallery from './SwipeGallery';
@@ -25,6 +25,46 @@ import Header from "./Header";
 import Politicas from "./Politicas";
 import Footer from './Footer';
 import Loading from './Loading';
+
+// ------------------------------------------------------------------------------------------------------------
+//FUNCIÓN PARA TRAER FECHAS RESERVADAS Y CONVERTIRLAS A DATEPICKER
+// fechasReservadasBack simulan las fechas reservadas que llegarían desde la API
+const fechasReservadasBack = [
+  {
+    start: new Date(),
+    end: new Date(2021, 11, 5),
+  },
+  {
+    start: new Date(2021, 11, 8),
+    end: new Date(2021, 11, 10),
+  },
+  {
+    start: new Date(2022, 0, 3),
+    end: new Date(2022, 0, 8),
+  }
+];
+// Aquí creo un array con todas las fechas que estarían inhabilitadas 
+const creaArrayDeFechasReservadas = () => {
+  let fechas = [];
+  for (let i = 0; i < fechasReservadasBack.length; i++) {
+    // el array creado tendrá las fechas en formato dd/MM/yyyy pero puede variar según sea necesario
+    fechas.push(...eachDayOfInterval(fechasReservadasBack[i]).map( fecha => format(fecha, 'dd/MM/yyyy') ));
+  };
+  // en este caso quedarían así: 
+  console.log("Fechas:", fechas); // ['30/11/2021', '01/12/2021', '02/12/2021', '03/12/2021', '04/12/2021', '05/12/2021', '08/12/2021', '09/12/2021', '10/12/2021', '03/01/2022', '04/01/2022', '05/01/2022', '06/01/2022', '07/01/2022', '08/01/2022']
+  return fechas;
+};
+// Este sería el array que se consumiría, lo activo aquí porque si lo ingreso en la función de 
+// fechasSinReservar se rompe
+const arrayDeFechasReservadas = creaArrayDeFechasReservadas();
+// Esta función se encarga de enviar al DatePicker las fechas que están inhabilitadas
+const fechasSinReservar = (date) => {
+  // date hace referencia al formato con el que trae normalmente el DatePicker las fechas
+  // le hago format abajo para que haga match con el formato de las fechas que están en el arrayDeFechasReservadas
+  return !arrayDeFechasReservadas.includes(format(date, 'dd/MM/yyyy'));
+};
+// En el Componente de DatePicker, está como props
+// ------------------------------------------------------------------------------------------------------------
 
 Geocode.setApiKey("AIzaSyAli5PVZMSWFoK9984QUolP-CMt0gxH70s");
 
@@ -309,6 +349,8 @@ const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefi
               //para que el nombre de los meses quede con mayúscula inicial
               formatWeekDay={day => day.charAt(0).toUpperCase() + day.substring(1,2) }
               showPopperArrow={false}
+              //este prop permite filtrar las fechas, recibe una función que indica las fechas a filtrar
+              filterDate={fechasSinReservar}
             >
               <div className="divider-producto"></div>
             </DatePicker>

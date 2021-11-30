@@ -38,22 +38,23 @@ public class LoginController {
 
     @PostMapping("/registro")
     public ResponseEntity<?> registroUsuario(@RequestBody Usuario usuario) {
-        Optional<Usuario> userOptional = Optional.ofNullable(usuarioService.crearUsuario(usuario));
-        if (userOptional.isPresent()) {
-            Optional<UsuarioLoginDTO> usuarioLoginDto = usuarioService.login(usuario);
-            Optional<Rol> roleOptional;
+        Optional<Usuario> userOptional = usuarioService.findByEmail(usuario.getEmail());
+        if (userOptional.isEmpty()) {
             if (usuario.getRol() == null) {
-                roleOptional = rolService.buscarPorNombre("CLIENTE");
+                Optional<Rol> roleOptional;
+                roleOptional = rolService.buscarPorNombre("cliente");
                 if (roleOptional.isEmpty()) {
-                    roleOptional = Optional.ofNullable(rolService.crearRol(new Rol("CLIENTE")));
+                    roleOptional = Optional.ofNullable(rolService.crearRol(new Rol("cliente")));
                 }
                 usuario.setRol(roleOptional.get());
             }
+            Usuario usuario1 = usuarioService.crearUsuario(usuario);
+            Optional<UsuarioLoginDTO> usuarioLoginDto = usuarioService.login(usuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioLoginDto.get());
         }
         return ResponseEntity.badRequest().build();
-
     }
+
 
 
     @PostMapping("/login")
