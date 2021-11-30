@@ -15,7 +15,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 //Formatear fechas
-import { subDays, getDate, eachDayOfInterval, format } from "date-fns";
+import { subDays, getDate } from "date-fns";
 import { Link } from "react-router-dom";
 //Autcomplete buscador
 // import { AutoComplete } from 'primereact/autocomplete';
