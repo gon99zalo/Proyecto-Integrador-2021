@@ -234,7 +234,16 @@ const handlerCiudad = () => {
         </DatePicker>
 
         <Link
-          to={ciudad === "" ? "/buscar" : "/buscar?locacion=" + ciudad}
+          to={
+            "/buscar?" + 
+            (ciudad === "" ? "" : "locacion=" + ciudad) + 
+            (ciudad === "" && endDate === null? "" :"&") + 
+            (endDate === null ? "":"fechas=" + 
+            startDate.getFullYear() + "-" + ("0" + (startDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (startDate.getDate())).slice(-2) +
+            "#" +
+            endDate.getFullYear() + "-" + ("0" + (endDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (endDate.getDate())).slice(-2)
+            )
+          }
           className="boton-buscar"
           id="boton-buscar"
         >

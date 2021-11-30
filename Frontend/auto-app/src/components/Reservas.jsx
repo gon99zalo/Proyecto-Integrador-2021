@@ -83,8 +83,8 @@ export default function Reservas(props) {
     console.log(parseInt(idUsuario).valueOf());
 
     let valores = {
-      fechaInicial: startDate,
-      fechaFinal: endDate,
+      fechaInicial: startDate.getFullYear() + "-" + ("0" + (startDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (startDate.getDate())).slice(-2),
+      fechaFinal: endDate.getFullYear() + "-" + ("0" + (endDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (endDate.getDate())).slice(-2),
       hora: horario,
       producto: { id: producto.id },
       usuario: { id: idUsuario },

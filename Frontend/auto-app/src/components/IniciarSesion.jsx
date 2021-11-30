@@ -19,8 +19,8 @@ export default function IniciarSesion() {
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
   const params = useMemo(() => new URLSearchParams(window.location.search),[]);
   const [passwordShown, setPasswordShown] = useState(false);
-  const [alerta] = useState(params.get("alerta") ? true: false)
-  const [reserva] = useState(params.get("reserva"))
+  const alerta = params.get("alerta") ? true: false
+  const reserva = params.get("reserva") !== null
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
