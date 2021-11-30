@@ -15,7 +15,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 //Formatear fechas
-import { subDays, getDate } from "date-fns";
+import { subDays, getDate, eachDayOfInterval, format } from "date-fns";
 import { Link } from "react-router-dom";
 //Autcomplete buscador
 // import { AutoComplete } from 'primereact/autocomplete';
@@ -183,7 +183,6 @@ const handlerCiudad = () => {
     console.log("al hacer click aquí debe cerrar el popper");
   };
 
-
   return (
     <div className="buscador">
       <h1 className="titulo-buscador">Busca el auto que necesitas</h1>
@@ -220,13 +219,31 @@ const handlerCiudad = () => {
           }
           popperPlacement={width <= 768 ? (width <= 468 ? "bottom" : "bottom-end") : "bottom-start"}
           popperClassName="popper-calendar-buscador"
+          popperModifiers={[
+            {
+              //offset permite mover el popper en pos(x, y)
+              name: "offset",
+              options: {
+                offset: width <= 468 ? [0, 4] : [0, 7],
+              },
+            },
+          ]}
         >
           <button onClick={handleCloseCalendar} className="btn-1 calendar-button-buscador">Aplicar</button>
           <div className="divider-buscador"></div>
         </DatePicker>
 
         <Link
-          to={ciudad === "" ? "/buscar" : "/buscar?locacion=" + ciudad}
+          to={
+            "/buscar?" + 
+            (ciudad === "" ? "" : "locacion=" + ciudad) + 
+            (ciudad === "" && endDate === null? "" :"&") + 
+            (endDate === null ? "":"fechas=" + 
+            startDate.getFullYear() + "-" + ("0" + (startDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (startDate.getDate())).slice(-2) +
+            "#" +
+            endDate.getFullYear() + "-" + ("0" + (endDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (endDate.getDate())).slice(-2)
+            )
+          }
           className="boton-buscar"
           id="boton-buscar"
         >

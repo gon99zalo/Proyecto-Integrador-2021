@@ -2,6 +2,7 @@ package com.grupo3.Proyecto.Integrador.service;
 
 import com.grupo3.Proyecto.Integrador.model.Producto;
 import com.grupo3.Proyecto.Integrador.model.Reserva;
+import com.grupo3.Proyecto.Integrador.model.Usuario;
 import com.grupo3.Proyecto.Integrador.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,23 @@ public class ReservaService {
     private ReservaRepository reservaRepository;
 
     @Autowired
+    private UsuarioService usuarioService;
+    @Autowired
+    private ProductoService productoService;
+
+    @Autowired
     public ReservaService(ReservaRepository reservaRepository) { this.reservaRepository = reservaRepository; }
 
-    public Reserva crearReserva(Reserva reserva) { return reservaRepository.save(reserva);}
+    public Reserva crearReserva(Reserva reserva) {
+        Optional<Usuario> usuarioOptional = usuarioService.buscarPorId(reserva.getUsuario().getId());
+        Optional<Producto> productoOptional = productoService.buscarPorId(reserva.getProducto().getId());
+        if (usuarioOptional.isPresent() && productoOptional.isPresent()) {
+            reserva.setUsuario(usuarioOptional.get());
+            reserva.setProducto(productoOptional.get());
+            return reservaRepository.save(reserva);
+        }
+        return null ;}
+
 
     public Optional<Reserva> buscarPorId(Long id) {
         return reservaRepository.findById(id);

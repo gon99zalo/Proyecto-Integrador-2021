@@ -85,6 +85,7 @@
   font-weight: 500;
   font-size: 12px;
   cursor: default;
+  text-decoration: line-through;
 }
 .reservas-day-style {
   font-size: 12px;

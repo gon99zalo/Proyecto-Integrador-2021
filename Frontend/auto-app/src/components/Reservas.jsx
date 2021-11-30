@@ -12,7 +12,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
-import { subDays, getDate } from "date-fns";
+import { subDays, getDate, format } from "date-fns";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 //Componentes
@@ -86,8 +86,8 @@ export default function Reservas(props) {
     console.log(parseInt(idUsuario).valueOf());
 
     let valores = {
-      fechaInicial: startDate,
-      fechaFinal: endDate,
+      fechaInicial: startDate.getFullYear() + "-" + ("0" + (startDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (startDate.getDate())).slice(-2),
+      fechaFinal: endDate.getFullYear() + "-" + ("0" + (endDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (endDate.getDate())).slice(-2),
       hora: horario,
       producto: { id: producto.id },
       usuario: { id: idUsuario },
@@ -388,14 +388,14 @@ export default function Reservas(props) {
                     <div className="txt-2 checks check-in">
                       <p>Check in</p>
                       <span className="hora-check-in">
-                        {startDate ? startDate.toLocaleDateString() : "_/_/_"}
+                        {startDate ? format(startDate, 'yyyy/MM/dd') : "_/_/_"}
                       </span>
                     </div>
                     <div className="booking-details-divisor"></div>
                     <div className="txt-2 checks check-out">
                       <p>Check out</p>
                       <span className="hora-check-out">
-                        {endDate ? endDate.toLocaleDateString() : "_/_/_"}
+                        {endDate ? format(endDate, 'yyyy/MM/dd') : "_/_/_"}
                       </span>
                     </div>
                     <div className="booking-details-divisor"></div>
