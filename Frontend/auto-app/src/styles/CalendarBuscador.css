@@ -34,11 +34,6 @@ div.popper-calendar-buscador > div,
 div.popper-calendar-buscador > div > div.react-datepicker {
     height: 100%;
 }
-/* cercanía entre popper e input */
-.react-datepicker-popper[data-placement^=bottom-start],
-.react-datepicker-popper[data-placement^=bottom-end] {
-    margin-top: 7px;
-}
 
 /* HEADER CALENDARIO BUSCADOR */
 /* se pone relative para que las flechas en absolute encajen en este como contenedor */
@@ -285,9 +280,5 @@ no funcionó, se usó el nombre de la clase de la librería  */
     }
     .popper-calendar-buscador .react-datepicker__week {
         gap: 7.6%;
-    }
-    /* ESTILOS GENERALES */
-    .react-datepicker-popper[data-placement^=bottom] {
-        margin-top: 4px;
     }
 }

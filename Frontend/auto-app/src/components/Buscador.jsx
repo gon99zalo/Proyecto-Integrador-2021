@@ -15,26 +15,15 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 //Formatear fechas
-import { subDays, getDate, getDay } from "date-fns";
+import { subDays, getDate, eachDayOfInterval, format } from "date-fns";
 import { Link } from "react-router-dom";
 //Autcomplete buscador
 // import { AutoComplete } from 'primereact/autocomplete';
 // import { PROPERTY_TYPES } from "@babel/types";
 //import { AutoComplete } from 'primereact/autocomplete';
 
-const fechasInvalidas = [
-  {fi: "29/12/2021"},
-  {fi: "31/12/2021"},
-];
-const fechasInv = ["29/12/2021", "1/1/2022"];
-
 export const api =
   "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
-
-  const fechasSinReservar = (date) => {
-    return !fechasInv.includes(date.toLocaleDateString());
-    // return date.toLocaleDateString() !== fechasInvalidas[0].fi && date.toLocaleDateString() !== fechasInvalidas[1].fi ;
-  };
 
 export default function Buscador() {
   const [dateRange, setDateRange] = useState([null, null]);
@@ -209,7 +198,6 @@ const handlerCiudad = () => {
         </select>
 
         <DatePicker
-          filterDate={fechasSinReservar}
           disabledKeyboardNavigation
           renderCustomHeader={ width <= 480 ? calendarHeaderMobile : calendarHeader }
           showPopperArrow={false}
@@ -231,6 +219,15 @@ const handlerCiudad = () => {
           }
           popperPlacement={width <= 768 ? (width <= 468 ? "bottom" : "bottom-end") : "bottom-start"}
           popperClassName="popper-calendar-buscador"
+          popperModifiers={[
+            {
+              //offset permite mover el popper en pos(x, y)
+              name: "offset",
+              options: {
+                offset: width <= 468 ? [0, 4] : [0, 7],
+              },
+            },
+          ]}
         >
           <button onClick={handleCloseCalendar} className="btn-1 calendar-button-buscador">Aplicar</button>
           <div className="divider-buscador"></div>
