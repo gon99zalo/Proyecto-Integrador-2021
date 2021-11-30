@@ -31,6 +31,7 @@ export default function Reservas(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [horario, setHorario] = useState(null);
+  const [ciudad, setCiudad] = useState(null);
   const [producto, setProducto] = useState({
     id: 0,
     nombre: "",
@@ -65,7 +66,7 @@ export default function Reservas(props) {
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
 
   const handlerReserva = (e) => {
-    e.preventDefault();
+    e.preventDefault();   
     //obtenemos el id del usuario logueado a partir del token de seguridad
     let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token;
     let base64Url = token.split(".")[1];
@@ -98,21 +99,29 @@ export default function Reservas(props) {
       },
     };
 
+    if(endDate === null || startDate === null || horario === null || ciudad === null){
+      Swal.fire({
+        icon: "error",
+        title: "Faltan datos",
+        text: "Debe llenar todos los campos",
+      });
+    }else{
     fetch(api + "/reservas", config)
       .then((response) => console.log(response))
       .then((response) =>
-        // el response status no funciona en el segundo fetch, pero si lo pongo en el primero, el catch no funciona.
-        response.status === 200 ? history.push("/exito") : null
+      // el response status no funciona en el segundo fetch, pero si lo pongo en el primero, el catch no funciona.
+        response.status === 200
+          ? history.push("/exito")
+          : null,
       )
-      .catch(
-        (error) => console.log(error),
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde",
-        })
-      );
-  };
+      .catch((error) => console.log(error),
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde",
+      }));
+  }
+};
 
   // Estilo de días
   const buscadorDayStyle = (date) =>
@@ -283,7 +292,7 @@ export default function Reservas(props) {
             <div className="booking-data">
               {/* FORMULARIO */}
               <div className="booking-data-form">
-                <FormDatos />
+                <FormDatos ciudad={setCiudad}/>
               </div>
 
               {/* CALENDARIO */}

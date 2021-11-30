@@ -12,7 +12,7 @@ export default function HorarioLLegada(props) {
   let horaElegida = "12:00 AM";
 
   const handleChange = () => {
-    horaElegida = document.querySelector("option:checked").value;
+    horaElegida = document.querySelector("option:checked").value
     setSelectedOption(document.querySelector("option:checked").value);
     props.horario(horaElegida)
   };

@@ -1,11 +1,9 @@
 .form-crearCuenta {
     width: 38vw;
-    height: 80vh; /*cambiar*/
+    height: 79vh;
     margin: auto;
     display: flex;
     font-size: 14px;
-    /* background-color: red; */
-    /* padding: 20px; */
 }
 
 .inputs{
@@ -97,21 +95,22 @@
 
 .error-contrasenia, .error-mail{
   display: none;
-  color: red;
+  color: rgba(176, 0, 32, 1);
   background-color: rgba(255, 225, 225, 1);
   width: auto;
   border-color: red;
   border-style: solid;
-  border-width: 3px;
+  border-width: 2px;
+  border-radius: 5px;
   margin-top: 10px;
 }
 
 .error-mail p {
-  color: red;
+  color: rgba(176, 0, 32, 1);
 }
 
 .error-contrasenia p {
-  color: red;
+  color: rgba(176, 0, 32, 1);
 }
 
 .error-validacion-mostrar{
