@@ -66,10 +66,6 @@ export default function Reservas(props) {
 
   const handlerReserva = (e) => {
     e.preventDefault();
-    const fechaIn = document.querySelector(".hora-check-in").value;
-    const fechaOut = document.querySelector(".hora-check-out").value;
-
-    e.preventDefault();   
     //obtenemos el id del usuario logueado a partir del token de seguridad
     let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token;
     let base64Url = token.split(".")[1];
@@ -89,8 +85,8 @@ export default function Reservas(props) {
       fechaInicial: startDate,
       fechaFinal: endDate,
       hora: horario,
-      producto: {id: producto.id},
-      usuario: {id: idUsuario}
+      producto: { id: producto.id },
+      usuario: { id: idUsuario },
     };
 
     let config = {
@@ -103,20 +99,24 @@ export default function Reservas(props) {
     };
 
     fetch(api + "/reservas", config)
+      .then((response) => console.log(response))
       .then((response) =>
-        response.status === 200
-          ? history.push("/exito")
-          : Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde",
-            })
+        // el response status no funciona en el segundo fetch, pero si lo pongo en el primero, el catch no funciona.
+        response.status === 200 ? history.push("/exito") : null
       )
-      .catch((error) => console.log(error));
+      .catch(
+        (error) => console.log(error),
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde",
+        })
+      );
   };
 
   // Estilo de días
-const buscadorDayStyle = (date) => getDate(date) ? "reservas-day-style" : undefined;
+  const buscadorDayStyle = (date) =>
+    getDate(date) ? "reservas-day-style" : undefined;
 
   const calendarHeaderReservas = ({
     monthDate,
@@ -295,7 +295,11 @@ const buscadorDayStyle = (date) => getDate(date) ? "reservas-day-style" : undefi
                   disabledKeyboardNavigation
                   inline
                   dayClassName={buscadorDayStyle}
-                  renderCustomHeader={ width <= 480 ? calendarHeaderReservasMobile : calendarHeaderReservas }
+                  renderCustomHeader={
+                    width <= 480
+                      ? calendarHeaderReservasMobile
+                      : calendarHeaderReservas
+                  }
                   //para poder seleccionar un rango de fechas
                   selectsRange={true}
                   startDate={startDate}
