@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
-
-  //   List<Reserva> findAllByFechaInicialAndFechaFinal(String fechaInicial, String fechaFinal);
+     @Query("SELECT r FROM Reserva r WHERE r.fechaInicial >= ?1 AND r.fechaFinal <= ?2")
+     List<Reserva> findAllByFechaInicialAndFechaFinal(LocalDate fechaInicial, LocalDate fechaFinal);
 
      Optional<Reserva> findByProductoId(Long id);
 

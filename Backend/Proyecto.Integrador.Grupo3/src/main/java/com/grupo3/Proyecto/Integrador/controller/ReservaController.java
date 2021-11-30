@@ -4,10 +4,12 @@ package com.grupo3.Proyecto.Integrador.controller;
 import com.grupo3.Proyecto.Integrador.model.Reserva;
 import com.grupo3.Proyecto.Integrador.service.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -33,9 +35,9 @@ public class ReservaController {
     @GetMapping("/producto/{id}")
     public Optional<Reserva> buscarPorIDProducto(@PathVariable Long id) { return reservaService.buscarPorIDProducto(id); }
 
-  /* @GetMapping("/fechas")
-    public ResponseEntity<List<Reserva>> buscarPorFecha(@RequestParam("fechaInicial") String fechaInicial, @RequestParam("fechaFinal") String fechaFinal)
-    { return ResponseEntity.ok(reservaService.buscarPorFecha(fechaInicial, fechaFinal)); }*/
+  @GetMapping("/fechas")
+    public ResponseEntity<List<Reserva>> buscarPorFecha(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaInicial, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaFinal)
+    { return ResponseEntity.ok(reservaService.buscarPorFecha(fechaInicial, fechaFinal)); }
 
    /* @GetMapping("/fechas")
     public ResponseEntity<List<String>> filtrarFechas(@RequestParam("fechaInicial")  Date fechaInicial,

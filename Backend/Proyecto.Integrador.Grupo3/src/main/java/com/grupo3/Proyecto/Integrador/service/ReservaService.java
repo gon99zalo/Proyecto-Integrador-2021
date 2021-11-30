@@ -5,6 +5,7 @@ import com.grupo3.Proyecto.Integrador.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,7 @@ public class ReservaService {
         return reservaRepository.findById(id);
     }
 
-//    public List<Reserva> buscarPorFecha(String fechaInicial, String fechaFinal) { return reservaRepository.findAllByFechaInicialAndFechaFinal(fechaInicial, fechaFinal); }
+    public List<Reserva> buscarPorFecha(LocalDate fechaInicial, LocalDate fechaFinal) { return reservaRepository.findAllByFechaInicialAndFechaFinal(fechaInicial, fechaFinal); }
 
     public Reserva actualizarReserva(Reserva reserva) { return reservaRepository.save(reserva);}
 
