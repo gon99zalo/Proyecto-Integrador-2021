@@ -25,6 +25,7 @@ import HorarioLLegada from "./HorarioLlegada";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 
+export const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
 export default function Reservas(props) {
   // HOOKS
   const [width, setwidth] = useState({ width: window.screen.availWidth });
@@ -52,7 +53,7 @@ export default function Reservas(props) {
   });
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
-  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
+ 
   const history = useHistory();
   registerLocale("es", es);
 
@@ -61,6 +62,8 @@ export default function Reservas(props) {
   const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
+
+  console.log(sessionStorage.getItem, 'getItem')
 
   let datosDeUsuario = sessionStorage.getItem("infoUsuario");
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
@@ -268,6 +271,7 @@ export default function Reservas(props) {
       </>
     );
   } else {
+
     return (
       <>
         <Header />

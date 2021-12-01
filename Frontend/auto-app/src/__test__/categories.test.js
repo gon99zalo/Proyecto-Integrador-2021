@@ -43,8 +43,6 @@ Enzyme.configure({ adapter: new Adapter() });
   //       <Categories />
   //     </MemoryRouter>
   //   );
-    
-    
   //   await waitFor(() => {
   //   expect(global.fetch).toBeCalledWith(api + "/categorias/todos");
   //   expect(firstResponse.json).toBeCalledWith();
@@ -55,5 +53,5 @@ Enzyme.configure({ adapter: new Adapter() });
     //    ).toBeInTheDocument();
     
 });
-//});
-//});
+// });
+// });

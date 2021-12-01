@@ -7,7 +7,7 @@ import "@testing-library/jest-dom";
 
 
 describe("Footer", () => {
-	it("Debe renderizar el texto", async () => {
+	test("Debe renderizar el texto", () => {
 		const component = render(
 			<BrowserRouter>
 				<Footer />

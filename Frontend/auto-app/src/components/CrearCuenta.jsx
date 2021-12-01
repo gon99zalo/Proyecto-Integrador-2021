@@ -61,14 +61,14 @@ export default function CrearCuenta() {
           <div className="inputs">
               <div className="campos-pegados">
           <span className="span-1"><label className="labels-crear" htmlFor="nombre">Nombre</label>
-          <input className={errors.nombre ? "error campos-crear" : "campos-crear"} type="text" name="nombre" id="nombre" {...register('nombre', {required: true})}  /> <p> {errors.nombre && "este campo es obligatorio"} </p> </span>
+          <input className={errors.nombre ? "error campos-crear" : "campos-crear"} type="text" name="nombre" id="nombre" {...register('nombre', {required: true})}  /> <p> {errors.nombre && "Este campo es obligatorio"} </p> </span>
           <span className="span-2"><label className="labels-crear" htmlFor="apellido">Apellido</label>
-          <input className={errors.apellido ? "error campos-crear" : "campos-crear"} type="text" name="apellido" id="apellido" {...register('apellido', {required: true})} /> <p> {errors.apellido && "este campo es obligatorio"} </p> </span>
+          <input className={errors.apellido ? "error campos-crear" : "campos-crear"} type="text" name="apellido" id="apellido" {...register('apellido', {required: true})} /> <p> {errors.apellido && "Este campo es obligatorio"} </p> </span>
           </div>
           <label className="labels-crear" htmlFor="correo-electronico">Correo electrónico</label>
           <input className={errors.correoElectronico ? "error campos-crear" : "campos-crear"} type="email" name="correo electronico" id="correo-electronico" {...register('correoElectronico', {required: true})} /> <p> {errors.correoElectronico && "Debe introducir un mail válido"} </p> 
           <label className="labels-crear" htmlFor="contrasenia">Contraseña</label>
-          <input className={errors.contrasenia ? "error campos-crear" : "campos-crear"} type="password" name="contrasenia" id="contrasenia" {...register('contrasenia', {required: true})} /> <p> {errors.contrasenia && "la contraseña debe tener más de 6 caracteres"} </p> 
+          <input className={errors.contrasenia ? "error campos-crear" : "campos-crear"} type="password" name="contrasenia" id="contrasenia" {...register('contrasenia', {required: true})} /> <p> {errors.contrasenia && "La contraseña debe tener más de 6 caracteres"} </p> 
           <label className="labels-crear" htmlFor="confirmarContrasenia" >Confirmar contraseña</label>
           <input className={errors.confirmarContrasenia ? "error campos-crear" : "campos-crear"} type="password" name="confirmarContrasenia" id="confirmarContrasenia" {...register('confirmarContrasenia', {required: true})} /> <p> {errors.confirmarContrasenia && "Las contraseñas no coinciden" } </p> 
           <button type="submit" className="boton-crearCuenta" id="boton-crearCuenta">Crear cuenta</button>
