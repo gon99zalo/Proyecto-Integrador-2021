@@ -48,7 +48,7 @@ public class ReservaService {
 
     public List<Reserva> traerTodas() { return reservaRepository.findAll(); }
 
-    public Optional<Reserva> buscarPorIDProducto(Long id) { return reservaRepository.findByProductoId(id); }
+    public List<Reserva> buscarPorIDProducto(Long id) { return reservaRepository.findByProductoId(id); }
 
     public Optional<Reserva> buscarPorIDUsuario(Integer id) { return reservaRepository.findByUsuarioId(id); }
 

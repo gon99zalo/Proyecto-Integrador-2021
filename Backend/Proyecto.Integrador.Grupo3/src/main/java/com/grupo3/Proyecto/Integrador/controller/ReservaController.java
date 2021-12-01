@@ -34,7 +34,7 @@ public class ReservaController {
     }
 
     @GetMapping("/producto/{id}")
-    public Optional<Reserva> buscarPorIDProducto(@PathVariable Long id) { return reservaService.buscarPorIDProducto(id); }
+    public List<Reserva> buscarPorIDProducto(@PathVariable Long id) { return reservaService.buscarPorIDProducto(id); }
 
     @GetMapping("/usuario/{id}")
     public Optional<Reserva> buscarPorIDUsuario(@PathVariable Integer id) { return reservaService.buscarPorIDUsuario(id); }

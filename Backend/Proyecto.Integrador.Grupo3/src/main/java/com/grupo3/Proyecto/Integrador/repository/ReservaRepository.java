@@ -19,7 +19,8 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
      @Query("SELECT DISTINCT p FROM Producto p WHERE p.id NOT IN (SELECT r.producto.id FROM Reserva r WHERE r.fechaInicial >= ?2 AND r.fechaFinal <= ?3) AND p.ciudad.nombre = ?1")
      List<Producto> findAllByCiudadYFechas(String ciudad, LocalDate fechaInicial, LocalDate fechaFinal);
 
-     Optional<Reserva> findByProductoId(Long id);
+     @Query("SELECT r FROM Reserva r WHERE r.producto.id = ?1")
+     List<Reserva> findByProductoId(Long id);
 
      Optional<Reserva> findByUsuarioId(Integer id);
 
