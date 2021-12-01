@@ -220,10 +220,10 @@ const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefi
                 lng: lng
               });
             },
-            (error) => {
-              console.error(error);
-            }
-          );
+            
+          ).catch((error) => {
+            console.error(error);
+          })
           setIsLoaded(true)
         },
         (error) => {
