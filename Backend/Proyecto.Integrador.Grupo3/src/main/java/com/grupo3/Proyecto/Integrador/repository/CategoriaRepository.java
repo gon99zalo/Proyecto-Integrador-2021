@@ -14,13 +14,18 @@ import java.util.Optional;
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
     @Query("FROM Categoria c WHERE c.titulo like %:titulo%")
-    Optional<Categoria> findByTitulo(String titulo);
+    Optional<Categoria> buscarPorTitulo(@Param("titulo") String titulo);
 
     @Transactional
     @Modifying
     @Query("DELETE FROM Categoria c WHERE c.titulo like %:titulo%")
     void eliminarPorTitulo(@Param("titulo") String titulo);
 
+
+  /*  Optional<Categoria> findByTitulo(String titulo);
+
+    @Transactional
+    Optional<Categoria> deleteByTitulo(String titulo);*/
 
 
 

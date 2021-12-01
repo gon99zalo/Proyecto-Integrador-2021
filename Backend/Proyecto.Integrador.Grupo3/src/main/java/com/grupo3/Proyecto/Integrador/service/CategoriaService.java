@@ -22,7 +22,7 @@ public class CategoriaService {
 
     public Optional<Categoria> buscarCategoriaPorID(Long id) { return categoriaRepository.findById((id)); }
 
-    public Optional<Categoria> buscarCategoria(String titulo) { return categoriaRepository.findByTitulo(titulo); }
+    public Optional<Categoria> buscarCategoria(String titulo) { return categoriaRepository.buscarPorTitulo(titulo); }
 
     public Categoria actualizarCategoria(Categoria categoria) { return categoriaRepository.save(categoria); }
 

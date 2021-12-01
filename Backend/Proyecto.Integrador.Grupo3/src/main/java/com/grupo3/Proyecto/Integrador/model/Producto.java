@@ -1,6 +1,5 @@
 package com.grupo3.Proyecto.Integrador.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,49 +23,20 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "ciudad_id")
     private Ciudad ciudad;
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "producto_id")
+    @OneToMany
+    @JoinColumn(name = "image_id")
     private List<Imagen> imagenes = new ArrayList<>();
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "caracteristicas_id")
+    @ManyToMany
+    @JoinColumn(name = "caract_id")
     private List<Caracteristica> caracteristicas = new ArrayList<>();
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "producto_id")
-    private List<Puntuacion> puntuaciones = new ArrayList<>();
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "producto_id")
-    @JsonIgnore
-    private List<Reserva> reservas = new ArrayList<>();
-
 
     public Producto() { }
 
     public Producto(String nombre, String descripcion, Categoria categoria, Ciudad ciudad) {
         this.nombre = nombre;
-
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.ciudad = ciudad;
-    }
-
-    public Producto(String nombre, String descripcion, Categoria categoria, Ciudad ciudad, List<Imagen> imagenes, List<Caracteristica> caracteristicas) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.ciudad = ciudad;
-        this.imagenes = imagenes;
-        this.caracteristicas = caracteristicas;
-    }
-
-    public Producto(String nombre, String descripcion, Categoria categoria, Ciudad ciudad, List<Imagen> imagenes, List<Caracteristica> caracteristicas, List<Puntuacion> puntuaciones, List<Reserva> reservas) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.ciudad = ciudad;
-        this.imagenes = imagenes;
-        this.caracteristicas = caracteristicas;
-        this.puntuaciones = puntuaciones;
-        this.reservas = reservas;
     }
 
     @Override
@@ -79,8 +49,6 @@ public class Producto {
                 ", ciudad=" + ciudad +
                 ", imagenes=" + imagenes +
                 ", caracteristicas=" + caracteristicas +
-                ", puntuaciones=" + puntuaciones +
-                ", reservas=" + reservas +
                 '}';
     }
 }
