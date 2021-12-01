@@ -21,7 +21,6 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
      Optional<Reserva> findByProductoId(Long id);
 
- /*    @Query("SELECT p FROM Producto p JOIN Reserva r BETWEEN fechaInicial AND fechaFinal")
-     List<String> findByStartDateBetween(Date fechaInicial, Date fechaFinal);
-*/
+     Optional<Reserva> findByUsuarioId(Integer id);
+
 }
