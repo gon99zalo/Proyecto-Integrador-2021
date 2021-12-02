@@ -1,17 +1,19 @@
-import Buscador from "./Buscador";
-// import Footer from "./Footer";
+// import Buscador from "./Buscador";
+import Footer from "./Footer";
 import Header from "./Header";
-import Categories from './Categories';
-import Listado from './Listado';
+// import Categories from './Categories';
+// import Listado from './Listado';
+import CreacionProducto from "./CreacionProducto";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <Buscador />
+      {/* <Buscador />
       <Categories />
-      <Listado />
-      {/* <Footer /> */}
+      <Listado /> */}
+      <CreacionProducto />
+      <Footer />
     </>
   );
 };
