@@ -54,10 +54,10 @@ export default function CreacionProducto() {
               <div className="inputs-pegados">
             <div>
               <label htmlFor="nombre">Nombre del auto</label>
-              <input  type="text" name="nombre" id="nombre-auto"  />
+              <input  type="text" name="nombre" id="nombre-auto" placeholder="Audi A5"  />
 
               <label htmlFor="direccion">Direccion</label>
-              <input  type="text" name="direccion" id="direccion"  />
+              <input  type="text" name="direccion" id="direccion" placeholder="Aráoz 2885" />
             </div>
 
             <div>
@@ -77,18 +77,18 @@ export default function CreacionProducto() {
             </div>
             
             <div className="div-descripcion">
-            <label>Descripcion</label>
-            <input type="text" name="descripcion" id="descripcion" />
+            <label htmlFor="descripcion">Descripcion</label>
+            <textarea name="descripcion" id="descripcion" placeholder="Escribir aquí" />
             </div>
 
             <h2>Agregar atributos</h2>
-            <div className="esqueleto-agregar-atributo">
-            <div className="aregar-atributo">
+            <div className="esqueleto-atributo-imagen">
+            <div className="cargar-atributo-imagen">
               <div>
                 <label htmlFor="nombre-atributo">Nombre</label>
-                <input type="text" name="nombre-atributo" id="nombre-atributo" />
+                <input type="text" name="nombre-atributo" id="nombre-atributo" placeholder="Wifi" />
                 <label htmlFor="icono">Icono</label>
-                <input type="text" name="icono" id="icono" />
+                <input type="text" name="icono" id="icono" placeholder="fa-Wifi" />
                 <i className="fas fa-plus-square"></i>
                 </div>
             </div>
@@ -100,26 +100,26 @@ export default function CreacionProducto() {
                 <div>
                 <h2>Normas del auto</h2>
                 <label htmlFor="descripcion-normas">Descripción</label>
-                <input type="text" name="descripcion-normas" className="politics" id="descripcion-normas" />
+                <textarea  name="descripcion-normas" className="politics" id="descripcion-normas" placeholder="Escribir aquí" />
                 </div>
                 <div>
                 <h2>Salud y seguridad</h2>
                 <label htmlFor="descripcion-normas">Descripción</label>
-                <input type="text" name="descripcion-normas" className="politics" id="descripcion-seguridad" />
+                <textarea  name="descripcion-normas" className="politics" id="descripcion-seguridad" placeholder="Escribir aquí" />
                 </div>
                 <div>
                 <h2>Política de cancelación</h2>
                 <label htmlFor="descripcion-normas">Descripción</label>
-                <input type="text" name="descripcion-normas" className="politics" id="descripcion-cancelacion" />
+                <textarea  name="descripcion-normas" className="politics" id="descripcion-cancelacion" placeholder="Escribir aquí" />
                 </div>
               </div>
             </div>
 
             <h2>Cargar imágenes</h2>
-            <div className="esqueleto-cargar-imagenes">
-              <div className="cargar-imagen">
+            <div className="esqueleto-atributo-imagen">
+              <div className="cargar-atributo-imagen">
               <div>
-                <input type="text" name="cargar-imagen" id="cargar-imagen" />
+                <input type="text" name="cargar-imagen" id="cargar-imagen" placeholder="insertar https://" />
                 <i className="fas fa-plus-square"></i>
               </div>
               </div>

@@ -17,6 +17,9 @@ label {
   margin-top: 20px;
   margin-bottom: 10px;
 }
+textarea {
+  resize: none;
+}
 
 .esqueleto-pagina{
   width: 100%;
@@ -98,27 +101,34 @@ label {
     margin-right: 13px;
 }
 
-.esqueleto-agregar-atributo{
-    width: 95%;
-    height: 105px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    background-color: rgba(223, 228, 234, 1);
+.esqueleto-atributo-imagen {
+  width: 95%;
+  height: 105px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: rgba(223, 228, 234, 1);
 }
 
- div.inputs-crear-auto  div.esqueleto-agregar-atributo > div.agregar-atributo {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+.cargar-atributo-imagen div {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
 
-  #agrear-atributo div {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    justify-content: center;
-  }
+.cargar-atributo-imagen input {
+  width: 80%;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.cargar-atributo-imagen{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
   #nombre-atributo, #icono {
     height: 35px;
@@ -163,34 +173,6 @@ label {
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 30px;
-  }
-
-  .esqueleto-cargar-imagenes {
-    width: 95%;
-    height: 105px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    background-color: rgba(223, 228, 234, 1);
-  }
-
-  .cargar-imagen {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .cargar-imagen div {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    justify-content: center;
-  }
-
-  .cargar-imagen input {
-    width: 80%;
-    height: 35px;
-    border-radius: 5px;
   }
 
   .submit-crear {
