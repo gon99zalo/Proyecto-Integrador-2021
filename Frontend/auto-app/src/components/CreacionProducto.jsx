@@ -52,10 +52,21 @@ export default function CreacionProducto() {
 
         <form className="form-crear-auto" action="">
           <div className="inputs-crear-auto">
+<<<<<<< HEAD
             <div className="inputs-pegados">
               <div>
                 <label htmlFor="nombre">Nombre del auto</label>
                 <input type="text" name="nombre" id="nombre-auto" />
+=======
+              <div className="inputs-pegados">
+            <div>
+              <label htmlFor="nombre">Nombre del auto</label>
+              <input  type="text" name="nombre" id="nombre-auto" placeholder="Audi A5"  />
+
+              <label htmlFor="direccion">Direccion</label>
+              <input  type="text" name="direccion" id="direccion" placeholder="Aráoz 2885" />
+            </div>
+>>>>>>> be5132062eaeba14e29a6e02cac860b51f57d577
 
                 <label htmlFor="direccion">Direccion</label>
                 <input type="text" name="direccion" id="direccion" />
@@ -90,6 +101,7 @@ export default function CreacionProducto() {
             </div>
 
             <div className="div-descripcion">
+<<<<<<< HEAD
               <label>Descripcion</label>
               <input type="text" name="descripcion" id="descripcion" />
             </div>
@@ -107,6 +119,21 @@ export default function CreacionProducto() {
                   <label htmlFor="icono">Icono</label>
                   <input type="text" name="icono" id="icono" />
                   <i className="fas fa-plus-square"></i>
+=======
+            <label htmlFor="descripcion">Descripcion</label>
+            <textarea name="descripcion" id="descripcion" placeholder="Escribir aquí" />
+            </div>
+
+            <h2>Agregar atributos</h2>
+            <div className="esqueleto-atributo-imagen">
+            <div className="cargar-atributo-imagen">
+              <div>
+                <label htmlFor="nombre-atributo">Nombre</label>
+                <input type="text" name="nombre-atributo" id="nombre-atributo" placeholder="Wifi" />
+                <label htmlFor="icono">Icono</label>
+                <input type="text" name="icono" id="icono" placeholder="fa-Wifi" />
+                <i className="fas fa-plus-square"></i>
+>>>>>>> be5132062eaeba14e29a6e02cac860b51f57d577
                 </div>
               </div>
             </div>
@@ -115,6 +142,7 @@ export default function CreacionProducto() {
             <div className="esqueleto-politicas">
               <div className="politicas">
                 <div>
+<<<<<<< HEAD
                   <h2>Normas del auto</h2>
                   <label htmlFor="descripcion-normas">Descripción</label>
                   <input
@@ -143,17 +171,41 @@ export default function CreacionProducto() {
                     className="politics"
                     id="descripcion-cancelacion"
                   />
+=======
+                <h2>Normas del auto</h2>
+                <label htmlFor="descripcion-normas">Descripción</label>
+                <textarea  name="descripcion-normas" className="politics" id="descripcion-normas" placeholder="Escribir aquí" />
+                </div>
+                <div>
+                <h2>Salud y seguridad</h2>
+                <label htmlFor="descripcion-normas">Descripción</label>
+                <textarea  name="descripcion-normas" className="politics" id="descripcion-seguridad" placeholder="Escribir aquí" />
+                </div>
+                <div>
+                <h2>Política de cancelación</h2>
+                <label htmlFor="descripcion-normas">Descripción</label>
+                <textarea  name="descripcion-normas" className="politics" id="descripcion-cancelacion" placeholder="Escribir aquí" />
+>>>>>>> be5132062eaeba14e29a6e02cac860b51f57d577
                 </div>
               </div>
             </div>
 
             <h2>Cargar imágenes</h2>
+<<<<<<< HEAD
             <div className="esqueleto-cargar-imagenes">
               <div className="cargar-imagen">
                 <div>
                   <input type="text" name="cargar-imagen" id="cargar-imagen" />
                   <i className="fas fa-plus-square"></i>
                 </div>
+=======
+            <div className="esqueleto-atributo-imagen">
+              <div className="cargar-atributo-imagen">
+              <div>
+                <input type="text" name="cargar-imagen" id="cargar-imagen" placeholder="insertar https://" />
+                <i className="fas fa-plus-square"></i>
+              </div>
+>>>>>>> be5132062eaeba14e29a6e02cac860b51f57d577
               </div>
             </div>
 
