@@ -26,6 +26,8 @@ public class ProductoService {
         return productoRepository.findById(id);
     }
 
+    public Optional<Producto> buscarPorNombre(String nombre) { return productoRepository.findByNombre(nombre); }
+
     public Producto actualizarProducto(Producto producto) { return productoRepository.save(producto);}
 
     public void eliminarProductoPorID(Long id) { productoRepository.deleteById(id);}

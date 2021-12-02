@@ -34,9 +34,12 @@ public class ReservaController {
     }
 
     @GetMapping("/producto/{id}")
-    public Optional<Reserva> buscarPorIDProducto(@PathVariable Long id) { return reservaService.buscarPorIDProducto(id); }
+    public List<Reserva> buscarPorIDProducto(@PathVariable Long id) { return reservaService.buscarPorIDProducto(id); }
 
-  @GetMapping("/fechas")
+    @GetMapping("/usuario/{id}")
+    public Optional<Reserva> buscarPorIDUsuario(@PathVariable Integer id) { return reservaService.buscarPorIDUsuario(id); }
+
+    @GetMapping("/fechas")
     public ResponseEntity<List<Producto>> buscarPorFecha(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaInicial, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaFinal)
     { return ResponseEntity.ok(reservaService.buscarPorFecha(fechaInicial, fechaFinal)); }
 
@@ -44,11 +47,6 @@ public class ReservaController {
     public ResponseEntity<List<Producto>> buscarPorCiudadYFecha(@RequestParam String ciudad, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaInicial, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaFinal)
     { return ResponseEntity.ok(reservaService.buscarPorCiudadYFecha(ciudad, fechaInicial, fechaFinal)); }
 
-   /* @GetMapping("/fechas")
-    public ResponseEntity<List<String>> filtrarFechas(@RequestParam("fechaInicial")  Date fechaInicial,
-                                                      @RequestParam("fechaFinal")  Date fechaFinal) {
-        return ResponseEntity.ok(reservaService.filtrarFechas(fechaInicial, fechaFinal));
-    }*/
 
     @PutMapping("/modificar")
     @ResponseBody

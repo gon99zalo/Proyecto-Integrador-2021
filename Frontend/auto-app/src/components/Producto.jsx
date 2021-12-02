@@ -17,7 +17,7 @@ import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
-import { subDays, getDate } from 'date-fns';
+import { subDays, getDate, format, eachDayOfInterval } from 'date-fns';
 // Componentes
 import Gallery from './Gallery';
 import SwipeGallery from './SwipeGallery';
@@ -38,6 +38,7 @@ export default function Producto(props) {
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [arrayDeFechasReservadas, setArrayDeFechasReservadas] = useState([])
   const [center, setCenter] = useState({
     lat: -34.603722,
     lng: -58.381592
@@ -57,6 +58,13 @@ export default function Producto(props) {
     caracteristicas: []
   });
 
+
+// Esta función se encarga de enviar al DatePicker las fechas que están inhabilitadas
+const fechasSinReservar = (date) => {
+  // date hace referencia al formato con el que trae normalmente el DatePicker las fechas
+  // le hago format abajo para que haga match con el formato de las fechas que están en el arrayDeFechasReservadas
+  return !arrayDeFechasReservadas.includes(format(date, 'dd/MM/yyyy'));
+};
   const qualificationText = (qualification) => {
     if(qualification >= 1 && qualification <= 2.5) {
       return "Muy malo";
@@ -179,11 +187,35 @@ const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefi
                 lat: lat,
                 lng: lng
               });
+              fetch(api + "/reservas/producto/" + props.match.params.id)
+              .then(res => res.json())
+              .then((result) => {
+                let fechasReservadas = [];
+                result.forEach(reserva => {
+                  let fechaInicial = reserva.fechaInicial.split("-");
+                  let fechaFinal = reserva.fechaFinal.split("-")
+                  fechasReservadas.push(
+                    {
+                      start:new Date(fechaInicial[0], fechaInicial[1]-1, fechaInicial[2]),
+                      end:new Date(fechaFinal[0], fechaFinal[1]-1, fechaFinal[2])
+                    }
+                  )
+                });
+                let fechas = [];
+                for (let i = 0; i < fechasReservadas.length; i++) {
+                // el array creado tendrá las fechas en formato dd/MM/yyyy pero puede variar según sea necesario
+                  fechas.push(...eachDayOfInterval(fechasReservadas[i]).map( fecha => format(fecha, 'dd/MM/yyyy') ));
+                };
+                setArrayDeFechasReservadas(fechas);
+              },
+              (error) =>{
+                setError(error);
+              })
             },
-            (error) => {
-              console.error(error);
-            }
-          );
+            
+          ).catch((error) => {
+            setError(error);
+          })
           setIsLoaded(true)
         },
         (error) => {
@@ -309,6 +341,8 @@ const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefi
               //para que el nombre de los meses quede con mayúscula inicial
               formatWeekDay={day => day.charAt(0).toUpperCase() + day.substring(1,2) }
               showPopperArrow={false}
+              //este prop permite filtrar las fechas, recibe una función que indica las fechas a filtrar
+              filterDate={fechasSinReservar}
             >
               <div className="divider-producto"></div>
             </DatePicker>
