@@ -96,7 +96,7 @@ export default function CreacionProducto() {
 
             <h2>Agregar atributos</h2>
             <div className="esqueleto-agregar-atributo">
-              <div className="aregar-atributo">
+              <div className="agregar-icono">
                 <div>
                   <label htmlFor="nombre-atributo">Nombre</label>
                   <input
