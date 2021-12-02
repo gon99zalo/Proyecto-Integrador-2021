@@ -110,19 +110,16 @@ export default function Reservas(props) {
       });
     }else{
     fetch(api + "/reservas", config)
-      .then((response) => console.log(response))
-      .then((response) =>
-      // el response status no funciona en el segundo fetch, pero si lo pongo en el primero, el catch no funciona.
-        response.status === 200
-          ? history.push("/exito")
-          : null,
+      .then((res) => res.json())
+      .then((result) =>
+          history.push("/exito")
       )
-      .catch((error) => console.log(error),
+      .catch((error) => {console.log(error)
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde",
-      }));
+      })});
   }
 };
 
