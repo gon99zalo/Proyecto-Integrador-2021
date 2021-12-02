@@ -84,7 +84,7 @@ export default function IniciarSesion() {
     {alerta? Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Debe estar registrado para poder realizar una reserva',
+        text: 'Debe estar logueado para poder realizar una reserva',
         showConfirmButton: false,
         footer: '<a href="iniciarSesion?reserva='+ reserva +'" >Pulse aquí para iniciar sesión</a>'
       })
