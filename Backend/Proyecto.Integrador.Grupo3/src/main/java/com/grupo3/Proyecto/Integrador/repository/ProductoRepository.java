@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 
@@ -14,6 +15,9 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     List<Producto> findAllByCategoriaTitulo(String titulo);
 
     List<Producto> findAllByCiudadNombre(String nombre);
+
+    @Query("FROM Producto p WHERE p.nombre like %:nombre%")
+    Optional<Producto> findByNombre(String nombre);
 
     @Query("SELECT COUNT(u) FROM Producto u")
     Integer cantProductos();
