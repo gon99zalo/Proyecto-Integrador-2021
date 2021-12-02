@@ -25,6 +25,7 @@ import HorarioLLegada from "./HorarioLlegada";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 
+export const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
 export default function Reservas(props) {
   // HOOKS
   const [width, setwidth] = useState({ width: window.screen.availWidth });
@@ -52,7 +53,7 @@ export default function Reservas(props) {
   });
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
-  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
+ 
   const history = useHistory();
   registerLocale("es", es);
 
@@ -61,6 +62,8 @@ export default function Reservas(props) {
   const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
+
+  console.log(sessionStorage.getItem, 'getItem')
 
   let datosDeUsuario = sessionStorage.getItem("infoUsuario");
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
@@ -83,8 +86,8 @@ export default function Reservas(props) {
     console.log(parseInt(idUsuario).valueOf());
 
     let valores = {
-      fechaInicial: startDate,
-      fechaFinal: endDate,
+      fechaInicial: startDate.getFullYear() + "-" + ("0" + (startDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (startDate.getDate())).slice(-2),
+      fechaFinal: endDate.getFullYear() + "-" + ("0" + (endDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (endDate.getDate())).slice(-2),
       hora: horario,
       producto: { id: producto.id },
       usuario: { id: idUsuario },
@@ -107,19 +110,16 @@ export default function Reservas(props) {
       });
     }else{
     fetch(api + "/reservas", config)
-      .then((response) => console.log(response))
-      .then((response) =>
-      // el response status no funciona en el segundo fetch, pero si lo pongo en el primero, el catch no funciona.
-        response.status === 200
-          ? history.push("/exito")
-          : null,
+      .then((res) => res.json())
+      .then((result) =>
+          history.push("/exito")
       )
-      .catch((error) => console.log(error),
+      .catch((error) => {console.log(error)
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde",
-      }));
+      })});
   }
 };
 
@@ -268,6 +268,7 @@ export default function Reservas(props) {
       </>
     );
   } else {
+
     return (
       <>
         <Header />

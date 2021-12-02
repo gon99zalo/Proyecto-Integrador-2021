@@ -17,40 +17,21 @@ import {
 //Formatear fechas
 import { subDays, getDate } from "date-fns";
 import { Link } from "react-router-dom";
-//Autcomplete buscador
-// import { AutoComplete } from 'primereact/autocomplete';
-// import { PROPERTY_TYPES } from "@babel/types";
-//import { AutoComplete } from 'primereact/autocomplete';
 
 export const api =
   "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
 
 export default function Buscador() {
+  const [myRef, setMyRef] = useState(false)
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [width, setwidth] = useState({ width: window.screen.availWidth });
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
-  //const [selectedCity, setSelectedCity] = useState(null)
-  //const [filteredCitites, setFilteredCities] = useState([]);
   const previousArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
   registerLocale("es", es);
 
-  //funcion buscador ciudades
-  //   const searchCities = (event) => {
-  //     let filteredCities;
-  //     if (!event.query.trim().length) {
-  //         filteredCities = [...ciudades];
-  //     } else {
-  //         filteredCities = ciudades.filter(ciudad => {
-  //             return ciudad.nombre.toLowerCase().indexOf(event.query.toLowerCase()) >= 0;
-  //         });
-  //         console.log(filteredCitites)
-  //     }
-
-  //     setFilteredCities(filteredCities);
-  // }
 
 //para guardar la ciudad elegida en el select
 const handlerCiudad = () => {
@@ -179,7 +160,7 @@ const handlerCiudad = () => {
   const buscadorDayStyle = (date) => getDate(date) ? "buscador-day-style" : undefined;
 
   const handleCloseCalendar = () => {
-    // setHideCalendar(!hideCalendar);
+    myRef.setOpen(false)
     console.log("al hacer click aquí debe cerrar el popper");
   };
 
@@ -199,6 +180,9 @@ const handlerCiudad = () => {
 
         <DatePicker
           disabledKeyboardNavigation
+          ref={(r) => {
+            setMyRef(r)
+          }} 
           renderCustomHeader={ width <= 480 ? calendarHeaderMobile : calendarHeader }
           showPopperArrow={false}
           customInput={<CalendarBuscadorInput />}
@@ -234,7 +218,16 @@ const handlerCiudad = () => {
         </DatePicker>
 
         <Link
-          to={ciudad === "" ? "/buscar" : "/buscar?locacion=" + ciudad}
+          to={
+            "/buscar?" + 
+            (ciudad === "" ? "" : "locacion=" + ciudad) + 
+            (ciudad === "" && endDate === null? "" :"&") + 
+            (endDate === null ? "":"fechas=" + 
+            startDate.getFullYear() + "-" + ("0" + (startDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (startDate.getDate())).slice(-2) +
+            "#" +
+            endDate.getFullYear() + "-" + ("0" + (endDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (endDate.getDate())).slice(-2)
+            )
+          }
           className="boton-buscar"
           id="boton-buscar"
         >

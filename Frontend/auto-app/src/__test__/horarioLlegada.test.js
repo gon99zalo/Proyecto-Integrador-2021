@@ -11,7 +11,7 @@ describe('Horario Llegada', () =>{
             screen.getByText(/Tu auto va a estar listo en el siguiente horario:/i)
           ).toBeInTheDocument();
           expect(
-            screen.getByText(/Indicá tu horario estimado de llegada/i)
+            screen.getByText(/Indica tu horario estimado de llegada/i)
           ).toBeInTheDocument();
           expect(
             screen.getByText(/Seleccionar hora/i)

@@ -1,5 +1,6 @@
 package com.grupo3.Proyecto.Integrador.controller;
 
+import com.grupo3.Proyecto.Integrador.model.Categoria;
 import com.grupo3.Proyecto.Integrador.model.Producto;
 import com.grupo3.Proyecto.Integrador.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,12 @@ public class ProductoController {
     @GetMapping("buscar/{id}")
     public Optional<Producto> buscarProductoPorID(@PathVariable Long id) {
         return productoService.buscarPorId(id);
+    }
+
+    @GetMapping("/buscar")
+    public ResponseEntity<Producto> buscarPorNombre(@RequestParam String nombre) {
+        Producto producto = productoService.buscarPorNombre(nombre).orElse(null);
+        return ResponseEntity.ok(producto);
     }
 
     @DeleteMapping("/eliminar/{id}")
@@ -80,9 +87,6 @@ public class ProductoController {
     @GetMapping("/ciudad")
     public ResponseEntity<List<Producto>> listarPorCiudad(@RequestParam("nombre") String nombre) {
         return ResponseEntity.ok(productoService.listarPorCiudad(nombre));}
-
-    //Agregar un método que nos permita filtrar productos por dos fechas y ciudad
-
 
 
     @GetMapping("/cantidad")

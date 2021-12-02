@@ -21,4 +21,24 @@ describe("Reservas", () => {
   
       expect(container).toBeDefined();
     });
+    test("Deberia renderizar Loading si el componente esta cargando", () => {
+      const { getByText } = makeRender();
+  
+      expect(getByText("Loading")).toBeDefined();
+    });
+    test("Deberia mostrar un mensaje de error si falla la llamada a la api", async () => {
+      const error = new Error("some error");
+  
+      const firstResponse = {
+        json: jest.fn().mockRejectedValueOnce(error),
+      };
+  
+      global.fetch = jest.fn().mockResolvedValue(firstResponse);
+  
+      const { getByText } = makeRender();
+  
+      await waitFor(() => {
+        expect(getByText(`Error: ${error.message}`)).toBeDefined();
+      });
+    });
 });

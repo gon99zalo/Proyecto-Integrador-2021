@@ -19,8 +19,8 @@ export default function IniciarSesion() {
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
   const params = useMemo(() => new URLSearchParams(window.location.search),[]);
   const [passwordShown, setPasswordShown] = useState(false);
-  const [alerta] = useState(params.get("alerta") ? true: false)
-  const [reserva] = useState(params.get("reserva"))
+  const alerta = params.get("alerta") ? true: false
+  const reserva = params.get("reserva") !== null
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
@@ -62,7 +62,7 @@ export default function IniciarSesion() {
       <Header login={true}/>
       <div className="logIn">
       <div className={params.get("reserva") != null ? "mostrar-no-logueado no-logueado": "no-logueado"}>
-        <p><i class="fas fa-exclamation-circle"></i> Para realizar una reserva necesitas estar logueado</p>
+        <p><i className="fas fa-exclamation-circle"></i> Para realizar una reserva necesitas estar logueado</p>
       </div>
       <h1 className="titulo-inicio">Iniciar sesión</h1>
       <form className="form-iniciarSesion" action="">
@@ -86,7 +86,7 @@ export default function IniciarSesion() {
         title: 'Oops...',
         text: 'Debe estar registrado para poder realizar una reserva',
         showConfirmButton: false,
-        footer: '<a href="iniciarSesion?reserva='+ reserva +'" >Pulse aquí para registrarse</a>'
+        footer: '<a href="iniciarSesion?reserva='+ reserva +'" >Pulse aquí para iniciar sesión</a>'
       })
       : ""}
       </>
