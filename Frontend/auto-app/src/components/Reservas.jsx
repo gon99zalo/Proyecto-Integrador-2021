@@ -12,7 +12,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
-import { subDays, getDate, format } from "date-fns";
+import { subDays, getDate, format, eachDayOfInterval } from "date-fns";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 //Componentes
@@ -25,6 +25,7 @@ import HorarioLLegada from "./HorarioLlegada";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 
+export const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
 export default function Reservas(props) {
   // HOOKS
   const [width, setwidth] = useState({ width: window.screen.availWidth });
@@ -32,6 +33,7 @@ export default function Reservas(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [horario, setHorario] = useState(null);
   const [ciudad, setCiudad] = useState(null);
+  const [arrayDeFechasReservadas, setArrayDeFechasReservadas] = useState([]);
   const [producto, setProducto] = useState({
     id: 0,
     nombre: "",
@@ -52,7 +54,7 @@ export default function Reservas(props) {
   });
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
-  const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080";
+ 
   const history = useHistory();
   registerLocale("es", es);
 
@@ -62,8 +64,17 @@ export default function Reservas(props) {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
 
+  console.log(sessionStorage.getItem, 'getItem')
+
   let datosDeUsuario = sessionStorage.getItem("infoUsuario");
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
+
+  // Esta función se encarga de enviar al DatePicker las fechas que están inhabilitadas
+  const fechasSinReservar = (date) => {
+  // date hace referencia al formato con el que trae normalmente el DatePicker las fechas
+  // le hago format abajo para que haga match con el formato de las fechas que están en el arrayDeFechasReservadas
+    return !arrayDeFechasReservadas.includes(format(date, 'dd/MM/yyyy'));
+  };
 
   const handlerReserva = (e) => {
     e.preventDefault();   
@@ -83,8 +94,8 @@ export default function Reservas(props) {
     console.log(parseInt(idUsuario).valueOf());
 
     let valores = {
-      fechaInicial: startDate,
-      fechaFinal: endDate,
+      fechaInicial: startDate.getFullYear() + "-" + ("0" + (startDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (startDate.getDate())).slice(-2),
+      fechaFinal: endDate.getFullYear() + "-" + ("0" + (endDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (endDate.getDate())).slice(-2),
       hora: horario,
       producto: { id: producto.id },
       usuario: { id: idUsuario },
@@ -107,19 +118,16 @@ export default function Reservas(props) {
       });
     }else{
     fetch(api + "/reservas", config)
-      .then((response) => console.log(response))
-      .then((response) =>
-      // el response status no funciona en el segundo fetch, pero si lo pongo en el primero, el catch no funciona.
-        response.status === 200
-          ? history.push("/exito")
-          : null,
+      .then((res) => res.json())
+      .then((result) =>
+          history.push("/exito")
       )
-      .catch((error) => console.log(error),
+      .catch((error) => {console.log(error)
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Lamentablemente la reserva no ha podido realizarse. Por favor, intente más tarde",
-      }));
+      })});
   }
 };
 
@@ -228,6 +236,30 @@ export default function Reservas(props) {
       .then(
         (result) => {
           result == null ? console.log(result) : setProducto(result);
+          fetch(api + "/reservas/producto/" + props.match.params.id)
+              .then(res => res.json())
+              .then((result) => {
+                let fechasReservadas = [];
+                result.forEach(reserva => {
+                  let fechaInicial = reserva.fechaInicial.split("-");
+                  let fechaFinal = reserva.fechaFinal.split("-")
+                  fechasReservadas.push(
+                    {
+                      start:new Date(fechaInicial[0], fechaInicial[1]-1, fechaInicial[2]),
+                      end:new Date(fechaFinal[0], fechaFinal[1]-1, fechaFinal[2])
+                    }
+                  )
+                });
+                let fechas = [];
+                for (let i = 0; i < fechasReservadas.length; i++) {
+                // el array creado tendrá las fechas en formato dd/MM/yyyy pero puede variar según sea necesario
+                  fechas.push(...eachDayOfInterval(fechasReservadas[i]).map( fecha => format(fecha, 'dd/MM/yyyy') ));
+                };
+                setArrayDeFechasReservadas(fechas);
+              },
+              (error) =>{
+                setError(error);
+              })
           setIsLoaded(true);
         },
         (error) => {
@@ -268,6 +300,7 @@ export default function Reservas(props) {
       </>
     );
   } else {
+
     return (
       <>
         <Header />
@@ -313,6 +346,7 @@ export default function Reservas(props) {
                   selectsRange={true}
                   startDate={startDate}
                   endDate={endDate}
+                  filterDate={fechasSinReservar}
                   onChange={(update) => {
                     setDateRange(update);
                   }}

@@ -6,6 +6,8 @@ export default function FormDatos(props) {
   // const infoUsuario = JSON.parse(localStorage.getItem("infoUsuario"));
   const [selectedOption, setSelectedOption] = useState(null)
 
+  console.log(selectedOption);
+
   let datosDeUsuario = sessionStorage.getItem("infoUsuario")
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario)
 

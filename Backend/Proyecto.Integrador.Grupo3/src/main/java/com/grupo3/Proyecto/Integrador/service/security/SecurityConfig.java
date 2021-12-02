@@ -5,6 +5,7 @@ import com.grupo3.Proyecto.Integrador.controller.RequestFilter;
 import com.grupo3.Proyecto.Integrador.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -44,10 +45,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
   //              .antMatchers("/registro").permitAll()
-                .antMatchers("/reservas").hasAuthority("cliente")
-                .antMatchers("/reservas/**").hasAuthority("cliente")
-    //          .antMatchers("/reservas/**").hasRole("CLIENTE")
-    //           .antMatchers("/reservas").hasRole("CLIENTE")
+                .antMatchers(HttpMethod.POST,"/reservas").hasAuthority("cliente")
+                .antMatchers(HttpMethod.POST,"/reservas/**").hasAuthority("cliente");
+                http.authorizeRequests().antMatchers(HttpMethod.GET, "/reservas/buscar/**").permitAll();
+                http.authorizeRequests().antMatchers(HttpMethod.GET, "/reservas/producto/**").permitAll();
+                http.authorizeRequests().antMatchers(HttpMethod.GET, "/reservas/fechas").permitAll();
+                http.authorizeRequests().antMatchers(HttpMethod.GET, "/reservas/ciudadYFechas").permitAll();
+                http.authorizeRequests().antMatchers(HttpMethod.GET,"/reservas/usuario/**").hasAuthority("cliente");
+                http.authorizeRequests().antMatchers(HttpMethod.GET,"/productos/**").permitAll();
+                http.authorizeRequests().antMatchers(HttpMethod.GET, "/productos/todos").permitAll();
+                http.authorizeRequests().antMatchers(HttpMethod.POST, "/productos").hasAuthority("admin");
+                http.authorizeRequests().antMatchers(HttpMethod.PUT, "/productos/modificar").hasAuthority("admin");
+                http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/productos/eliminar/**").hasAuthority("admin");
+                http.authorizeRequests().antMatchers("/productos/**").hasAuthority("admin")
                 .anyRequest().permitAll()
   //            .and()
  //             .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)

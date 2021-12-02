@@ -5,138 +5,77 @@ import "../styles/crearCuenta.css"
 import Footer from "./Footer";
 import { Link, useHistory } from "react-router-dom"
 import { useEffect } from "react";
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+
+const schema = yup.object().shape({
+  nombre: yup.string().required(),
+  apellido: yup.string().required(),
+  correoElectronico: yup.string().email().required(),
+  contrasenia: yup.string().min(7).required(),
+  confirmarContrasenia: yup.string().oneOf([yup.ref("contrasenia"), null])
+})
 
 export default function CrearCuenta() {
   const history = useHistory()
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
-  const handlerSubmit=(e)=>{
-    e.preventDefault()
-  let contrasenia = document.getElementById("contrasenia").value
-  let password = document.getElementById("contrasenia")
-  let confirmPassword = document.getElementById("confirmarContrasenia")
-  let mail = document.getElementById("correo-electronico").value
-  let email = document.getElementById("correo-electronico")
-  let inputs = document.querySelectorAll(".campos-crear")
-  let valido = true
-  let errorContrasenia = document.querySelector(".error-contrasenia")
-  let errorMail = document.querySelector(".error-mail")
-  if((contrasenia.length<=6 && !mail.includes("@",1)) || (!mail.includes(".",mail.indexOf("@") + 2))){
-    for(inputs of inputs){
-      if(inputs.value === ""){
-        valido = false
-        if(!inputs.classList.contains("error")){
-          inputs.classList.toggle("error")
-        }
-        if(!inputs.nextElementSibling.classList.contains("error-mensaje")){
-          inputs.nextElementSibling.classList.toggle("error-mensaje")
-        }
-    }
-  }
-    errorContrasenia.classList.toggle("error-validacion-mostrar")
-    errorMail.classList.toggle("error-validacion-mostrar")
-    email.classList.add("error")
-    password.classList.add("error")
-    confirmPassword.classList.add("error")
-  }else if(contrasenia.length<=6){
-    for(inputs of inputs){
-      if(inputs.value === ""){
-        valido = false
-        if(!inputs.classList.contains("error")){
-          inputs.classList.toggle("error")
-        }
-        if(!inputs.nextElementSibling.classList.contains("error-mensaje")){
-          inputs.nextElementSibling.classList.toggle("error-mensaje")
-        }
-    }
-  }
-    errorContrasenia.classList.toggle("error-validacion-mostrar")
-    password.classList.add("error")
-    confirmPassword.classList.add("error")
-  }
-  else if(!mail.includes("@",1) || !mail.includes(".",mail.indexOf("@") + 2)){
-    valido = false
-    for(inputs of inputs){
-      if(inputs.value === "" || valido === false){
-        
-        if(!email.classList.contains("error")){
-          email.classList.toggle("error")
-        }
-        if(!email.nextElementSibling.classList.contains("error-mensaje")){
-          email.nextElementSibling.classList.toggle("error-mensaje")
-        }
-    }
-  }
-  errorMail.classList.toggle("error-validacion-mostrar")
-  email.classList.add("error")
-  }else{
-    for(inputs of inputs){
-      if(inputs.value === ""){
-        valido = false
-        if(!inputs.classList.contains("error")){
-          inputs.classList.toggle("error")
-        }
-        if(!inputs.nextElementSibling.classList.contains("error-mensaje")){
-          inputs.nextElementSibling.classList.toggle("error-mensaje")
-        }
-    }
-  }
-  if(valido){
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const submitForm = (data) => {
     let infoUsuario = {
-      nombre: document.querySelector("#nombre").value,
-      apellido: document.querySelector("#apellido").value,
-      email: document.querySelector("#correo-electronico").value,
-      contrasenia: document.querySelector("#contrasenia").value,
-      rol: {
-        id:2
-      }
-    }
-    fetch(api + "/registro",{method: 'POST', body: JSON.stringify(infoUsuario), headers: {'Content-Type' : 'application/json'}})
-    .then(
-      (result) => {
-        history.push("/iniciarSesion")
-      },
-      (error) => {
-        console.log(error);
-        alert(error)
-      }
-    )
-  }
-  }
+          nombre: document.querySelector("#nombre").value,
+          apellido: document.querySelector("#apellido").value,
+          email: document.querySelector("#correo-electronico").value,
+          contrasenia: document.querySelector("#contrasenia").value,
+          rol: {
+            id:2
+          }
+        }
+        fetch(api + "/registro",{method: 'POST', body: JSON.stringify(infoUsuario), headers: {'Content-Type' : 'application/json'}})
+        .then(
+          (result) => {
+            history.push("/iniciarSesion")
+          },
+          (error) => {
+            console.log(error);
+            alert(error)
+          }
+        )
   }
 
   useEffect(() => {if(sessionStorage.getItem('infoUsuario') !== null){history.push("/")}})
+
+  
+  
 
   return (
     <>
       <Header crearCuenta={true}/>
       <div className="signUp">
       <h1 className="titulo-crear">Crear cuenta</h1>
-      {/* <div className="form-crearCuenta"> */}
-      <form className="form-crearCuenta" action="">
+      <form className="form-crearCuenta" onSubmit={handleSubmit(submitForm)}>
           <div className="inputs">
               <div className="campos-pegados">
           <span className="span-1"><label className="labels-crear" htmlFor="nombre">Nombre</label>
-          <input className="campos-crear" type="text" name="nombre" id="nombre" required/><div className="error-mensaje-escondido">Este campo es obligatorio</div></span>
+          <input className={errors.nombre ? "error campos-crear" : "campos-crear"} type="text" name="nombre" id="nombre" {...register('nombre', {required: true})}  /> <p> {errors.nombre && "Este campo es obligatorio"} </p> </span>
           <span className="span-2"><label className="labels-crear" htmlFor="apellido">Apellido</label>
-          <input className="campos-crear" type="text" name="apellido" id="apellido" required/><div className="error-mensaje-escondido">Este campo es obligatorio</div></span>
+          <input className={errors.apellido ? "error campos-crear" : "campos-crear"} type="text" name="apellido" id="apellido" {...register('apellido', {required: true})} /> <p> {errors.apellido && "Este campo es obligatorio"} </p> </span>
           </div>
           <label className="labels-crear" htmlFor="correo-electronico">Correo electrónico</label>
-          <input className="campos-crear" type="email" name="correo electronico" id="correo-electronico" required/>
-          <div className="error-mensaje-escondido">Este campo es obligatorio</div>
+          <input className={errors.correoElectronico ? "error campos-crear" : "campos-crear"} type="email" name="correo electronico" id="correo-electronico" {...register('correoElectronico', {required: true})} /> <p> {errors.correoElectronico && "Debe introducir un mail válido"} </p> 
           <label className="labels-crear" htmlFor="contrasenia">Contraseña</label>
-          <input className="campos-crear" type="password" name="contrasenia" id="contrasenia" required/>
-          <div className="error-mensaje-escondido">Este campo es obligatorio</div>
+          <input className={errors.contrasenia ? "error campos-crear" : "campos-crear"} type="password" name="contrasenia" id="contrasenia" {...register('contrasenia', {required: true})} /> <p> {errors.contrasenia && "La contraseña debe tener más de 6 caracteres"} </p> 
           <label className="labels-crear" htmlFor="confirmarContrasenia" >Confirmar contraseña</label>
-          <input className="campos-crear" type="password" name="confirmarContrasenia" id="confirmarContrasenia" required/>
-          <div className="error-mensaje-escondido">Este campo es obligatorio</div>
-          <button onClick={handlerSubmit} type="submit" className="boton-crearCuenta" id="boton-crearCuenta">Crear cuenta</button>
+          <input className={errors.confirmarContrasenia ? "error campos-crear" : "campos-crear"} type="password" name="confirmarContrasenia" id="confirmarContrasenia" {...register('confirmarContrasenia', {required: true})} /> <p> {errors.confirmarContrasenia && "Las contraseñas no coinciden" } </p> 
+          <button type="submit" className="boton-crearCuenta" id="boton-crearCuenta">Crear cuenta</button>
           <p className="texto-inicio txt-1">¿Ya tenes una cuenta? <Link to="iniciarSesion"><span className="color-links">Iniciar sesión</span></Link></p>
-          <div className="error-mail"><p>Por favor introduzca un mail válido</p></div>
-          <div className="error-contrasenia"><p>La contraseña debe tener más de 6 caracteres</p></div>
           </div>
       </form>
       </div>
-    {/* </div> */}
     <Footer />
     </>
   );

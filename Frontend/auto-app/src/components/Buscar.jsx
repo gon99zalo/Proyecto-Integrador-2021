@@ -41,50 +41,32 @@ export default function Buscar(props) {
     };
   };
 
+  const apiFetch = (url) => {
+    fetch(api + url)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setProductos(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }
+
   //useEffect que funciona como componentDidMount
   useEffect(() => {
-    if (params.get("categoria") != null){
-      fetch(api + "/productos/categoria?titulo=" + params.get("categoria"))
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setProductos(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    }
-    else if (params.get("locacion") != null) {
-      fetch(api + "/productos/ciudad?nombre=" + params.get("locacion"))
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setProductos(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    }
-    else {
-      fetch(api + "/productos/todos")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setProductos(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    }
+    if (params.get("categoria") != null){  apiFetch("/productos/categoria?titulo=" + params.get("categoria"))  }
+
+    else if (params.get("locacion") != null && params.get("fecha") == null) {  apiFetch("/productos/ciudad?nombre=" + params.get("locacion"))  }
+    
+    else if (params.get("locacion") == null && params.get("fecha") != null) {  apiFetch("/reservas/fechas?fechaInicial=" + params.get("fecha").split("#")[0] +  "&fechaFinal=" + params.get("fecha").split("#")[1])  }
+    
+    else if (params.get("locacion") != null && params.get("fecha") != null) {  apiFetch("/reservas/ciudadYFechas?ciudad=" +  params.get("locacion") + "&fechaInicial=" + params.get("fecha").split("#")[0] + "&fechaFinal=" + params.get("fecha").split("#")[1])  }
+    
+    else {  apiFetch("/productos/todos")  }
   }, [params])
 
   //useEffect que funciona como componentDidUpdate
