@@ -15,7 +15,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 //Formatear fechas
-import { subDays, getDate, eachDayOfInterval, format } from "date-fns";
+import { subDays, getDate } from "date-fns";
 import { Link } from "react-router-dom";
 
 export const api =
@@ -28,8 +28,6 @@ export default function Buscador() {
   const [width, setwidth] = useState({ width: window.screen.availWidth });
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
-  //const [selectedCity, setSelectedCity] = useState(null)
-  //const [filteredCitites, setFilteredCities] = useState([]);
   const previousArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
   registerLocale("es", es);
