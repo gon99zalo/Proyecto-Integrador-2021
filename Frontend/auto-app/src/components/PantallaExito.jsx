@@ -1,6 +1,14 @@
+import { useHistory } from "react-router";
 import "../styles/PantallaExito.css";
 
 export default function PantallaExito() {
+  
+  const history = useHistory();
+
+  const cerrarVentana = () => {
+    history.push("/")
+  }
+
   return (
     <>
       <div className="success-container">
@@ -19,7 +27,7 @@ export default function PantallaExito() {
           </svg>
           <h1>¡Muchas Gracias!</h1>
           <h2>Su reserva se ha realizado con éxito</h2>
-          <button className="btn-2">ok</button>
+          <button onClick={cerrarVentana} className="btn-2">ok</button>
         </div>
       </div>
     </>
