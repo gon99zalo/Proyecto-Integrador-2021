@@ -12,7 +12,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
-import { subDays, getDate, format } from "date-fns";
+import { subDays, getDate, format, eachDayOfInterval } from "date-fns";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 //Componentes
@@ -33,6 +33,7 @@ export default function Reservas(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [horario, setHorario] = useState(null);
   const [ciudad, setCiudad] = useState(null);
+  const [arrayDeFechasReservadas, setArrayDeFechasReservadas] = useState([]);
   const [producto, setProducto] = useState({
     id: 0,
     nombre: "",
@@ -67,6 +68,13 @@ export default function Reservas(props) {
 
   let datosDeUsuario = sessionStorage.getItem("infoUsuario");
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
+
+  // Esta función se encarga de enviar al DatePicker las fechas que están inhabilitadas
+  const fechasSinReservar = (date) => {
+  // date hace referencia al formato con el que trae normalmente el DatePicker las fechas
+  // le hago format abajo para que haga match con el formato de las fechas que están en el arrayDeFechasReservadas
+    return !arrayDeFechasReservadas.includes(format(date, 'dd/MM/yyyy'));
+  };
 
   const handlerReserva = (e) => {
     e.preventDefault();   
@@ -228,6 +236,30 @@ export default function Reservas(props) {
       .then(
         (result) => {
           result == null ? console.log(result) : setProducto(result);
+          fetch(api + "/reservas/producto/" + props.match.params.id)
+              .then(res => res.json())
+              .then((result) => {
+                let fechasReservadas = [];
+                result.forEach(reserva => {
+                  let fechaInicial = reserva.fechaInicial.split("-");
+                  let fechaFinal = reserva.fechaFinal.split("-")
+                  fechasReservadas.push(
+                    {
+                      start:new Date(fechaInicial[0], fechaInicial[1]-1, fechaInicial[2]),
+                      end:new Date(fechaFinal[0], fechaFinal[1]-1, fechaFinal[2])
+                    }
+                  )
+                });
+                let fechas = [];
+                for (let i = 0; i < fechasReservadas.length; i++) {
+                // el array creado tendrá las fechas en formato dd/MM/yyyy pero puede variar según sea necesario
+                  fechas.push(...eachDayOfInterval(fechasReservadas[i]).map( fecha => format(fecha, 'dd/MM/yyyy') ));
+                };
+                setArrayDeFechasReservadas(fechas);
+              },
+              (error) =>{
+                setError(error);
+              })
           setIsLoaded(true);
         },
         (error) => {
@@ -314,6 +346,7 @@ export default function Reservas(props) {
                   selectsRange={true}
                   startDate={startDate}
                   endDate={endDate}
+                  filterDate={fechasSinReservar}
                   onChange={(update) => {
                     setDateRange(update);
                   }}
