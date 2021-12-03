@@ -52,7 +52,7 @@ export default function Reservas(props) {
       },
     ],
   });
-  const [dateRange, setDateRange] = useState([null, null]);
+  const [dateRange, setDateRange] = useState([null, null]); //Aquí se ubican los valores por defecto del rango del calendario.
   const [startDate, endDate] = dateRange;
  
   const history = useHistory();
