@@ -17,13 +17,13 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/crearCuenta" component={CrearCuenta} />
-          <Route exact path="/iniciarSesion" component={iniciarSesion} />
-          <Route exact path="/buscar" component={Buscar} />
+          <Route path="/crearCuenta" component={CrearCuenta} />
+          <Route path="/iniciarSesion" component={iniciarSesion} />
+          <Route path="/buscar" component={Buscar} />
           <Route exact path="/productos/:id" component={Producto} />
-          <Route exact path="/productos/:id/reserva" component={Reservas} />
-          <Route exact path="/exito" component={PantallaExito} />
-          <Route exact path="/administracion" component={CreacionProducto} />
+          <Route path="/productos/:id/reserva" component={Reservas} />
+          <Route path="/exito" component={PantallaExito} />
+          <Route path="/administracion" component={CreacionProducto} />
         </Switch>
       </BrowserRouter>
     </div>
