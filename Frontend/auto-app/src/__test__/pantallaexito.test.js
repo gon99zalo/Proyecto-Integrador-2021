@@ -19,6 +19,12 @@ describe("Pantalla de Éxito", () => {
         const tituloReservaExito = screen.getByRole('heading', {level: 2});
         const btnOk = screen.getByRole('button');
         
+		// Comprueba existencia de elementos
+		expect(tituloGracias).toBeTruthy();
+		expect(tituloReservaExito).toBeTruthy();
+		expect(btnOk).toBeTruthy();
+
+		// Comprueba que el texto contenido coincida con el indicado
         expect(tituloGracias.textContent).toBe("¡Muchas Gracias!");
         expect(tituloReservaExito.textContent).toBe("Su reserva se ha realizado con éxito");
         expect(btnOk.textContent).toBe("ok");
