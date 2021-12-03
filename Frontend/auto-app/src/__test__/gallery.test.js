@@ -24,7 +24,7 @@ describe("<Gallery/>", () => {
     const wrapper = shallow(<Gallery imagenes={[]} />);
     expect(wrapper.find("div").first().text()).toEqual("Ver más<l />");
   });
-  test("Renderizando de imagenes, comprueba número de imagenes, sus alt y src", () => {
+  test("Renderiza imagenes, comprueba su total, sus alt y src", () => {
     const wrapper = shallow(<Gallery imagenes={[
       {
         url: "https://i.pinimg.com/originals/a7/3d/b3/a73db38375a5a59fd2774f0f8ebda49f.jpg",
