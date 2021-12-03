@@ -28,6 +28,7 @@ export default function HorarioLLegada(props) {
               Indica tu horario estimado de llegada
             </label>
             <select name="horario" defaultValue="Seleccionar hora" onChange={handleChange}>
+              <option value="Seleccionar hora" disabled>Seleccionar hora</option>
               {horas.map((i) => <option key={i+"AM"} value={i + ":00 AM"}>{i}:00 AM</option>)}
               {horas.map((i) => <option key={i+"PM"} value={i + ":00 PM"}>{i}:00 PM</option>)}
             </select>
