@@ -354,9 +354,15 @@ export default function Reservas(props) {
                       let fechas = [];
                       fechas.push(...eachDayOfInterval({start: update[0], end: update[1]}));
                       fechas.forEach((fecha) => {
-                        let temp = fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear()
+                        let temp = ("0" + (fecha.getDate())).slice(-2) + "/" + ("0" + (fecha.getMonth() + 1)).slice(-2) + "/" + fecha.getFullYear()
+                        console.log(temp);
                         if(arrayDeFechasReservadas.includes(temp)){
                           setDateRange([null, null])
+                          Swal.fire({
+                            icon: "error",
+                            title: "Rango de fecha invalido",
+                            text: "Una o mas de las fechas que trato de seleccionar ya tienen una reserva activa",
+                          });
                         }
                       })
                     }
