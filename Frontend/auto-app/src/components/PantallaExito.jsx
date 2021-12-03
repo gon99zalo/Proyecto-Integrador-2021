@@ -27,7 +27,7 @@ export default function PantallaExito() {
           </svg>
           <h1>¡Muchas Gracias!</h1>
           <h2>Su reserva se ha realizado con éxito</h2>
-          <button onClick={cerrarVentana} className="btn-2">ok</button>
+          <button onClick={cerrarVentana} className="btn-2">OK</button>
         </div>
       </div>
     </>
