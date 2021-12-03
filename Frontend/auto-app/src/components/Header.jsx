@@ -96,7 +96,7 @@ export default function Header(props) {
                     <span className="colorUser-burger"> {usuario()} </span></p>
                 </div>
             </div>
-            <p>¿Deseas <Link to="/"><span className="color-links">cerrar sesión?</span></Link></p>
+            <p>¿Deseas <span onClick={handlerClose} className="color-links">cerrar sesión</span>?</p>
             <div className="linea-horizontal"></div>
             <i>{facebook}  {linkedin}  {twitter}  {instagram}</i>
         </div>
