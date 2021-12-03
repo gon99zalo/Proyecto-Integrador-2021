@@ -52,7 +52,7 @@ export default function Reservas(props) {
       },
     ],
   });
-  const [dateRange, setDateRange] = useState([null, null]);
+  const [dateRange, setDateRange] = useState([null, null]); //Aquí se ubican los valores por defecto del rango del calendario.
   const [startDate, endDate] = dateRange;
  
   const history = useHistory();
@@ -63,8 +63,6 @@ export default function Reservas(props) {
   const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const star = <FontAwesomeIcon icon={faStar} />;
-
-  console.log(sessionStorage.getItem, 'getItem')
 
   let datosDeUsuario = sessionStorage.getItem("infoUsuario");
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
@@ -256,6 +254,9 @@ export default function Reservas(props) {
                   fechas.push(...eachDayOfInterval(fechasReservadas[i]).map( fecha => format(fecha, 'dd/MM/yyyy') ));
                 };
                 setArrayDeFechasReservadas(fechas);
+                let temp = fechas[fechas.length-1].split("/")
+                let ultimaFechaReservada = new Date(+temp[2], temp[1] -1, +temp[0])
+                setDateRange([ultimaFechaReservada.setDate(ultimaFechaReservada.getDate() + 1), ultimaFechaReservada.setDate(ultimaFechaReservada.getDate() + 2)])
               },
               (error) =>{
                 setError(error);
@@ -349,6 +350,16 @@ export default function Reservas(props) {
                   filterDate={fechasSinReservar}
                   onChange={(update) => {
                     setDateRange(update);
+                    if(update[1] != null){
+                      let fechas = [];
+                      fechas.push(...eachDayOfInterval({start: update[0], end: update[1]}));
+                      fechas.forEach((fecha) => {
+                        let temp = fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear()
+                        if(arrayDeFechasReservadas.includes(temp)){
+                          setDateRange([null, null])
+                        }
+                      })
+                    }
                   }}
                   //para que cuando sea menor a 480 se vuelva uno
                   monthsShown={width <= 480 ? 1 : 2}

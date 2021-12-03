@@ -83,22 +83,25 @@ export default function Header(props) {
        </div>
        </>
         :
+        <>
         <div className="inputs-header"><i className="opciones" id="opciones"onClick={toggleNav}>{menu}</i></div>
-        }
         <div id='mySidenav ' className={show}>
-                    <div className="opciones" id="opciones">
-                        <p onClick={toggleNav}>X</p>
-                        <div className="opciones-header" id="opciones-header">
-                            <h2>MENÚ</h2>
-                        </div>
-                        <div className="opciones-links" id="opciones-links">
-                            {props.login ? "" : <Link to="/iniciarSesion"><h3>Iniciar sesión</h3></Link>}
-                            {props.crearCuenta ? "" : <Link to="/crearCuenta"><h3>Crear cuenta</h3></Link>}
-                        </div>
-                        <i>{facebook}  {linkedin}  {twitter}  {instagram}</i>
-                    </div>
+            <div className="opciones" id="opciones">
+                <p onClick={toggleNav}>X</p>
+                <div className="avatar-burger">
+                    <span className="iniciales-avatar-burger"> {iniciales()} </span>
                 </div>
-    </header>
+                <div className="user">
+                    <p className="saludo"> <span className="hola-burger">Hola,</span>
+                    <span className="colorUser-burger"> {usuario()} </span></p>
+                </div>
+            </div>
+            <p>¿Deseas <span onClick={handlerClose} className="color-links">cerrar sesión</span>?</p>
+            <div className="linea-horizontal"></div>
+            <i>{facebook}  {linkedin}  {twitter}  {instagram}</i>
+        </div>
+        </>
+    }</header>
           )
       }else{
         return (
