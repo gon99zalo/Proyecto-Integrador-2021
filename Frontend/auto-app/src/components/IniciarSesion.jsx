@@ -20,7 +20,7 @@ export default function IniciarSesion() {
   const params = useMemo(() => new URLSearchParams(window.location.search),[]);
   const [passwordShown, setPasswordShown] = useState(false);
   const alerta = params.get("alerta") ? true: false
-  const reserva = params.get("reserva") !== null
+  const reserva = params.get("reserva")
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
@@ -41,7 +41,7 @@ export default function IniciarSesion() {
     .then(
       (result) => {
         sessionStorage.setItem("infoUsuario", JSON.stringify(result))
-        alerta ? history.push("/productos/" + reserva + "/reserva") :history.push("/")
+        reserva != null ? history.push("/productos/" + reserva + "/reserva") :history.push("/")
       },
       (error) => {
         console.log(error);
