@@ -27,7 +27,7 @@ describe("Pantalla de Éxito", () => {
 		// Comprueba que el texto contenido coincida con el indicado
         expect(tituloGracias.textContent).toBe("¡Muchas Gracias!");
         expect(tituloReservaExito.textContent).toBe("Su reserva se ha realizado con éxito");
-        expect(btnOk.textContent).toBe("ok");
+        expect(btnOk.textContent).toBe("OK");
 	});
     
 });

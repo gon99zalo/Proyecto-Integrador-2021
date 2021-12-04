@@ -66,19 +66,6 @@ describe("Buscador", () => {
       expect(screen.getByText(/Buscar/i)).toBeInTheDocument();
     });
     })
-    
-  test("Input seleccion ciudad", () => {
-    fetchMock.mock("/ciudades/todas", "Buenos Aires");
-    const history = createMemoryHistory();
-    const rendered = renderer
-      .create(
-        <Router history={history}>
-          <Buscador />
-        </Router>
-      )
-      .toJSON();
-    expect(rendered).toBeTruthy();
-  });
 
   test("Botón de búsqueda", () => {
     const wrapper = shallow(
