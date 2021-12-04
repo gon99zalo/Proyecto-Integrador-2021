@@ -7,20 +7,12 @@ import { useEffect, useState } from "react";
 export default function CreacionProducto() {
   const [ciudades, setCiudades] = useState([]);
   const [categorias, setCategorias] = useState([]);
+  const [atributosArr, setAtributosArr] = useState([])
+  const [nombreAtributo, setNombreAtributo] = useState([]) 
+  const [iconoElegido, setIconoElegido] = useState([])
+  const [imagenesArr, setImagenesArr] = useState([])
+  const [imagen, setImagen] = useState([])
 
-  const traerCategorias = () => {
-    let config = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/JSON",
-      },
-    };
-
-    fetch(api + "/categorias/todas", config)
-      .then((response) => response.json())
-      .then((data) => setCategorias(data))
-      .catch((error) => console.log(error));
-  };
 
   const traerCiudades = () => {
     let config = {
@@ -36,10 +28,123 @@ export default function CreacionProducto() {
       .catch((error) => console.log(error));
   };
 
+  const handlerSubmit = (e) => {
+    e.preventDefault()
+
+    let datosDeUsuario = sessionStorage.getItem("infoUsuario");
+    let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
+
+    let valores = {
+      nombre : document.querySelector("#nombre-auto").value,
+      descripcion: document.querySelector("#descripcion").value,
+      categoria: document.querySelector("#categoria").value,
+      ciudad: document.querySelector("#ciudad").value,
+      imagenes: document.querySelector("#cargar-imagen").value,
+      caracteristicas: [{
+        nombre: document.querySelector("#nombre-atributo").value,
+        icono: document.querySelector("#icono").value
+      }],
+    }
+
+    let configPost = {
+      method: "POST",
+      body: JSON.stringify(valores),
+      headers: {
+        "Content-Type": "application/JSON",
+        Authorization: datosDeUsuarioParseado.token,
+      },
+    };
+
+    fetch(api + "/productos", configPost)
+      // .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  };
+
   useEffect(() => {
-    traerCategorias();
+    fetch(api + "/categorias/todos")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setCategorias(result);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
     traerCiudades();
   }, []);
+
+
+  
+
+  function Atributo() {
+    return(
+    <div className="esqueleto-agregar-atributo">
+              <div className="agregar-icono">
+                <div>
+                  <label htmlFor="nombre-atributo">Nombre</label>
+                  <input
+                    type="text"
+                    name="nombre-atributo"
+                    id="nombre-atributo"
+                    value={nombreAtributo}
+                    disabled
+                  />
+                  <label htmlFor="icono" >Icono</label>
+                  <input type="text" name="icono" id="icono" defaultValue="fa-Wifi" value={iconoElegido} disabled/>
+                  <i className="fas fa-times cruz" onClick={() => borrarAtributo(atributosArr.length)}></i>
+                  {/* encontrar otro icono, este es el unico gratis */}
+                </div>
+              </div>
+            </div>
+    )
+  } 
+
+
+  const handleChangeAtributo = () => {
+    setNombreAtributo(document.querySelector("#nombre-atributo").value)
+    setIconoElegido(document.querySelector("#icono").value);
+  };
+
+  const nuevoAtributo = () => {
+    setNombreAtributo(nombreAtributo)
+    setIconoElegido(iconoElegido)
+    setAtributosArr([...atributosArr, <Atributo key={[atributosArr.length]} />])
+  } 
+
+  const borrarAtributo = (id) => {
+    atributosArr.splice(id,1)
+    setAtributosArr(atributosArr)
+  }
+
+  function Imagen() {
+    return(
+      <div className="esqueleto-cargar-imagenes">
+              <div className="cargar-imagen">
+                <div>
+                  <input type="text" name="cargar-imagen" id="cargar-imagen" value={imagen} placeholder="insertar https://" />
+                  <i className="fas fa-times cruz" onClick={() => borrarImagen(imagenesArr.length)}></i>
+                  {/* encontrar otro icono, este es el unico gratis */}
+                </div>
+              </div>
+            </div>
+    )
+  }
+
+  const handleChangeImagen = () => {
+    setImagen(document.querySelector("#cargar-imagen").value)
+  };
+
+  const nuevaImagen = () => {
+    setImagen(imagen)
+    setImagenesArr([...imagenesArr, <Imagen key={[imagenesArr.length]} />])
+  } 
+
+  const borrarImagen = (id) => {
+    imagenesArr.splice(id,1)
+    setImagenesArr(imagenesArr)
+  }
 
   return (
     <>
@@ -50,7 +155,7 @@ export default function CreacionProducto() {
           <h1>Crear auto</h1>
         </div>
 
-        <form className="form-crear-auto" action="">
+        <form className="form-crear-auto" onSubmit={handlerSubmit}>
           <div className="inputs-crear-auto">
             <div className="inputs-pegados">
               <div>
@@ -104,13 +209,21 @@ export default function CreacionProducto() {
                     name="nombre-atributo"
                     id="nombre-atributo"
                     placeholder="Wifi"
+                    onChange={handleChangeAtributo}
                   />
-                  <label htmlFor="icono">Icono</label>
-                  <input type="text" name="icono" id="icono" placeholder="fa-Wifi" />
-                  <i className="fas fa-plus-square"></i>
+                  <label htmlFor="icono" >Icono</label>
+                  <select name="icono" id="icono" onChange={handleChangeAtributo} defaultValue="fa-Wifi">
+                    <option value="fa-Wifi" disabled>fa-Wifi</option>
+                    <option value="fa-car-side">fa-car-side</option>
+                    <option value="fa-bus">fa-bus</option>
+                    <option value="fa-motorcycle">fa-motorcycle</option>
+                    <option value="fa-gas-pump">fa-gas-pump</option>
+                  </select>
+                  <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
                 </div>
               </div>
             </div>
+            {atributosArr}
 
             <h2>Políticas del producto</h2>
             <div className="esqueleto-politicas">
@@ -152,11 +265,12 @@ export default function CreacionProducto() {
             <div className="esqueleto-cargar-imagenes">
               <div className="cargar-imagen">
                 <div>
-                  <input type="text" name="cargar-imagen" id="cargar-imagen" placeholder="insertar https://" />
-                  <i className="fas fa-plus-square"></i>
+                  <input type="text" name="cargar-imagen" id="cargar-imagen" placeholder="insertar https://" onChange={handleChangeImagen} />
+                  <i className="fas fa-plus-square mas" onClick={nuevaImagen}></i>
                 </div>
               </div>
             </div>
+            {imagenesArr}
 
             <input type="submit" className="submit-crear" value="Crear" />
           </div>
