@@ -1,7 +1,7 @@
 import { useHistory } from "react-router";
 import "../styles/PantallaExito.css";
 
-export default function PantallaExito() {
+export default function PantallaExitoProducto() {
   
   const history = useHistory();
 
@@ -26,7 +26,7 @@ export default function PantallaExito() {
             />
           </svg>
           <h1>¡Muchas Gracias!</h1>
-          <h2>Su reserva se ha realizado con éxito</h2>
+          <h2>El registro del producto se ha realizado con éxito</h2>
           <button onClick={cerrarVentana} className="btn-2">OK</button>
         </div>
       </div>
