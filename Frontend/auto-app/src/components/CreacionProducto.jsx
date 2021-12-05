@@ -12,7 +12,9 @@ export default function CreacionProducto() {
   const [iconoElegido, setIconoElegido] = useState([])
   const [imagenesArr, setImagenesArr] = useState([])
   const [imagen, setImagen] = useState([])
-
+  const [ciudadId, setCiudadId] = useState(null)
+  const [categoriaId, setCategoriaId] = useState(null)
+  const [nombreImagen, setNombreImagen] = useState(null)
 
   const traerCiudades = () => {
     let config = {
@@ -28,6 +30,22 @@ export default function CreacionProducto() {
       .catch((error) => console.log(error));
   };
 
+  let ciudadElegida = "buenos aires";
+// revisar porque cambia después del segundo cambio en el select
+  const handleCangeCiudad = () => {
+    ciudadElegida = document.querySelector("#ciudad").value
+    setCiudadId(ciudadElegida);
+    console.log(ciudadId)
+  };
+
+  let categoriaElegida = "autos";
+// revisar porque cambia después del segundo cambio en el select
+  const handleChangeCategoria = () => {
+    categoriaElegida = document.querySelector("#categoria").value
+    setCategoriaId(categoriaElegida);
+    console.log(categoriaId)
+  };
+
   const handlerSubmit = (e) => {
     e.preventDefault()
 
@@ -37,9 +55,10 @@ export default function CreacionProducto() {
     let valores = {
       nombre : document.querySelector("#nombre-auto").value,
       descripcion: document.querySelector("#descripcion").value,
-      categoria: document.querySelector("#categoria").value,
-      ciudad: document.querySelector("#ciudad").value,
-      imagenes: document.querySelector("#cargar-imagen").value,
+      categoria: {id: categoriaId},
+      ciudad: {id: ciudadId},
+      imagenes: [{titulo: nombreImagen,
+      url: imagen}],
       caracteristicas: [{
         nombre: document.querySelector("#nombre-atributo").value,
         icono: document.querySelector("#icono").value
@@ -55,7 +74,7 @@ export default function CreacionProducto() {
       },
     };
 
-    fetch(api + "/productos", configPost)
+    fetch("http://localhost:8080" + "/productos", configPost)
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
   };
@@ -138,6 +157,8 @@ export default function CreacionProducto() {
   const nuevaImagen = () => {
     setImagen(imagen)
     setImagenesArr([...imagenesArr, <Imagen key={[imagenesArr.length]} />])
+    let nombreAuto = document.querySelector("#nombre-auto").value
+    setNombreImagen(nombreAuto + imagenesArr.length)
   } 
 
   const borrarImagen = (id) => {
@@ -167,12 +188,12 @@ export default function CreacionProducto() {
 
               <div>
                 <label htmlFor="categoria">Categoria</label>
-                <select defaultValue="Auto" name="categoria" id="categoria" >
+                <select defaultValue="Auto" name="categoria" id="categoria" onChange={handleChangeCategoria}>
                   <option value="Auto" disabled>
                     Auto
                   </option>
                   {categorias.map((categoria) => (
-                    <option>{categoria.titulo}</option>
+                    <option value={categoria.id}>{categoria.titulo}</option>
                   ))}
                 </select>
 
@@ -181,13 +202,14 @@ export default function CreacionProducto() {
                   defaultValue="Ciudad"
                   name="ciudad"
                   id="ciudad"
-                  required
+                  required 
+                  onChange={handleCangeCiudad}
                 >
                   <option value="Ciudad" disabled>
                     Ciudad
                   </option>
                   {ciudades.map((ciudad) => (
-                    <option>{ciudad.nombre}</option>
+                    <option value={ciudad.id}>{ciudad.nombre}</option>
                   ))}
                 </select>
               </div>
