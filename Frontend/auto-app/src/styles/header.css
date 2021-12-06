@@ -166,7 +166,6 @@ a {
 }
 
 .colorUser-burger{
-  color: white;
   display: flex;
   flex-direction: row;
   justify-content: right;
@@ -247,4 +246,5 @@ a {
   background-color: white; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  pointer-events: all
 }

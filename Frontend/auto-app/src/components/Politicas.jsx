@@ -9,21 +9,20 @@ export default function Politicas() {
         <div className="commodity-rule-container">
           <div className="normas">
             <h3>Normas del vehículo</h3>
-            <p>Norma 1</p>
-            <p>Norma 2</p>
-            <p>Norma 3</p>
+            <p>No Fumar.</p>
+            <p>Licencia de conducir.</p>
+            <p>Renta mínima de un día.</p>
           </div>
           <div className="salud">
             <h3>Salud y seguridad</h3>
-            <p>Salud 1</p>
-            <p>Salud 2</p>
-            <p>Salud 3</p>
+            <p>Depósito de seguridad.</p>
+            <p>Uso obligatorio de cinturón de seguridad en autos y buses.</p>
+            <p>Uso obligatorio de casco en motos.</p>
           </div>
           <div className="cancelacion">
             <h3>Política de cancelación</h3>
             <p className="texto-cancelacion">
-              Agregá las fechas de tu viaje para obtener los detalles de
-              cancelación de esta estadía.
+              Se puede cancelar hasta 48 hs antes.
             </p>
           </div>
         </div>

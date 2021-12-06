@@ -32,14 +32,15 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     @NotEmpty(message = "Debe ingresar una contraseña válida")
     private String contrasenia;
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "usuario_id")
-    @JsonIgnore
-    private List<Reserva> reservas = new ArrayList<>();
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "usuario_id")
-    @JsonIgnore
-    private List<Puntuacion> puntuaciones = new ArrayList<>();
+    //saqué las puntuaciones porque entra en un bucle
+    //@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    //@JoinColumn(name = "usuario_id")
+    //@JsonIgnore
+    //private List<Reserva> reservas = new ArrayList<>();
+    //@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    //@JoinColumn(name = "usuario_id")
+    //@JsonIgnore
+    //private List<Puntuacion> puntuaciones = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "rol_id")
     private Rol rol;
@@ -123,8 +124,8 @@ public class Usuario implements UserDetails {
                 ", apellido='" + apellido + '\'' +
                 ", email='" + email + '\'' +
                 ", contrasenia='" + contrasenia + '\'' +
-                ", reservas=" + reservas +
-                ", puntuaciones=" + puntuaciones +
+                //", reservas=" + reservas +
+                //", puntuaciones=" + puntuaciones +
                 ", rol=" + rol +
                 '}';
     }
