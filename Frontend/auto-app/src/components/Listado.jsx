@@ -52,22 +52,10 @@ export default function Listado() {
             .then(res => res.json())
             .then(
               (result) => {
-                setProductos(productos => [...productos, result])
+                if(result!==null)setProductos(productos => [...productos, result])
               },
               (error) => {
-                let p = {
-                  id: 0,
-                  nombre: "error",
-                  descripcion: "error",
-                  categoria: {
-                    titulo: "error",
-                  },
-                  ciudad: {
-                    nombre: "error",
-                    pais: "error"
-                  }
-                };
-                setProductos(productos => productos.push(p))
+                console.log(error);
               }
             )
           })
@@ -97,7 +85,7 @@ export default function Listado() {
             return (
                 <div className="product-card" key={i}>
                   <div className="product-image">
-                    {item.imagenes.length <= 0 ? "" : <img className="product" src={item.imagenes[0].url} alt={item.imagenes[0].titulo} />}
+                    <img className="product" src={item.imagenes[0].url} alt={item.imagenes[0].titulo} />
                     <a href="/">
                       <img className="like" src="https://buimagenes.s3.us-east-2.amazonaws.com/img/like.png" alt="like" />
                     </a>
