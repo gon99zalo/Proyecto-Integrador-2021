@@ -8,7 +8,8 @@ import iniciarSesion from "../components/IniciarSesion";
 import Producto from '../components/Producto';
 import Buscar from '../components/Buscar';
 import Reservas from '../components/Reservas';
-import PantallaExito from '../components/PantallaExito';
+import PantallaExitoReserva from '../components/PantallaExitoReserva';
+import PantallaExitoProducto from '../components/PantallaExitoProducto';
 import CreacionProducto from '../components/CreacionProducto';
 
 function App() {
@@ -17,13 +18,14 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/crearCuenta" component={CrearCuenta} />
-          <Route path="/iniciarSesion" component={iniciarSesion} />
-          <Route path="/buscar" component={Buscar} />
-          <Route exact path="/productos/:id" component={Producto} />
-          <Route path="/productos/:id/reserva" component={Reservas} />
-          <Route path="/exito" component={PantallaExito} />
-          <Route path="/administracion" component={CreacionProducto} />
+            <Route path="/crearCuenta" component={CrearCuenta} />
+            <Route path="/iniciarSesion" component={iniciarSesion} />
+            <Route path="/buscar" component={Buscar} />
+            <Route exact path="/productos/:id" component={Producto} />
+              <Route path="/productos/:id/reserva" component={Reservas} />
+            <Route path="/exito" component={PantallaExitoReserva} />
+            <Route exact path="/administracion" component={CreacionProducto} />
+              <Route path="/administracion/exito" component={PantallaExitoProducto} />
         </Switch>
       </BrowserRouter>
     </div>

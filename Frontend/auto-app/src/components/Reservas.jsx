@@ -76,6 +76,14 @@ export default function Reservas(props) {
 
   const handlerReserva = (e) => {
     e.preventDefault();   
+    
+    if(endDate === null || startDate === null || horario === null || ciudad === null){
+      Swal.fire({
+        icon: "error",
+        title: "Faltan datos",
+        text: "Debe llenar todos los campos",
+      });
+    }else{
     //obtenemos el id del usuario logueado a partir del token de seguridad
     let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token;
     let base64Url = token.split(".")[1];
@@ -108,13 +116,6 @@ export default function Reservas(props) {
       },
     };
 
-    if(endDate === null || startDate === null || horario === null || ciudad === null){
-      Swal.fire({
-        icon: "error",
-        title: "Faltan datos",
-        text: "Debe llenar todos los campos",
-      });
-    }else{
     fetch(api + "/reservas", config)
       .then((res) => res.json())
       .then((result) =>
