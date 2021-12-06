@@ -1,6 +1,6 @@
 //@ts-nocheck
 import React from "react";
-import PantallaExito from "../components/PantallaExito";
+import PantallaExitoProducto from "../components/PantallaExitoProducto";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
@@ -11,7 +11,7 @@ describe("Pantalla de Éxito", () => {
 	test("Títulos y botón", () => {
 		render(
 			<BrowserRouter>
-				<PantallaExito />
+				<PantallaExitoProducto />
 			</BrowserRouter>
 		);
         
@@ -26,8 +26,8 @@ describe("Pantalla de Éxito", () => {
 
 		// Comprueba que el texto contenido coincida con el indicado
         expect(tituloGracias.textContent).toBe("¡Muchas Gracias!");
-        expect(tituloReservaExito.textContent).toBe("Su reserva se ha realizado con éxito");
-        expect(btnOk.textContent).toBe("ok");
+        expect(tituloReservaExito.textContent).toBe("El registro del producto se ha realizado con éxito");
+        expect(btnOk.textContent).toBe("OK");
 	});
     
 });
