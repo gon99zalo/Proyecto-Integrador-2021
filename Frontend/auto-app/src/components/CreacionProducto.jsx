@@ -5,6 +5,10 @@ import { api } from "./Buscador";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2";
+import "../styles/producto.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft} from "@fortawesome/free-solid-svg-icons";
+
 
 export default function CreacionProducto() {
   const history = useHistory();
@@ -20,6 +24,7 @@ export default function CreacionProducto() {
   // const [nombreImagen, setNombreImagen] = useState(null)
   const [objetoAtributo, setObjetoAtributo] = useState([])
   const [objetoImagen, setObjetoImagen] = useState([])
+  const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
 
   const traerCiudades = () => {
     let config = {
@@ -179,6 +184,15 @@ export default function CreacionProducto() {
   return (
     <>
       <Header />
+      <div className="commodity-header">
+
+          <div className="commodity-header-titles">
+            <div>
+              <h1>Administración</h1>
+            </div>
+            <i className="back-arrow"><a href="/">{backArrow}</a></i>
+          </div>
+        </div>
 
       <div className="esqueleto-pagina">
         <div className="titulo">

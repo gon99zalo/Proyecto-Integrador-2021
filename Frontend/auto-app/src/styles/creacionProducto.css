@@ -234,3 +234,45 @@ textarea {
 .submit-crear:hover {
   cursor: pointer;
 }
+
+@media screen and (min-width: 480px) and (max-width:  768px){
+    .politicas{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .politics{
+      height: 150px;
+    }
+
+    .politicas div {
+      width: 95%
+    }
+
+    .submit-crear {
+      width: 45%;
+    }
+
+  }
+
+@media screen and (max-width: 480px) {
+  .politicas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .politics{
+    height: 100px;
+  }
+
+  .politicas div {
+    width: 95%
+  }
+
+  .submit-crear {
+    width: 45%;
+  }
+}
+
