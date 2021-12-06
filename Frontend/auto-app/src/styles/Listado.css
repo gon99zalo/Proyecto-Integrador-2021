@@ -102,6 +102,15 @@ h4 {
     color: #F0572D;
     gap: 2%;
 }
+.product-features strong,
+.product-features i {
+    font-size: 13px;
+}
+.product-features i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .product-features strong {
     color: #31363F;
 }
