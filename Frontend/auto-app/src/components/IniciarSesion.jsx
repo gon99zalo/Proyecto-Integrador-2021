@@ -25,7 +25,6 @@ export default function IniciarSesion() {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  console.log(reserva);
   const handlerValidate = (e) =>{
     e.preventDefault()
     let emailUsuario = document.querySelector("#correo-electronico").value

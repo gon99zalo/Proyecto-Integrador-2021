@@ -23,17 +23,19 @@ export default function Header(props) {
     const [userActive, setUserActive] = useState(false)
 
     let toggleNav = () => {
-        if(show === "sidenav"){
-            setShow("sidenav-show")
-            document.body.style.pointerEvents = "none"
-            document.body.style.overflow = "hidden"
-        } else {
-            setShow("sidenav")
-            document.body.style.pointerEvents = "all"
-            document.body.style.overflow = "visible"
-        }
         setShow(show === "sidenav"? "sidenav-show" : "sidenav");
       }
+
+    //se encarga de limitar la interaccion con los elementos de los div mientras el menu burger este activo
+      useEffect(()=> {
+        if (show === "sidenav") {
+            document.body.style.pointerEvents = "all"
+            document.body.style.overflow = "visible"
+        } else {
+            document.body.style.pointerEvents = "none"
+            document.body.style.overflow = "hidden"
+        }
+    },[show])
 
     useEffect(() => {
         if(sessionStorage.length >0){
