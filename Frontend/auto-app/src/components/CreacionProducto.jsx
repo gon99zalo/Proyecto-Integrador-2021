@@ -14,7 +14,9 @@ export default function CreacionProducto() {
   const [imagen, setImagen] = useState([])
   const [ciudadId, setCiudadId] = useState(null)
   const [categoriaId, setCategoriaId] = useState(null)
-  const [nombreImagen, setNombreImagen] = useState(null)
+  // const [nombreImagen, setNombreImagen] = useState(null)
+  const [objetoAtributo, setObjetoAtributo] = useState([])
+  const [objetoImagen, setObjetoImagen] = useState([])
 
   const traerCiudades = () => {
     let config = {
@@ -57,8 +59,7 @@ export default function CreacionProducto() {
       descripcion: document.querySelector("#descripcion").value,
       categoria: {id: categoriaId},
       ciudad: {id: ciudadId},
-      imagenes: [{titulo: nombreImagen,
-      url: imagen}],
+      imagenes: [...objetoImagen],
       caracteristicas: [{
         nombre: document.querySelector("#nombre-atributo").value,
         icono: document.querySelector("#icono").value
@@ -74,7 +75,7 @@ export default function CreacionProducto() {
       },
     };
 
-    fetch("http://localhost:8080" + "/productos", configPost)
+    fetch(api + "/productos", configPost)
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
   };
@@ -93,10 +94,7 @@ export default function CreacionProducto() {
     traerCiudades();
   }, []);
 
-
-  
-
-  function Atributo() {
+  function Atributo(props) {
     return(
     <div className="esqueleto-agregar-atributo">
               <div className="agregar-icono">
@@ -106,12 +104,12 @@ export default function CreacionProducto() {
                     type="text"
                     name="nombre-atributo"
                     id="nombre-atributo"
-                    value={nombreAtributo}
+                    value={props.datos.nombreAtributo}
                     disabled
                   />
                   <label htmlFor="icono" >Icono</label>
-                  <input type="text" name="icono" id="icono" defaultValue="fa-Wifi" value={iconoElegido} disabled/>
-                  <i className="fas fa-times cruz" onClick={() => borrarAtributo(atributosArr.length)}></i>
+                  <input type="text" name="icono" id="icono" defaultValue="fa-Wifi" value={props.datos.iconoElegido} disabled/>
+                  <i className="fas fa-times cruz" onClick={() => borrarAtributo(props.id)}></i>
                   {/* encontrar otro icono, este es el unico gratis */}
                 </div>
               </div>
@@ -126,23 +124,26 @@ export default function CreacionProducto() {
   };
 
   const nuevoAtributo = () => {
-    setNombreAtributo(nombreAtributo)
-    setIconoElegido(iconoElegido)
-    setAtributosArr([...atributosArr, <Atributo key={[atributosArr.length]} />])
+    setAtributosArr([...atributosArr, <Atributo key={[atributosArr.length]} id={atributosArr.length} />])
+    setObjetoAtributo([...objetoAtributo, {
+      nombreAtributo: nombreAtributo,
+      iconoElegido: iconoElegido
+    }])
   } 
 
   const borrarAtributo = (id) => {
-    atributosArr.splice(id,1)
-    setAtributosArr(atributosArr)
+    let original = objetoAtributo
+    original.splice(id,1)
+    setObjetoAtributo([...original])
   }
 
-  function Imagen() {
+  function Imagen(props) {
     return(
       <div className="esqueleto-cargar-imagenes">
               <div className="cargar-imagen">
                 <div>
-                  <input type="text" name="cargar-imagen" id="cargar-imagen" value={imagen} placeholder="insertar https://" />
-                  <i className="fas fa-times cruz" onClick={() => borrarImagen(imagenesArr.length)}></i>
+                  <input type="text" name="cargar-imagen" id="cargar-imagen" value={props.datos.url} disabled />
+                  <i className="fas fa-times cruz" onClick={() => borrarImagen(props.id)}></i>
                   {/* encontrar otro icono, este es el unico gratis */}
                 </div>
               </div>
@@ -158,12 +159,17 @@ export default function CreacionProducto() {
     setImagen(imagen)
     setImagenesArr([...imagenesArr, <Imagen key={[imagenesArr.length]} />])
     let nombreAuto = document.querySelector("#nombre-auto").value
-    setNombreImagen(nombreAuto + imagenesArr.length)
+    // setNombreImagen(nombreAuto + " " + imagenesArr.length)
+    setObjetoImagen([...objetoImagen, {
+      titulo: nombreAuto + " " + objetoImagen.length,
+      url: imagen,
+    }])
   } 
 
   const borrarImagen = (id) => {
-    imagenesArr.splice(id,1)
-    setImagenesArr(imagenesArr)
+    let original = objetoImagen
+    original.splice(id,1)
+    setObjetoImagen([...original])
   }
 
   return (
@@ -239,12 +245,15 @@ export default function CreacionProducto() {
                     <option value="fa-bus">fa-bus</option>
                     <option value="fa-motorcycle">fa-motorcycle</option>
                     <option value="fa-gas-pump">fa-gas-pump</option>
+                    <option value="fa-users">fa-users</option>
+                    <option value="fa-clock">fa-clock</option>
                   </select>
                   <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
                 </div>
               </div>
             </div>
-            {atributosArr}
+            {/* {atributosArr} */}
+            {objetoAtributo.map((objeto, index) => <Atributo datos={objeto} id={index} />)}
 
             <h2>Políticas del producto</h2>
             <div className="esqueleto-politicas">
@@ -291,7 +300,7 @@ export default function CreacionProducto() {
                 </div>
               </div>
             </div>
-            {imagenesArr}
+            {objetoImagen.map((objeto, index) => <Imagen datos={objeto} id={index} />)}
 
             <input type="submit" className="submit-crear" value="Crear" />
           </div>

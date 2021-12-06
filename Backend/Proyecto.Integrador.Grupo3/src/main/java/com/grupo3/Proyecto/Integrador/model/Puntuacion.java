@@ -23,10 +23,11 @@ public class Puntuacion {
     @JoinColumn(name = "producto_id")
     @JsonIgnore
     private Producto producto;
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    @JsonIgnore
-    private Usuario usuario;
+    //saqué las puntuaciones porque entra en un bucle
+    //@ManyToOne
+    //@JoinColumn(name = "usuario_id")
+    //@JsonIgnore
+    //private Usuario usuario;
     @Value("puntuacion")
     @Min(value = 1, message = "La puntuación no puede ser menor que 1")
     @Max(value = 5, message = "La puntuación no puede ser mayor que 5")
@@ -37,7 +38,7 @@ public class Puntuacion {
 
     public Puntuacion(Producto producto, Usuario usuario, Integer puntuacion) {
         this.producto = producto;
-        this.usuario = usuario;
+        //this.usuario = usuario;
         this.puntuacion = puntuacion;
     }
 
@@ -46,7 +47,7 @@ public class Puntuacion {
         return "Puntuacion{" +
                 "id=" + id +
                 ", producto=" + producto +
-                ", usuario=" + usuario +
+             //   ", usuario=" + usuario +
                 ", puntuacion=" + puntuacion +
                 '}';
     }

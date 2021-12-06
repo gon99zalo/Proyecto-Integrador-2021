@@ -54,10 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 http.authorizeRequests().antMatchers(HttpMethod.GET,"/reservas/usuario/**").hasAuthority("cliente");
                 http.authorizeRequests().antMatchers(HttpMethod.GET,"/productos/**").permitAll();
                 http.authorizeRequests().antMatchers(HttpMethod.GET, "/productos/todos").permitAll();
-                http.authorizeRequests().antMatchers(HttpMethod.POST, "/productos").permitAll();
+                http.authorizeRequests().antMatchers(HttpMethod.POST, "/productos").hasAuthority("admin");
                 http.authorizeRequests().antMatchers(HttpMethod.PUT, "/productos/modificar").hasAuthority("admin");
-                http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/productos/eliminar/**").hasAuthority("admin");
-                http.authorizeRequests().antMatchers("/productos/**").hasAuthority("admin")
+                http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/productos/eliminar/**").hasAuthority("admin")
+  //            http.authorizeRequests().antMatchers("/productos/**").hasAuthority("admin") //esta linea cancelaba las demás
                 .anyRequest().permitAll()
   //            .and()
  //             .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
