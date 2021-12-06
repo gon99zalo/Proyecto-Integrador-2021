@@ -75,7 +75,7 @@ describe("Crear cuenta", () => {
         <CrearCuenta />
       </Router>
     );
-    screen.debug()
+    //screen.debug()
     expect(component.getByRole("heading", { name: /Crear Cuenta/i })).toBeInTheDocument();
     
   })
