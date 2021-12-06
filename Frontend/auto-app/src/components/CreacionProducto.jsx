@@ -8,19 +8,6 @@ export default function CreacionProducto() {
   const [ciudades, setCiudades] = useState([]);
   const [categorias, setCategorias] = useState([]);
 
-  const traerCategorias = () => {
-    let config = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/JSON",
-      },
-    };
-
-    fetch(api + "/categorias/todas", config)
-      .then((response) => response.json())
-      .then((data) => setCategorias(data))
-      .catch((error) => console.log(error));
-  };
 
   const traerCiudades = () => {
     let config = {
@@ -37,9 +24,19 @@ export default function CreacionProducto() {
   };
 
   useEffect(() => {
-    traerCategorias();
+    fetch(api + "/categorias/todos")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setCategorias(result);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
     traerCiudades();
   }, []);
+
 
   return (
     <>
