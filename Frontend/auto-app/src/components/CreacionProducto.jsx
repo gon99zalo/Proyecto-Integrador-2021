@@ -3,8 +3,11 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { api } from "./Buscador";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import Swal from "sweetalert2";
 
 export default function CreacionProducto() {
+  const history = useHistory();
   const [ciudades, setCiudades] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [atributosArr, setAtributosArr] = useState([])
@@ -76,8 +79,14 @@ export default function CreacionProducto() {
     };
 
     fetch(api + "/productos", configPost)
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+      .then((data) => {console.log(data)
+      return data.status === 200 ? history.push("/administracion/exito") : Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Lamentablemente el producto no ha podido crearse. Por favor intente más tarde",
+      })
+      })
+      .catch((error) => {console.log(error)});
   };
 
   useEffect(() => {

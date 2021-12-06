@@ -20,7 +20,7 @@ export default function IniciarSesion() {
   const params = useMemo(() => new URLSearchParams(window.location.search),[]);
   const [passwordShown, setPasswordShown] = useState(false);
   const alerta = params.get("alerta") ? true: false
-  const reserva = params.get("reserva") !== null
+  const reserva = params.get("reserva")
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
@@ -41,7 +41,7 @@ export default function IniciarSesion() {
     .then(
       (result) => {
         sessionStorage.setItem("infoUsuario", JSON.stringify(result))
-        alerta ? history.push("/productos/" + reserva + "/reserva") :history.push("/")
+        reserva != null ? history.push("/productos/" + reserva + "/reserva") :history.push("/")
       },
       (error) => {
         console.log(error);
@@ -84,7 +84,7 @@ export default function IniciarSesion() {
     {alerta? Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Debe estar registrado para poder realizar una reserva',
+        text: 'Debe estar logueado para poder realizar una reserva',
         showConfirmButton: false,
         footer: '<a href="iniciarSesion?reserva='+ reserva +'" >Pulse aquí para iniciar sesión</a>'
       })

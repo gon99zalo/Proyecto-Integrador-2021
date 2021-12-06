@@ -52,22 +52,10 @@ export default function Listado() {
             .then(res => res.json())
             .then(
               (result) => {
-                setProductos(productos => [...productos, result])
+                if(result!==null)setProductos(productos => [...productos, result])
               },
               (error) => {
-                let p = {
-                  id: 0,
-                  nombre: "error",
-                  descripcion: "error",
-                  categoria: {
-                    titulo: "error",
-                  },
-                  ciudad: {
-                    nombre: "error",
-                    pais: "error"
-                  }
-                };
-                setProductos(productos => productos.push(p))
+                console.log(error);
               }
             )
           })
