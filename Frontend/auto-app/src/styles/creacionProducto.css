@@ -106,6 +106,7 @@ textarea {
   height: 105px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: rgba(223, 228, 234, 1);
+  margin-bottom: 10px;
 }
 
 .agregar-icono {
@@ -142,9 +143,17 @@ textarea {
   width: 25%;
 }
 
-.fa-plus-square {
-  color: rgba(240, 87, 45, 1);
+.mas, .cruz {
   font-size: 35px;
+}
+
+.mas {
+  color: rgba(240, 87, 45, 1);
+}
+
+.cruz {
+  color: white;
+  background-color: var(--three-color);
 }
 
 .fa-plus-square:hover {

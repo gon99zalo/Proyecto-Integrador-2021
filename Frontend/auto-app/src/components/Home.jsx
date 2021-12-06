@@ -7,11 +7,11 @@ import Listado from './Listado';
 export default function Home() {
   return (
     <>
-      <Header />
+      <Header /> 
       <Buscador />
       <Categories />
-      <Listado />
-      <Footer />
+      <Listado /> 
+      <Footer /> 
     </>
   );
 };
