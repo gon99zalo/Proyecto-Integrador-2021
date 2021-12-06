@@ -36,7 +36,6 @@ export default function CreacionProducto() {
   };
 
   let ciudadElegida = "buenos aires";
-// revisar porque cambia después del segundo cambio en el select
   const handleCangeCiudad = () => {
     ciudadElegida = document.querySelector("#ciudad").value
     setCiudadId(ciudadElegida);
@@ -44,7 +43,6 @@ export default function CreacionProducto() {
   };
 
   let categoriaElegida = "autos";
-// revisar porque cambia después del segundo cambio en el select
   const handleChangeCategoria = () => {
     categoriaElegida = document.querySelector("#categoria").value
     setCategoriaId(categoriaElegida);
@@ -63,10 +61,7 @@ export default function CreacionProducto() {
       categoria: {id: categoriaId},
       ciudad: {id: ciudadId},
       imagenes: [...objetoImagen],
-      caracteristicas: [{
-        nombre: document.querySelector("#nombre-atributo").value,
-        icono: document.querySelector("#icono").value
-      }],
+      caracteristicas: [...objetoAtributo],
     }
 
     let configPost = {
@@ -113,11 +108,11 @@ export default function CreacionProducto() {
                     type="text"
                     name="nombre-atributo"
                     id="nombre-atributo"
-                    value={props.datos.nombreAtributo}
+                    value={props.datos.nombre}
                     disabled
                   />
                   <label htmlFor="icono" >Icono</label>
-                  <input type="text" name="icono" id="icono" defaultValue="fa-Wifi" value={props.datos.iconoElegido} disabled/>
+                  <input type="text" name="icono" id="icono" defaultValue="fa-Wifi" value={props.datos.icono} disabled/>
                   <i className="fas fa-times cruz" onClick={() => borrarAtributo(props.id)}></i>
                   {/* encontrar otro icono, este es el unico gratis */}
                 </div>
@@ -135,8 +130,8 @@ export default function CreacionProducto() {
   const nuevoAtributo = () => {
     setAtributosArr([...atributosArr, <Atributo key={[atributosArr.length]} id={atributosArr.length} />])
     setObjetoAtributo([...objetoAtributo, {
-      nombreAtributo: nombreAtributo,
-      iconoElegido: iconoElegido
+      nombre: nombreAtributo,
+      icono: iconoElegido
     }])
   } 
 
@@ -203,9 +198,9 @@ export default function CreacionProducto() {
 
               <div>
                 <label htmlFor="categoria">Categoria</label>
-                <select defaultValue="Auto" name="categoria" id="categoria" onChange={handleChangeCategoria}>
-                  <option value="Auto" disabled>
-                    Auto
+                <select defaultValue="Categoria" name="categoria" id="categoria" onChange={handleChangeCategoria}>
+                  <option value="Categoria" disabled>
+                    Categoría
                   </option>
                   {categorias.map((categoria) => (
                     <option value={categoria.id}>{categoria.titulo}</option>
@@ -248,14 +243,13 @@ export default function CreacionProducto() {
                     onChange={handleChangeAtributo}
                   />
                   <label htmlFor="icono" >Icono</label>
-                  <select name="icono" id="icono" onChange={handleChangeAtributo} defaultValue="fa-Wifi">
-                    <option value="fa-Wifi" disabled>fa-Wifi</option>
-                    <option value="fa-car-side">fa-car-side</option>
-                    <option value="fa-bus">fa-bus</option>
-                    <option value="fa-motorcycle">fa-motorcycle</option>
-                    <option value="fa-gas-pump">fa-gas-pump</option>
-                    <option value="fa-users">fa-users</option>
-                    <option value="fa-clock">fa-clock</option>
+                  <select name="icono" id="icono" onChange={handleChangeAtributo} defaultValue="fa-car-side">
+                    <option value="fa-car-side" className="fa"> &#xf5e4; vehículo</option>
+                    <option value="fa-bus" className="fa"> &#xf207; bus</option>
+                    <option value="fa-motorcycle" className="fa"> &#xf21c; moto</option>
+                    <option value="fa-gas-pump" className="fa"> &#xf52f; combustible</option>
+                    <option value="fa-users" className="fa"> &#xf0c0; capacidad</option>
+                    <option value="fa-clock" className="fa"> &#xf017; año</option>
                   </select>
                   <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
                 </div>
