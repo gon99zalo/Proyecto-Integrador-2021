@@ -23,13 +23,21 @@ export default function Header(props) {
     const [userActive, setUserActive] = useState(false)
 
     let toggleNav = () => {
+        if(show === "sidenav"){
+            setShow("sidenav-show")
+            document.body.style.pointerEvents = "none"
+            document.body.style.overflow = "hidden"
+        } else {
+            setShow("sidenav")
+            document.body.style.pointerEvents = "all"
+            document.body.style.overflow = "visible"
+        }
         setShow(show === "sidenav"? "sidenav-show" : "sidenav");
       }
 
     useEffect(() => {
         if(sessionStorage.length >0){
             setUserActive(true)
-
         }
         setwidth(window.screen.availWidth);
         function handleResize() {
@@ -88,6 +96,7 @@ export default function Header(props) {
         <div id='mySidenav ' className={show}>
             <div className="opciones" id="opciones">
                 <p onClick={toggleNav}>X</p>
+                <div className="opciones-header-burger" id="opciones-header">
                 <div className="avatar-burger">
                     <span className="iniciales-avatar-burger"> {iniciales()} </span>
                 </div>
@@ -96,7 +105,10 @@ export default function Header(props) {
                     <span className="colorUser-burger"> {usuario()} </span></p>
                 </div>
             </div>
-            <p>¿Deseas <span onClick={handlerClose} className="color-links">cerrar sesión</span>?</p>
+            </div>
+            <div className="opciones-links-burger" id="opciones-links">
+                <p>¿Deseas <span onClick={handlerClose} className="color-links">cerrar sesión</span>?</p>
+            </div>
             <div className="linea-horizontal"></div>
             <i>{facebook}  {linkedin}  {twitter}  {instagram}</i>
         </div>
