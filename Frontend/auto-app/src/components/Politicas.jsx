@@ -16,7 +16,7 @@ export default function Politicas() {
           <div className="salud">
             <h3>Salud y seguridad</h3>
             <p>Depósito de seguridad.</p>
-            <p>Uso obligatorio de cinturón de seguridad en autos y buses.</p>
+            <p>Uso obligatorio de cinturón de seguridad <br/> en autos y buses.</p>
             <p>Uso obligatorio de casco en motos.</p>
           </div>
           <div className="cancelacion">
