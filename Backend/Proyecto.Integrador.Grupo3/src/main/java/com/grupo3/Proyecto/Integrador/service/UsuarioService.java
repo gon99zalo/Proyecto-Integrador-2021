@@ -42,7 +42,7 @@ public class UsuarioService implements UserDetailsService {
         Usuario usuario1 = usuarioOptional.get();
         String token = tokenService.getToken(new UsuarioDTO(usuario1.getId(), usuario1.getEmail()));
 
-        return Optional.of(new UsuarioLoginDTO(usuario1.getNombre(), usuario1.getApellido(), usuario1.getEmail(), token));
+        return Optional.of(new UsuarioLoginDTO(usuario1.getNombre(), usuario1.getApellido(), usuario1.getEmail(), usuario1.getRol().getId(), token));
 
     }
 
