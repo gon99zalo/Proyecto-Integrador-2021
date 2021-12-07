@@ -109,24 +109,36 @@ textarea {
   margin-bottom: 10px;
 }
 
-.agregar-icono {
-  width: 100%;
-  height: 100%;
+.div-nombre-atributo {
+  display: flex;
+  width: 65%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.div-select-icono {
+  width: 29%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-start;
 }
+
+.agregar-icono {
+  width: 100%;
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
 .agregar-icono input {
   width: 80%;
   height: 35px;
   border-radius: 5px;
 }
-.agregar-icono div {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
+.agregar-icono label {
+  margin-bottom: 0px;
 }
 
 #nombre-atributo,
@@ -136,15 +148,19 @@ textarea {
 }
 
 #nombre-atributo {
-  width: 60%;
+  width: 100%;
 }
 
 #icono {
-  width: 25%;
+  width: 100%;
+}
+
+.agregar-icono .fas {
+  margin-top: 38.5px;
 }
 
 .mas, .cruz {
-  font-size: 35px;
+  font-size: 39.4px;
 }
 
 .mas {
@@ -233,6 +249,14 @@ textarea {
 
 .submit-crear:hover {
   cursor: pointer;
+}
+
+.campo-incompleto {
+  display: none;
+}
+
+.mostrar-campo-incompleto{
+  display: block;
 }
 
 @media screen and (min-width: 480px) and (max-width:  768px){

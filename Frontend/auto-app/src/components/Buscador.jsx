@@ -174,7 +174,7 @@ const handlerCiudad = () => {
             Elige donde quieres retirar el auto
           </option>
           {ciudades.map((ciudad, index) => (
-            <option key={index} value={ciudad.nombre}>{ciudad.nombre}</option>
+            <option key={index} value={ciudad.nombre}>{ciudad.nombre}, {ciudad.pais}</option>
           ))}
         </select>
 
