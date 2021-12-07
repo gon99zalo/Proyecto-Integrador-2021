@@ -9,7 +9,6 @@ import "../styles/producto.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft} from "@fortawesome/free-solid-svg-icons";
 
-
 export default function CreacionProducto() {
   const history = useHistory();
   const [ciudades, setCiudades] = useState([]);
@@ -57,6 +56,13 @@ export default function CreacionProducto() {
   const handlerSubmit = (e) => {
     e.preventDefault()
 
+    const nombreAuto = document.querySelector("#nombre-auto").value
+    const ciudad = document.querySelector("#ciudad").value
+    const categoria = document.querySelector("#categoria").value
+    const direccion = document.querySelector("#direccion").value
+    const descripcion = document.querySelector("#descripcion").value
+    const politics = document.querySelector(".politics").value
+
     let datosDeUsuario = sessionStorage.getItem("infoUsuario");
     let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
 
@@ -77,7 +83,21 @@ export default function CreacionProducto() {
         Authorization: datosDeUsuarioParseado.token,
       },
     };
-
+    
+    if(nombreAuto === null || ciudad === null || direccion === null || categoria === null || descripcion === null || objetoAtributo.length === 0 || politics === null || objetoImagen.length === 0){
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Completar todos los datos por favor",
+      })
+    }else if (objetoImagen.length <5){
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debe agregar al menos 5 imágenes",
+      })
+    }
+    else{
     fetch(api + "/productos", configPost)
       .then((data) => {console.log(data)
       return data.status === 200 ? history.push("/administracion/exito") : Swal.fire({
@@ -88,7 +108,7 @@ export default function CreacionProducto() {
       })
       .catch((error) => {console.log(error)});
   };
-
+  }
   useEffect(() => {
     fetch(api + "/categorias/todos")
       .then(res => res.json())
@@ -133,11 +153,18 @@ export default function CreacionProducto() {
   };
 
   const nuevoAtributo = () => {
+    const errorIncompleto = document.querySelector(".error-atributo")
+    if(iconoElegido.length === 0 || nombreAtributo.length === 0){
+      errorIncompleto.classList.add("mostrar-campo-incompleto")
+    }else{
+      errorIncompleto.classList.remove("mostrar-campo-incompleto")
     setAtributosArr([...atributosArr, <Atributo key={[atributosArr.length]} id={atributosArr.length} />])
     setObjetoAtributo([...objetoAtributo, {
       nombre: nombreAtributo,
       icono: iconoElegido
     }])
+
+  }
   } 
 
   const borrarAtributo = (id) => {
@@ -165,6 +192,11 @@ export default function CreacionProducto() {
   };
 
   const nuevaImagen = () => {
+    const errorIncompleto = document.querySelector(".error-imagen")
+    if(imagen.length === 0){
+      errorIncompleto.classList.add("mostrar-campo-incompleto")
+    }else{
+      errorIncompleto.classList.remove("mostrar-campo-incompleto")
     setImagen(imagen)
     setImagenesArr([...imagenesArr, <Imagen key={[imagenesArr.length]} />])
     let nombreAuto = document.querySelector("#nombre-auto").value
@@ -173,6 +205,7 @@ export default function CreacionProducto() {
       titulo: nombreAuto + " " + objetoImagen.length,
       url: imagen,
     }])
+    }
   } 
 
   const borrarImagen = (id) => {
@@ -247,16 +280,18 @@ export default function CreacionProducto() {
             <h2>Agregar atributos</h2>
             <div className="esqueleto-agregar-atributo">
               <div className="agregar-icono">
-                <div>
+                <div className="div-nombre-atributo">
                   <label htmlFor="nombre-atributo">Nombre</label>
                   <input
                     type="text"
                     name="nombre-atributo"
                     id="nombre-atributo"
-                    placeholder="Wifi"
+                    placeholder="vehículo"
                     onChange={handleChangeAtributo}
                   />
-                  <label htmlFor="icono" >Icono</label>
+                </div>
+                <div className="div-select-icono">
+                <label htmlFor="icono" >Icono</label>
                   <select name="icono" id="icono" onChange={handleChangeAtributo} defaultValue="fa-car-side">
                     <option value="fa-car-side" className="fa"> &#xf5e4; vehículo</option>
                     <option value="fa-bus" className="fa"> &#xf207; bus</option>
@@ -265,8 +300,9 @@ export default function CreacionProducto() {
                     <option value="fa-users" className="fa"> &#xf0c0; capacidad</option>
                     <option value="fa-clock" className="fa"> &#xf017; año</option>
                   </select>
+                  </div>
                   <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
-                </div>
+                <p className="campo-incompleto error-atributo">Por favor Complete los campos antes de agregarlos</p>
               </div>
             </div>
             {/* {atributosArr} */}
@@ -315,6 +351,7 @@ export default function CreacionProducto() {
                   <input type="text" name="cargar-imagen" id="cargar-imagen" placeholder="insertar https://" onChange={handleChangeImagen} />
                   <i className="fas fa-plus-square mas" onClick={nuevaImagen}></i>
                 </div>
+                <p className="campo-incompleto error-imagen">Por favor complete el campo antes de agregaro</p>
               </div>
             </div>
             {objetoImagen.map((objeto, index) => <Imagen datos={objeto} id={index} />)}
