@@ -71,7 +71,9 @@ export default function ReservaUsuario(){
     } else if (!cargado) {
         return (
           <>
+            <Header reservas={true}/>
             <Loading />
+            <Footer />
           </>
         );
     } else {
