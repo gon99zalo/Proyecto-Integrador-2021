@@ -50,6 +50,6 @@ public class ReservaService {
 
     public List<Reserva> buscarPorIDProducto(Long id) { return reservaRepository.findByProductoId(id); }
 
-    public Optional<Reserva> buscarPorIDUsuario(Integer id) { return reservaRepository.findByUsuarioId(id); }
+    public List<Reserva> buscarPorIDUsuario(Integer id) { return reservaRepository.findByUsuarioId(id); }
 
 }

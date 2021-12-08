@@ -22,6 +22,7 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
      @Query("SELECT r FROM Reserva r WHERE r.producto.id = ?1")
      List<Reserva> findByProductoId(Long id);
 
-     Optional<Reserva> findByUsuarioId(Integer id);
+     @Query("SELECT r FROM Reserva r WHERE r.usuario.id = ?1")
+     List<Reserva> findByUsuarioId(Integer id);
 
 }
