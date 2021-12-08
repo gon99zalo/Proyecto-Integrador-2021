@@ -30,7 +30,7 @@ export default function Reservas(props) {
   // HOOKS
   const [width, setwidth] = useState({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
-  const [Cargado, setCargado] = useState(false);
+  const [cargado, setcargado] = useState(false);
   const [horario, setHorario] = useState(null);
   const [ciudad, setCiudad] = useState(null);
   const [arrayDeFechasReservadas, setArrayDeFechasReservadas] = useState([]);
@@ -261,11 +261,11 @@ export default function Reservas(props) {
               (error) =>{
                 setError(error);
               })
-          setCargado(true);
+          setcargado(true);
         },
         (error) => {
           setError(error);
-          setCargado(true);
+          setcargado(true);
           setProducto({
             id: 0,
             nombre: "error",
@@ -294,7 +294,7 @@ export default function Reservas(props) {
         <Footer />
       </>
     );
-  } else if (!Cargado) {
+  } else if (!cargado) {
     return (
       <>
         <Loading />
