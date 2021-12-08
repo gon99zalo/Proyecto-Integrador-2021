@@ -30,7 +30,7 @@ export default function Reservas(props) {
   // HOOKS
   const [width, setwidth] = useState({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [Cargado, setCargado] = useState(false);
   const [horario, setHorario] = useState(null);
   const [ciudad, setCiudad] = useState(null);
   const [arrayDeFechasReservadas, setArrayDeFechasReservadas] = useState([]);
@@ -97,7 +97,6 @@ export default function Reservas(props) {
         .join("")
     );
     let idUsuario = JSON.parse(jsonPayload).sub.split("'")[1];
-    console.log(parseInt(idUsuario).valueOf());
 
     let valores = {
       fechaInicial: startDate.getFullYear() + "-" + ("0" + (startDate.getMonth() + 1)).slice(-2) + "-" + ("0" + (startDate.getDate())).slice(-2),
@@ -262,11 +261,11 @@ export default function Reservas(props) {
               (error) =>{
                 setError(error);
               })
-          setIsLoaded(true);
+          setCargado(true);
         },
         (error) => {
           setError(error);
-          setIsLoaded(true);
+          setCargado(true);
           setProducto({
             id: 0,
             nombre: "error",
@@ -295,7 +294,7 @@ export default function Reservas(props) {
         <Footer />
       </>
     );
-  } else if (!isLoaded) {
+  } else if (!Cargado) {
     return (
       <>
         <Loading />

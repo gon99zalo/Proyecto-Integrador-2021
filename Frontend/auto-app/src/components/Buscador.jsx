@@ -170,11 +170,11 @@ const handlerCiudad = () => {
       <div className="buscadores">
         {/* <AutoComplete placeholder="Elige donde quieres retirar el auto" value={selectedCity} completeMethod={searchCities} suggestions={filteredCitites} field="nombre" onChange={(e) => {setCiudad(e.value.nombre); setSelectedCity(e.value)}}/>  */}
         <select defaultValue="Elige donde quieres retirar el auto" name="ciudades" onClick={handlerCiudad}>
-          <option value="Elige donde quieres retirar el auto" disabled>
+          <option value="" hidden>
             Elige donde quieres retirar el auto
           </option>
           {ciudades.map((ciudad, index) => (
-            <option key={index} value={ciudad.nombre}>{ciudad.nombre}</option>
+            <option key={index} value={ciudad.nombre}>{ciudad.nombre}, {ciudad.pais}</option>
           ))}
         </select>
 

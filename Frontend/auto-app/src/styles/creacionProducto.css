@@ -106,26 +106,39 @@ textarea {
   height: 105px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: rgba(223, 228, 234, 1);
+  margin-bottom: 10px;
+}
+
+.div-nombre-atributo {
+  display: flex;
+  width: 65%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.div-select-icono {
+  width: 29%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .agregar-icono {
   width: 100%;
-  height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
 }
+
 .agregar-icono input {
   width: 80%;
   height: 35px;
   border-radius: 5px;
 }
-.agregar-icono div {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
+.agregar-icono label {
+  margin-bottom: 0px;
 }
 
 #nombre-atributo,
@@ -135,16 +148,28 @@ textarea {
 }
 
 #nombre-atributo {
-  width: 60%;
+  width: 100%;
 }
 
 #icono {
-  width: 25%;
+  width: 100%;
 }
 
-.fa-plus-square {
+.agregar-icono .fas {
+  margin-top: 38.5px;
+}
+
+.mas, .cruz {
+  font-size: 39.4px;
+}
+
+.mas {
   color: rgba(240, 87, 45, 1);
-  font-size: 35px;
+}
+
+.cruz {
+  color: white;
+  background-color: var(--three-color);
 }
 
 .fa-plus-square:hover {
@@ -225,3 +250,53 @@ textarea {
 .submit-crear:hover {
   cursor: pointer;
 }
+
+.campo-incompleto {
+  display: none;
+}
+
+.mostrar-campo-incompleto{
+  display: block;
+}
+
+@media screen and (min-width: 480px) and (max-width:  768px){
+    .politicas{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .politics{
+      height: 150px;
+    }
+
+    .politicas div {
+      width: 95%
+    }
+
+    .submit-crear {
+      width: 45%;
+    }
+
+  }
+
+@media screen and (max-width: 480px) {
+  .politicas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .politics{
+    height: 100px;
+  }
+
+  .politicas div {
+    width: 95%
+  }
+
+  .submit-crear {
+    width: 45%;
+  }
+}
+

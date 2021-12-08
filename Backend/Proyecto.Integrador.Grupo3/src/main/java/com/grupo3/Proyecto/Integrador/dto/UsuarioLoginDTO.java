@@ -5,12 +5,14 @@ public class UsuarioLoginDTO {
     private String nombre;
     private String apellido;
     private String email;
+    private Long rol;
     private String token;
 
-    public UsuarioLoginDTO(String nombre, String apellido, String email, String token) {
+    public UsuarioLoginDTO(String nombre, String apellido, String email, Long rol, String token) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.rol = rol;
         this.token = token;
     }
 
@@ -44,6 +46,14 @@ public class UsuarioLoginDTO {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Long getRol() {
+        return rol;
+    }
+
+    public void setRol(Long rol) {
+        this.rol = rol;
     }
 }
 

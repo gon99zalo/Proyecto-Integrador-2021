@@ -20,16 +20,26 @@ export default function Header(props) {
 
     const [width, setwidth] = useState ({ width: window.screen.availWidth });
     const [show, setShow] = useState("sidenav");
-    const [userActive, setUserActive] = useState(false)
+    const [usuarioActivo, setUsuarioActivo] = useState(false)
 
     let toggleNav = () => {
         setShow(show === "sidenav"? "sidenav-show" : "sidenav");
       }
 
+    //se encarga de limitar la interaccion con los elementos de los div mientras el menu burger este activo
+      useEffect(()=> {
+        if (show === "sidenav") {
+            document.body.style.pointerEvents = "all"
+            document.body.style.overflow = "visible"
+        } else {
+            document.body.style.pointerEvents = "none"
+            document.body.style.overflow = "hidden"
+        }
+    },[show])
+
     useEffect(() => {
         if(sessionStorage.length >0){
-            setUserActive(true)
-
+            setUsuarioActivo(true)
         }
         setwidth(window.screen.availWidth);
         function handleResize() {
@@ -43,7 +53,7 @@ export default function Header(props) {
 
       const handlerClose = useCallback(() => {
         sessionStorage.removeItem('infoUsuario')
-        setUserActive(false)
+        setUsuarioActivo(false)
         if(window.location.href.includes("reserva")){history.push("/")}
       }, [history])
   
@@ -64,15 +74,21 @@ export default function Header(props) {
         return inicial1.toUpperCase() + inicial2.toUpperCase()
       }
 
-      if(userActive){
+      if(usuarioActivo){
           return(
-        <header className="header">
+        <header>
+        <div id="header" className="header">
         <div className="logo">
         <Link to="/"><img src="https://buimagenes.s3.us-east-2.amazonaws.com/Logo/logo1DB.png" alt="logo" className="logo-img" /></Link>
         <Link to="/"><span className="slogan">El auto que necesitas</span></Link>
         </div> 
         {width > 480? 
         <>
+        <div className="inputs-header-logged">
+            {props.reservas || <Link to="/usuario/reservas"><input className="reservas" name="reservas" id="reservas" value="Mis Reservas" type="button"/></Link>}
+            {(nombreCompleto.rol !== 1 || props.administracion) || <Link to="/administracion"><input className="administracion" name="administracion" id="administracion" value="Administracion" type="button"/></Link>}
+        </div>
+        <div className="user-info">
         <div className="avatar">
         <span className="iniciales-avatar"> {iniciales()} </span>
        </div>
@@ -81,6 +97,7 @@ export default function Header(props) {
         <p className="saludo"> <span className="hola">Hola,</span>
         <span className="colorUser"> {usuario()} </span></p>
        </div>
+       </div>
        </>
         :
         <>
@@ -88,6 +105,7 @@ export default function Header(props) {
         <div id='mySidenav ' className={show}>
             <div className="opciones" id="opciones">
                 <p onClick={toggleNav}>X</p>
+                <div className="opciones-header-burger" id="opciones-header">
                 <div className="avatar-burger">
                     <span className="iniciales-avatar-burger"> {iniciales()} </span>
                 </div>
@@ -96,12 +114,16 @@ export default function Header(props) {
                     <span className="colorUser-burger"> {usuario()} </span></p>
                 </div>
             </div>
-            <p>¿Deseas <span onClick={handlerClose} className="color-links">cerrar sesión</span>?</p>
+            </div>
+            <div className="opciones-links-burger" id="opciones-links">
+                <p>¿Deseas <span onClick={handlerClose} className="color-links">cerrar sesión</span>?</p>
+            </div>
             <div className="linea-horizontal"></div>
             <i>{facebook}  {linkedin}  {twitter}  {instagram}</i>
         </div>
         </>
-    }</header>
+        
+    }</div></header>
           )
       }else{
         return (
@@ -113,8 +135,8 @@ export default function Header(props) {
                 </div> 
                 {width > 480? 
                 <div className="inputs-header">
-                    {props.crearCuenta ? "" : <Link to="/crearCuenta"><input className="crearCuenta" name="Crear cuenta" id="Crear cuenta" value="Crear cuenta" type="button"/></Link>} 
-                    {props.login ? "" :<Link to="/iniciarSesion"><input className="iniciarSesion" name="Iniciar sesión" id="Iniciar sesión" value="Iniciar sesión" type="button"/></Link>}
+                    {props.crearCuenta || <Link to="/crearCuenta"><input className="crearCuenta" name="Crear cuenta" id="Crear cuenta" value="Crear cuenta" type="button"/></Link>} 
+                    {props.login || <Link to="/iniciarSesion"><input className="iniciarSesion" name="Iniciar sesión" id="Iniciar sesión" value="Iniciar sesión" type="button"/></Link>}
                 </div> 
                 :
                 <div className="inputs-header"><i className="opciones" id="opciones" onClick={toggleNav}>{menu}</i></div>

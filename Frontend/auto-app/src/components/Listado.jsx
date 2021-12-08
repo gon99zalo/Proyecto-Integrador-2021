@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faMapMarkerAlt, faStar } from "@fortawesome/free-solid-svg-icons";
+import {  faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Listado.css";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
@@ -10,10 +10,9 @@ const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
 
 export default function Listado() {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
-  const star = <FontAwesomeIcon icon={faStar} />;
   const [ showText, setShowText ] = useState({show: false, idText: null});
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [Cargado, setCargado] = useState(false);
   const [productos, setProductos] = useState([]);
 
   const handlerShowText = (title) => {
@@ -21,20 +20,6 @@ export default function Listado() {
       show: !showText.show,
       idText: title
     });
-  };
-
-  const qualificationText = (qualification) => {
-    if(qualification >= 1 && qualification <= 2.5) {
-      return "Muy malo";
-    } else if(qualification > 2.5 && qualification <= 5) {
-      return "Malo";
-    } else if(qualification > 5 && qualification <= 7.5) {
-      return "Bueno";
-    } else if(qualification > 7.5 && qualification <= 10) {
-      return "Muy bueno";
-    } else {
-      return "Sin Calificación";
-    };
   };
 
   useEffect(() => {
@@ -59,10 +44,10 @@ export default function Listado() {
               }
             )
           })
-          setIsLoaded(true);
+          setCargado(true);
         },
         (error) => {
-          setIsLoaded(true);
+          setCargado(true);
           setError(error);
         }
       )
@@ -70,7 +55,7 @@ export default function Listado() {
 
   if (error) {
     return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  } else if (!Cargado) {
     return (
       <Loading />
     );
@@ -86,24 +71,14 @@ export default function Listado() {
                 <div className="product-card" key={i}>
                   <div className="product-image">
                     <img className="product" src={item.imagenes[0].url} alt={item.imagenes[0].titulo} />
-                    <a href="/">
-                      <img className="like" src="https://buimagenes.s3.us-east-2.amazonaws.com/img/like.png" alt="like" />
-                    </a>
                   </div>
                   <div className="product-data">
                     <div className="product-star-rating">
                       <h4>{item.categoria.titulo}</h4>
-                      <div>
-                        <i>{star}</i>
-                        <i>{star}</i>
-                        <i>{star}</i>
-                        <i>{star}</i>
-                        <i>{star}</i>
-                      </div>
                     </div>
                     <h1>{item.nombre}</h1>
                     <p className="txt-1 product-location">
-                      <i>{marker}</i> A 100mt de {item.ciudad.nombre + ", " + item.ciudad.pais} <a href="./"><span>MOSTRAR EN EL MAPA</span></a>
+                      <i>{marker}</i> {item.ciudad.nombre + ", " + item.ciudad.pais}
                     </p>
                     <div className="product-features">
                     {item.caracteristicas.map(caract => {
@@ -119,10 +94,6 @@ export default function Listado() {
                       </p>
                     </div>
                     <Link  to={"/productos/" + item.id}><button className="product-show-more btn-1">Ver Detalle</button></Link>
-                    <div className="qualification">
-                      <span>{/*item.qualification*/ 7}</span>
-                      <p className="txt-1">{qualificationText(/*item.qualification*/7)}</p>
-                    </div>
                   </div>
                 </div>
             );

@@ -37,7 +37,7 @@ public class ReservaController {
     public List<Reserva> buscarPorIDProducto(@PathVariable Long id) { return reservaService.buscarPorIDProducto(id); }
 
     @GetMapping("/usuario/{id}")
-    public Optional<Reserva> buscarPorIDUsuario(@PathVariable Integer id) { return reservaService.buscarPorIDUsuario(id); }
+    public List<Reserva> buscarPorIDUsuario(@PathVariable Integer id) { return reservaService.buscarPorIDUsuario(id); }
 
     @GetMapping("/fechas")
     public ResponseEntity<List<Producto>> buscarPorFecha(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaInicial, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate fechaFinal)

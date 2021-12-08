@@ -37,7 +37,7 @@ export default function Producto(props) {
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [Cargado, setCargado] = useState(false);
   const [arrayDeFechasReservadas, setArrayDeFechasReservadas] = useState([])
   const [center, setCenter] = useState({
     lat: -34.603722,
@@ -216,11 +216,11 @@ const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefi
           ).catch((error) => {
             setError(error);
           })
-          setIsLoaded(true)
+          setCargado(true)
         },
         (error) => {
           setError(error);
-          setIsLoaded(true)
+          setCargado(true)
           setProducto({
             id: 0,
             nombre: "error",
@@ -250,7 +250,7 @@ const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefi
     <Footer />
     </>
     )
-  } else if (!isLoaded) {
+  } else if (!Cargado) {
     return (
       <>
       <Header />

@@ -34,19 +34,16 @@ import java.util.Optional;
                                         FilterChain filterChain) throws ServletException, IOException {
             String path = request.getRequestURI();
             String token = request.getHeader("Authorization");
-
-            if (path.contains("/reservas") && token != null && !token.isEmpty()) {
+            //agregué el patch contains de /productos para que si tienen token puedan hacer post
+            if (path.contains("/productos") || path.contains("/reservas") && token != null && !token.isEmpty()) {
                 UsuarioDTO usuarioDTO = null;
-
                 try {
                     usuarioDTO = tokenService.decodeToken(token);
                 } catch (Exception e) {
 
                 }
-
                 if (usuarioDTO != null) {
                     Optional<Usuario> userOptional = usuarioService.findByEmail(usuarioDTO.getEmail());
-
                     if (LocalDateTime.now().isBefore(usuarioDTO.getDateTime()) && userOptional.isPresent()) {
                         UsernamePasswordAuthenticationToken authenticationToken =
                                 new UsernamePasswordAuthenticationToken(userOptional.get().getEmail(),

@@ -68,15 +68,26 @@ describe("Crear cuenta", () => {
     expect(screen.getByText(/Confirmar contraseña/i)).toBeInTheDocument();
     expect(screen.getByText(/¿Ya tenes una cuenta?/i)).toBeInTheDocument();
   });
-  test("Hay un form", () => {
-    const wrapper = shallow(<CrearCuenta />);
-    expect(wrapper.find("form").first().hasClass("form-crearCuenta")).toBe(
-      true
+  test('Existen', () => {
+    const history = createMemoryHistory();
+    const component= render(
+      <Router history={history}>
+        <CrearCuenta />
+      </Router>
     );
-    expect(wrapper.find("input").first().hasClass("campos-crear")).toBe(true);
-    expect(wrapper.find("p").first().hasClass("texto-inicio txt-1")).toBe(true);
+    //screen.debug()
+    expect(component.getByRole("heading", { name: /Crear Cuenta/i })).toBeInTheDocument();
     
-  });
+  })
+  // test("Hay un form", () => {
+  //   const wrapper = shallow(<CrearCuenta />);
+  //   screen.debug()
+  //   //expect(wrapper.find("form").first().hasClass("form-crearCuenta")).toBe(
+  //     //true);
+  //   expect(wrapper.find("input").first().hasClass("campos-crear")).toBe(true);
+  //   expect(wrapper.find("p").first().hasClass("texto-inicio txt-1")).toBe(true);
+    
+  // });
   test('Dentro de form existe', ()=>{
     const view = render(<MemoryRouter> <CrearCuenta  /> </MemoryRouter>);
     expect(screen.getByRole('textbox', {name: /Nombre/i})).toBeInTheDocument();

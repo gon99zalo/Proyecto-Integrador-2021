@@ -47,6 +47,14 @@ a {
     height: 50px;
   }
 
+.inputs-header-logged {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  gap: 10px;
+  margin-left: auto;
+}
+
 .inputs-header {
   display: flex;
   flex-direction: row;
@@ -55,8 +63,15 @@ a {
   margin-right: 20px;
 }
 
+.user-info{
+  display: flex;
+  margin-bottom: 12px;
+}
+
 .crearCuenta,
-.iniciarSesion {
+.iniciarSesion,
+.reservas,
+.administracion {
   height: 35px;
   background-color: white;
   border-color: rgba(240, 87, 45, 1);
@@ -222,6 +237,11 @@ a {
   .slogan{
     display: none;
   }
+
+  .reservas,
+  .administracion{
+    padding: 5px 10px;
+  }
 }
 
 .sidenav {
@@ -246,4 +266,5 @@ a {
   background-color: white; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  pointer-events: all
 }

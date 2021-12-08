@@ -11,6 +11,7 @@ import Reservas from '../components/Reservas';
 import PantallaExitoReserva from '../components/PantallaExitoReserva';
 import PantallaExitoProducto from '../components/PantallaExitoProducto';
 import CreacionProducto from '../components/CreacionProducto';
+import ReservasUsuario from '../components/ReservasUsuario';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/exito" component={PantallaExitoReserva} />
             <Route exact path="/administracion" component={CreacionProducto} />
               <Route path="/administracion/exito" component={PantallaExitoProducto} />
+            <Route path="/usuario/reservas" component={ReservasUsuario} />
         </Switch>
       </BrowserRouter>
     </div>
