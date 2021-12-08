@@ -18,7 +18,7 @@ describe('Index', () => {
         const texto2 = /Elige donde quieres retirar el auto/i;
         const texto3 = /Check in - Check out/i;
         const texto4 = /Buscar/i;
-        const texto5 = /Loading/i;
+        const texto5 = /Cargando/i;
         const texto6 = /©2021 Digital Cars/i;
 
         const component = render(

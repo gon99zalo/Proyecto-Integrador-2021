@@ -23,10 +23,10 @@ describe("Reservas", () => {
     expect(container).toBeDefined();
   });
 
-  test("Deberia renderizar Loading si el componente esta cargando", () => {
+  test("Deberia renderizar Cargando si el componente esta cargando", () => {
     const { getByText } = makeRender();
 
-    expect(getByText("Loading")).toBeDefined();
+    expect(getByText("Cargando")).toBeDefined();
   });
 
   test("Deberia mostrar un mensaje de error si falla la llamada a la api", async () => {
