@@ -6,7 +6,7 @@ import { render } from "@testing-library/react";
 
 import { BrowserRouter } from "react-router-dom";
 
-describe("<Header/>", () => {
+describe("Header", () => {
 	test("debe renderizar el texto", () => {
 		const texto1 = /El auto que necesitas/i;
         const texto2 = /X/i;
