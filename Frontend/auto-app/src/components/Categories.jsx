@@ -10,7 +10,7 @@ export const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:808
 
 export default function BloqueCategoria() {
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [Cargado, setCargado] = useState(false);
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
@@ -18,11 +18,11 @@ export default function BloqueCategoria() {
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
+          setCargado(true);
           setCategorias(result);
         },
         (error) => {
-          setIsLoaded(true);
+          setCargado(true);
           setError(error);
         }
       )
@@ -30,7 +30,7 @@ export default function BloqueCategoria() {
 
   if (error) {
     return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  } else if (!Cargado) {
     return (
       <Loading />
     );

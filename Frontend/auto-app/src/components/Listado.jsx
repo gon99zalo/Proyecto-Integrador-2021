@@ -12,7 +12,7 @@ export default function Listado() {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const [ showText, setShowText ] = useState({show: false, idText: null});
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [Cargado, setCargado] = useState(false);
   const [productos, setProductos] = useState([]);
 
   const handlerShowText = (title) => {
@@ -44,10 +44,10 @@ export default function Listado() {
               }
             )
           })
-          setIsLoaded(true);
+          setCargado(true);
         },
         (error) => {
-          setIsLoaded(true);
+          setCargado(true);
           setError(error);
         }
       )
@@ -55,7 +55,7 @@ export default function Listado() {
 
   if (error) {
     return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  } else if (!Cargado) {
     return (
       <Loading />
     );
