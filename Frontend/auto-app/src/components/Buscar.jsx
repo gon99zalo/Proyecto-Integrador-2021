@@ -15,7 +15,7 @@ export default function Buscar(props) {
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
   const [ showText, setShowText ] = useState({show: false, idText: null});
   const [error, setError] = useState(null);
-  const [Cargado, setCargado] = useState(false);
+  const [cargado, setcargado] = useState(false);
   const [productos, setProductos] = useState([]);
   const params = useMemo(() => new URLSearchParams(window.location.search),[]);
 
@@ -32,10 +32,10 @@ export default function Buscar(props) {
       .then(
         (result) => {
           setProductos(result);
-          setCargado(true);
+          setcargado(true);
         },
         (error) => {
-          setCargado(true);
+          setcargado(true);
           setError(error);
         }
       )
@@ -71,7 +71,7 @@ export default function Buscar(props) {
       <div>Error: {error.message}</div>
       <Footer/>
     </>)
-  } else if (!Cargado) {
+  } else if (!cargado) {
     return (
     <>
       <Header/>
