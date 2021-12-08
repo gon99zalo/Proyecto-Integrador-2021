@@ -106,7 +106,7 @@ export default function ReservaUsuario(){
                         <p className="txt-1 reserva-location">
                             <i>{marker}</i> {item.producto.ciudad.nombre + ", " + item.producto.ciudad.pais}
                         </p>
-                        <Link to={"/productos/" + item.id}><button className="product-show-more btn-1">Ver Producto</button></Link>
+                        <Link to={"/productos/" + item.producto.id}><button className="product-show-more btn-1">Ver Producto</button></Link>
                     </div>
                 </div>
                 )
