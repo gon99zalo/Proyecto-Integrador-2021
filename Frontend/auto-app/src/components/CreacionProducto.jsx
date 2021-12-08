@@ -216,7 +216,7 @@ export default function CreacionProducto() {
 
   return (
     <>
-      <Header />
+      <Header administracion={true}/>
       <div className="commodity-header">
 
           <div className="commodity-header-titles">
