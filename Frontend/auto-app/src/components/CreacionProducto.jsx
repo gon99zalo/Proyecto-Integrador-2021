@@ -123,8 +123,9 @@ export default function CreacionProducto() {
     traerCiudades();
   }, []);
 
-  let infoUser = sessionStorage.getItem("infoUsuario");
+  let infoUser = JSON.parse(sessionStorage.getItem("infoUsuario"));
 
+  console.log(infoUser.rol);
   if (infoUser === null || infoUser.rol !==1) {
     history.push("/")
   }
