@@ -134,7 +134,7 @@ export default function CreacionProducto() {
     return(
     <div className="esqueleto-agregar-atributo">
               <div className="agregar-icono">
-                <div>
+                <div className="div-nombre-atributo">
                   <label htmlFor="nombre-atributo">Nombre</label>
                   <input
                     type="text"
@@ -143,12 +143,14 @@ export default function CreacionProducto() {
                     value={props.datos.nombre}
                     disabled
                   />
+                  </div>
+                  <div className="div-select-icono">
                   <label htmlFor="icono" >Icono</label>
                   <input type="text" name="icono" id="icono" defaultValue="fa-Wifi" value={props.datos.icono} disabled/>
-                  <i className="fas fa-times cruz" onClick={() => borrarAtributo(props.id)}></i>
                   {/* encontrar otro icono, este es el unico gratis */}
                 </div>
               </div>
+              <i className="fas fa-times cruz" onClick={() => borrarAtributo(props.id)}></i>
             </div>
     )
   } 
@@ -300,7 +302,8 @@ export default function CreacionProducto() {
                 <div className="div-select-icono">
                 <label htmlFor="icono" >Icono</label>
                   <select name="icono" id="icono" onChange={handleChangeAtributo} defaultValue="fa-car-side">
-                    <option value="fa-car-side" className="fa"> &#xf5e4; vehículo</option>
+                    <option value="fa-car-side" className="fa"> &#xf5e4; auto</option>
+                    <option value="fa-truck-pickup" className="fa"> &#xf63c; camioneta</option>
                     <option value="fa-bus" className="fa"> &#xf207; bus</option>
                     <option value="fa-motorcycle" className="fa"> &#xf21c; moto</option>
                     <option value="fa-gas-pump" className="fa"> &#xf52f; combustible</option>
@@ -308,12 +311,13 @@ export default function CreacionProducto() {
                     <option value="fa-clock" className="fa"> &#xf017; año</option>
                   </select>
                   </div>
-                <p className="campo-incompleto error-atributo">Por favor Complete los campos antes de agregarlos</p>
               </div>
               <div className="mas-agregar-atributo">
                   <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
                   </div>
             </div>
+            <p className="campo-incompleto error-atributo">Por favor Complete los campos antes de agregarlos</p>
+
             {/* {atributosArr} */}
             {objetoAtributo.map((objeto, index) => <Atributo datos={objeto} id={index} />)}
 
