@@ -28,12 +28,13 @@ export default function Listado() {
       .then(
         (result) => {
           let array = [];
-          while(array.length < 8 && array.length < result){
-            var r = Math.floor(Math.random() * result) + 1;
+          while(array.length < 8 && array.length < result.length){
+            var r = Math.floor(Math.random() * result.length) + 1;
             if(array.indexOf(r) === -1) array.push(r);
           }
+          console.log(array);
           array.forEach((i) => {
-            fetch(api + "/productos/buscar/" + i)
+            fetch(api + "/productos/buscar/" + result[i-1])
             .then(res => res.json())
             .then(
               (result) => {

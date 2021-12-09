@@ -19,7 +19,10 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     @Query("FROM Producto p WHERE p.nombre like %:nombre%")
     Optional<Producto> findByNombre(String nombre);
 
-    @Query("SELECT COUNT(u) FROM Producto u")
-    Integer cantProductos();
+    @Query("SELECT p.id FROM Producto p")
+    List<Long> cantProductos();
+
+    @Query("SELECT DISTINCT p.id FROM Producto p WHERE p.id NOT IN (SELECT DISTINCT r.producto.id FROM Reserva r WHERE r.usuario.id = ?1)")
+    List<Long> cantProductosUsuario(Long usuarioId);
 
 }
