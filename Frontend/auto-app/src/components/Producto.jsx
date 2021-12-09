@@ -11,7 +11,7 @@ import "../styles/producto.css";
 import "../styles/CalendarProducto.css";
 // Íconos
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faStar, faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 // Calendario
 import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -32,7 +32,6 @@ export default function Producto(props) {
   const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
   const nextArrow = <FontAwesomeIcon icon={faChevronRight} />;
   const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
-  const star = <FontAwesomeIcon icon={faStar} />;
   registerLocale("es", es);
   const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
   const [width, setwidth] = useState ({ width: window.screen.availWidth });
@@ -65,19 +64,6 @@ const fechasSinReservar = (date) => {
   // le hago format abajo para que haga match con el formato de las fechas que están en el arrayDeFechasReservadas
   return !arrayDeFechasReservadas.includes(format(date, 'dd/MM/yyyy'));
 };
-  const qualificationText = (qualification) => {
-    if(qualification >= 1 && qualification <= 2.5) {
-      return "Muy malo";
-    } else if(qualification > 2.5 && qualification <= 5) {
-      return "Malo";
-    } else if(qualification > 5 && qualification <= 7.5) {
-      return "Bueno";
-    } else if(qualification > 7.5 && qualification <= 10) {
-      return "Muy bueno";
-    } else {
-      return "Sin Calificación";
-    };
-  };
 
 // Estilo de días
 const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefined;
@@ -282,20 +268,6 @@ const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefi
                 <p> {producto.ciudad.nombre + ", " + producto.ciudad.pais}</p>
                 <p> A 100mt del Barrio Los Rosales</p>
               </div>
-            </div>
-            
-            <div className="commodity-ranking-description">
-              <div className="commodity-rank">
-                <p className="txt-1">{qualificationText(7)}</p>
-                <div>
-                  <i>{star}</i>
-                  <i>{star}</i>
-                  <i>{star}</i>
-                  <i>{star}</i>
-                  <i>{star}</i>
-                </div>
-              </div>
-              <span>{7}</span>
             </div>
           </div>
         </div>
