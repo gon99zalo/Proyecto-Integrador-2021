@@ -243,16 +243,16 @@ export default function CreacionProducto() {
           <div className="inputs-crear-auto">
             <div className="inputs-pegados">
               <div>
-                <label htmlFor="nombre">Nombre del auto</label>
+                <label htmlFor="nombre">Nombre del vehículo</label>
                 <input type="text" name="nombre" id="nombre-auto" placeholder="Audi A5" />
 
-                <label htmlFor="direccion">Direccion</label>
+                <label htmlFor="direccion">Dirección</label>
                 <input type="text" name="direccion" id="direccion" placeholder="Aráoz 2885" />
               </div>
 
               <div>
-                <label htmlFor="categoria">Categoria</label>
-                <select defaultValue="Categoria" name="categoria" id="categoria" onChange={handleChangeCategoria}>
+                <label htmlFor="categoria">Categoría</label>
+                <select defaultValue="Categoría" name="categoria" id="categoria" onChange={handleChangeCategoria}>
                   <option value="Categoria" disabled>
                     Categoría
                   </option>
@@ -300,12 +300,12 @@ export default function CreacionProducto() {
                 <div className="div-select-icono">
                 <label htmlFor="icono" >Icono</label>
                   <select name="icono" id="icono" onChange={handleChangeAtributo} defaultValue="fa-car-side">
-                    <option value="fa-car-side" className="fa"> &#xf5e4; vehículo</option>
-                    <option value="fa-bus" className="fa"> &#xf207; bus</option>
-                    <option value="fa-motorcycle" className="fa"> &#xf21c; moto</option>
-                    <option value="fa-gas-pump" className="fa"> &#xf52f; combustible</option>
-                    <option value="fa-users" className="fa"> &#xf0c0; capacidad</option>
-                    <option value="fa-clock" className="fa"> &#xf017; año</option>
+                    <option value="fa-car-side" className="fa"> &#xf5e4; Vehículo</option>
+                    <option value="fa-bus" className="fa"> &#xf207; Bus</option>
+                    <option value="fa-motorcycle" className="fa"> &#xf21c; Moto</option>
+                    <option value="fa-gas-pump" className="fa"> &#xf52f; Combustible</option>
+                    <option value="fa-users" className="fa"> &#xf0c0; Capacidad</option>
+                    <option value="fa-clock" className="fa"> &#xf017; Año</option>
                   </select>
                   </div>
                 <p className="campo-incompleto error-atributo">Por favor Complete los campos antes de agregarlos</p>
@@ -321,7 +321,7 @@ export default function CreacionProducto() {
             <div className="esqueleto-politicas">
               <div className="politicas">
                 <div>
-                  <h2>Normas del auto</h2>
+                  <h2>Normas del producto</h2>
                   <label htmlFor="descripcion-normas">Descripción</label>
                   <textarea
                     name="descripcion-normas"
@@ -360,7 +360,7 @@ export default function CreacionProducto() {
                   <input type="text" name="cargar-imagen" id="cargar-imagen" placeholder="insertar https://" onChange={handleChangeImagen} />
                   <i className="fas fa-plus-square mas" onClick={nuevaImagen}></i>
                 </div>
-                <p className="campo-incompleto error-imagen">Por favor complete el campo antes de agregaro</p>
+                <p className="campo-incompleto error-imagen">Por favor complete el campo antes de agregarlo</p>
               </div>
             </div>
             {objetoImagen.map((objeto, index) => <Imagen datos={objeto} id={index} />)}
