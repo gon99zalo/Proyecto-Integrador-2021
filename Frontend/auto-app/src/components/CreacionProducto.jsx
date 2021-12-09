@@ -243,16 +243,16 @@ export default function CreacionProducto() {
           <div className="inputs-crear-auto">
             <div className="inputs-pegados">
               <div>
-                <label htmlFor="nombre">Nombre del auto</label>
+                <label htmlFor="nombre">Nombre del vehículo</label>
                 <input type="text" name="nombre" id="nombre-auto" placeholder="Audi A5" />
 
-                <label htmlFor="direccion">Direccion</label>
+                <label htmlFor="direccion">Dirección</label>
                 <input type="text" name="direccion" id="direccion" placeholder="Aráoz 2885" />
               </div>
 
               <div>
-                <label htmlFor="categoria">Categoria</label>
-                <select defaultValue="Categoria" name="categoria" id="categoria" onChange={handleChangeCategoria}>
+                <label htmlFor="categoria">Categoría</label>
+                <select defaultValue="Categoría" name="categoria" id="categoria" onChange={handleChangeCategoria}>
                   <option value="Categoria" disabled>
                     Categoría
                   </option>
