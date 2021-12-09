@@ -40,7 +40,9 @@ public class ProductoService {
 
     public List<Producto> listarPorCiudad(String nombre) { return productoRepository.findAllByCiudadNombre(nombre);}
 
-    public Integer cantProductos() { return productoRepository.cantProductos(); }
+    public List<Long> cantProductos() { return productoRepository.cantProductos(); }
+
+    public List<Long> cantProductosUsuario(Long usuarioId) { return productoRepository.cantProductosUsuario(usuarioId); }
 
     }
 
