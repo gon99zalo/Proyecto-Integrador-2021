@@ -245,16 +245,16 @@ export default function CreacionProducto() {
           <div className="inputs-crear-auto">
             <div className="inputs-pegados">
               <div>
-                <label htmlFor="nombre">Nombre del auto</label>
+                <label htmlFor="nombre">Nombre del vehículo</label>
                 <input type="text" name="nombre" id="nombre-auto" placeholder="Audi A5" />
 
-                <label htmlFor="direccion">Direccion</label>
+                <label htmlFor="direccion">Dirección</label>
                 <input type="text" name="direccion" id="direccion" placeholder="Aráoz 2885" />
               </div>
 
               <div>
-                <label htmlFor="categoria">Categoria</label>
-                <select defaultValue="Categoria" name="categoria" id="categoria" onChange={handleChangeCategoria}>
+                <label htmlFor="categoria">Categoría</label>
+                <select defaultValue="Categoría" name="categoria" id="categoria" onChange={handleChangeCategoria}>
                   <option value="Categoria" disabled>
                     Categoría
                   </option>
@@ -325,7 +325,7 @@ export default function CreacionProducto() {
             <div className="esqueleto-politicas">
               <div className="politicas">
                 <div>
-                  <h2>Normas del auto</h2>
+                  <h2>Normas del producto</h2>
                   <label htmlFor="descripcion-normas">Descripción</label>
                   <textarea
                     name="descripcion-normas"
@@ -364,7 +364,7 @@ export default function CreacionProducto() {
                   <input type="text" name="cargar-imagen" id="cargar-imagen" placeholder="insertar https://" onChange={handleChangeImagen} />
                   <i className="fas fa-plus-square mas" onClick={nuevaImagen}></i>
                 </div>
-                <p className="campo-incompleto error-imagen">Por favor complete el campo antes de agregaro</p>
+                <p className="campo-incompleto error-imagen">Por favor complete el campo antes de agregarlo</p>
               </div>
             </div>
             {objetoImagen.map((objeto, index) => <Imagen datos={objeto} id={index} />)}
