@@ -228,7 +228,7 @@ export default function CreacionProducto() {
 
           <div className="commodity-header-titles">
             <div>
-              <h1>Administración de producto</h1>
+              <h1>Administración de productos</h1>
             </div>
             <i className="back-arrow"><a href="/">{backArrow}</a></i>
           </div>
@@ -308,9 +308,11 @@ export default function CreacionProducto() {
                     <option value="fa-clock" className="fa"> &#xf017; Año</option>
                   </select>
                   </div>
-                  <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
-                <p className="campo-incompleto error-atributo">Por favor complete los campos antes de agregarlos</p>
+                <p className="campo-incompleto error-atributo">Por favor Complete los campos antes de agregarlos</p>
               </div>
+              <div className="mas-agregar-atributo">
+                  <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
+                  </div>
             </div>
             {/* {atributosArr} */}
             {objetoAtributo.map((objeto, index) => <Atributo datos={objeto} id={index} />)}
