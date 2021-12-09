@@ -82,7 +82,9 @@ a {
 }
 
 .crearCuenta,
-.iniciarSesion:hover {
+.iniciarSesion,
+.reservas,
+.administracion:hover {
   cursor:pointer;
 }
 
@@ -146,7 +148,9 @@ a {
   
 
 .crearCuenta,
-.iniciarSesion:hover {
+.iniciarSesion,
+.reservas,
+.administracion:hover {
   cursor:pointer;
 }
 
