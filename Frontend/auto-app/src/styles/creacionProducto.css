@@ -178,6 +178,9 @@ textarea {
 .cruz {
   color: white;
   background-color: var(--three-color);
+  margin-top: 10px;
+  margin-right: 15px;
+  border-radius: 5px;
 }
 
 .fa-plus-square:hover {
@@ -314,6 +317,10 @@ textarea {
       margin-right: 30px;
     }
 
+    .cruz {
+      margin-right: 32px;
+    }
+
   }
 
 @media screen and (max-width: 480px) {
@@ -356,6 +363,10 @@ textarea {
 
   .mas-agregar-atributo {
     margin-right: 30px;
+  }
+
+  .cruz {
+    margin-right: 32px;
   }
 }
 
