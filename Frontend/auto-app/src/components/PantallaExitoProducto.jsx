@@ -26,7 +26,7 @@ export default function PantallaExitoProducto() {
             />
           </svg>
           <h1>¡Muchas Gracias!</h1>
-          <h2>El registro del producto se ha realizado con éxito</h2>
+          <h2>Creación de producto exitosa</h2>
           <button onClick={cerrarVentana} className="btn-2">OK</button>
         </div>
       </div>
