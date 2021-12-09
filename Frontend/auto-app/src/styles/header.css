@@ -47,6 +47,15 @@ a {
     height: 50px;
   }
 
+.inputs-header-logged {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  gap: 10px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
 .inputs-header {
   display: flex;
   flex-direction: row;
@@ -55,8 +64,15 @@ a {
   margin-right: 20px;
 }
 
+.user-info{
+  display: flex;
+  margin-bottom: 12px;
+}
+
 .crearCuenta,
-.iniciarSesion {
+.iniciarSesion,
+.reservas,
+.administracion {
   height: 35px;
   background-color: white;
   border-color: rgba(240, 87, 45, 1);
@@ -221,6 +237,11 @@ a {
 @media screen and (min-width: 480px) and (max-width:  768px){
   .slogan{
     display: none;
+  }
+
+  .reservas,
+  .administracion{
+    padding: 5px 10px;
   }
 }
 

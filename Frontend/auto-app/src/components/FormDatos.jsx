@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 import "../styles/formDatos.css";
 
 export default function FormDatos(props) {
@@ -6,9 +7,13 @@ export default function FormDatos(props) {
   // const infoUsuario = JSON.parse(localStorage.getItem("infoUsuario"));
   const [selectedOption, setSelectedOption] = useState(null)
 
+  const history = useHistory();
   console.log(selectedOption);
 
   let datosDeUsuario = sessionStorage.getItem("infoUsuario")
+  if(datosDeUsuario === null){
+    history.push("/")
+  }
   let datosDeUsuarioParseado = JSON.parse(datosDeUsuario)
 
   let ciudadElegida = ""
@@ -20,6 +25,7 @@ export default function FormDatos(props) {
 
   return (
     <>
+        {datosDeUsuario != null ? 
         <form className="form-datosUsuario" action="">
           <div className="inputs-formDatosUsuario">
             <div>
@@ -38,7 +44,7 @@ export default function FormDatos(props) {
               <input type="text" id="ciudad" required onChange={handleCiudad}/>
             </div>
           </div>
-        </form>
+        </form> : ""}
     </>
   );
 };

@@ -5,6 +5,9 @@ import { api } from "./Buscador";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2";
+import "../styles/producto.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft} from "@fortawesome/free-solid-svg-icons";
 
 export default function CreacionProducto() {
   const history = useHistory();
@@ -20,6 +23,7 @@ export default function CreacionProducto() {
   // const [nombreImagen, setNombreImagen] = useState(null)
   const [objetoAtributo, setObjetoAtributo] = useState([])
   const [objetoImagen, setObjetoImagen] = useState([])
+  const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
 
   const traerCiudades = () => {
     let config = {
@@ -36,7 +40,6 @@ export default function CreacionProducto() {
   };
 
   let ciudadElegida = "buenos aires";
-// revisar porque cambia después del segundo cambio en el select
   const handleCangeCiudad = () => {
     ciudadElegida = document.querySelector("#ciudad").value
     setCiudadId(ciudadElegida);
@@ -44,7 +47,6 @@ export default function CreacionProducto() {
   };
 
   let categoriaElegida = "autos";
-// revisar porque cambia después del segundo cambio en el select
   const handleChangeCategoria = () => {
     categoriaElegida = document.querySelector("#categoria").value
     setCategoriaId(categoriaElegida);
@@ -53,6 +55,13 @@ export default function CreacionProducto() {
 
   const handlerSubmit = (e) => {
     e.preventDefault()
+
+    const nombreAuto = document.querySelector("#nombre-auto").value
+    const ciudad = document.querySelector("#ciudad").value
+    const categoria = document.querySelector("#categoria").value
+    const direccion = document.querySelector("#direccion").value
+    const descripcion = document.querySelector("#descripcion").value
+    const politics = document.querySelector(".politics").value
 
     let datosDeUsuario = sessionStorage.getItem("infoUsuario");
     let datosDeUsuarioParseado = JSON.parse(datosDeUsuario);
@@ -63,10 +72,7 @@ export default function CreacionProducto() {
       categoria: {id: categoriaId},
       ciudad: {id: ciudadId},
       imagenes: [...objetoImagen],
-      caracteristicas: [{
-        nombre: document.querySelector("#nombre-atributo").value,
-        icono: document.querySelector("#icono").value
-      }],
+      caracteristicas: [...objetoAtributo],
     }
 
     let configPost = {
@@ -77,7 +83,21 @@ export default function CreacionProducto() {
         Authorization: datosDeUsuarioParseado.token,
       },
     };
-
+    
+    if(nombreAuto === null || ciudad === null || direccion === null || categoria === null || descripcion === null || objetoAtributo.length === 0 || politics === null || objetoImagen.length === 0){
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Completar todos los datos por favor",
+      })
+    }else if (objetoImagen.length <5){
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debe agregar al menos 5 imágenes",
+      })
+    }
+    else{
     fetch(api + "/productos", configPost)
       .then((data) => {console.log(data)
       return data.status === 200 ? history.push("/administracion/exito") : Swal.fire({
@@ -88,7 +108,7 @@ export default function CreacionProducto() {
       })
       .catch((error) => {console.log(error)});
   };
-
+  }
   useEffect(() => {
     fetch(api + "/categorias/todos")
       .then(res => res.json())
@@ -103,6 +123,13 @@ export default function CreacionProducto() {
     traerCiudades();
   }, []);
 
+  let infoUser = JSON.parse(sessionStorage.getItem("infoUsuario"));
+
+  console.log(infoUser.rol);
+  if (infoUser === null || infoUser.rol !==1) {
+    history.push("/")
+  }
+
   function Atributo(props) {
     return(
     <div className="esqueleto-agregar-atributo">
@@ -113,11 +140,11 @@ export default function CreacionProducto() {
                     type="text"
                     name="nombre-atributo"
                     id="nombre-atributo"
-                    value={props.datos.nombreAtributo}
+                    value={props.datos.nombre}
                     disabled
                   />
                   <label htmlFor="icono" >Icono</label>
-                  <input type="text" name="icono" id="icono" defaultValue="fa-Wifi" value={props.datos.iconoElegido} disabled/>
+                  <input type="text" name="icono" id="icono" defaultValue="fa-Wifi" value={props.datos.icono} disabled/>
                   <i className="fas fa-times cruz" onClick={() => borrarAtributo(props.id)}></i>
                   {/* encontrar otro icono, este es el unico gratis */}
                 </div>
@@ -133,11 +160,18 @@ export default function CreacionProducto() {
   };
 
   const nuevoAtributo = () => {
+    const errorIncompleto = document.querySelector(".error-atributo")
+    if(iconoElegido.length === 0 || nombreAtributo.length === 0){
+      errorIncompleto.classList.add("mostrar-campo-incompleto")
+    }else{
+      errorIncompleto.classList.remove("mostrar-campo-incompleto")
     setAtributosArr([...atributosArr, <Atributo key={[atributosArr.length]} id={atributosArr.length} />])
     setObjetoAtributo([...objetoAtributo, {
-      nombreAtributo: nombreAtributo,
-      iconoElegido: iconoElegido
+      nombre: nombreAtributo,
+      icono: iconoElegido
     }])
+
+  }
   } 
 
   const borrarAtributo = (id) => {
@@ -165,6 +199,11 @@ export default function CreacionProducto() {
   };
 
   const nuevaImagen = () => {
+    const errorIncompleto = document.querySelector(".error-imagen")
+    if(imagen.length === 0){
+      errorIncompleto.classList.add("mostrar-campo-incompleto")
+    }else{
+      errorIncompleto.classList.remove("mostrar-campo-incompleto")
     setImagen(imagen)
     setImagenesArr([...imagenesArr, <Imagen key={[imagenesArr.length]} />])
     let nombreAuto = document.querySelector("#nombre-auto").value
@@ -173,6 +212,7 @@ export default function CreacionProducto() {
       titulo: nombreAuto + " " + objetoImagen.length,
       url: imagen,
     }])
+    }
   } 
 
   const borrarImagen = (id) => {
@@ -183,11 +223,20 @@ export default function CreacionProducto() {
 
   return (
     <>
-      <Header />
+      <Header administracion={true}/>
+      <div className="commodity-header">
+
+          <div className="commodity-header-titles">
+            <div>
+              <h1>Administración de productos</h1>
+            </div>
+            <i className="back-arrow"><a href="/">{backArrow}</a></i>
+          </div>
+        </div>
 
       <div className="esqueleto-pagina">
         <div className="titulo">
-          <h1>Crear auto</h1>
+          <h1>Crear producto</h1>
         </div>
 
         <form className="form-crear-auto" onSubmit={handlerSubmit}>
@@ -203,9 +252,9 @@ export default function CreacionProducto() {
 
               <div>
                 <label htmlFor="categoria">Categoria</label>
-                <select defaultValue="Auto" name="categoria" id="categoria" onChange={handleChangeCategoria}>
-                  <option value="Auto" disabled>
-                    Auto
+                <select defaultValue="Categoria" name="categoria" id="categoria" onChange={handleChangeCategoria}>
+                  <option value="Categoria" disabled>
+                    Categoría
                   </option>
                   {categorias.map((categoria) => (
                     <option value={categoria.id}>{categoria.titulo}</option>
@@ -238,28 +287,32 @@ export default function CreacionProducto() {
             <h2>Agregar atributos</h2>
             <div className="esqueleto-agregar-atributo">
               <div className="agregar-icono">
-                <div>
+                <div className="div-nombre-atributo">
                   <label htmlFor="nombre-atributo">Nombre</label>
                   <input
                     type="text"
                     name="nombre-atributo"
                     id="nombre-atributo"
-                    placeholder="Wifi"
+                    placeholder="vehículo"
                     onChange={handleChangeAtributo}
                   />
-                  <label htmlFor="icono" >Icono</label>
-                  <select name="icono" id="icono" onChange={handleChangeAtributo} defaultValue="fa-Wifi">
-                    <option value="fa-Wifi" disabled>fa-Wifi</option>
-                    <option value="fa-car-side">fa-car-side</option>
-                    <option value="fa-bus">fa-bus</option>
-                    <option value="fa-motorcycle">fa-motorcycle</option>
-                    <option value="fa-gas-pump">fa-gas-pump</option>
-                    <option value="fa-users">fa-users</option>
-                    <option value="fa-clock">fa-clock</option>
-                  </select>
-                  <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
                 </div>
+                <div className="div-select-icono">
+                <label htmlFor="icono" >Icono</label>
+                  <select name="icono" id="icono" onChange={handleChangeAtributo} defaultValue="fa-car-side">
+                    <option value="fa-car-side" className="fa"> &#xf5e4; vehículo</option>
+                    <option value="fa-bus" className="fa"> &#xf207; bus</option>
+                    <option value="fa-motorcycle" className="fa"> &#xf21c; moto</option>
+                    <option value="fa-gas-pump" className="fa"> &#xf52f; combustible</option>
+                    <option value="fa-users" className="fa"> &#xf0c0; capacidad</option>
+                    <option value="fa-clock" className="fa"> &#xf017; año</option>
+                  </select>
+                  </div>
+                <p className="campo-incompleto error-atributo">Por favor Complete los campos antes de agregarlos</p>
               </div>
+              <div className="mas-agregar-atributo">
+                  <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
+                  </div>
             </div>
             {/* {atributosArr} */}
             {objetoAtributo.map((objeto, index) => <Atributo datos={objeto} id={index} />)}
@@ -307,6 +360,7 @@ export default function CreacionProducto() {
                   <input type="text" name="cargar-imagen" id="cargar-imagen" placeholder="insertar https://" onChange={handleChangeImagen} />
                   <i className="fas fa-plus-square mas" onClick={nuevaImagen}></i>
                 </div>
+                <p className="campo-incompleto error-imagen">Por favor complete el campo antes de agregaro</p>
               </div>
             </div>
             {objetoImagen.map((objeto, index) => <Imagen datos={objeto} id={index} />)}
