@@ -5,7 +5,7 @@ import Header from "./Header";
 import { api } from "./Buscador";
 import Loading from "./Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faCalendarAlt, faClock } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faCalendarAlt, faClock, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "../styles/ReservasUsuario.css";
 
@@ -20,6 +20,7 @@ export default function ReservaUsuario(){
     const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
     const calendar = <FontAwesomeIcon icon={faCalendarAlt} />;
     const clock = <FontAwesomeIcon icon={faClock} />;
+    const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
 
     if(sessionStorage.getItem("infoUsuario")== null){
         history.push("/")
@@ -64,6 +65,16 @@ export default function ReservaUsuario(){
         return (
           <>
             <Header reservas={true}/>
+            <div className="commodity-container">
+                <div className="commodity-header">
+                    <div className="commodity-header-titles">
+                        <div>
+                            <h1>Mis Reservas</h1>
+                        </div>
+                        <i className="back-arrow"><a href="/">{backArrow}</a></i>
+                    </div>
+                </div>
+            </div>
             <div>Error: {error.message}</div>
             <Footer />
           </>
@@ -72,6 +83,16 @@ export default function ReservaUsuario(){
         return (
           <>
             <Header reservas={true}/>
+            <div className="commodity-container">
+                <div className="commodity-header">
+                    <div className="commodity-header-titles">
+                        <div>
+                            <h1>Mis Reservas</h1>
+                        </div>
+                        <i className="back-arrow"><a href="/">{backArrow}</a></i>
+                    </div>
+                </div>
+            </div>
             <Loading />
             <Footer />
           </>
@@ -80,12 +101,23 @@ export default function ReservaUsuario(){
         return(
             <>
             <Header reservas={true}/>
+            <div className="commodity-container">
+
+                <div className="commodity-header">
+
+                    <div className="commodity-header-titles">
+                        <div>
+                            <h1>Mis Reservas</h1>
+                        </div>
+                        <i className="back-arrow"><a href="/">{backArrow}</a></i>
+            
+                    </div>
+                </div>
+            </div>
 
             
             <div className="reserva">
-            <br />
-            <h1>Mis Reservas</h1>
-            <br />
+                <br />
             <div className="reserva-container">
             {reservas.length === 0 ?
             <h1>No hiciste ninguna reserva todavia</h1>
