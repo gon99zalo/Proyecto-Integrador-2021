@@ -123,6 +123,12 @@ export default function CreacionProducto() {
     traerCiudades();
   }, []);
 
+  let infoUser = sessionStorage.getItem("infoUsuario");
+
+  if (infoUser === null || infoUser.rol !==1) {
+    history.push("/")
+  }
+
   function Atributo(props) {
     return(
     <div className="esqueleto-agregar-atributo">
