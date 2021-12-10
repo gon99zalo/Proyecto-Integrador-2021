@@ -5,9 +5,10 @@ import Header from "./Header";
 import { api } from "./Buscador";
 import Loading from "./Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faCalendarAlt, faClock } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faCalendarAlt, faClock, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "../styles/ReservasUsuario.css";
+import Swal from "sweetalert2";
 
 
 export default function ReservaUsuario(){
@@ -20,6 +21,7 @@ export default function ReservaUsuario(){
     const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
     const calendar = <FontAwesomeIcon icon={faCalendarAlt} />;
     const clock = <FontAwesomeIcon icon={faClock} />;
+    const backArrow = <FontAwesomeIcon icon={faChevronLeft} />;
 
     if(sessionStorage.getItem("infoUsuario")== null){
         history.push("/")
@@ -50,8 +52,10 @@ export default function ReservaUsuario(){
         fetch(api + "/reservas/usuario/" + idUsuario, configPost)
         .then(res =>res.json())
         .then((result) =>{
-                setcargado(true);
-                setReservas(result);
+                setcargado(true);              
+                if (result.status !== 403) {
+                    setReservas(result);
+                }
             },
             (error)=>{
                 setError(error);
@@ -64,6 +68,16 @@ export default function ReservaUsuario(){
         return (
           <>
             <Header reservas={true}/>
+            <div className="commodity-container">
+                <div className="commodity-header">
+                    <div className="commodity-header-titles">
+                        <div>
+                            <h1>Mis Reservas</h1>
+                        </div>
+                        <i className="back-arrow"><a href="/">{backArrow}</a></i>
+                    </div>
+                </div>
+            </div>
             <div>Error: {error.message}</div>
             <Footer />
           </>
@@ -72,6 +86,16 @@ export default function ReservaUsuario(){
         return (
           <>
             <Header reservas={true}/>
+            <div className="commodity-container">
+                <div className="commodity-header">
+                    <div className="commodity-header-titles">
+                        <div>
+                            <h1>Mis Reservas</h1>
+                        </div>
+                        <i className="back-arrow"><a href="/">{backArrow}</a></i>
+                    </div>
+                </div>
+            </div>
             <Loading />
             <Footer />
           </>
@@ -80,20 +104,40 @@ export default function ReservaUsuario(){
         return(
             <>
             <Header reservas={true}/>
+            <div className="commodity-container">
+
+                <div className="commodity-header">
+
+                    <div className="commodity-header-titles">
+                        <div>
+                            <h1>Mis Reservas</h1>
+                        </div>
+                        <i className="back-arrow"><a href="/">{backArrow}</a></i>
+            
+                    </div>
+                </div>
+            </div>
 
             
             <div className="reserva">
-            <br />
-            <h1>Mis Reservas</h1>
-            <br />
+                <br />
             <div className="reserva-container">
             {reservas.length === 0 ?
-            <h1>No hiciste ninguna reserva todavia</h1>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Todavia no realizaste ninguna reserva...',
+                showConfirmButton: false,
+                footer: '<a href="/" >Volve cuando hayas realizado una reserva</a>'
+              })
             : (reservas.map((item, i) => {
                 return(
-                <div className="reserva-card" key={i}>
-                    <div className="reserva-data">
-                        <div className="reserva-star-rating">
+                <div className="product-card" key={i}>
+                    <div className="product-image">
+                        <img className="product" src={item.producto.imagenes[0].url} alt={item.producto.imagenes[0].titulo} />
+                    </div>
+                    <div className="product-data">
+                        <div className="product-star-rating">
                             <h4>{item.producto.categoria.titulo}</h4>
                         </div>
                         <h1>{item.producto.nombre}</h1>
@@ -103,9 +147,19 @@ export default function ReservaUsuario(){
                         <p className="txt-1">
                             <i>{calendar}</i> {item.fechaInicial.split("-")[2] + "/" + item.fechaInicial.split("-")[1] + "/" + item.fechaInicial.split("-")[0] + " - " + item.fechaFinal.split("-")[2] + "/" + item.fechaFinal.split("-")[1] + "/" + item.fechaFinal.split("-")[0]}
                         </p>
-                        <p className="txt-1 reserva-location">
+                        <p className="txt-1 product-location">
                             <i>{marker}</i> {item.producto.ciudad.nombre + ", " + item.producto.ciudad.pais}
                         </p>
+                        <div className="product-features">
+                            {item.caracteristicas.map(caract => {
+                                return (
+                                <div className="product-feature">
+                                    <i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong>
+                                </div>
+                                )
+                            })}
+                        </div>
+                        <br />
                         <Link to={"/productos/" + item.producto.id}><button className="product-show-more btn-1">Ver Producto</button></Link>
                     </div>
                 </div>
