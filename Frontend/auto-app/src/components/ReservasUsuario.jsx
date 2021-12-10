@@ -142,9 +142,13 @@ export default function ReservaUsuario(){
                             <i>{marker}</i> {item.producto.ciudad.nombre + ", " + item.producto.ciudad.pais}
                         </p>
                         <div className="product-features">
-                        {item.producto.caracteristicas.map(caract => {
-                            return <><i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
-                        })}
+                            {item.caracteristicas.map(caract => {
+                                return (
+                                <div className="product-feature">
+                                    <i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong>
+                                </div>
+                                )
+                            })}
                         </div>
                         <br />
                         <Link to={"/productos/" + item.producto.id}><button className="product-show-more btn-1">Ver Producto</button></Link>
