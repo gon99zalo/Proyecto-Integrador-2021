@@ -15,7 +15,6 @@ export default function ReservaUsuario(){
     
     const [error, setError] = useState(null);
     const [cargado, setcargado] = useState(false);
-    const [sinReservas, setSinReservas] = useState(false);
     const [reservas, setReservas] =useState([])
 
     const history = useHistory();
@@ -53,13 +52,24 @@ export default function ReservaUsuario(){
         fetch(api + "/reservas/usuario/" + idUsuario, configPost)
         .then(res =>res.json())
         .then((result) =>{
+                if(result.length === 0){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Todavia no realizaste ninguna reserva...',
+                        showConfirmButton: false,
+                        footer: '<a href="/" >Volve cuando hayas realizado una reserva</a>'
+                      })
+                    }
                 setReservas(result);
+                setcargado(true)
             },
             (error)=>{
                 setError(error);
+                setcargado(true)
+                console.log(error);
             }
-        ).then(reservas.length !== 0 || setSinReservas(true))
-        .then(setcargado(true))
+        )
     },[reservas.length])
     
     if (error) {
@@ -120,15 +130,8 @@ export default function ReservaUsuario(){
             <div className="reserva">
                 <br />
             <div className="reserva-container">
-            {sinReservas ?
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Todavia no realizaste ninguna reserva...',
-                showConfirmButton: false,
-                footer: '<a href="/" >Volve cuando hayas realizado una reserva</a>'
-              })
-            : (reservas.map((item, i) => {
+            {console.log(reservas.length)}
+            {(reservas.map((item, i) => {
                 return(
                 <div className="product-card" key={i}>
                     <div className="product-image">
