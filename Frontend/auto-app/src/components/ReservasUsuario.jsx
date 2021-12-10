@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faCalendarAlt, faClock, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "../styles/ReservasUsuario.css";
+import Swal from "sweetalert2";
 
 
 export default function ReservaUsuario(){
@@ -51,8 +52,10 @@ export default function ReservaUsuario(){
         fetch(api + "/reservas/usuario/" + idUsuario, configPost)
         .then(res =>res.json())
         .then((result) =>{
-                setcargado(true);
-                setReservas(result);
+                setcargado(true);              
+                if (result.status !== 403) {
+                    setReservas(result);
+                }
             },
             (error)=>{
                 setError(error);
@@ -120,7 +123,13 @@ export default function ReservaUsuario(){
                 <br />
             <div className="reserva-container">
             {reservas.length === 0 ?
-            <h1>No hiciste ninguna reserva todavia</h1>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Todavia no realizaste ninguna reserva...',
+                showConfirmButton: false,
+                footer: '<a href="/" >Volve cuando hayas realizado una reserva</a>'
+              })
             : (reservas.map((item, i) => {
                 return(
                 <div className="product-card" key={i}>
