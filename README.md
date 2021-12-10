@@ -1,9 +1,9 @@
 # Certified Tech Dev - Proyecto Integrador
 
 # INTEGRANTES
--Brenda Calzada
--Fernando Castillo
--Jorge Corredor
+>-Brenda Calzada
+>-Fernando Castillo
+>-Jorge Corredor
 -Joan Gonzalez
 -Santino Lamberti
 -Gonzalo Sibona
@@ -21,6 +21,29 @@
 -Gitlab
 -Amazon Web Services
 -Swagger
+-JsonWebToken
+
+# SCRIPT
+Pasos para poder correr el proyecto:
+-git clone https://gitlab.com/proyecto-integrador-0321/camada-4/grupo-3.git
+-cd grupo-3
+
+Front-end
+-cd Frontend/auto-app
+-npm install
+-npm start
+
+Back-end
+-cd Backend/Proyecto.Integrador.Grupo3
+-mvn clean
+-mvn package
+-cd target
+-java -jar Proyecto.Integrador-0.0.1-SNAPSHOT.jar
+
+Testing
+Para correr todos los tests ejecutamos: npm run test.
+Coverage: npm test -- --coverage --watchAll
+
 
 # USO
 El proyecto consiste en una  página web con el fin de reservar autos por fecha en determinada ciudad. Lo primero que debemos hacer es dirigirnos al siguiente link: http://www.digitalcars.com.s3-website.us-east-2.amazonaws.com/. Para esto, incluímos un sistema de filtro basado en fechas y en ciudades. Una vez que filtramos, podemos elegir la opción que más nos guste. Lo bueno de los filtros es que también sacan los autos que ya están reservados en las fechas que seleccionaste. Una vez encontrado el producto, dandole click en "Ver detalle", nos llevara a la página del producto donde podremos encontrar su información, los detalles, como cuantas personas entran e incluso las políticas del mismo. También nos aparecerá un mapa con las fechas en las que el vehículo ya está reservado y un mapa de la ciudad en la que se encuentra. Una vez que estemos seguros del prodcuto, podremos darle al botón de "iniciar reserva", el cual nos redirigirá a la página para completar los datos y hacer la reserva o en caso de no estar logueado te pedirá que inices sesión o de registrarse si no cuentas con una cuenta ya creada, ya que no es posible hacer una reserva si no estamos con la sesión inciada. Cuando estamos en la página de reserva, nos aparecerán 4 campos, 3 ya rellenados con la info dada al registrarte y otro para rellenar que es la ciudad en la que está actualmente. Además abajo tendrá un calendario a su disposición para seleccionar el rango de fechas en el que va a solicitar la reserva del auto y por último un campo de selección, donde tendremos que elegir el horario en el que queremos que esté disponible el vehículo. Si todo está correcto, su reserva se creará exitosamente y le aparecerá un cartel de éxito, que al clickear el boton de confirmar, lo llevará a la página principal, donde en la esquina superior derecha podrá ver un botón que dice "mis reservas" y podrá visualizar ahí las mismas. Es obligatorio llenar todos los campos, sino no podrá hacer la reserva.
