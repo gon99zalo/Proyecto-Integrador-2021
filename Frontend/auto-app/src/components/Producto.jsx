@@ -266,7 +266,6 @@ const buscadorDayStyle = (date) => getDate(date) ? "producto-day-style" : undefi
               <i>{marker}</i>
               <div className="texto-locacion">
                 <p> {producto.ciudad.nombre + ", " + producto.ciudad.pais}</p>
-                <p> A 100mt del Barrio Los Rosales</p>
               </div>
             </div>
           </div>
