@@ -93,7 +93,7 @@ public class ProductoController {
     public ResponseEntity<List<Long>> cantidadProductos(){ return ResponseEntity.ok(productoService.cantProductos());}
 
     @GetMapping("/cantidad/usuario/{id}")
-    public ResponseEntity<List<Long>> cantidadProductosUsuario(@PathVariable Long id){ return ResponseEntity.ok(productoService.cantProductosUsuario(id));}
+    public ResponseEntity<List<Long>> cantidadProductosUsuario(@PathVariable Integer id){ return ResponseEntity.ok(productoService.cantProductosUsuario(id));}
 
 }
 
