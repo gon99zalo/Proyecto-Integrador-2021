@@ -97,21 +97,31 @@ h4 {
 }
 
 .product-features {
+    width: 90%;
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 23px;
     color: #F0572D;
     gap: 2%;
 }
-.product-features strong,
-.product-features i {
+.product-feature {
+    display: flex;
+    flex-grow: 1;
+}
+.product-feature strong,
+.product-feature i {
     font-size: 13px;
 }
-.product-features i {
+.product-feature i {
+    height: 14px;
+    width: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 5px;
+
 }
-.product-features strong {
+.product-feature strong {
     color: #31363F;
 }
 
