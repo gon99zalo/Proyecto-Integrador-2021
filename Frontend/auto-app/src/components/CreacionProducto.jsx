@@ -125,7 +125,6 @@ export default function CreacionProducto() {
 
   let infoUser = JSON.parse(sessionStorage.getItem("infoUsuario"));
 
-  console.log(infoUser.rol);
   if (infoUser === null || infoUser.rol !==1) {
     history.push("/")
   }

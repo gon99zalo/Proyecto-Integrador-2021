@@ -13,7 +13,6 @@ import {
 import { Link } from "react-router-dom";
 import "../styles/ReservasUsuario.css";
 import useFetchReservasUsuario from "../hooks/useFetchReservasUsuario";
-import Swal from "sweetalert2";
 
 export default function ReservaUsuario() {
   const { data, loading, tieneError } = useFetchReservasUsuario();
