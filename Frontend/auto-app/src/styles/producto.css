@@ -116,11 +116,10 @@
   border: 1px solid var(--main-color);
 }
 .features-box {
-  width: 90%;
+  width: 100%;
   display: flex;
-  margin-left: 3%;
+  justify-content: space-around;
   margin-bottom: 2em;
-  gap: 25%;
 }
 .features-box div {
   display: flex;
