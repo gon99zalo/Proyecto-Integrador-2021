@@ -23,6 +23,6 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     List<Long> cantProductos();
 
     @Query("SELECT DISTINCT p.id FROM Producto p WHERE p.id NOT IN (SELECT DISTINCT r.producto.id FROM Reserva r WHERE r.usuario.id = ?1)")
-    List<Long> cantProductosUsuario(Long usuarioId);
+    List<Long> cantProductosUsuario(Integer usuarioId);
 
 }

@@ -42,7 +42,7 @@ public class ProductoService {
 
     public List<Long> cantProductos() { return productoRepository.cantProductos(); }
 
-    public List<Long> cantProductosUsuario(Long usuarioId) { return productoRepository.cantProductosUsuario(usuarioId); }
+    public List<Long> cantProductosUsuario(Integer usuarioId) { return productoRepository.cantProductosUsuario(usuarioId); }
 
     }
 

@@ -16,7 +16,7 @@ export default function ReservaUsuario(){
     const [error, setError] = useState(null);
     const [cargado, setcargado] = useState(false);
     const [reservas, setReservas] =useState([])
-    
+
     const history = useHistory();
     const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
     const calendar = <FontAwesomeIcon icon={faCalendarAlt} />;
@@ -52,17 +52,25 @@ export default function ReservaUsuario(){
         fetch(api + "/reservas/usuario/" + idUsuario, configPost)
         .then(res =>res.json())
         .then((result) =>{
-                setcargado(true);              
-                if (result.status !== 403) {
-                    setReservas(result);
-                }
+                if(result.length === 0){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Todavia no realizaste ninguna reserva...',
+                        showConfirmButton: false,
+                        footer: '<a href="/" >Volve cuando hayas realizado una reserva</a>'
+                      })
+                    }
+                setReservas(result);
+                setcargado(true)
             },
             (error)=>{
                 setError(error);
-                setcargado(true);
+                setcargado(true)
+                console.log(error);
             }
         )
-    },[])
+    },[reservas.length])
     
     if (error) {
         return (
@@ -122,15 +130,8 @@ export default function ReservaUsuario(){
             <div className="reserva">
                 <br />
             <div className="reserva-container">
-            {reservas.length === 0 ?
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Todavia no realizaste ninguna reserva...',
-                showConfirmButton: false,
-                footer: '<a href="/" >Volve cuando hayas realizado una reserva</a>'
-              })
-            : (reservas.map((item, i) => {
+            {console.log(reservas.length)}
+            {(reservas.map((item, i) => {
                 return(
                 <div className="product-card" key={i}>
                     <div className="product-image">
@@ -151,13 +152,13 @@ export default function ReservaUsuario(){
                             <i>{marker}</i> {item.producto.ciudad.nombre + ", " + item.producto.ciudad.pais}
                         </p>
                         <div className="product-features">
-                            {item.caracteristicas.map(caract => {
+                        {item.producto.caracteristicas.map(caract => {
                                 return (
                                 <div className="product-feature">
                                     <i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong>
                                 </div>
                                 )
-                            })}
+                        })}
                         </div>
                         <br />
                         <Link to={"/productos/" + item.producto.id}><button className="product-show-more btn-1">Ver Producto</button></Link>
