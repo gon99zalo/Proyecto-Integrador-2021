@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 export const api = "http://ec2-3-135-186-132.us-east-2.compute.amazonaws.com:8080"
 
-
 export default function BloqueCategoria() {
   const [error, setError] = useState(null);
   const [cargado, setcargado] = useState(false);
