@@ -32,7 +32,7 @@ export default function BloqueCategoria() {
     return <div>Error: {error.message}</div>;
   } else if (!cargado) {
     return (
-      <Loading />
+      null
     );
   } else {
     return(

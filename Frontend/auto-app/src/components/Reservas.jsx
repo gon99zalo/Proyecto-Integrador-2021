@@ -297,7 +297,9 @@ export default function Reservas(props) {
   } else if (!cargado) {
     return (
       <>
+        <Header />
         <Loading />
+        <Footer />
       </>
     );
   } else {
