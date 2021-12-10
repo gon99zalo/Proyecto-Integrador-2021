@@ -17,13 +17,14 @@
     margin-top: -1px;
 } 
 
-.opciones i{
+.opciones i, .sidenav-show i{
     font-family: FontAwesome;
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     right: 0;
     align-self: left;
     margin-right: 15px;
     margin-bottom: 10px;
+    width: 48%;
 }
 

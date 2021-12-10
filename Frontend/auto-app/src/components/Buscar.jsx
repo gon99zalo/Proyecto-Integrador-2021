@@ -87,6 +87,7 @@ export default function Buscar(props) {
       <div className="buscar"  key={params.get("locacion")}>
         <div className="product-container">
 
+          {productos.length !== 0 || <h2>Oops! Parece no tenemos el auto que necesitas...</h2>}
           {productos.map( (item, i) => {
             return (
                 <div className="product-card" key={i}>

@@ -50,9 +50,7 @@
   border: none;
   box-shadow: 0px 3px 2px grey;
   }
-::placeholder{
-  padding-left: 15px;
-  }
+
   
 
 #boton-iniciarSesion {
