@@ -123,11 +123,18 @@ export default function CreacionProducto() {
     traerCiudades();
   }, []);
 
+  let infoUser = JSON.parse(sessionStorage.getItem("infoUsuario"));
+
+  console.log(infoUser.rol);
+  if (infoUser === null || infoUser.rol !==1) {
+    history.push("/")
+  }
+
   function Atributo(props) {
     return(
     <div className="esqueleto-agregar-atributo">
               <div className="agregar-icono">
-                <div>
+                <div className="div-nombre-atributo">
                   <label htmlFor="nombre-atributo">Nombre</label>
                   <input
                     type="text"
@@ -136,12 +143,14 @@ export default function CreacionProducto() {
                     value={props.datos.nombre}
                     disabled
                   />
+                  </div>
+                  <div className="div-select-icono">
                   <label htmlFor="icono" >Icono</label>
                   <input type="text" name="icono" id="icono" defaultValue="fa-Wifi" value={props.datos.icono} disabled/>
-                  <i className="fas fa-times cruz" onClick={() => borrarAtributo(props.id)}></i>
                   {/* encontrar otro icono, este es el unico gratis */}
                 </div>
               </div>
+              <i className="fas fa-times cruz" onClick={() => borrarAtributo(props.id)}></i>
             </div>
     )
   } 
@@ -221,7 +230,7 @@ export default function CreacionProducto() {
 
           <div className="commodity-header-titles">
             <div>
-              <h1>Administración</h1>
+              <h1>Administración de productos</h1>
             </div>
             <i className="back-arrow"><a href="/">{backArrow}</a></i>
           </div>
@@ -229,23 +238,23 @@ export default function CreacionProducto() {
 
       <div className="esqueleto-pagina">
         <div className="titulo">
-          <h1>Crear auto</h1>
+          <h1>Crear producto</h1>
         </div>
 
         <form className="form-crear-auto" onSubmit={handlerSubmit}>
           <div className="inputs-crear-auto">
             <div className="inputs-pegados">
               <div>
-                <label htmlFor="nombre">Nombre del auto</label>
+                <label htmlFor="nombre">Nombre del vehículo</label>
                 <input type="text" name="nombre" id="nombre-auto" placeholder="Audi A5" />
 
-                <label htmlFor="direccion">Direccion</label>
+                <label htmlFor="direccion">Dirección</label>
                 <input type="text" name="direccion" id="direccion" placeholder="Aráoz 2885" />
               </div>
 
               <div>
-                <label htmlFor="categoria">Categoria</label>
-                <select defaultValue="Categoria" name="categoria" id="categoria" onChange={handleChangeCategoria}>
+                <label htmlFor="categoria">Categoría</label>
+                <select defaultValue="Categoría" name="categoria" id="categoria" onChange={handleChangeCategoria}>
                   <option value="Categoria" disabled>
                     Categoría
                   </option>
@@ -293,7 +302,8 @@ export default function CreacionProducto() {
                 <div className="div-select-icono">
                 <label htmlFor="icono" >Icono</label>
                   <select name="icono" id="icono" onChange={handleChangeAtributo} defaultValue="fa-car-side">
-                    <option value="fa-car-side" className="fa"> &#xf5e4; vehículo</option>
+                    <option value="fa-car-side" className="fa"> &#xf5e4; auto</option>
+                    <option value="fa-truck-pickup" className="fa"> &#xf63c; camioneta</option>
                     <option value="fa-bus" className="fa"> &#xf207; bus</option>
                     <option value="fa-motorcycle" className="fa"> &#xf21c; moto</option>
                     <option value="fa-gas-pump" className="fa"> &#xf52f; combustible</option>
@@ -301,10 +311,13 @@ export default function CreacionProducto() {
                     <option value="fa-clock" className="fa"> &#xf017; año</option>
                   </select>
                   </div>
-                  <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
-                <p className="campo-incompleto error-atributo">Por favor Complete los campos antes de agregarlos</p>
               </div>
+              <div className="mas-agregar-atributo">
+                  <i className="fas fa-plus-square mas" onClick={nuevoAtributo}></i>
+                  </div>
             </div>
+            <p className="campo-incompleto error-atributo">Por favor Complete los campos antes de agregarlos</p>
+
             {/* {atributosArr} */}
             {objetoAtributo.map((objeto, index) => <Atributo datos={objeto} id={index} />)}
 
@@ -312,7 +325,7 @@ export default function CreacionProducto() {
             <div className="esqueleto-politicas">
               <div className="politicas">
                 <div>
-                  <h2>Normas del auto</h2>
+                  <h2>Normas del producto</h2>
                   <label htmlFor="descripcion-normas">Descripción</label>
                   <textarea
                     name="descripcion-normas"
@@ -351,7 +364,7 @@ export default function CreacionProducto() {
                   <input type="text" name="cargar-imagen" id="cargar-imagen" placeholder="insertar https://" onChange={handleChangeImagen} />
                   <i className="fas fa-plus-square mas" onClick={nuevaImagen}></i>
                 </div>
-                <p className="campo-incompleto error-imagen">Por favor complete el campo antes de agregaro</p>
+                <p className="campo-incompleto error-imagen">Por favor complete el campo antes de agregarlo</p>
               </div>
             </div>
             {objetoImagen.map((objeto, index) => <Imagen datos={objeto} id={index} />)}

@@ -107,6 +107,9 @@ textarea {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: rgba(223, 228, 234, 1);
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .div-nombre-atributo {
@@ -155,8 +158,13 @@ textarea {
   width: 100%;
 }
 
-.agregar-icono .fas {
+/* .agregar-icono .fas {
   margin-top: 38.5px;
+} */
+
+.mas-agregar-atributo {
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
 .mas, .cruz {
@@ -170,6 +178,9 @@ textarea {
 .cruz {
   color: white;
   background-color: var(--three-color);
+  margin-top: 10px;
+  margin-right: 15px;
+  border-radius: 5px;
 }
 
 .fa-plus-square:hover {
@@ -259,6 +270,11 @@ textarea {
   display: block;
 }
 
+.mas-agregar-atributo {
+  width: auto;
+  height: auto;
+}
+
 @media screen and (min-width: 480px) and (max-width:  768px){
     .politicas{
       display: flex;
@@ -276,6 +292,33 @@ textarea {
 
     .submit-crear {
       width: 45%;
+    }
+
+    .esqueleto-agregar-atributo {
+      height: 181px;
+    }
+
+    .agregar-icono {
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 20px;
+      margin-bottom: 32px;
+    }
+
+    .div-nombre-atributo {
+      width: 90%;
+    }
+
+    .div-select-icono {
+      width: 90%;
+    }
+
+    .mas-agregar-atributo {
+      margin-right: 30px;
+    }
+
+    .cruz {
+      margin-right: 32px;
     }
 
   }
@@ -297,6 +340,33 @@ textarea {
 
   .submit-crear {
     width: 45%;
+  }
+
+  .esqueleto-agregar-atributo {
+    height: 181px;
+  }
+
+  .agregar-icono {
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+    margin-bottom: 32px;
+  }
+
+  .div-nombre-atributo {
+    width: 90%;
+  }
+
+  .div-select-icono {
+    width: 90%;
+  }
+
+  .mas-agregar-atributo {
+    margin-right: 30px;
+  }
+
+  .cruz {
+    margin-right: 32px;
   }
 }
 

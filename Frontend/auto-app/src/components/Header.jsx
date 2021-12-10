@@ -86,7 +86,7 @@ export default function Header(props) {
         <>
         <div className="inputs-header-logged">
             {(nombreCompleto.rol !== 2 || props.reservas) || <Link to="/usuario/reservas"><input className="reservas" name="reservas" id="reservas" value="Mis Reservas" type="button"/></Link>}
-            {(nombreCompleto.rol !== 1 || props.administracion) || <Link to="/administracion"><input className="administracion" name="administracion" id="administracion" value="Administracion" type="button"/></Link>}
+            {(nombreCompleto.rol !== 1 || props.administracion) || <Link to="/administracion"><input className="administracion" name="administracion" id="administracion" value="Administración" type="button"/></Link>}
         </div>
         <div className="user-info">
         <div className="avatar">
@@ -112,6 +112,10 @@ export default function Header(props) {
                 <div className="user">
                     <p className="saludo"> <span className="hola-burger">Hola,</span>
                     <span className="colorUser-burger"> {usuario()} </span></p>
+                </div>
+                <div className="opciones-links">
+                {(nombreCompleto.rol !== 2 || props.reservas) || <Link to="/usuario/reservas"><h3>Mis Reservas</h3></Link>}
+                {(nombreCompleto.rol !== 1 || props.administracion) || <Link to="/administracion"><h3>Administración</h3></Link>}
                 </div>
             </div>
             </div>

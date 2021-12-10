@@ -90,7 +90,10 @@ public class ProductoController {
 
 
     @GetMapping("/cantidad")
-    public ResponseEntity<Integer> cantidadProductos(){ return ResponseEntity.ok(productoService.cantProductos());}
+    public ResponseEntity<List<Long>> cantidadProductos(){ return ResponseEntity.ok(productoService.cantProductos());}
+
+    @GetMapping("/cantidad/usuario/{id}")
+    public ResponseEntity<List<Long>> cantidadProductosUsuario(@PathVariable Long id){ return ResponseEntity.ok(productoService.cantProductosUsuario(id));}
 
 }
 
