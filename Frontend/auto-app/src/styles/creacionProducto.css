@@ -372,5 +372,9 @@ textarea {
   .cruz {
     margin-right: 32px;
   }
+  .inputs-pegados {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
