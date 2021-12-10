@@ -39,7 +39,10 @@
       "src/**/*.jsx",
       "src/**/*.js",
       "!src/index.js",
-      "!src/components/Buscar.jsx"
+      "!src/components/CreacionProducto.jsx",
+      "!src/components/Listado.jsx",
+      "!src/components/Buscar.jsx",
+      "!src/hooks/useFetchReservasUsuario.jsx"
       ]},
   "scripts": {
     "start": "react-scripts start",
