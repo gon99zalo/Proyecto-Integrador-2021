@@ -123,9 +123,12 @@ export default function ReservaUsuario(){
             <h1>No hiciste ninguna reserva todavia</h1>
             : (reservas.map((item, i) => {
                 return(
-                <div className="reserva-card" key={i}>
-                    <div className="reserva-data">
-                        <div className="reserva-star-rating">
+                <div className="product-card" key={i}>
+                    <div className="product-image">
+                        <img className="product" src={item.producto.imagenes[0].url} alt={item.producto.imagenes[0].titulo} />
+                    </div>
+                    <div className="product-data">
+                        <div className="product-star-rating">
                             <h4>{item.producto.categoria.titulo}</h4>
                         </div>
                         <h1>{item.producto.nombre}</h1>
@@ -135,9 +138,15 @@ export default function ReservaUsuario(){
                         <p className="txt-1">
                             <i>{calendar}</i> {item.fechaInicial.split("-")[2] + "/" + item.fechaInicial.split("-")[1] + "/" + item.fechaInicial.split("-")[0] + " - " + item.fechaFinal.split("-")[2] + "/" + item.fechaFinal.split("-")[1] + "/" + item.fechaFinal.split("-")[0]}
                         </p>
-                        <p className="txt-1 reserva-location">
+                        <p className="txt-1 product-location">
                             <i>{marker}</i> {item.producto.ciudad.nombre + ", " + item.producto.ciudad.pais}
                         </p>
+                        <div className="product-features">
+                        {item.producto.caracteristicas.map(caract => {
+                            return <><i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong></>
+                        })}
+                        </div>
+                        <br />
                         <Link to={"/productos/" + item.producto.id}><button className="product-show-more btn-1">Ver Producto</button></Link>
                     </div>
                 </div>
