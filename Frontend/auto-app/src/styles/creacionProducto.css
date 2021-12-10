@@ -119,6 +119,10 @@ textarea {
   align-items: flex-start;
 }
 
+.div-nombre-atributo {
+  text-align: left;
+}
+
 .div-select-icono {
   width: 29%;
   display: flex;

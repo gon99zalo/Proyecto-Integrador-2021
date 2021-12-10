@@ -48,6 +48,11 @@
   align-items: flex-start;
   margin-left: 5px;
 }
+
+.commodity-location-description p {
+  text-align: left;
+}
+
 .commodity-ranking-description {
   display: flex;
   align-items: center;

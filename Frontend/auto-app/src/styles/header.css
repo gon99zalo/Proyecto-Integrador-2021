@@ -273,3 +273,8 @@ a {
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   pointer-events: all
 }
+
+.sidenav-show i {
+  display: flex;
+  justify-content: space-evenly;
+}
