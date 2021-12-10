@@ -15,8 +15,9 @@ export default function ReservaUsuario(){
     
     const [error, setError] = useState(null);
     const [cargado, setcargado] = useState(false);
+    const [sinReservas, setSinReservas] = useState(false);
     const [reservas, setReservas] =useState([])
-    
+
     const history = useHistory();
     const marker = <FontAwesomeIcon icon={faMapMarkerAlt} />;
     const calendar = <FontAwesomeIcon icon={faCalendarAlt} />;
@@ -52,17 +53,14 @@ export default function ReservaUsuario(){
         fetch(api + "/reservas/usuario/" + idUsuario, configPost)
         .then(res =>res.json())
         .then((result) =>{
-                setcargado(true);              
-                if (result.status !== 403) {
-                    setReservas(result);
-                }
+                setReservas(result);
             },
             (error)=>{
                 setError(error);
-                setcargado(true);
             }
-        )
-    },[])
+        ).then(reservas.length !== 0 || setSinReservas(true))
+        .then(setcargado(true))
+    },[reservas.length])
     
     if (error) {
         return (
@@ -122,7 +120,7 @@ export default function ReservaUsuario(){
             <div className="reserva">
                 <br />
             <div className="reserva-container">
-            {reservas.length === 0 ?
+            {sinReservas ?
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -151,13 +149,13 @@ export default function ReservaUsuario(){
                             <i>{marker}</i> {item.producto.ciudad.nombre + ", " + item.producto.ciudad.pais}
                         </p>
                         <div className="product-features">
-                            {item.caracteristicas.map(caract => {
+                        {item.producto.caracteristicas.map(caract => {
                                 return (
                                 <div className="product-feature">
                                     <i className={"fas " + caract.icono} /><strong>{caract.nombre}</strong>
                                 </div>
                                 )
-                            })}
+                        })}
                         </div>
                         <br />
                         <Link to={"/productos/" + item.producto.id}><button className="product-show-more btn-1">Ver Producto</button></Link>
