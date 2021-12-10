@@ -23,7 +23,23 @@ export default function Listado() {
   };
 
   useEffect(() => {
-    fetch(api + "/productos/cantidad")
+    let idUsuario;
+    if(sessionStorage.getItem("infoUsuario") != null){
+      let token = JSON.parse(sessionStorage.getItem("infoUsuario")).token;
+        let base64Url = token.split(".")[1];
+        let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        let jsonPayload = decodeURIComponent(
+            atob(base64)
+            .split("")
+            .map(function (c) {
+                return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join("")
+        );
+        idUsuario = JSON.parse(jsonPayload).sub.split("'")[1];
+    }
+    
+    fetch(api + (sessionStorage.getItem("infoUsuario") == null ? "/productos/cantidad" : "/productos/cantidad/usuario/" + idUsuario))
       .then(res => res.json())
       .then(
         (result) => {
@@ -32,7 +48,6 @@ export default function Listado() {
             var r = Math.floor(Math.random() * result.length) + 1;
             if(array.indexOf(r) === -1) array.push(r);
           }
-          console.log(array);
           array.forEach((i) => {
             fetch(api + "/productos/buscar/" + result[i-1])
             .then(res => res.json())
