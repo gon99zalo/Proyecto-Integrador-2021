@@ -58,7 +58,7 @@ export default function Header(props) {
   const handlerClose = useCallback(() => {
     sessionStorage.removeItem("infoUsuario");
     setUsuarioActivo(false);
-    if (window.location.href.includes("reserva")) {
+    if ( window.location.href.includes("reserva")|| window.location.href.includes("administracion") ) {
       history.push("/");
     }
   }, [history]);
